@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom History Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Architects+Daughter&family=Montserrat:wght@400;700;900&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Animations */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        @keyframes jiggle {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-1px); }
+            50% { transform: translateX(1px); }
+            75% { transform: translateX(-1px); }
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff; }
+            100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; }
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 8px 8px 0px #92400e, 0 0 15px #f59e0b; }
+            50% { box-shadow: 8px 8px 0px #92400e, 0 0 30px #f97316, 0 0 15px #f59e0b; }
+            100% { box-shadow: 8px 8px 0px #92400e, 0 0 15px #f59e0b; }
+        }
+        @keyframes active-boost-wiggle {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+            75% { transform: rotate(-3deg); }
+        }
+        @keyframes red-flash-animation {
+            0% { background-color: transparent; }
+            50% { background-color: rgba(239, 68, 68, 0.5); }
+            100% { background-color: transparent; }
+        }
+        @keyframes passive-ready-glow {
+            0% { box-shadow: 6px 6px 0px #15803d, 0 0 10px #4ade80; }
+            50% { box-shadow: 6px 6px 0px #15803d, 0 0 20px #4ade80, 0 0 10px #4ade80; }
+            100% { box-shadow: 6px 6px 0px #15803d, 0 0 10px #4ade80; }
+        }
+        @keyframes timer-flash-green {
+            0%, 100% { color: white; }
+            50% { color: #86efac; }
+        }
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 1s steps(60, end);
+        }
+
+        /* General Body and Layout */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #111827;
+            background: linear-gradient(-45deg, #f97316, #c026d3, #0ea5e9, #10b981);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+            overflow: hidden;
+        }
+        .red-flash::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            animation: red-flash-animation 0.5s ease-in-out;
+            z-index: -1;
+        }
+        .main-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            height: 100vh;
+        }
+        .header-grid {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            min-height: 0;
+        }
+
+        /* Card Styles */
+        .card {
+            border: 6px solid #111827;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            box-shadow: 8px 8px 0px #111827;
+            text-align: center;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+        .card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+            margin-bottom: 0.25rem;
+            color: rgba(0,0,0,0.6);
+        }
+        .card.time-card h2, .card.score-card h2, .card.streak-card h2, .card.correct-card h2 {
+            color: rgba(255,255,255,0.7);
+        }
+        .card .content {
+            font-family: 'Architects Daughter', cursive;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            line-height: 1.1;
+        }
+        .time-card { background-color: #ef4444; color: white; border-color: #991b1b; box-shadow: 8px 8px 0px #991b1b;}
+        .time-card.flash-green { animation: timer-flash-green 0.5s ease-in-out 2; }
+        .score-card { background-color: #22c55e; color: white; border-color: #14532d; box-shadow: 8px 8px 0px #14532d;}
+        .streak-card { background-color: #a855f7; color: white; border-color: #5b21b6; box-shadow: 8px 8px 0px #5b21b6;}
+        .correct-card { background-color: #2dd4bf; color: white; border-color: #0d9488; box-shadow: 8px 8px 0px #0d9488;}
+        
+        /* Header Buttons */
+        .button-cluster {
+            grid-column: 5 / 6;
+            display: flex; flex-direction: column; gap: 0.75rem; justify-content: center;
+            padding: 0; background: transparent; border: none; box-shadow: none;
+        }
+        .header-btn {
+            color: white; border: 4px solid #111827; border-radius: 1rem; padding: 0.5rem;
+            font-size: 1rem; font-weight: 900; cursor: pointer; transition: all 0.2s;
+            box-shadow: 4px 4px 0px #111827;
+        }
+        .header-btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111827; }
+        #endTurnBtn { background-color: #8b5cf6; }
+        #resetAllBtn { background-color: #ec4899; }
+        #aboutBtn { background-color: #10b981; }
+
+        /* Question Area */
+        .question-container {
+            background-color: #334155; border-color: #111827; box-shadow: 8px 8px 0px #111827;
+            display: flex; flex-direction: column; gap: 1.5rem;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .question-container.switching { opacity: 0; transform: scale(0.95); }
+        .question-container.shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        .question-box {
+            background-color: #fde047; border-color: #ca8a04; box-shadow: 8px 8px 0px #ca8a04;
+            padding: 1rem; flex-grow: 1; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        #questionText { 
+            flex-grow: 1; 
+            transition: font-size 0.3s ease-in-out; 
+            text-align: center; 
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+        #hintBtn {
+            background-color: #fb923c; border: 4px solid #c2410c; box-shadow: 4px 4px 0px #c2410c;
+            border-radius: 50%; width: 60px; height: 60px; font-size: 1.5rem; font-weight: 900;
+            flex-shrink: 0; cursor: pointer; transition: all 0.2s;
+        }
+        #hintBtn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #c2410c; }
+        .answer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; flex-grow: 2; }
+        .answer-choice {
+            background-color: #f59e0b; border-color: #92400e; box-shadow: 8px 8px 0px #92400e;
+            cursor: pointer; transition: all 0.2s; display: flex; align-items: center;
+            justify-content: center; padding: 1rem; font-size: 1.5rem; font-weight: 900;
+        }
+        .answer-choice:hover { transform: translate(4px, 4px); box-shadow: 4px 4px 0px #92400e; }
+        .answer-choice.removed { 
+            opacity: 0.3; cursor: not-allowed; background-color: #9ca3af; 
+            border-color: #4b5563; box-shadow: none; transform: none; 
+        }
+        .correct { background-color: #22c55e !important; color: white !important; border-color: #14532d !important; box-shadow: 8px 8px 0px #14532d !important; }
+        .incorrect { background-color: #ef4444 !important; color: white !important; border-color: #991b1b !important; box-shadow: 8px 8px 0px #991b1b !important; }
+
+        /* Abilities Section */
+        .abilities-container {
+            background-color: #fde047; border-color: #ca8a04; box-shadow: 8px 8px 0px #ca8a04;
+            padding: 1rem;
+        }
+        .abilities-title {
+            font-family: 'Akaya Kanadaka', cursive; 
+            font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+            padding-bottom: 0.5rem; margin-bottom: 1rem; color: #ca8a04;
+        }
+        .abilities-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+        .top-abilities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        .ability-btn {
+            background-color: #fefce8; border: 4px solid #eab308; box-shadow: 4px 4px 0px #eab308;
+            padding: 0.5rem; transition: all 0.2s; border-radius: 1rem; font-weight: 900;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative;
+            width: 100%;
+        }
+        .ability-btn.locked { opacity: 0.5; cursor: not-allowed; background-color: #e2e8f0; }
+        .ability-btn.earned { cursor: pointer; }
+        .ability-btn.earned:hover { transform: translateY(-2px); box-shadow: 6px 6px 0px #eab308; }
+        .ability-btn.active { border-color: #92400e; }
+        #abilityBoost {
+            padding: 0.75rem;
+            font-size: 1.25rem;
+        }
+        #abilityBoost.active {
+            animation: pulse-glow 1.5s infinite, active-boost-wiggle 0.5s ease-in-out infinite;
+        }
+        .ability-btn .uses {
+            position: absolute; top: -10px; right: -10px; background-color: #dc2626; color: white;
+            border-radius: 50%; width: 24px; height: 24px; display: flex; justify-content: center;
+            align-items: center; font-size: 0.875rem; font-weight: 900; border: 2px solid white;
+        }
+        #abilityInfoBtn {
+            background-color: #fb923c; border-color: #c2410c; box-shadow: 4px 4px 0px #c2410c;
+            color: white; font-size: 1.1rem;
+        }
+        .passive-ability {
+            background-color: #dcfce7; border: 4px solid #16a34a; box-shadow: 6px 6px 0px #15803d;
+            border-radius: 1rem; padding: 0.5rem; text-align: left; position: relative;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        .passive-ability.jiggle {
+            animation-name: jiggle;
+            animation-iteration-count: infinite;
+        }
+        .passive-ability.ready { animation: passive-ready-glow 1.5s infinite; }
+        .passive-ability-title { font-weight: 900; font-size: 0.9rem; }
+        .progress-bar-container {
+            width: 100%; background-color: #a7f3d0; border-radius: 0.5rem;
+            height: 1.25rem; border: 2px solid #15803d;
+        }
+        .progress-bar {
+            background-color: #22c55e; height: 100%; border-radius: 0.25rem;
+            transition: width 0.3s ease-in-out;
+        }
+        .panther-buck-counter {
+            position: absolute; top: -10px; right: -10px; background-color: #a855f7;
+            color: white; border-radius: 0.75rem; padding: 0.1rem 0.5rem;
+            font-size: 0.875rem; font-weight: 900; border: 2px solid white;
+        }
+
+        /* Notification Panel */
+        #notificationPanel {
+            background: #1e293b;
+            border: 6px solid #111827;
+            box-shadow: 8px 8px 0px #111827, inset 0 0 15px rgba(0,0,0,0.5);
+            border-radius: 1.5rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 100% 3px;
+            animation: scanline 1s linear infinite;
+        }
+        #notificationText {
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: #93c5fd;
+            text-shadow: 0 0 5px #2563eb, 0 0 10px #2563eb;
+            width: 100%;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); display: flex;
+            justify-content: center; align-items: center; z-index: 100;
+        }
+        .modal-content {
+            background-color: white; padding: 2rem; border-radius: 1.5rem;
+            border: 6px solid #111827; box-shadow: 8px 8px 0px #111827;
+            text-align: left; max-width: 600px;
+        }
+        .modal-content h2 { font-family: 'Akaya Kanadaka', cursive; text-align: center; }
+        .modal-button {
+            margin: 0.5rem; padding: 0.75rem 2rem; border-radius: 0.75rem;
+            border: 4px solid #111827; font-weight: 700; cursor: pointer; transition: all 0.2s;
+        }
+        .modal-button:hover { transform: translate(4px, 4px); box-shadow: none; }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-container { grid-template-columns: 1fr; height: auto; overflow-y: auto; }
+            .header-grid { grid-template-columns: 1fr 1fr; }
+            .button-cluster { grid-column: 1 / -1; flex-direction: row; }
+            .right-panel { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MODALS -->
+    <div id="groupInfoModal" class="modal-overlay">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-4xl font-bold mb-4">History Challenge</h2>
+            <div class="mb-4">
+                <label for="gradeLevelSelect" class="text-xl mb-2 block">Select Grade Level:</label>
+                <select id="gradeLevelSelect" class="w-full p-3 text-xl border-4 border-gray-800 rounded-xl">
+                    <option value="grade6">6th Grade</option>
+                    <option value="grade7">7th Grade</option>
+                    <option value="grade8" selected>8th Grade</option>
+                </select>
+            </div>
+            <button id="startGameBtn" class="modal-button bg-blue-500 text-white mt-6" style="box-shadow: 4px 4px 0px #111827;">Start Game!</button>
+        </div>
+    </div>
+    <div id="endGameModal" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-5xl font-bold mb-4">Time's Up!</h2>
+            <p class="text-3xl mb-6">You scored <span id="finalScore" class="font-bold text-green-500"></span> points!</p>
+            <button id="newGameBtn" class="modal-button bg-blue-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Play Again</button>
+        </div>
+    </div>
+    <div id="aboutModal" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-4xl font-bold mb-4">About the Creator</h2>
+            <p class="text-xl mb-6">This app was created by Mr. Lopez Torres, a Social Studies teacher at Woodlawn Middle School, to make learning history fun and interactive for his students. Go Panthers!</p>
+            <button id="closeAboutBtn" class="modal-button bg-gray-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Close</button>
+        </div>
+    </div>
+    <div id="resetConfirmModal" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-4xl font-bold mb-4">Reset Game?</h2>
+            <p class="text-xl mb-6">Are you sure? This will restart the game.</p>
+            <div>
+                <button id="confirmResetBtn" class="modal-button bg-red-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Yes, Reset!</button>
+                <button id="cancelResetBtn" class="modal-button bg-gray-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div id="hintModal" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-4xl font-bold mb-4">Here's a Hint!</h2>
+            <p id="hintText" class="text-2xl mb-6"></p>
+            <button id="closeHintBtn" class="modal-button bg-gray-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Got it!</button>
+        </div>
+    </div>
+    <div id="streakModal" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-5xl font-bold mb-4 text-purple-600 animate-[glow_1.5s_ease-in-out_infinite]">POWER UP!</h2>
+            <p id="streakText" class="text-2xl mb-6"></p>
+            <button id="closeStreakBtn" class="modal-button bg-purple-500 text-white">Awesome!</button>
+        </div>
+    </div>
+    <div id="abilityInfoModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 class="text-4xl font-bold mb-4">How Abilities Work</h2>
+            <div class="space-y-4 text-lg">
+                <p><strong class="text-purple-600">Passive Abilities (they happen automatically!):</strong></p>
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li><strong>Time Tinkerer:</strong> Get a <strong>4-question streak</strong> to add <strong>15 seconds</strong> back to the clock!</li>
+                    <li><strong>Historian's Hunch:</strong> For every <strong>5 total correct answers</strong>, one wrong choice will be removed on the next question.</li>
+                    <li><strong>Panther Bucks:</strong> For every <strong>10 total correct answers</strong>, you earn a Panther Buck! (Careful: a 4-wrong streak resets progress!)</li>
+                </ul>
+                <p><strong class="text-purple-600">Active Abilities (you have to click them!):</strong></p>
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li><strong class="text-blue-600">SKIP QUESTION:</strong> Earned at a <strong>3-question streak</strong>. Use it to pass a tricky question.</li>
+                    <li><strong class="text-green-600">SECOND CHANCE:</strong> Earned at a <strong>5-question streak</strong>. Brings back your last two wrong answers for another try.</li>
+                    <li><strong class="text-red-600">2x SCORE BOOST:</strong> Earned at a <strong>7-question streak</strong>. Doubles your points until you get one wrong.</li>
+                </ul>
+            </div>
+            <div class="text-center mt-6">
+                 <button id="closeAbilityInfoBtn" class="modal-button bg-gray-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Got It!</button>
+            </div>
+        </div>
+    </div>
+    <div id="pantherBuckModal" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-5xl font-bold mb-4 text-purple-600 animate-[glow_1.5s_ease-in-out_infinite]">PANTHER BUCK!</h2>
+            <p class="text-2xl mb-6">You've earned a Panther Buck! See Mr. Lopez Torres to claim your reward!</p>
+            <button id="closePantherBuckBtn" class="modal-button bg-purple-500 text-white">Awesome!</button>
+        </div>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+        <header id="headerGrid" class="header-grid">
+            <div class="card time-card" id="timeCard">
+                <h2>Time</h2>
+                <p id="timer" class="content">05:00</p>
+            </div>
+            <div class="card score-card">
+                <h2>Score</h2>
+                <p id="score" class="content">0</p>
+            </div>
+            <div class="card streak-card">
+                <h2>Streak</h2>
+                <p id="streak" class="content">0</p>
+            </div>
+            <div class="card correct-card">
+                <h2>Correct</h2>
+                <p id="correctAnswers" class="content">0</p>
+            </div>
+            <div class="button-cluster">
+                <button id="endTurnBtn" class="header-btn">End Game</button>
+                <button id="resetAllBtn" class="header-btn">Reset</button>
+                <button id="aboutBtn" class="header-btn">About</button>
+            </div>
+        </header>
+
+        <section id="gameArea" class="card question-container">
+            <div id="questionBox" class="card question-box">
+                <p id="questionText"></p>
+                <button id="hintBtn">?</button>
+            </div>
+            <div class="answer-grid">
+                <div class="card answer-choice" data-choice="0"><p></p></div>
+                <div class="card answer-choice" data-choice="1"><p></p></div>
+                <div class="card answer-choice" data-choice="2"><p></p></div>
+                <div class="card answer-choice" data-choice="3"><p></p></div>
+            </div>
+        </section>
+
+        <!-- Right panel containing abilities and notifications -->
+        <div class="right-panel">
+            <section id="abilitiesContainer" class="card abilities-container">
+                <h2 class="abilities-title">Abilities</h2>
+                <div class="abilities-layout">
+                    <!-- Passive Abilities Section -->
+                    <div class="passive-abilities-container space-y-2">
+                        <div id="pantherBuckAbility" class="passive-ability">
+                             <div id="pantherBuckCounter" class="panther-buck-counter">0 🐾</div>
+                            <p class="passive-ability-title">Panther Bucks (Next: 10)</p>
+                            <div class="progress-bar-container">
+                                <div id="pantherBuckProgress" class="progress-bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div id="hunchAbility" class="passive-ability">
+                            <p class="passive-ability-title">Historian's Hunch (Next: 5)</p>
+                            <div class="progress-bar-container">
+                                <div id="hunchProgress" class="progress-bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div id="tinkerAbility" class="passive-ability">
+                            <p class="passive-ability-title">Time Tinkerer (Streak)</p>
+                            <div class="progress-bar-container">
+                                <div id="tinkerProgress" class="progress-bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Active Abilities Section -->
+                    <div class="top-abilities">
+                        <button id="abilitySkip" class="ability-btn locked">
+                            <span>SKIP</span>
+                            <div id="skipUses" class="uses hidden"></div>
+                        </button>
+                        <button id="abilityRedo" class="ability-btn locked">
+                            <span>REDO</span>
+                            <div id="redoUses" class="uses hidden"></div>
+                        </button>
+                    </div>
+                    <button id="abilityBoost" class="ability-btn locked">
+                        <span>2x BOOST</span>
+                    </button>
+                    <button id="abilityInfoBtn" class="ability-btn earned">
+                        <span>HOW TO USE</span>
+                    </button>
+                </div>
+            </section>
+            <div id="notificationPanel">
+                <p id="notificationText"></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- DATA ---
+        const allQuestions = {
+            grade6: [
+                { question: "Why did the Pilgrims decide to leave England?", choices: ["To find gold", "For religious freedom", "To start a trading company", "To explore new lands"], answer: 1, hint: "They disagreed with the Church of England." },
+                { question: "What was the name of the ship the Pilgrims sailed on to the New World?", choices: ["The Santa Maria", "The Discovery", "The Mayflower", "The Titanic"], answer: 2, hint: "This famous ship is in the name of their agreement." },
+                { question: "The Mayflower Compact was an agreement to create a form of...", choices: ["Self-government", "Monarchy", "Business partnership", "Religious council"], answer: 0, hint: "It was a plan for how they would rule themselves in the new land." },
+                { question: "Who was the leader of the Wampanoag tribe who made a peace treaty with the Pilgrims?", choices: ["Pocahontas", "Sitting Bull", "Geronimo", "Chief Massasoit"], answer: 3, hint: "His alliance was crucial for the Pilgrims' survival." },
+                { question: "Which Native American taught the Pilgrims how to plant corn, fish, and get syrup from trees?", choices: ["Sacagawea", "Squanto", "Hiawatha", "Pocahontas"], answer: 1, hint: "He had learned English and could communicate with the settlers." },
+                { question: "Who was the long-time governor of Plymouth Colony and wrote the book 'Of Plymouth Plantation'?", choices: ["John Smith", "William Bradford", "John Rolfe", "Miles Standish"], answer: 1, hint: "He was elected over 30 times." },
+                { question: "The Mayflower Compact is an important document because it was the first to establish...", choices: ["A king in America", "The idea of self-government in the colonies", "A trade route with France", "The official language as English"], answer: 1, hint: "It showed the colonists could create their own laws." },
+                { question: "The main reason the Pilgrims wanted religious freedom was to...", choices: ["Force everyone to be a Pilgrim", "Separate from the Church of England", "Create a new religion", "Stop all religion"], answer: 1, hint: "This is why they were called 'Separatists'." },
+                { question: "The help from Squanto and the Wampanoag was important MAINLY because...", choices: ["It helped the Pilgrims survive their first year", "They gave the Pilgrims gold", "They built all the houses for the Pilgrims", "They sailed the Mayflower back to England"], answer: 0, hint: "The Pilgrims were not prepared for the harsh winter." },
+                { question: "William Bradford's leadership helped the Plymouth Colony to...", choices: ["Become the richest colony", "Conquer all other colonies", "Survive and establish a stable community", "Move back to England"], answer: 2, hint: "He helped organize the colony and keep peace." },
+                { question: "What event is seen as a symbol of the peaceful cooperation between the Pilgrims and the Wampanoag?", choices: ["The signing of the Mayflower Compact", "The first Thanksgiving", "The building of the first fort", "The start of the fur trade"], answer: 1, hint: "It was a harvest festival they shared together." },
+                { question: "The Pilgrims' religious beliefs were based on the idea that...", choices: ["The King of England was their religious leader", "They should follow the teachings of the Bible directly", "They should not have any churches", "Religion was not important"], answer: 1, hint: "They wanted a 'purer' form of worship." },
+                { question: "Besides teaching them to farm, what else did Squanto do for the Pilgrims?", choices: ["He served as their governor", "He was their doctor", "He acted as an interpreter and helped with peace", "He built their ship"], answer: 2, hint: "Being able to talk to the Native Americans was very important." },
+                { question: "The Mayflower Compact was signed by...", choices: ["Only the Pilgrim leaders", "Only the sailors", "Most of the adult men on the Mayflower", "The King of England"], answer: 2, hint: "It included both the 'Saints' (Pilgrims) and the 'Strangers' (other colonists)." },
+                { question: "Chief Massasoit's decision to help the Pilgrims was important because...", choices: ["It prevented his people from being attacked", "It created a long-lasting peace and alliance", "He wanted to learn how to build ships", "He was forced to by the King"], answer: 1, hint: "This friendship lasted for over 50 years." },
+                { question: "As governor, William Bradford was responsible for...", choices: ["Leading the army", "Making all the laws by himself", "Organizing the colony and recording its history", "Farming all the land"], answer: 2, hint: "His writings give us most of what we know about Plymouth." },
+                { question: "The Pilgrims landed at Plymouth in what is now which U.S. state?", choices: ["Virginia", "New York", "Florida", "Massachusetts"], answer: 3, hint: "It's a state in New England." },
+                { question: "The idea of 'self-government' means that people...", choices: ["Have no government at all", "Create and agree to follow their own laws", "Are ruled by a king from far away", "Let the military make all the rules"], answer: 1, hint: "The 'govern' part is done by the 'self'." },
+                { question: "How did the Wampanoag help the Pilgrims prepare for winter?", choices: ["By trading for furs and food", "By building them warmer houses", "By giving them maps to a warmer place", "By teaching them how to sail"], answer: 0, hint: "The Pilgrims' own food stores were running low." },
+                { question: "William Bradford's book helps us understand...", choices: ["How to build a ship", "The struggles and successes of the Plymouth Colony", "The history of England", "The language of the Wampanoag"], answer: 1, hint: "It's like a diary of their first decades in America." }
+            ],
+            grade7: [
+                { question: "The XYZ Affair involved a demand for bribes from agents of which country?", choices: ["Great Britain", "Spain", "France", "The Netherlands"], answer: 2, hint: "This country was in a conflict with Britain at the time." },
+                { question: "What was President John Adams's response to the XYZ Affair?", choices: ["He declared war on France", "He paid the bribe secretly", "He built up the US Navy", "He resigned from office"], answer: 2, hint: "He chose to strengthen the nation's defenses instead of war." },
+                { question: "The Alien and Sedition Acts were passed by which political party?", choices: ["The Federalists", "The Whigs", "The Democrats", "The Republicans"], answer: 0, hint: "This was the party of President John Adams." },
+                { question: "The Sedition Act made it a crime to do what?", choices: ["Refuse to pay taxes", "Criticize the government", "Help a foreign country", "Join a different party"], answer: 1, hint: "This part of the law was very controversial." },
+                { question: "The Alien Acts gave the president the power to do what to non-citizens?", choices: ["Give them free land", "Deport or imprison them", "Make them join the army", "Force them to pay taxes"], answer: 1, hint: "This was aimed at immigrants suspected of being disloyal." },
+                { question: "What was the popular American slogan that came from the XYZ Affair?", choices: ["'Give me liberty or give me death!'", "'No taxation without representation!'", "'Millions for defense, but not one cent for tribute!'", "'Remember the Alamo!'"], answer: 2, hint: "It showed Americans would rather fight than pay a bribe." },
+                { question: "The Virginia and Kentucky Resolutions argued that the Alien and Sedition Acts were...", choices: ["Necessary for national security", "Helpful for the economy", "Supported by all Americans", "Unconstitutional"], answer: 3, hint: "They claimed the acts violated the First Amendment." },
+                { question: "Who secretly wrote the Virginia and Kentucky Resolutions?", choices: ["John Adams and Alexander Hamilton", "George Washington and John Jay", "Thomas Jefferson and James Madison", "Benjamin Franklin and John Hancock"], answer: 2, hint: "These two future presidents were leaders of the opposition party." },
+                { question: "The XYZ Affair led to an undeclared naval war between the U.S. and France known as the...", choices: ["French and Indian War", "War of 1812", "Quasi-War", "American Revolution"], answer: 2, hint: "The prefix 'quasi-' means 'almost' or 'seemingly'." },
+                { question: "The Sedition Act was seen by many as a violation of which constitutional amendment?", choices: ["First Amendment", "Second Amendment", "Fourth Amendment", "Fifth Amendment"], answer: 0, hint: "This amendment protects freedom of speech and the press." },
+                { question: "Why were the French demanding a bribe in the XYZ Affair?", choices: ["They were angry about Jay's Treaty", "They wanted to buy Louisiana", "They needed money for their own revolution", "The U.S. had attacked their ships"], answer: 0, hint: "They felt a U.S. agreement with Britain favored the British." },
+                { question: "The Alien Acts were targeted primarily at immigrants from which two countries?", choices: ["England and Spain", "Germany and Poland", "France and Ireland", "Italy and Greece"], answer: 2, hint: "These immigrants often supported the Democratic-Republican party." },
+                { question: "What was the main purpose of the Alien and Sedition Acts from the Federalist perspective?", choices: ["To encourage more immigration", "To protect national security", "To lower the cost of government", "To promote free speech"], answer: 1, hint: "They were concerned about foreign spies and domestic dissent." },
+                { question: "How did the XYZ Affair affect President Adams's popularity?", choices: ["It made him very unpopular", "It had no effect on his popularity", "It made him very popular at first", "It caused his impeachment"], answer: 2, hint: "Americans were angry at France and rallied behind the president." },
+                { question: "The Virginia and Kentucky Resolutions introduced the idea of 'nullification', which is the belief that...", choices: ["The president can cancel any law", "States can ignore federal laws", "The Supreme Court is the highest power", "Citizens can vote to cancel laws"], answer: 1, hint: "This controversial idea would come up again later in U.S. history." },
+                { question: "Who were the three American diplomats sent to France for the XYZ Affair?", choices: ["Jefferson, Madison, and Monroe", "Pinckney, Marshall, and Gerry", "Hamilton, Washington, and Adams", "Franklin, Jay, and Adams"], answer: 1, hint: "Their report to Adams detailed the French agents' demands." },
+                { question: "The Sedition Act led to the arrest and conviction of mostly...", choices: ["Federalist newspaper editors", "French spies and diplomats", "Democratic-Republican newspaper editors", "British soldiers in America"], answer: 2, hint: "The law was used against the political opponents of the Federalists." },
+                { question: "How was the Quasi-War with France eventually resolved?", choices: ["Through a major naval battle", "Through a peace treaty in 1800", "France surrendered to the U.S.", "Britain helped the U.S. win"], answer: 1, hint: "John Adams chose diplomacy over a full-scale war." },
+                { question: "The Alien Enemies Act allowed the president to deport non-citizens from a country the U.S. was...", choices: ["At peace with", "Trading with", "Allied with", "At war with"], answer: 3, hint: "This part of the law was less controversial than the others." },
+                { question: "What was the long-term impact of the Alien and Sedition Acts on the Federalist party?", choices: ["It made them more popular", "It helped them win the next election", "It damaged their reputation", "It had no lasting impact"], answer: 2, hint: "The acts were seen as an abuse of power and hurt their public image." },
+                { question: "In the XYZ Affair, the French agents were referred to as X, Y, and Z to...", choices: ["Use a cool secret code", "Protect their identities", "Make the story shorter", "Confuse the British"], answer: 1, hint: "President Adams did this when he released the report to Congress." },
+                { question: "The Naturalization Act, one of the Alien Acts, changed the residency requirement for citizenship from...", choices: ["1 year to 2 years", "2 years to 7 years", "5 years to 14 years", "10 years to 20 years"], answer: 2, hint: "This made it harder for new immigrants to become citizens and vote." },
+                { question: "John Adams's decision to make peace with France in 1800 was...", choices: ["Popular with all Federalists", "Unpopular with his own party", "Supported by Thomas Jefferson", "Demanded by George Washington"], answer: 1, hint: "Many in his party, like Alexander Hamilton, wanted to go to war." },
+                { question: "The main argument against the Sedition Act was that it stifled...", choices: ["Economic growth", "Political debate", "Religious freedom", "States' rights"], answer: 1, hint: "People were afraid to speak out against the government." },
+                { question: "The XYZ Affair began when President Adams sent diplomats to France to discuss...", choices: ["The purchase of Louisiana", "French attacks on U.S. shipping", "A military alliance against Britain", "A new trade agreement"], answer: 1, hint: "France was seizing American ships that were trading with Britain." },
+                { question: "The Alien Friends Act allowed the president to deport any non-citizen deemed...", choices: ["Poor or unemployed", "Friendly to Britain", "Dangerous to the U.S.", "Unable to speak English"], answer: 2, hint: "This gave the president a lot of power over immigrants." },
+                { question: "The Virginia and Kentucky Resolutions were based on the 'compact theory,' which says the Constitution is a compact between the...", choices: ["President and Congress", "People and the government", "States and the federal government", "House and the Senate"], answer: 2, hint: "This theory emphasizes the power of the states." },
+                { question: "How did most Americans feel after learning about the XYZ Affair?", choices: ["They were angry at John Adams", "They wanted to ally with France", "They were proud and patriotic", "They did not care about it"], answer: 2, hint: "The French disrespect united the country for a time." },
+                { question: "Which political party was most weakened by the Alien and Sedition Acts?", choices: ["The Federalists", "The Democratic-Republicans", "The Whig Party", "The Tory Party"], answer: 1, hint: "The laws were written to target their supporters and leaders." },
+                { question: "John Adams created the Department of the... in response to the XYZ Affair.", choices: ["Treasury", "State", "Navy", "War"], answer: 2, hint: "He is sometimes called the 'Father of the American Navy'." },
+                { question: "The Sedition Act expired on March 3, 1801, which was...", choices: ["John Adams's birthday", "The day before Jefferson took office", "The anniversary of the XYZ Affair", "The day the Quasi-War ended"], answer: 1, hint: "This timing suggests it was designed to be a political tool." },
+                { question: "The French foreign minister during the XYZ Affair was...", choices: ["Lafayette", "Napoleon", "Talleyrand", "Robespierre"], answer: 2, hint: "He was the one who demanded the bribe through his agents." },
+                { question: "The Alien and Sedition Acts were seen by some as a conflict between national security and...", choices: ["Economic prosperity", "Individual liberties", "States' rights", "Foreign policy"], answer: 1, hint: "This is a common debate during times of crisis." },
+                { question: "President Adams felt the Alien and Sedition Acts were necessary because he feared...", choices: ["A war with Great Britain", "A civil war in the U.S.", "A French invasion or revolution", "An economic depression"], answer: 2, hint: "The French Revolution had become very violent and radical." },
+                { question: "What was the ultimate outcome of the Virginia and Kentucky Resolutions?", choices: ["They nullified the Alien and Sedition Acts", "They led to a civil war", "They had little immediate effect", "They led to Adams's impeachment"], answer: 2, hint: "While they didn't stop the laws, they were important statements of states' rights." },
+                { question: "The XYZ Affair is a good example of how foreign policy can affect...", choices: ["Only the president", "Only the military", "Domestic politics", "Only the economy"], answer: 2, hint: "Events in other countries can cause big disagreements at home." },
+                { question: "The Sedition Act made it illegal to publish 'false, scandalous, and malicious writing' against...", choices: ["Any American citizen", "Only the President", "Any elected federal official", "Any foreign diplomat"], answer: 2, hint: "This included members of Congress and the President." },
+                { question: "John Adams's willingness to make peace with France likely cost him...", choices: ["His friendship with Jefferson", "The support of his party", "His home in Massachusetts", "His position as president"], answer: 1, hint: "The war-hawks in his party turned against him." },
+                { question: "The Alien and Sedition Acts raised questions about the balance of power between...", choices: ["The House and the Senate", "The President and the Supreme Court", "The federal government and the states", "The military and the civilian government"], answer: 2, hint: "The Virginia and Kentucky Resolutions were a direct response to this." },
+                { question: "The Quasi-War was fought almost entirely...", choices: ["On land in America", "On land in France", "At sea", "With spies and diplomats"], answer: 2, hint: "It involved many ship battles and captures in the Atlantic." }
+            ],
+            grade8: [
+                { question: "Which leader advocated for economic advancement through vocational training in his 'Atlanta Compromise' speech?", choices: ["W.E.B. Du Bois", "Booker T. Washington", "Ida B. Wells", "Marcus Garvey"], answer: 1, hint: "He founded the Tuskegee Institute in Alabama." },
+                { question: "W.E.B. Du Bois co-founded which influential civil rights organization in 1909?", choices: ["The Niagara Movement", "The NAACP", "The Urban League", "The SCLC"], answer: 1, hint: "This organization focused on using legal challenges to fight for equality." },
+                { question: "What was the primary goal of Ida B. Wells's journalistic crusade?", choices: ["To promote Black-owned businesses", "To advocate for women's suffrage", "To expose the horrors of lynching", "To demand better schools"], answer: 2, hint: "She used investigative reporting to document and condemn this form of racial violence." },
+                { question: "The Niagara Movement, led by W.E.B. Du Bois, directly opposed the accommodationist strategy of which leader?", choices: ["Mary Church Terrell", "Ida B. Wells", "Booker T. Washington", "A. Philip Randolph"], answer: 2, hint: "This movement demanded immediate political and social equality, not gradual economic progress." },
+                { question: "Mary Church Terrell was a co-founder of the NAACP and the first president of which organization?", choices: ["National Association of Colored Women", "League of Women Voters", "American Red Cross", "The Urban League"], answer: 0, hint: "Her motto for this group was 'Lifting as we climb'." },
+                { question: "What was the central idea of Booker T. Washington's philosophy of 'accommodation'?", choices: ["Immediate protest for civil rights", "Accepting segregation temporarily in exchange for economic opportunity", "Moving back to Africa to establish a new nation", "Using the court system to challenge unfair laws"], answer: 1, hint: "He believed proving economic value was the most practical path to equality." },
+                { question: "W.E.B. Du Bois's concept of the 'Talented Tenth' referred to:", choices: ["The top 10% of farmers", "A belief that 10% of all wealth should go to charity", "The necessity for a classically educated Black leadership class", "The first ten amendments to the Constitution"], answer: 2, hint: "He argued this group of leaders should guide the fight for civil rights." },
+                { question: "The NAACP's primary strategy in its early years was to:", choices: ["Organize large-scale marches and boycotts", "Challenge segregation and discrimination in court", "Establish vocational schools across the South", "Publish newspapers to expose injustice"], answer: 1, hint: "Their legal team worked to dismantle laws that supported racial inequality." },
+                { question: "Ida B. Wells used which of the following as her main weapon against injustice?", choices: ["Legal briefs", "Investigative journalism", "Economic boycotts", "Political office"], answer: 1, hint: "She published pamphlets and newspaper articles to reveal the truth about racial violence." },
+                { question: "Which statement best describes the difference between Washington and Du Bois?", choices: ["Washington focused on legal rights, while Du Bois focused on jobs.", "They had the same goals but different strategies.", "Washington sought immediate equality, while Du Bois was more gradual.", "Du Bois was an accommodationist, while Washington was a radical."], answer: 1, hint: "Both wanted progress for African Americans but disagreed strongly on the best way to achieve it." },
+                { question: "The Niagara Movement's platform demanded all of the following EXCEPT:", choices: ["An end to segregation", "The right to vote", "Economic equality", "Separate but equal facilities"], answer: 3, hint: "This group completely rejected the idea that segregation could be fair." },
+                { question: "Mary Church Terrell was a prominent activist who championed both civil rights and:", choices: ["Prohibition", "Women's suffrage", "Environmental protection", "Labor unions"], answer: 1, hint: "She fought for the rights of all women, not just white women." },
+                { question: "Booker T. Washington's Tuskegee Institute was designed to provide what kind of education?", choices: ["Liberal arts and classical studies", "Legal and medical training", "Agricultural and industrial skills", "Theological and religious studies"], answer: 2, hint: "The focus was on practical skills to help students become self-sufficient." },
+                { question: "The founding of the NAACP was prompted in part by a major race riot in which city?", choices: ["Atlanta, Georgia", "Springfield, Illinois", "Tulsa, Oklahoma", "Chicago, Illinois"], answer: 1, hint: "This 1908 event in Abraham Lincoln's hometown shocked many white progressives into action." },
+                { question: "Ida B. Wells's research showed that the main justification for lynching was often a lie. What was that justification?", choices: ["That Black people were stealing jobs", "That Black men were attacking white women", "That Black people refused to pay taxes", "That Black people were foreign spies"], answer: 1, hint: "Her work proved that most lynchings were about economic competition and racial terror." },
+                { question: "Which book by W.E.B. Du Bois contains a direct critique of Booker T. Washington's philosophy?", choices: ["The Souls of Black Folk", "Up from Slavery", "The Philadelphia Negro", "Black Reconstruction"], answer: 0, hint: "In this 1903 classic, he included a chapter titled 'Of Mr. Booker T. Washington and Others'." },
+                { question: "The 'Atlanta Compromise' is a name given to a speech by which leader?", choices: ["W.E.B. Du Bois", "Ida B. Wells", "Mary Church Terrell", "Booker T. Washington"], answer: 3, hint: "The name, given by critics, suggested a deal was made to trade political rights for economic support." },
+                { question: "What was a major goal of the National Association of Colored Women (NACW), led by Mary Church Terrell?", choices: ["To challenge segregation in federal courts", "To uplift the race through education, work, and community service", "To organize industrial labor unions for Black women", "To demand an immediate end to all forms of discrimination"], answer: 1, hint: "Their motto was 'Lifting as we climb'." },
+                { question: "The Niagara Movement was a direct forerunner to which organization?", choices: ["The Tuskegee Institute", "The Urban League", "The NAACP", "The Black Panther Party"], answer: 2, hint: "Many of the leaders and goals of the earlier group were absorbed into this new, interracial organization." },
+                { question: "Which leader believed that fighting for the right to vote (suffrage) was essential for achieving full citizenship?", choices: ["Booker T. Washington", "W.E.B. Du Bois", "Both of them", "Neither of them"], answer: 1, hint: "He argued that without political power, economic gains could be easily taken away." },
+                { question: "Ida B. Wells was forced to flee Memphis after what happened?", choices: ["She ran for political office.", "She started a successful bank.", "Her newspaper office was destroyed by a mob.", "She organized a city-wide boycott."], answer: 2, hint: "This happened after she wrote a powerful editorial condemning a local lynching." },
+                { question: "The term 'accommodation' when discussing Booker T. Washington means:", choices: ["Demanding equal housing", "Providing lodging for activists", "Accepting a lesser position for now", "Challenging the status quo"], answer: 2, hint: "It refers to his strategy of not directly confronting segregation in the short term." },
+                { question: "The NAACP's legal strategy eventually led to which landmark Supreme Court victory in 1954?", choices: ["Plessy v. Ferguson", "Dred Scott v. Sandford", "Brown v. Board of Education", "Marbury v. Madison"], answer: 2, hint: "Though it happened later, the groundwork was laid by the NAACP's early legal battles." },
+                { question: "Mary Church Terrell's activism included protesting segregated restaurants in which city?", choices: ["Atlanta, GA", "New York, NY", "Chicago, IL", "Washington, D.C."], answer: 3, hint: "She helped lead boycotts and sit-ins in the nation's capital decades before the 1960s movement." },
+                { question: "Which statement would W.E.B. Du Bois most likely agree with?", choices: ["'The best way forward is through industrial education.'", "'Political power is essential for protecting our rights.'", "'We must accept social segregation for the time being.'", "'Economic success will naturally lead to civil rights.'"], answer: 1, hint: "He believed that the right to vote and full civil rights were non-negotiable." },
+                { question: "Booker T. Washington's autobiography is titled:", choices: ["The Souls of Black Folk", "Narrative of the Life of Frederick Douglass", "Up from Slavery", "The Miseducation of the Negro"], answer: 2, hint: "This book tells the story of his journey from enslavement to becoming a national leader." },
+                { question: "The 'Crisis' is the official magazine of which civil rights organization?", choices: ["The Niagara Movement", "The NAACP", "The NACW", "The Urban League"], answer: 1, hint: "W.E.B. Du Bois was its first editor." },
+                { question: "Ida B. Wells was also a key figure in the fight for:", choices: ["Animal rights", "Environmental conservation", "Women's suffrage", "Temperance (banning alcohol)"], answer: 2, hint: "She co-founded the Alpha Suffrage Club in Chicago." },
+                { question: "A primary goal of Mary Church Terrell and the NACW was to:", choices: ["Challenge negative stereotypes of Black women", "Focus solely on economic issues", "Separate from mainstream society", "Support the accommodationist view"], answer: 0, hint: "They aimed to show the 'educated, refined, and virtuous' character of Black womanhood." },
+                { question: "Which leader would most likely say, 'Cast down your bucket where you are'?", choices: ["W.E.B. Du Bois", "Ida B. Wells", "Booker T. Washington", "Mary Church Terrell"], answer: 2, hint: "This famous phrase from his Atlanta speech encouraged Black people to focus on the jobs available in the South." },
+                { question: "The Niagara Movement was formed at a meeting near Niagara Falls because:", choices: ["It was a beautiful and inspiring location", "They were not allowed to book hotels on the U.S. side", "It was the site of a famous Underground Railroad crossing", "The leaders wanted to harness the power of the falls"], answer: 1, hint: "This experience of discrimination highlighted the very issues they were there to fight." },
+                { question: "What was the main legal argument the NAACP used to fight segregation?", choices: ["It violated the 'due process' clause of the 5th Amendment", "It was a form of 'cruel and unusual punishment'", "It violated the 'equal protection' clause of the 14th Amendment", "It was prohibited by the Declaration of Independence"], answer: 2, hint: "This amendment, passed after the Civil War, was central to their legal strategy." },
+                { question: "Ida B. Wells's anti-lynching campaign was an international one. She gave speeches in which country?", choices: ["France", "Great Britain", "Canada", "Mexico"], answer: 1, hint: "She hoped to use international pressure to force change in the United States." },
+                { question: "Which of these leaders was born into slavery?", choices: ["W.E.B. Du Bois", "Booker T. Washington", "Mary Church Terrell", "All of them"], answer: 1, hint: "His experiences shaped his belief in the power of hard work and gradual progress." },
+                { question: "The 'Talented Tenth' was Du Bois's idea for a leadership class. What kind of education did he think they needed?", choices: ["Vocational and technical", "Strictly religious", "Broad liberal arts", "Military training"], answer: 2, hint: "He believed leaders needed a classical education in subjects like history, literature, and philosophy." },
+                { question: "Which event would be considered a direct outcome of Ida B. Wells's work?", choices: ["The founding of the Tuskegee Institute", "Increased national and international awareness of lynching", "The passage of the 19th Amendment", "The Atlanta Compromise speech"], answer: 1, hint: "Though she didn't get a federal anti-lynching law passed, she made it impossible for people to ignore the issue." },
+                { question: "Mary Church Terrell's father was one of the South's first Black:", choices: ["Doctors", "Millionaires", "Senators", "Judges"], answer: 1, hint: "Her privileged background gave her access to education and opportunities unavailable to most." },
+                { question: "The NAACP was founded by a multiracial group of activists. Who was its first president?", choices: ["W.E.B. Du Bois", "Booker T. Washington", "A white lawyer named Moorfield Storey", "Ida B. Wells"], answer: 2, hint: "While Du Bois was a key founder and leader, the first president was white, reflecting the group's interracial nature." },
+                { question: "Booker T. Washington's strategy was most popular with:", choices: ["White political leaders and philanthropists", "Black intellectuals in the North", "Radical labor organizers", "African nationalists"], answer: 0, hint: "His non-confrontational approach was seen as practical and reassuring by many powerful white figures." },
+                { question: "The main goal of the Niagara Movement was to secure:", choices: ["Economic opportunities and land ownership", "The civil rights guaranteed in the 13th, 14th, and 15th Amendments", "Separate but equal schools and hospitals", "Passage back to Africa for all Black citizens"], answer: 1, hint: "They focused on rights like voting, equal justice, and an end to discrimination." },
+                { question: "Ida B. Wells argued that lynching was a tool used to enforce:", choices: ["Religious conformity", "Political term limits", "Economic and racial subordination", "Military conscription"], answer: 2, hint: "She saw it as a way to control the Black population after the end of slavery." },
+                { question: "Which leader was a co-founder of both the Niagara Movement and the NAACP?", choices: ["Ida B. Wells", "Booker T. Washington", "Mary Church Terrell", "W.E.B. Du Bois"], answer: 3, hint: "He was a central figure in the creation of both of these important organizations." },
+                { question: "The National Association of Colored Women (NACW) focused on:", choices: ["Radical protest and agitation", "Community improvement and racial uplift", "Challenging laws in the Supreme Court", "Supporting Booker T. Washington's policies"], answer: 1, hint: "They worked on issues like education, health care, and child welfare." },
+                { question: "The 'Atlanta Compromise' suggested that Black Americans should give up demanding what in the short term?", choices: ["Economic opportunity", "Vocational training", "Political and social equality", "Religious freedom"], answer: 2, hint: "Critics like Du Bois felt this was too high a price to pay for economic support." },
+                { question: "W.E.B. Du Bois was the first African American to earn a Ph.D. from which university?", choices: ["Yale University", "Tuskegee Institute", "Harvard University", "Howard University"], answer: 2, hint: "His academic achievements were a key part of his identity as a leading intellectual." },
+                { question: "The NAACP's name stands for:", choices: ["National Alliance Against Corrupt Politicians", "National Association for the Advancement of Colored People", "New American Coalition for Progress", "National Association of American Colored People"], answer: 1, hint: "The name reflects its mission to promote progress and equality." },
+                { question: "Ida B. Wells's pamphlet exposing the truth about lynching was titled:", choices: ["The Red Record", "The Souls of Black Folk", "Up from Slavery", "The Crisis"], answer: 0, hint: "This publication used statistics to show the brutal reality of racial violence." },
+                { question: "Mary Church Terrell and other NACW members fought against the stereotype that Black women were:", choices: ["Uneducated and immoral", "Wealthy and elitist", "Politically radical", "Uninterested in family"], answer: 0, hint: "A major part of their work was to present a positive, dignified image of Black womanhood." },
+                { question: "Which leader's strategy could be described as 'bottom-up,' focusing on the economic foundation of the masses?", choices: ["W.E.B. Du Bois", "Booker T. Washington", "Ida B. Wells", "Mary Church Terrell"], answer: 1, hint: "He believed that by building economic strength from the ground up, all other rights would follow." },
+                { question: "Which leader's strategy could be described as 'top-down,' focusing on developing a leadership class?", choices: ["W.E.B. Du Bois", "Booker T. Washington", "Both of them", "Neither of them"], answer: 0, hint: "His 'Talented Tenth' concept is the clearest example of this approach." }
+            ]
+        };
+
+        // --- GAME STATE ---
+        let playerState = {};
+        let timerInterval = null;
+        let timeLeft = 300; // 5 minutes in seconds
+        let currentQuestionIndex = -1;
+        let questionsCopy = [];
+        let activeQuestionSet = [];
+        let wrongAnswers = []; // Store indexes of wrong answers
+        let abilities = {}; // Store state of abilities
+        let notificationQueue = []; 
+        let isModalActive = false; 
+        let notificationTimer = null;
+        let lastNotificationMessage = ''; // New state to track last message
+
+        // --- DOM ELEMENTS ---
+        const timerEl = document.getElementById('timer');
+        const timeCardEl = document.getElementById('timeCard');
+        const scoreEl = document.getElementById('score');
+        const streakEl = document.getElementById('streak');
+        const correctAnswersEl = document.getElementById('correctAnswers');
+        const gameAreaEl = document.getElementById('gameArea');
+        const questionTextEl = document.getElementById('questionText');
+        const answerChoices = document.querySelectorAll('.answer-choice');
+        const headerGridEl = document.getElementById('headerGrid');
+        
+        // Modals
+        const groupInfoModal = document.getElementById('groupInfoModal');
+        const endGameModal = document.getElementById('endGameModal');
+        const aboutModal = document.getElementById('aboutModal');
+        const resetConfirmModal = document.getElementById('resetConfirmModal');
+        const hintModal = document.getElementById('hintModal');
+        const streakModal = document.getElementById('streakModal');
+        const streakTextEl = document.getElementById('streakText');
+        const abilityInfoModal = document.getElementById('abilityInfoModal');
+        const pantherBuckModal = document.getElementById('pantherBuckModal');
+
+        // Buttons
+        const gradeLevelSelect = document.getElementById('gradeLevelSelect');
+        const startGameBtn = document.getElementById('startGameBtn');
+        const newGameBtn = document.getElementById('newGameBtn');
+        const endTurnBtn = document.getElementById('endTurnBtn');
+        const resetAllBtn = document.getElementById('resetAllBtn');
+        const aboutBtn = document.getElementById('aboutBtn');
+        const hintBtn = document.getElementById('hintBtn');
+        const closeAboutBtn = document.getElementById('closeAboutBtn');
+        const confirmResetBtn = document.getElementById('confirmResetBtn');
+        const cancelResetBtn = document.getElementById('cancelResetBtn');
+        const closeHintBtn = document.getElementById('closeHintBtn');
+        const closeStreakBtn = document.getElementById('closeStreakBtn');
+        const closeAbilityInfoBtn = document.getElementById('closeAbilityInfoBtn');
+        const closePantherBuckBtn = document.getElementById('closePantherBuckBtn');
+
+        // Modal Content
+        const finalScoreEl = document.getElementById('finalScore');
+        const hintTextEl = document.getElementById('hintText');
+        
+        // Ability & Notification Elements
+        const abilitySkipEl = document.getElementById('abilitySkip');
+        const abilityRedoEl = document.getElementById('abilityRedo');
+        const abilityBoostEl = document.getElementById('abilityBoost');
+        const abilityInfoBtn = document.getElementById('abilityInfoBtn');
+        const skipUsesEl = document.getElementById('skipUses');
+        const redoUsesEl = document.getElementById('redoUses');
+        const hunchAbilityEl = document.getElementById('hunchAbility');
+        const tinkerAbilityEl = document.getElementById('tinkerAbility');
+        const hunchProgressEl = document.getElementById('hunchProgress');
+        const tinkerProgressEl = document.getElementById('tinkerProgress');
+        const pantherBuckProgressEl = document.getElementById('pantherBuckProgress');
+        const pantherBuckCounterEl = document.getElementById('pantherBuckCounter');
+        const notificationTextEl = document.getElementById('notificationText');
+
+        // --- SOUND ENGINE ---
+        const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+        function playCorrectSound() {
+            const now = Tone.now();
+            synth.triggerAttackRelease("C4", "8n", now);
+            synth.triggerAttackRelease("E4", "8n", now + 0.1);
+            synth.triggerAttackRelease("G4", "8n", now + 0.2);
+            synth.triggerAttackRelease("C5", "8n", now + 0.3);
+        }
+        function playIncorrectSound() {
+            const now = Tone.now();
+            synth.triggerAttackRelease("C2", "8n", now);
+        }
+        function playClickSound() { synth.triggerAttackRelease("C5", "16n"); }
+        function playStartSound() {
+            const now = Tone.now();
+            synth.triggerAttackRelease("G3", "8n", now);
+            synth.triggerAttackRelease("C4", "8n", now + 0.1);
+        }
+        function playStreakSound() {
+            const now = Tone.now();
+            synth.triggerAttackRelease("G4", "8n", now);
+            synth.triggerAttackRelease("C5", "8n", now + 0.1);
+            synth.triggerAttackRelease("E5", "4n", now + 0.2);
+        }
+        function playPantherBuckSound() {
+            const now = Tone.now();
+            synth.triggerAttackRelease("A5", "8n", now);
+        }
+
+        // --- HELPER & NOTIFICATION FUNCTIONS ---
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        
+        function triggerConfetti() {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, zIndex: 101 });
+        }
+        
+        function addNotification(notification) {
+            notificationQueue.push(notification);
+            processNotificationQueue();
+        }
+
+        function processNotificationQueue() {
+            if (isModalActive || notificationQueue.length === 0) {
+                return;
+            }
+            isModalActive = true;
+            const notification = notificationQueue.shift();
+            
+            triggerConfetti();
+
+            if (notification.type === 'streak') {
+                playStreakSound();
+                streakTextEl.textContent = notification.text;
+                streakModal.classList.remove('hidden');
+            } else if (notification.type === 'pantherBuck') {
+                playPantherBuckSound();
+                pantherBuckModal.classList.remove('hidden');
+            }
+        }
+        
+        function updateNotification(message) {
+            if (message === lastNotificationMessage) return; // <-- FIX: Prevent repeat messages
+            lastNotificationMessage = message;
+
+            if (notificationTimer) clearTimeout(notificationTimer);
+            notificationTextEl.textContent = ''; 
+            notificationTextEl.classList.remove('typing-effect');
+            
+            void notificationTextEl.offsetWidth; 
+            
+            notificationTextEl.textContent = message;
+            notificationTextEl.classList.add('typing-effect');
+
+            notificationTimer = setTimeout(() => {
+                 notificationTextEl.classList.remove('typing-effect');
+            }, 1000); 
+        }
+
+        // --- ABILITY LOGIC ---
+        function updateAbilitiesUI() {
+            // Passive: Panther Bucks
+            const buckProgress = (playerState.pantherBuckProgress / 10) * 100;
+            pantherBuckProgressEl.style.width = `${buckProgress}%`;
+            pantherBuckCounterEl.textContent = `${playerState.pantherBucksEarned} 🐾`;
+
+            // Passive: Historian's Hunch
+            const hunchProgress = (playerState.correctAnswers % 5) / 5 * 100;
+            hunchProgressEl.style.width = `${hunchProgress}%`;
+            hunchAbilityEl.classList.toggle('ready', hunchProgress >= 80);
+            if (hunchProgress > 50) {
+                hunchAbilityEl.classList.add('jiggle');
+                const duration = 0.4 - ((hunchProgress - 50) / 50) * 0.3; 
+                hunchAbilityEl.style.animationDuration = `${duration}s`;
+            } else {
+                hunchAbilityEl.classList.remove('jiggle');
+                hunchAbilityEl.style.animationDuration = '';
+            }
+
+            // Passive: Time Tinkerer
+            const tinkerProgress = Math.min((playerState.streak / 4) * 100, 100);
+            tinkerProgressEl.style.width = `${tinkerProgress}%`;
+            tinkerAbilityEl.classList.toggle('ready', playerState.streak >= 4);
+            if (tinkerProgress > 50) {
+                tinkerAbilityEl.classList.add('jiggle');
+                const duration = 0.4 - ((tinkerProgress - 50) / 50) * 0.3; 
+                tinkerAbilityEl.style.animationDuration = `${duration}s`;
+            } else {
+                tinkerAbilityEl.classList.remove('jiggle');
+                tinkerAbilityEl.style.animationDuration = '';
+            }
+
+            // Active: Skip
+            if (abilities.skip > 0) {
+                abilitySkipEl.classList.remove('locked');
+                abilitySkipEl.classList.add('earned');
+                skipUsesEl.textContent = abilities.skip;
+                skipUsesEl.classList.remove('hidden');
+            } else {
+                abilitySkipEl.classList.add('locked');
+                abilitySkipEl.classList.remove('earned');
+                skipUsesEl.classList.add('hidden');
+            }
+            // Active: Redo
+            if (abilities.redo > 0) {
+                abilityRedoEl.classList.remove('locked');
+                abilityRedoEl.classList.add('earned');
+                redoUsesEl.textContent = abilities.redo;
+                redoUsesEl.classList.remove('hidden');
+            } else {
+                abilityRedoEl.classList.add('locked');
+                abilityRedoEl.classList.remove('earned');
+                redoUsesEl.classList.add('hidden');
+            }
+             // Active: Boost
+            if (abilities.boostActive) {
+                abilityBoostEl.classList.remove('locked');
+                abilityBoostEl.classList.add('active');
+            } else {
+                abilityBoostEl.classList.remove('active');
+                abilityBoostEl.classList.add('locked');
+            }
+        }
+
+        function activateSkip() {
+            if (abilities.skip > 0) {
+                playClickSound();
+                abilities.skip--;
+                updateAbilitiesUI();
+                updateNotification("Question skipped!");
+                displayNextQuestion();
+            }
+        }
+
+        function activateRedo() {
+            if (abilities.redo > 0 && wrongAnswers.length > 0) {
+                playClickSound();
+                abilities.redo--;
+
+                if (currentQuestionIndex !== -1) {
+                    const currentQuestionObject = activeQuestionSet[currentQuestionIndex];
+                    questionsCopy.push(currentQuestionObject);
+                    shuffleArray(questionsCopy);
+                }
+                
+                const questionsToRedo = wrongAnswers.map(index => activeQuestionSet[index]);
+                questionsCopy.unshift(...questionsToRedo);
+                
+                updateNotification(`Second Chance! Answering ${wrongAnswers.length} questions again.`);
+                wrongAnswers = [];
+                updateAbilitiesUI();
+                displayNextQuestion();
+            }
+        }
+
+        // --- CORE GAME LOGIC ---
+        function resetPlayerState() {
+             playerState = { 
+                score: 0, questionsAnswered: 0, streak: 0, correctAnswers: 0,
+                wrongStreak: 0, pantherBuckProgress: 0,
+                earned3Streak: false, earned4Streak: false, earned5Streak: false, earned7Streak: false,
+                historiansHunchPending: false, pantherBucksEarned: 0
+            };
+            abilities = { skip: 0, redo: 0, boostActive: false };
+            wrongAnswers = [];
+        }
+
+        async function startGame() {
+            await Tone.start();
+            playStartSound();
+            
+            resetPlayerState();
+            
+            scoreEl.textContent = '0';
+            streakEl.textContent = '0';
+            correctAnswersEl.textContent = '0';
+            groupInfoModal.classList.add('hidden');
+            
+            const selectedGrade = gradeLevelSelect.value;
+            activeQuestionSet = allQuestions[selectedGrade];
+            questionsCopy = [...activeQuestionSet];
+            shuffleArray(questionsCopy);
+
+            updateAbilitiesUI();
+            startTimer();
+            updateNotification("The challenge has begun. Good luck!");
+            displayNextQuestion();
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timeLeft = 300;
+            timerEl.textContent = "05:00";
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const seconds = (timeLeft % 60).toString().padStart(2, '0');
+                timerEl.textContent = `${minutes}:${seconds}`;
+
+                if (timeLeft === 150) {
+                    updateNotification("Halfway through! Keep up the pace!");
+                } else if (timeLeft === 60) {
+                    updateNotification("Warning: One minute remaining!");
+                }
+
+                if (timeLeft <= 0) endGame();
+            }, 1000);
+        }
+
+        function displayNextQuestion() {
+            gameAreaEl.classList.add('switching');
+            setTimeout(() => {
+                if (questionsCopy.length === 0) {
+                    endGame();
+                    return;
+                }
+                answerChoices.forEach(choice => {
+                    choice.classList.remove('correct', 'incorrect', 'removed');
+                    choice.style.pointerEvents = 'auto';
+                });
+                const question = questionsCopy.shift();
+                currentQuestionIndex = activeQuestionSet.indexOf(question);
+                
+                if (playerState.historiansHunchPending) {
+                    const correctAnswerIndex = question.answer;
+                    const wrongChoices = [0, 1, 2, 3].filter(i => i !== correctAnswerIndex);
+                    shuffleArray(wrongChoices);
+                    const choiceToRemove = wrongChoices[0];
+                    answerChoices[choiceToRemove].classList.add('removed');
+                    answerChoices[choiceToRemove].style.pointerEvents = 'none';
+                    playerState.historiansHunchPending = false;
+                    updateNotification("Historian's Hunch: One wrong answer removed.");
+                }
+
+                const questionText = question.question;
+                questionTextEl.textContent = questionText;
+                if (questionText.length < 65) questionTextEl.style.fontSize = '2.5rem';
+                else if (questionText.length < 110) questionTextEl.style.fontSize = '2rem';
+                else questionTextEl.style.fontSize = '1.75rem';
+
+                answerChoices.forEach((choiceEl, index) => {
+                    choiceEl.querySelector('p').textContent = question.choices[index];
+                });
+                gameAreaEl.classList.remove('switching');
+            }, 300);
+        }
+
+        function handleAnswerClick(e) {
+            playerState.questionsAnswered++;
+            const selectedChoiceEl = e.currentTarget;
+            const selectedAnswer = parseInt(selectedChoiceEl.dataset.choice);
+            const correctAnswer = activeQuestionSet[currentQuestionIndex].answer;
+
+            answerChoices.forEach(choice => choice.style.pointerEvents = 'none');
+
+            if (selectedAnswer === correctAnswer) {
+                selectedChoiceEl.classList.add('correct');
+                
+                playerState.correctAnswers++;
+                playerState.pantherBuckProgress++;
+                playerState.wrongStreak = 0;
+                playerState.score += abilities.boostActive ? 2 : 1;
+                scoreEl.textContent = playerState.score;
+                correctAnswersEl.textContent = playerState.correctAnswers;
+                
+                if (playerState.correctAnswers > 0 && playerState.correctAnswers % 5 === 0) {
+                    playerState.historiansHunchPending = true;
+                }
+
+                if (playerState.pantherBuckProgress === 10) {
+                    playerState.pantherBucksEarned++;
+                    playerState.pantherBuckProgress = 0;
+                    addNotification({ type: 'pantherBuck' });
+                }
+
+                playerState.streak++;
+                streakEl.textContent = playerState.streak;
+                
+                let specialEventOccurred = false;
+                // Streak-based ability notifications
+                if (playerState.streak === 3 && !playerState.earned3Streak) {
+                    abilities.skip++;
+                    playerState.earned3Streak = true;
+                    addNotification({ type: 'streak', text: "You earned a SKIP!" });
+                    specialEventOccurred = true;
+                } else if (playerState.streak === 4 && !playerState.earned4Streak) {
+                    timeLeft += 15;
+                    timeCardEl.classList.add('flash-green');
+                    setTimeout(() => timeCardEl.classList.remove('flash-green'), 1000);
+                    playerState.earned4Streak = true;
+                    addNotification({ type: 'streak', text: "TIME BONUS! +15 Seconds!" });
+                    specialEventOccurred = true;
+                } else if (playerState.streak === 5 && !playerState.earned5Streak) {
+                    abilities.redo++;
+                    playerState.earned5Streak = true;
+                    addNotification({ type: 'streak', text: "You earned a SECOND CHANCE!" });
+                    specialEventOccurred = true;
+                } else if (playerState.streak === 7 && !playerState.earned7Streak) {
+                    abilities.boostActive = true;
+                    playerState.earned7Streak = true;
+                    addNotification({ type: 'streak', text: "2x SCORE BOOST is active!" });
+                    specialEventOccurred = true;
+                }
+                
+                if (!specialEventOccurred && notificationQueue.length === 0) {
+                    playCorrectSound();
+                    triggerConfetti();
+                }
+
+                // Contextual notifications
+                if (abilities.skip > 0) {
+                    updateNotification("SKIP ability is ready to use.");
+                } else if (10 - playerState.pantherBuckProgress === 1) {
+                    updateNotification("One more for a Panther Buck!");
+                } else if (playerState.streak === 2) {
+                    updateNotification("Great! That's two in a row.");
+                } else if (playerState.streak === 6) {
+                    updateNotification("Incredible 6-question streak!");
+                } else {
+                    updateNotification("Correct! Keep it up.");
+                }
+
+
+            } else {
+                playIncorrectSound();
+                document.body.classList.add('red-flash');
+                selectedChoiceEl.classList.add('incorrect');
+                answerChoices[correctAnswer].classList.add('correct');
+                
+                if (wrongAnswers.length >= 2) wrongAnswers.shift();
+                wrongAnswers.push(currentQuestionIndex);
+
+                playerState.streak = 0;
+                playerState.wrongStreak++;
+                streakEl.textContent = playerState.streak;
+                playerState.earned3Streak = false;
+                playerState.earned4Streak = false;
+                playerState.earned5Streak = false;
+                playerState.earned7Streak = false;
+                if (abilities.boostActive) {
+                    abilities.boostActive = false;
+                    updateNotification("2x Boost lost! Be careful.");
+                }
+
+                if (playerState.wrongStreak === 4) {
+                    playerState.pantherBuckProgress = 0;
+                    playerState.wrongStreak = 0;
+                    updateNotification("Panther Buck progress lost! 4 wrong in a row.");
+                } else if (playerState.wrongStreak === 3) {
+                    updateNotification("Danger! One more wrong will reset Panther Buck progress.");
+                } else {
+                    updateNotification("Incorrect. Don't lose focus!");
+                }
+                
+                headerGridEl.classList.add('shake');
+                gameAreaEl.classList.add('shake');
+                setTimeout(() => {
+                    headerGridEl.classList.remove('shake');
+                    gameAreaEl.classList.remove('shake');
+                    document.body.classList.remove('red-flash');
+                }, 500);
+            }
+            
+            updateAbilitiesUI();
+            setTimeout(displayNextQuestion, 2000);
+        }
+        
+        function endGame() {
+            if (!timerInterval && endGameModal.classList.contains('hidden')) return;
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerEl.textContent = "00:00";
+            
+            finalScoreEl.textContent = playerState.score;
+            endGameModal.classList.remove('hidden');
+        }
+
+        function setupNewTurn() {
+            timeLeft = 300;
+            timerEl.textContent = "05:00";
+            endGameModal.classList.add('hidden');
+            groupInfoModal.classList.remove('hidden');
+            scoreEl.textContent = '0';
+            streakEl.textContent = '0';
+            correctAnswersEl.textContent = '0';
+            questionTextEl.textContent = 'Your first question will appear here. Good luck!';
+            answerChoices.forEach(choice => {
+                choice.querySelector('p').textContent = '';
+                choice.classList.remove('correct', 'incorrect');
+            });
+            resetPlayerState();
+            updateAbilitiesUI();
+            updateNotification("Select a grade to start a new game.");
+        }
+        
+        function resetAllData() {
+            playClickSound();
+            setupNewTurn();
+            resetConfirmModal.classList.add('hidden');
+        }
+
+        function showHint() {
+            playClickSound();
+            if (currentQuestionIndex > -1) {
+                const hint = activeQuestionSet[currentQuestionIndex].hint;
+                hintTextEl.textContent = hint;
+                hintModal.classList.remove('hidden');
+            }
+        }
+
+        // --- EVENT LISTENERS ---
+        startGameBtn.addEventListener('click', startGame);
+        newGameBtn.addEventListener('click', () => { playClickSound(); setupNewTurn(); });
+        endTurnBtn.addEventListener('click', () => { playClickSound(); endGame(); });
+        resetAllBtn.addEventListener('click', () => { playClickSound(); resetConfirmModal.classList.remove('hidden'); });
+        aboutBtn.addEventListener('click', () => { playClickSound(); aboutModal.classList.remove('hidden'); });
+        hintBtn.addEventListener('click', showHint);
+        closeAboutBtn.addEventListener('click', () => { playClickSound(); aboutModal.classList.add('hidden'); });
+        confirmResetBtn.addEventListener('click', resetAllData);
+        cancelResetBtn.addEventListener('click', () => { playClickSound(); resetConfirmModal.classList.add('hidden'); });
+        closeHintBtn.addEventListener('click', () => { playClickSound(); hintModal.classList.add('hidden'); });
+        closeStreakBtn.addEventListener('click', () => { 
+            playClickSound(); 
+            streakModal.classList.add('hidden');
+            isModalActive = false;
+            processNotificationQueue();
+        });
+        answerChoices.forEach(choice => choice.addEventListener('click', handleAnswerClick));
+        
+        // Ability Listeners
+        abilitySkipEl.addEventListener('click', activateSkip);
+        abilityRedoEl.addEventListener('click', activateRedo);
+        abilityInfoBtn.addEventListener('click', () => { playClickSound(); abilityInfoModal.classList.remove('hidden'); });
+        closeAbilityInfoBtn.addEventListener('click', () => { playClickSound(); abilityInfoModal.classList.add('hidden'); });
+        closePantherBuckBtn.addEventListener('click', () => { 
+            playClickSound(); 
+            pantherBuckModal.classList.add('hidden');
+            isModalActive = false;
+            processNotificationQueue();
+        });
+
+        // Initial setup
+        updateNotification("Welcome! Select a grade to begin.");
+    </script>
+</body>
+</html>
+
