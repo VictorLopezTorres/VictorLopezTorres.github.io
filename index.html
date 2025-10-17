@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Architects+Daughter&family=Montserrat:wght@400;700;900&family=VT323&display=swap" rel="stylesheet">
     <style>
-        /* Basic Animations */
+        /* Basic Animations lol from Gemini code ass. */
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -75,10 +75,31 @@
             0% { background-position: 0 0; }
             100% { background-position: 0 100%; }
         }
+        @keyframes scan-line-anim {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        @keyframes glitch-anim {
+            0%, 95% {
+                transform: translate(0, 0);
+            }
+            96% {
+                transform: translate(-1px, 1px);
+            }
+            98% {
+                transform: translate(1px, -1px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
         }
+
+
         @keyframes store-glow {
             0%, 100% { box-shadow: 4px 4px 0px #111827, 0 0 5px #f59e0b; }
             50% { box-shadow: 4px 4px 0px #111827, 0 0 20px #f97316, 0 0 10px #f59e0b; }
@@ -88,11 +109,6 @@
             25% { transform: rotate(-2deg); }
             50% { transform: rotate(2deg); }
             75% { transform: rotate(-2deg); }
-        }
-        .typing-effect {
-            overflow: hidden;
-            white-space: nowrap;
-            animation: typing 1s steps(60, end);
         }
         .first-letter-btn-glow {
             overflow: hidden;
@@ -114,6 +130,46 @@
                 opacity: 1;
                 transform: scale(1) translateY(0);
             }
+        }
+
+        /* NEW Game Mode Selector Grid */
+        .mode-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .mode-card {
+            background-color: var(--main-color, #f3f4f6);
+            border: 4px solid #111827;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: left;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .mode-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 8px 8px 0px var(--shadow-color, #111827);
+        }
+        .mode-card h3 {
+            font-family: 'Akaya Kanadaka', cursive;
+            font-size: 1.75rem;
+            border-bottom: 4px solid rgba(255, 255, 255, 0.5);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+        .mode-details {
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        .mode-details .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.25rem 0;
         }
 
         /* General Body and Layout */
@@ -298,7 +354,8 @@
             width: 100%;
             flex-grow: 1;
             min-height: 0;
-            justify-content: space-around; 
+            /* Fix: Replace 'space-around' with a stack-from-top approach */
+            justify-content: flex-start;
         }
         .top-abilities {
             display: grid;
@@ -308,11 +365,14 @@
         .ability-btn {
             background-color: #fefce8; border: 4px solid #eab308; box-shadow: 4px 4px 0px #eab308;
             padding: clamp(0.1rem, 1vh, 0.5rem);
-            transition: all 0.2s; border-radius: 1rem; font-weight: 900;
+            transition: all 0.2s; border-radius: 1rem; font-weight: 900; line-height: 1.2;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             position: relative;
             width: 100%;
-            font-size: clamp(0.5rem, 2vh, 0.9rem); 
+            font-size: clamp(0.6rem, 2vh, 0.9rem); 
+            
+            /* ADDED for stability on vertical squeeze: */
+            flex-shrink: 0;
         }
         .ability-btn.locked { opacity: 0.5; cursor: not-allowed; background-color: #e2e8f0; }
         .ability-btn.earned { cursor: pointer; }
@@ -326,20 +386,21 @@
         }
         .ability-btn .uses {
             position: absolute; top: -10px; right: -10px; background-color: #dc2626; color: white;
-            border-radius: 50%; width: 24px; height: 24px; display: flex; justify-content: center;
-            align-items: center; font-size: 0.875rem; font-weight: 900; border: 2px solid white;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; 
+            width: clamp(18px, 3vh, 24px); height: clamp(18px, 3vh, 24px); top: clamp(-12px, -1.5vh, -8px); right: clamp(-12px, -1.5vh, -8px);
+            font-size: clamp(0.6rem, 1.5vh, 0.875rem); font-weight: 900; border: 2px solid white;
         }
         #abilityInfoBtn {
             background-color: #fb923c; border-color: #c2410c; box-shadow: 4px 4px 0px #c2410c;
             color: white; 
-            font-size: clamp(0.6rem, 2.5vh, 1rem); 
+            font-size: clamp(0.7rem, 2.5vh, 1rem); 
         }
         .passive-abilities-container {
              display: flex; flex-direction: column; gap: clamp(0.1rem, 1vh, 0.25rem);
         }
         .passive-ability {
             background-color: #dcfce7; border: 4px solid #16a34a; box-shadow: 6px 6px 0px #15803d;
-            border-radius: 1rem; padding: 0.5rem; text-align: left; position: relative;
+            border-radius: 1rem; padding: clamp(0.2rem, 1vh, 0.5rem); text-align: left; position: relative;
             width: 100%;
             transition: transform 0.2s;
         }
@@ -347,8 +408,8 @@
             animation-name: jiggle;
             animation-iteration-count: infinite;
         }
-        .passive-ability.ready { animation: passive-ready-glow 1.5s infinite; }
-        .passive-ability-title { font-weight: 900; font-size: clamp(0.6rem, 1.8vh, 0.8rem); }
+        .passive-ability.ready { animation: passive-ready-glow 1.5s infinite; } 
+        .passive-ability-title { font-weight: 900; font-size: clamp(0.6rem, 1.8vh, 0.8rem); line-height: 1.2; }
         .progress-bar-container {
             width: 100%; background-color: #a7f3d0; border-radius: 0.5rem;
             height: clamp(0.75rem, 2vh, 1rem); border: 2px solid #15803d;
@@ -360,7 +421,7 @@
         .panther-buck-counter {
             position: absolute; top: -10px; right: -10px; background-color: #a855f7;
             color: white; border-radius: 0.75rem; padding: 0.1rem 0.5rem;
-            font-size: 0.875rem; font-weight: 900; border: 2px solid white;
+            font-size: clamp(0.75rem, 1.5vh, 0.875rem); font-weight: 900; border: 2px solid white;
         }
 
         /* Notification Panel */
@@ -375,18 +436,42 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 100% 3px;
-            animation: scanline 1s linear infinite;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 2px;
         }
+        #notificationPanel::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(147, 197, 253, 0.5);
+            box-shadow: 0 0 10px rgba(147, 197, 253, 0.8);
+            animation: scan-line-anim 3s linear infinite;
+        }
+        #notificationPanel { height: clamp(80px, 12vh, 120px); }
         #notificationText {
             font-family: 'VT323', monospace;
             font-size: clamp(1.1rem, 3vh, 1.5rem);
             color: #93c5fd;
-            text-shadow: 0 0 5px #2563eb, 0 0 10px #2563eb;
+            text-shadow: 0 0 3px #2563eb, 0 0 5px #2563eb;
             width: 100%;
+            /* The glitch animation is now applied via a class */
         }
-
+        #notificationText.glitch {
+             animation: glitch-anim 4s linear infinite;
+        }
+        #notificationText.typing {
+            display: inline-block; /* Prevent collapsing and allow width animation */
+            width: 100%; /* Ensure it doesn't try to exceed its container */
+            max-width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 1s steps(60, end);
+        }
+        #notificationText::before, #notificationText::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none;
+        }
         /* Modals */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -565,17 +650,77 @@
                 border-radius: 0.75rem;
             }
         }
+
+        /* SIGMA Progress Bar */
+        #sigmaProgressContainer {
+            background-color: #374151;
+            border: 4px solid #111827;
+            box-shadow: 6px 6px 0px #111827;
+            border-radius: 1rem;
+            padding: clamp(0.25rem, 1vh, 0.5rem);
+            text-align: center;
+            margin-bottom: clamp(0.25rem, 1vh, 0.5rem);
+            width: 100%;
+        }
+        .sigma-progress-title {
+            font-weight: 900;
+            font-size: clamp(0.7rem, 2vh, 0.9rem);
+            color: white;
+            text-transform: uppercase;
+        }
+        #sigmaProgressText {
+            font-family: 'VT323', monospace;
+            font-size: clamp(0.8rem, 2.2vh, 1rem);
+            color: #d1d5db;
+        }
     </style>
 </head>
 <body>
 
-    <div id="difficultyModal" class="modal-overlay">
-        <div class="modal-content" style="text-align: center;">
-            <h2 class="text-4xl font-bold mb-4">Choose Your Challenge</h2>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button id="easyModeBtn" class="modal-button bg-blue-500 text-white" style="box-shadow: 4px 4px 0px #111827;">EASY MODE</button>
-                <button id="hardModeBtn" class="modal-button bg-red-500 text-white" style="box-shadow: 4px 4px 0px #111827;">HARD MODE</button>
-                <button id="skibidiModeBtn" class="modal-button bg-purple-700 text-white" style="box-shadow: 4px 4px 0px #111827;">SKIBIDI MODE</button>
+     <div id="difficultyModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 800px; text-align: center; background-color: #f9fafb;">
+            <h2 class="text-4xl font-bold mb-6" style="font-family: 'Akaya Kanadaka', cursive;">Choose Your Challenge</h2>
+            <div class="mode-grid">
+                <!-- Easy Mode -->
+                <div id="easyModeBtn" class="mode-card" style="--main-color: #3b82f6; --shadow-color: #1d4ed8;">
+                    <h3>Easy</h3>
+                    <div class="mode-details">
+                        <div class="detail-row"><span>Question Type:</span> <span class="font-bold">Multiple Choice</span></div>
+                        <div class="detail-row"><span>Time Limit:</span> <span class="font-bold">5:30</span></div>
+                        <div class="detail-row"><span>Abilities:</span> <span class="font-bold">Standard Rate</span></div>
+                        <div class="detail-row"><span>Description:</span> <span class="font-bold">The classic way to play. Perfect for learning the ropes or a casual game.</span></div>
+                    </div>
+                </div>
+                <!-- Hard Mode -->
+                <div id="hardModeBtn" class="mode-card" style="--main-color: #f97316; --shadow-color: #9a3412;">
+                    <h3>Hard</h3>
+                    <div class="mode-details">
+                        <div class="detail-row"><span>Question Type:</span> <span class="font-bold">Analytical MCQs</span></div>
+                        <div class="detail-row"><span>Time Limit:</span> <span class="font-bold">5:30</span></div>
+                        <div class="detail-row"><span>Panther Buck Streak:</span> <span class="font-bold">7 (was 10)</span></div>
+                        <div class="detail-row"><span>Description:</span> <span class="font-bold">Face tougher, analytical questions that require deeper historical knowledge.</span></div>
+                    </div>
+                </div>
+                <!-- Skibidi Mode -->
+                <div id="skibidiModeBtn" class="mode-card" style="--main-color: #a855f7; --shadow-color: #5b21b6;">
+                    <h3>Skibidi</h3>
+                    <div class="mode-details">
+                        <div class="detail-row"><span>Question Type:</span> <span class="font-bold">Manual Input</span></div>
+                        <div class="detail-row"><span>Timer:</span> <span class="font-bold">5:30</span></div>
+                        <div class="detail-row"><span>Abilities:</span> <span class="font-bold">Earned Faster</span></div>
+                        <div class="detail-row"><span>Description:</span> <span class="font-bold">No multiple choice here. Type your answers and prove your mastery. Spelling counts!</span></div>
+                    </div>
+                </div>
+                <!-- Sigma Mode -->
+                <div id="sigmaModeBtn" class="mode-card" style="--main-color: #374151; --shadow-color: #111827;">
+                    <h3>Sigma</h3>
+                    <div class="mode-details">
+                        <div class="detail-row"><span>Question Type:</span> <span class="font-bold">All (3 Stages)</span></div>
+                        <div class="detail-row"><span>Timer:</span> <span class="font-bold">Starts at 1:00</span></div>
+                        <div class="detail-row"><span>Time Bonus:</span> <span class="font-bold">+15s / +20s / +25s per correct</span></div>
+                        <div class="detail-row"><span>Description:</span> <span class="font-bold">A high-stakes survival mode. Advance through 3 stages of increasing difficulty.</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -587,11 +732,10 @@
                 <p>This is the ultimate challenge! Here are the new rules:</p>
                 <ul class="list-disc list-inside ml-4 space-y-2">
                     <li><strong>Type Your Answers:</strong> No more multiple choice! You must type the correct word or phrase. Spelling counts!</li>
-                    <li><strong>Faster Abilities:</strong> To make it fair, all abilities are earned <strong>50% faster</strong>.
+                    <li><strong>Faster Abilities:</strong> To make it fair, most abilities are earned <strong>faster</strong>.
                         <ul class="list-decimal list-inside ml-6">
                             <li>Time Tinkerer: 2-streak (was 4)</li>
-                            <li>Hunch: 3 correct (was 5)</li>
-                            <li>Panther Bucks: 5 correct (was 10)</li>
+                            <li>Panther Bucks: 5-streak (was 10-streak)</li>
                             <li>Skip: 2-streak (was 3)</li>
                             <li>Redo: 3-streak (was 5)</li>
                             <li>2x Boost: 4-streak (was 7)</li>
@@ -608,6 +752,26 @@
         </div>
     </div>
 
+    <div id="sigmaRulesModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 class="text-4xl font-bold mb-4">Welcome to Sigma Mode!</h2>
+            <div class="space-y-4 text-lg">
+                <p>This is a test of speed and knowledge. Here are the rules:</p>
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li><strong>Beat the Clock:</strong> You start with only <strong>60 seconds</strong>. There is no time limit!</li>
+                    <li><strong>Advance Through Stages:</strong> Survive three increasingly difficult stages.</li>
+                    <li><strong>Stage 1 (Easy):</strong> Answer all Easy questions. Earn <strong>+15 seconds</strong> per correct answer.</li>
+                    <li><strong>Stage 2 (Hard):</strong> Answer all Hard questions. Earn <strong>+20 seconds</strong> per correct answer.</li>
+                    <li><strong>Stage 3 (Skibidi):</strong> Answer all Skibidi (typed) questions. Earn <strong>+25 seconds</strong> per correct answer.</li>
+                </ul>
+                <p class="font-bold text-center mt-4">Can you survive the ultimate challenge?</p>
+            </div>
+            <div class="flex justify-center mt-6">
+                <button id="acceptSigmaBtn" class="modal-button bg-green-500 text-white" style="box-shadow: 4px 4px 0px #111827;">I Accept</button>
+                <button id="declineSigmaBtn" class="modal-button bg-gray-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Go Back</button>
+            </div>
+        </div>
+    </div>
 
     <div id="gradeModal" class="modal-overlay hidden">
         <div class="modal-content" style="text-align: center;">
@@ -800,6 +964,14 @@
         </div>
     </div>
 
+    <div id="sigmaStageUpModal" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-5xl font-bold mb-4 text-yellow-500 animate-[glow_1.5s_ease-in-out_infinite]">STAGE CLEAR!</h2>
+            <p id="sigmaStageUpText" class="text-2xl mb-6"></p>
+            <button id="closeSigmaStageUpBtn" class="modal-button bg-blue-500 text-white">Continue</button>
+        </div>
+    </div>
+
 
     <main class="main-container">
         <header id="headerGrid" class="header-grid">
@@ -855,15 +1027,15 @@
         <div class="right-panel">
             <section id="abilitiesContainer" class="card abilities-container">
                 <h2 class="abilities-title">Abilities</h2>
+                <div id="sigmaProgressContainer" class="hidden">
+                    <p class="sigma-progress-title">SIGMA Stage <span id="sigmaStageDisplay">1</span> Progress</p>
+                    <div class="progress-bar-container bg-gray-600 border-gray-800">
+                        <div id="sigmaProgressBar" class="progress-bar bg-yellow-400"></div>
+                    </div>
+                    <p id="sigmaProgressText" class="text-sm font-semibold"></p>
+                </div>
                 <div class="abilities-layout">
                     <div class="passive-abilities-container">
-                        <div id="pantherBuckAbility" class="passive-ability">
-                                 <div id="pantherBuckCounter" class="panther-buck-counter">0 🐾</div>
-                            <p class="passive-ability-title">Panther Bucks</p>
-                            <div class="progress-bar-container">
-                                <div id="pantherBuckProgress" class="progress-bar" style="width: 0%;"></div>
-                            </div>
-                        </div>
                         <div id="hunchAbility" class="passive-ability">
                             <p class="passive-ability-title">Historian's Hunch</p>
                             <div class="progress-bar-container">
@@ -874,6 +1046,13 @@
                             <p class="passive-ability-title">Time Tinkerer</p>
                             <div class="progress-bar-container">
                                 <div id="tinkerProgress" class="progress-bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div id="pantherBuckAbility" class="passive-ability">
+                                 <div id="pantherBuckCounter" class="panther-buck-counter">0 🐾</div>
+                            <p class="passive-ability-title">Panther Bucks</p>
+                            <div class="progress-bar-container">
+                                <div id="pantherBuckProgress" class="progress-bar" style="width: 0%;"></div>
                             </div>
                         </div>
                     </div>
@@ -899,8 +1078,6 @@
                 <p id="notificationText"></p>
             </div>
         </div>
-    </main>
-
     <script>
         // --- DATA ---
         const allQuestions = {
@@ -1448,6 +1625,7 @@
             ],
         };
 
+
         // --- GAME STATE ---
         let playerState = {};
         let timerInterval = null;
@@ -1465,6 +1643,7 @@
         let lastNotificationMessage = '';
         let reviewIndex = 0;
         let gameMode = 'EASY';
+        let sigmaStage = 1;
         let timeHistory = [];
         const correctMessages = [
             "Excellent!",
@@ -1506,9 +1685,17 @@
         const storeModal = document.getElementById('storeModal');
         const skibidiRulesModal = document.getElementById('skibidiRulesModal');
         const hunchUpgradeStoreItem = document.getElementById('hunchUpgradeStoreItem');
+        const sigmaRulesModal = document.getElementById('sigmaRulesModal');
         const skibidiIncorrectModal = document.getElementById('skibidiIncorrectModal');
         const firstLetterModal = document.getElementById('firstLetterModal');
         
+        const sigmaStageUpModal = document.getElementById('sigmaStageUpModal');
+        const closeSigmaStageUpBtn = document.getElementById('closeSigmaStageUpBtn');
+        // Sigma Mode UI
+        const sigmaProgressContainer = document.getElementById('sigmaProgressContainer');
+        const sigmaProgressBar = document.getElementById('sigmaProgressBar');
+        const sigmaProgressText = document.getElementById('sigmaProgressText');
+        const sigmaStageDisplay = document.getElementById('sigmaStageDisplay');
 
 
         // Buttons
@@ -1517,6 +1704,9 @@
         const skibidiModeBtn = document.getElementById('skibidiModeBtn');
         const acceptSkibidiBtn = document.getElementById('acceptSkibidiBtn');
         const declineSkibidiBtn = document.getElementById('declineSkibidiBtn');
+        const sigmaModeBtn = document.getElementById('sigmaModeBtn');
+        const acceptSigmaBtn = document.getElementById('acceptSigmaBtn');
+        const declineSigmaBtn = document.getElementById('declineSigmaBtn');
         const backToDifficultyBtn = document.getElementById('backToDifficultyBtn');
         const gradeLevelSelect = document.getElementById('gradeLevelSelect');
         const startGameBtn = document.getElementById('startGameBtn');
@@ -1542,6 +1732,7 @@
         const closeSkibidiIncorrectBtn = document.getElementById('closeSkibidiIncorrectBtn');
         const firstLetterBtn = document.getElementById('firstLetterBtn');
         const closeFirstLetterBtn = document.getElementById('closeFirstLetterBtn');
+        const sigmaStageUpText = document.getElementById('sigmaStageUpText');
 
         // Modal Content
         const finalScoreEl = document.getElementById('finalScore');
@@ -1580,9 +1771,6 @@
 
         // --- SOUND ENGINE ---
         const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-        /**
-         * Plays a pleasant chord sound for a correct answer.
-         */
         function playCorrectSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("C4", "8n", now);
@@ -1590,55 +1778,33 @@
             synth.triggerAttackRelease("G4", "8n", now + 0.2);
             synth.triggerAttackRelease("C5", "8n", now + 0.3);
         }
-        /**
-         * Plays a low, dissonant sound for an incorrect answer.
-         */
         function playIncorrectSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("C2", "8n", now);
         }
-        /**
-         * Plays a short, high-pitched click sound for UI interactions.
-         */
         function playClickSound() { synth.triggerAttackRelease("C5", "16n"); }
-        /**
-         * Plays a two-note sound to indicate a successful purchase in the store.
-         */
         function playPurchaseSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("E5", "16n", now);
             synth.triggerAttackRelease("G5", "16n", now + 0.1);
         }
-        /**
-         * Plays a simple two-note sound to indicate the start of the game.
-         */
         function playStartSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("G3", "8n", now);
             synth.triggerAttackRelease("C4", "8n", now + 0.1);
         }
-        /**
-         * Plays an uplifting sound to signify earning a streak-based power-up.
-         */
         function playStreakSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("G4", "8n", now);
             synth.triggerAttackRelease("C5", "8n", now + 0.1);
             synth.triggerAttackRelease("E5", "4n", now + 0.2);
         }
-        /**
-         * Plays a sound for earning a Panther Buck.
-         */
         function playPantherBuckSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("A5", "8n", now);
         }
 
         // --- HELPER & NOTIFICATION FUNCTIONS ---
-        /**
-         * Shuffles an array in place using the Fisher-Yates algorithm.
-         * @param {Array<any>} array The array to shuffle.
-         */
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -1690,17 +1856,23 @@
             lastNotificationMessage = message;
 
             if (notificationTimer) clearTimeout(notificationTimer);
-            notificationTextEl.textContent = ''; 
-            notificationTextEl.classList.remove('typing-effect');
-            
-            void notificationTextEl.offsetWidth; 
-            
+
+            // Reset all animations and content
+            notificationTextEl.classList.remove('typing', 'glitch');
+            notificationTextEl.textContent = '';
+            notificationTextEl.dataset.text = '';
+
+            // Force a reflow to restart the animation
+            void notificationTextEl.offsetWidth;
+
             notificationTextEl.textContent = message;
-            notificationTextEl.classList.add('typing-effect');
+            notificationTextEl.classList.add('typing');
 
             notificationTimer = setTimeout(() => {
-                 notificationTextEl.classList.remove('typing-effect');
-            }, 1000); 
+                notificationTextEl.classList.remove('typing');
+                notificationTextEl.classList.add('glitch');
+                notificationTextEl.dataset.text = message; // Apply text for glitch effect
+            }, 1000); // Duration should match the typing animation
         }
         
         // --- STORE LOGIC ---
@@ -1835,14 +2007,11 @@
         // --- ABILITY LOGIC ---
         function updateAbilitiesUI() {
             const isSkibidi = gameMode === 'SKIBIDI';
-            const buckThreshold = isSkibidi ? 5 : 10;
             const hunchThreshold = isSkibidi ? 3 : 5;
             const tinkerThreshold = isSkibidi ? 2 : 4;
+            const buckStreakThreshold = gameMode === 'HARD' ? 7 : (isSkibidi ? 5 : 10);
 
-            const buckProgress = (playerState.pantherBuckProgress / buckThreshold) * 100;
-            pantherBuckProgressEl.style.width = `${buckProgress}%`;
             pantherBuckCounterEl.textContent = `${playerState.pantherBucksEarned} 🐾`;
-            pantherBuckAbilityEl.querySelector('.passive-ability-title').textContent = `Panther Bucks (Next: ${buckThreshold})`;
             
             if(isSkibidi) {
                 hunchAbilityEl.style.display = 'none';
@@ -1874,6 +2043,11 @@
                 tinkerAbilityEl.classList.remove('jiggle');
                 tinkerAbilityEl.style.animationDuration = '';
             }
+
+            // Update Panther Buck progress bar based on current streak
+            const buckProgress = (playerState.streak % buckStreakThreshold) / buckStreakThreshold * 100;
+            pantherBuckProgressEl.style.width = `${buckProgress}%`;
+            pantherBuckAbilityEl.querySelector('.passive-ability-title').textContent = `Panther Buck (Streak: ${buckStreakThreshold})`;
             if (abilities.skip > 0) {
                 abilitySkipEl.classList.remove('locked');
                 abilitySkipEl.classList.add('earned');
@@ -1936,8 +2110,8 @@
         function resetPlayerState() {
              playerState = { 
                 score: 0, questionsAnswered: 0, streak: 0, correctAnswers: 0,
-                wrongStreak: 0, pantherBuckProgress: 0, earned10Streak: false,
-                earned3Streak: false, earned4Streak: false, earned5Streak: false, earned7Streak: false, hasSeenStoreInvite: false,
+                wrongStreak: 0, earned10Streak: false,
+                earned3Streak: false, earned4Streak: false, earned5Streak: false, earned7Streak: false, hasSeenStoreInvite: false, pantherBucksAwardedForStreaks: [],
                 historiansHunchPending: false, pantherBucksEarned: 0
             };
             abilities = { 
@@ -1953,53 +2127,81 @@
             if (storeNotificationInterval) clearInterval(storeNotificationInterval);
             playStartSound();
             resetPlayerState();
+            isGamePaused = false; // Explicitly unpause the game at the start
             scoreEl.textContent = '0';
             streakEl.textContent = '0';
             correctAnswersEl.textContent = '0';
+            sigmaProgressContainer.classList.add('hidden'); // Hide by default
             gradeModal.classList.add('hidden');
-            
-            if(gameMode === 'SKIBIDI') {
-                answerGridEl.classList.add('hidden');
-                skibidiFormEl.classList.remove('hidden');
-                hunchAbilityEl.classList.add('hidden');
-                firstLetterBtn.classList.remove('hidden');
-                firstLetterBtn.classList.remove('first-letter-btn-glow');
-                hunchUpgradeStoreItem.nextElementSibling.dataset.item = 'firstLastLetterUpgrade';
-            } else {
-                answerGridEl.classList.remove('hidden');
-                skibidiFormEl.classList.add('hidden');
-                hunchAbilityEl.classList.remove('hidden');
-                hunchUpgradeStoreItem.nextElementSibling.dataset.item = 'hunchUpgrade'; // Reset store button
-                firstLetterBtn.classList.add('hidden');
-            }
-
 
             const selectedGrade = gradeLevelSelect.value;
             let questionBank;
-            if(gameMode === 'SKIBIDI') {
-                questionBank = allSkibidiQuestions;
-            } else if (gameMode === 'HARD') {
-                questionBank = allHardQuestions;
+            let initialNotification = "The challenge has begun. Good luck!";
+
+            if (gameMode === 'SIGMA') {
+                sigmaStage = 1;
+                sigmaProgressContainer.classList.remove('hidden');
+                // Start with easy questions for stage 1
+                activeQuestionSet = allQuestions[selectedGrade];
+                questionsCopy = [...activeQuestionSet];
+                shuffleArray(questionsCopy);
+                initialNotification = "SIGMA MODE: Stage 1 - Easy Questions. Good luck!";
             } else {
-                questionBank = allQuestions;
+                if(gameMode === 'SKIBIDI') {
+                    questionBank = allSkibidiQuestions;
+                } else if (gameMode === 'HARD') {
+                    questionBank = allHardQuestions;
+                } else {
+                    questionBank = allQuestions;
+                }
+                activeQuestionSet = questionBank[selectedGrade];
+                questionsCopy = [...activeQuestionSet];
+                shuffleArray(questionsCopy);
             }
 
-            activeQuestionSet = questionBank[selectedGrade];
-            questionsCopy = [...activeQuestionSet];
-            shuffleArray(questionsCopy);
+            // UI setup based on game mode
+            const isSkibidi = gameMode === 'SKIBIDI';
+            answerGridEl.classList.toggle('hidden', isSkibidi);
+            skibidiFormEl.classList.toggle('hidden', !isSkibidi);
+            hunchAbilityEl.classList.toggle('hidden', isSkibidi);
+            firstLetterBtn.classList.toggle('hidden', !isSkibidi);
+            if (isSkibidi) {
+                firstLetterBtn.classList.remove('first-letter-btn-glow');
+                hunchUpgradeStoreItem.nextElementSibling.dataset.item = 'firstLastLetterUpgrade';
+            } else {
+                hunchUpgradeStoreItem.nextElementSibling.dataset.item = 'hunchUpgrade';
+            }
 
             updateAbilitiesUI();
             startTimer();
-            updateNotification("The challenge has begun. Good luck!");
+            updateNotification(initialNotification);
             displayNextQuestion();
+            if (gameMode === 'SIGMA') {
+                updateSigmaProgress();
+            }
             startStoreNotifier();
         }
 
+        function updateSigmaProgress() {
+            if (gameMode !== 'SIGMA') return;
+
+            const totalQuestionsInStage = activeQuestionSet.length;
+            const requiredForNextStage = Math.ceil(totalQuestionsInStage / 2);
+
+            // The number of questions done is the total minus what's left in the copy.
+            const questionsDoneInStage = totalQuestionsInStage - questionsCopy.length;
+            const progress = (questionsDoneInStage / requiredForNextStage) * 100;
+            sigmaProgressBar.style.width = `${progress}%`;
+            sigmaProgressText.textContent = `${questionsDoneInStage} / ${requiredForNextStage} Questions`;
+            sigmaStageDisplay.textContent = sigmaStage;
+        }
         function startTimer() {
             if (timerInterval) clearInterval(timerInterval);
-            timeLeft = 330;
-            timeHistory = [330];
-            timerEl.textContent = "05:30";
+            timeLeft = gameMode === 'SIGMA' ? 60 : 330;
+            timeHistory = [timeLeft];
+            const initialMinutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const initialSeconds = (timeLeft % 60).toString().padStart(2, '0');
+            timerEl.textContent = `${initialMinutes}:${initialSeconds}`;
             timerInterval = setInterval(() => {
                 if (isGamePaused) return;
                 timeLeft--;
@@ -2040,16 +2242,67 @@
         function displayNextQuestion() {
             gameAreaEl.classList.add('switching');
             setTimeout(() => {
+                const totalQuestionsInStage = activeQuestionSet.length;
+                const questionsDoneInStage = totalQuestionsInStage - questionsCopy.length;
+                const requiredForNextStage = Math.ceil(totalQuestionsInStage / 2);
+
+                // SIGMA Mode Stage Progression
+                if (gameMode === 'SIGMA' && questionsDoneInStage >= requiredForNextStage) {
+                    sigmaStage++;
+                    const selectedGrade = gradeLevelSelect.value;
+                    let nextQuestionSet = null;
+                    let stageName = '';
+
+                    if (sigmaStage === 2) {
+                        nextQuestionSet = allHardQuestions[selectedGrade];
+                        stageName = 'Hard';
+                    } else if (sigmaStage === 3) {
+                        nextQuestionSet = allSkibidiQuestions[selectedGrade];
+                        stageName = 'Skibidi';
+                    }
+
+                    if (nextQuestionSet) {
+                        activeQuestionSet = nextQuestionSet;
+                        isGamePaused = true;
+                        questionsCopy = [...activeQuestionSet];
+                        shuffleArray(questionsCopy);
+                        
+                        sigmaStageUpText.textContent = `Congratulations! You are now entering Stage ${sigmaStage}: ${stageName} Questions!`;
+                        sigmaStageUpModal.classList.remove('hidden');
+
+                        updateSigmaProgress();
+                        playStreakSound();
+                    } else {
+                        // All stages are complete
+                        endGame();
+                        return;
+                    }
+                }
+
+
                 if (questionsCopy.length === 0) {
                     endGame();
                     return;
                 }
+
+
                 
                 const question = questionsCopy.shift();
                 currentQuestionIndex = activeQuestionSet.indexOf(question); // Keep track of the original question
                 
-                if(gameMode !== 'SKIBIDI') {
-                    // --- Answer Randomization Logic ---
+                const isSkibidiTypeQuestion = !question.choices;
+
+                // Show/hide UI elements based on question type
+                answerGridEl.classList.toggle('hidden', isSkibidiTypeQuestion);
+                skibidiFormEl.classList.toggle('hidden', !isSkibidiTypeQuestion);
+                hintBtn.classList.remove('hidden'); // Always show the standard hint button
+                firstLetterBtn.classList.toggle('hidden', !isSkibidiTypeQuestion); // Show letter hint button for skibidi
+
+
+                if(!isSkibidiTypeQuestion) {
+                    // --- MULTIPLE CHOICE LOGIC (EASY/HARD/SIGMA-MC) ---
+                    
+                    // --- Answer Randomization ---
                     // 1. Create a mappable array of choices with their original index
                     let choicesWithOriginalIndex = question.choices.map((text, index) => ({ text, originalIndex: index }));
                     
@@ -2085,15 +2338,15 @@
                         // Temporarily store the new correct index on the game area for handleAnswerClick
                         gameAreaEl.dataset.correct = newCorrectAnswerIndex;
                     });
-                } else {
+                } else { // --- TYPED ANSWER LOGIC (SKIBIDI/SIGMA-SKIBIDI) ---
                     skibidiInputEl.value = '';
                     skibidiInputEl.disabled = false;
                     skibidiInputEl.focus();
                     skibidiInputEl.classList.remove('correct', 'incorrect');
                 }
 
-                // Reset hint button state
-                hintBtn.disabled = false;
+                // Reset hint button states
+                hintBtn.disabled = false; 
                 if (gameMode === 'SKIBIDI') {
                     firstLetterBtn.disabled = false;
                 }
@@ -2104,6 +2357,9 @@
                 adjustFontSize(questionTextEl);
 
                 gameAreaEl.classList.remove('switching');
+
+                // Update progress AFTER the question has been shifted from the array.
+                updateSigmaProgress();
             }, 300);
         }
 
@@ -2150,10 +2406,8 @@
 
         function handleAnswer(isCorrect, selectedChoiceEl) {
             let proceedToNextQuestionAutomatically = true;
-            playerState.questionsAnswered++;
-            
+            playerState.questionsAnswered++; 
             const isSkibidi = gameMode === 'SKIBIDI';
-            const buckThreshold = isSkibidi ? 5 : 10;
             const hunchThreshold = isSkibidi ? 3 : 5;
             const tinkerThreshold = isSkibidi ? 2 : 4;
             const skipThreshold = isSkibidi ? 2 : 3;
@@ -2168,9 +2422,21 @@
 
 
             if (isCorrect) {
-                if(isSkibidi) skibidiInputEl.classList.add('correct');
+                // Add time in SIGMA mode
+                if (gameMode === 'SIGMA') {
+                    let timeToAdd = 15; // Default for stage 1
+                    if (sigmaStage === 2) timeToAdd = 20;
+                    if (sigmaStage === 3) timeToAdd = 25;
+                    timeLeft += timeToAdd;
+                    timeCardEl.classList.add('flash-green');
+                    setTimeout(() => timeCardEl.classList.remove('flash-green'), 1000);
+                } else if (isSkibidi) {
+                    // This is for the original skibidi mode, not sigma skibidi stage
+                    // No time is added here.
+                }
+
+                if(skibidiFormEl.style.display !== 'none') skibidiInputEl.classList.add('correct');
                 playerState.correctAnswers++;
-                playerState.pantherBuckProgress++;
                 playerState.wrongStreak = 0;
                 
                 let basePoints = abilities.loreMasterActive ? 1.25 : 1;
@@ -2183,12 +2449,6 @@
                 
                 if (!isSkibidi && playerState.correctAnswers > 0 && playerState.correctAnswers % hunchThreshold === 0) {
                     playerState.historiansHunchPending = true;
-                }
-
-                if (playerState.pantherBuckProgress === buckThreshold) {
-                    playerState.pantherBucksEarned++;
-                    playerState.pantherBuckProgress = 0;
-                    addNotification({ type: 'pantherBuck' });
                 }
 
                 playerState.streak++;
@@ -2223,14 +2483,25 @@
                     addNotification({ type: 'streak', text: "UPGRADE! 3x SCORE BOOST is active!" });
                     specialEventOccurred = true;
                 }
-                
+
+                // New Panther Buck Streak Logic
+                const buckStreakThreshold = gameMode === 'HARD' ? 7 : (isSkibidi ? 5 : 10);
+                if (playerState.streak > 0 && playerState.streak % buckStreakThreshold === 0 && !playerState.pantherBucksAwardedForStreaks.includes(playerState.streak)) {
+                    playerState.pantherBucksEarned++;
+                    playerState.pantherBucksAwardedForStreaks.push(playerState.streak);
+                    addNotification({ type: 'pantherBuck' });
+                    updateNotification(`A ${playerState.streak}-streak earned you a Panther Buck!`);
+                    specialEventOccurred = true; // This ensures the panther buck modal shows
+                }
+
                 if (!specialEventOccurred && notificationQueue.length === 0) {
                     playCorrectSound();
                     triggerConfetti();
                 }
 
                 if (abilities.skip > 0) updateNotification("SKIP ability is ready to use.");
-                else if (buckThreshold - playerState.pantherBuckProgress === 1) updateNotification("One more for a Panther Buck!");
+                // This notification is no longer relevant with the new streak-based system.
+                // else if (buckThreshold - playerState.pantherBuckProgress === 1) updateNotification("One more for a Panther Buck!");
                 else if (playerState.streak === 2) updateNotification("Great! That's two in a row.");
                 else if (playerState.streak === 6) updateNotification("Incredible 6-question streak!");
                 else {
@@ -2262,6 +2533,7 @@
                     playerState.earned5Streak = false;
                     playerState.earned7Streak = false;
                     playerState.earned10Streak = false;
+                    // Resetting streak also means they can earn panther bucks again for those streaks if they reach them.
                     if (abilities.boost2xActive || abilities.boost3xActive) {
                         abilities.boost2xActive = abilities.boost3xActive = false;
                         updateNotification("2x Boost lost! Be careful.");
@@ -2276,18 +2548,17 @@
                     if (abilities.historiansArchive) {
                         abilities.historiansArchive = false;
                         updateNotification("Historian's Archive protected your Panther Buck progress!");
-                    } else {
-                        playerState.pantherBuckProgress = 0;
-                        updateNotification("Panther Buck progress lost! 2 wrong in a row.");
                     }
-                } else if (playerState.wrongStreak === 1 && !abilities.historiansArchive) {
-                    updateNotification("Danger! One more wrong will reset Panther Buck progress.");
+                    // This logic is no longer needed as panther bucks are not based on a progress bar.
+                    // } else {
+                    //     updateNotification("Panther Buck progress lost! 2 wrong in a row.");
+                    // }
                 }
                 
                 headerGridEl.classList.add('shake');
                 gameAreaEl.classList.add('shake');
                 
-                if (isSkibidi) {
+                if (!skibidiFormEl.classList.contains('hidden')) { // Check if it's a typed-answer question
                     proceedToNextQuestionAutomatically = false; // Stop the automatic next question
                     skibidiInputEl.classList.add('incorrect');
                     updateNotification("Incorrect. Review the answer below.");
@@ -2305,7 +2576,7 @@
                     headerGridEl.classList.remove('shake');
                     gameAreaEl.classList.remove('shake');
                     document.body.classList.remove('red-flash');
-                    if(isSkibidi) {
+                    if(!skibidiFormEl.classList.contains('hidden')) {
                         skibidiInputEl.classList.remove('correct', 'incorrect');
                     }
                 }, 500);
@@ -2349,11 +2620,12 @@
             reviewModal.classList.add('hidden');
             scoreEl.textContent = '0';
             streakEl.textContent = '0';
+            sigmaProgressContainer.classList.add('hidden');
             correctAnswersEl.textContent = '0';
             questionTextEl.textContent = 'Choose your difficulty to begin!';
             
             if(gameMode !== 'SKIBIDI') {
-                answerChoices.forEach(choice => {
+                answerChoices.forEach(choice => { 
                     choice.querySelector('p').textContent = '';
                     choice.classList.remove('correct', 'incorrect');
                 });
@@ -2390,7 +2662,10 @@
 
         function showFirstLetters() {
             playClickSound();
-            if (currentQuestionIndex > -1 && gameMode === 'SKIBIDI') {
+            const currentQuestion = activeQuestionSet[currentQuestionIndex];
+            const isSkibidiTypeQuestion = currentQuestion && !currentQuestion.choices;
+
+            if (currentQuestionIndex > -1 && isSkibidiTypeQuestion) {
                 isGamePaused = true;
                 const question = activeQuestionSet[currentQuestionIndex];
                 // Use the first answer in the array if multiple are possible
@@ -2449,7 +2724,7 @@
                         <ul class="list-disc list-inside space-y-1">
                             <li><strong>Time Tinkerer (Passive):</strong> Get a <strong>${isSkibidi ? '2' : '4'}-streak</strong> to add <strong>15 seconds</strong> to the clock.</li>
                             ${!isSkibidi ? `<li><strong>Historian's Hunch (Passive):</strong> For every <strong>5 correct answers</strong>, one wrong choice is removed on the next question.</li>` : ''}
-                            <li><strong>Panther Bucks (Passive):</strong> For every <strong>${isSkibidi ? '5' : '10'} correct answers</strong>, you earn a Panther Buck.</li>
+                            <li><strong>Panther Bucks (Streak-Based):</strong> Earn a Panther Buck for achieving a <strong>${gameMode === 'HARD' ? '7' : (isSkibidi ? '5' : '10')}-streak</strong>!</li>
                             <li><strong>SKIP (Active):</strong> Earned at a <strong>${isSkibidi ? '2' : '3'}-streak</strong>. Click to skip a hard question.</li>
                             <li><strong>REDO (Active):</strong> Earned at a <strong>${isSkibidi ? '3' : '5'}-streak</strong>. Brings back all your wrong answers for another try.</li>
                             <li><strong>2x BOOST (Active):</strong> Earned at a <strong>${isSkibidi ? '4' : '7'}-streak</strong>. Doubles your points until you get one wrong.</li>
@@ -2479,7 +2754,7 @@
             reviewQuestionEl.textContent = question.question;
             reviewChoicesEl.innerHTML = ''; // Clear previous choices
 
-            if (gameMode === 'SKIBIDI') {
+            if (!question.choices) { // Check if it's a skibidi-type question
                 reviewUserAnswerEl.classList.add('hidden'); // Not tracking user's typed answer for now
                 const correctAnswerText = Array.isArray(question.answer) ? question.answer.join(' / ') : question.answer;
                 reviewChoicesEl.innerHTML = `<div class="p-3 rounded-lg bg-green-200 border-2 border-green-700 text-green-800 font-bold">Correct Answer: ${correctAnswerText}</div>`;
@@ -2523,6 +2798,23 @@
             gameMode = 'SKIBIDI';
             difficultyModal.classList.add('hidden');
             skibidiRulesModal.classList.remove('hidden');
+        });
+
+        sigmaModeBtn.addEventListener('click', () => {
+            playClickSound();
+            gameMode = 'SIGMA';
+            difficultyModal.classList.add('hidden');
+            sigmaRulesModal.classList.remove('hidden');
+        });
+        acceptSigmaBtn.addEventListener('click', () => {
+            playClickSound();
+            sigmaRulesModal.classList.add('hidden');
+            gradeModal.classList.remove('hidden');
+        });
+        declineSigmaBtn.addEventListener('click', () => {
+            playClickSound();
+            sigmaRulesModal.classList.add('hidden');
+            difficultyModal.classList.remove('hidden');
         });
 
         acceptSkibidiBtn.addEventListener('click', () => {
@@ -2592,6 +2884,13 @@
             playClickSound();
             skibidiIncorrectModal.classList.add('hidden');
             displayNextQuestion(); // Proceed to the next question only after closing the modal
+        });
+        
+        closeSigmaStageUpBtn.addEventListener('click', () => {
+            playClickSound();
+            sigmaStageUpModal.classList.add('hidden');
+            isGamePaused = false;
+            updateNotification(`Stage ${sigmaStage} has begun. Good luck!`);
         });
 
         // Store Listeners
