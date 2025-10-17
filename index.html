@@ -1580,6 +1580,9 @@
 
         // --- SOUND ENGINE ---
         const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+        /**
+         * Plays a pleasant chord sound for a correct answer.
+         */
         function playCorrectSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("C4", "8n", now);
@@ -1587,33 +1590,55 @@
             synth.triggerAttackRelease("G4", "8n", now + 0.2);
             synth.triggerAttackRelease("C5", "8n", now + 0.3);
         }
+        /**
+         * Plays a low, dissonant sound for an incorrect answer.
+         */
         function playIncorrectSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("C2", "8n", now);
         }
+        /**
+         * Plays a short, high-pitched click sound for UI interactions.
+         */
         function playClickSound() { synth.triggerAttackRelease("C5", "16n"); }
+        /**
+         * Plays a two-note sound to indicate a successful purchase in the store.
+         */
         function playPurchaseSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("E5", "16n", now);
             synth.triggerAttackRelease("G5", "16n", now + 0.1);
         }
+        /**
+         * Plays a simple two-note sound to indicate the start of the game.
+         */
         function playStartSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("G3", "8n", now);
             synth.triggerAttackRelease("C4", "8n", now + 0.1);
         }
+        /**
+         * Plays an uplifting sound to signify earning a streak-based power-up.
+         */
         function playStreakSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("G4", "8n", now);
             synth.triggerAttackRelease("C5", "8n", now + 0.1);
             synth.triggerAttackRelease("E5", "4n", now + 0.2);
         }
+        /**
+         * Plays a sound for earning a Panther Buck.
+         */
         function playPantherBuckSound() {
             const now = Tone.now();
             synth.triggerAttackRelease("A5", "8n", now);
         }
 
         // --- HELPER & NOTIFICATION FUNCTIONS ---
+        /**
+         * Shuffles an array in place using the Fisher-Yates algorithm.
+         * @param {Array<any>} array The array to shuffle.
+         */
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
