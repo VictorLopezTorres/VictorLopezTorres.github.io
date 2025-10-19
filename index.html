@@ -864,11 +864,11 @@
                 </div>
                 <div class="store-item">
                     <div>
-                        <div class="store-item-icon">🗃️</div>
-                        <h3 class="store-item-title">Historian's Archive</h3>
-                        <p class="store-item-desc">Saves Panther Buck progress from a 2-wrong streak.</p>
+                        <div class="store-item-icon">🔖</div>
+                        <h3 class="store-item-title">Scholar's Bookmark</h3>
+                        <p class="store-item-desc">Instantly grants one use of the "SKIP" ability.</p>
                     </div>
-                    <button class="buy-btn" data-item="historiansArchive">Buy (8 Pts)</button>
+                    <button class="buy-btn" data-item="scholarsBookmark">Buy (8 Pts)</button>
                 </div>
                  <div class="store-item">
                     <div>
@@ -1928,7 +1928,7 @@
             diplomatsPass: { cost: 15 },
             hunchUpgrade: { cost: 30, permanent: true },
             streakInsurance: { cost: 10 },
-            historiansArchive: { cost: 8 },
+            scholarsBookmark: { cost: 8 },
             loreMastersScroll: { cost: 50, permanent: true },
             firstLastLetterUpgrade: { cost: 5, permanent: true }
         };
@@ -1971,7 +1971,7 @@
                 }
 
                 // Disable if already have an active consumable
-                else if ( (itemName === 'streakInsurance' && abilities.streakInsurance) || (itemName === 'historiansArchive' && abilities.historiansArchive) || (itemName === 'diplomatsPass' && abilities.diplomatsPass) ) {
+                else if ( (itemName === 'streakInsurance' && abilities.streakInsurance) || (itemName === 'diplomatsPass' && abilities.diplomatsPass) ) {
                      btn.disabled = true;
                      btn.textContent = 'Active';
                 }
@@ -2030,9 +2030,10 @@
                         abilities.streakInsurance = true;
                         updateNotification("Streak Insurance is active!");
                         break;
-                    case 'historiansArchive':
-                        abilities.historiansArchive = true;
-                        updateNotification("Historian's Archive is active!");
+                    case 'scholarsBookmark':
+                        abilities.skip++;
+                        updateAbilitiesUI();
+                        updateNotification("Scholar's Bookmark purchased! +1 SKIP.");
                         break;
                     case 'loreMastersScroll':
                         abilities.loreMasterActive = true;
@@ -2588,17 +2589,7 @@
                 playerState.wrongStreak++;
                 streakEl.textContent = playerState.streak;
                 
-                if (playerState.wrongStreak === 2) {
-                    playerState.wrongStreak = 0; // Reset this anyway
-                    if (abilities.historiansArchive) {
-                        abilities.historiansArchive = false;
-                        updateNotification("Historian's Archive protected your Panther Buck progress!");
-                    }
-                    // This logic is no longer needed as panther bucks are not based on a progress bar.
-                    // } else {
-                    //     updateNotification("Panther Buck progress lost! 2 wrong in a row.");
-                    // }
-                }
+                if (playerState.wrongStreak === 2) playerState.wrongStreak = 0;
                 
                 headerGridEl.classList.add('shake');
                 gameAreaEl.classList.add('shake');
