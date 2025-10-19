@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Architects+Daughter&family=Montserrat:wght@400;700;900&family=VT323&display=swap" rel="stylesheet">
     <style>
-        /* Basic Animations lol from Gemini code ass. */
+        /* Basic Animations */
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -259,8 +259,10 @@
         
         /* Header Buttons */
         .button-cluster {
-            display: flex; flex-direction: column; gap: clamp(0.25rem, 1vh, 0.5rem); justify-content: space-around;
-            padding: 0; background: transparent; border: none; box-shadow: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(0.25rem, 1vh, 0.5rem);
+            padding: 0; background: transparent; border: none; box-shadow: none; align-content: center;
         }
         .header-btn {
             color: white; border: 4px solid #111827; border-radius: 1rem; padding: 0.5rem;
@@ -350,7 +352,7 @@
         .abilities-layout {
             display: flex;
             flex-direction: column;
-            gap: clamp(0.25rem, 1vh, 0.5rem); 
+            gap: clamp(0.5rem, 1.5vh, 1rem); 
             width: 100%;
             flex-grow: 1;
             min-height: 0;
@@ -381,7 +383,7 @@
         #abilityBoost {
             font-size: clamp(0.7rem, 2.5vh, 1.1rem); 
         }
-        #abilityBoost.active {
+        #abilityBoost.active:not(.locked) {
             animation: pulse-glow 1.5s infinite, active-boost-wiggle 0.5s ease-in-out infinite;
         }
         .ability-btn .uses {
@@ -405,7 +407,7 @@
             transition: transform 0.2s;
         }
         .passive-ability.jiggle {
-            animation-name: jiggle;
+            animation-name: jiggle; /* lgtm [js/useless-assignment-to-local] */
             animation-iteration-count: infinite;
         }
         .passive-ability.ready { animation: passive-ready-glow 1.5s infinite; } 
@@ -610,6 +612,10 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
+        .header-grid {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+        .button-cluster { flex-wrap: wrap; justify-content: center; }
         }
 
         @media (max-width: 640px) {
@@ -649,6 +655,10 @@
                 font-size: 0.8rem;
                 border-radius: 0.75rem;
             }
+            .passive-ability-title {
+                font-size: clamp(0.7rem, 1.8vh, 0.9rem);
+            }
+            .progress-bar-container { height: clamp(0.85rem, 2vh, 1.1rem); }
         }
 
         /* SIGMA Progress Bar */
@@ -938,6 +948,19 @@
         </div>
     </div>
 
+    <div id="settingsModal" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2 class="text-4xl font-bold mb-6">Settings</h2>
+            <div class="flex items-center justify-center gap-4 bg-slate-100 p-4 rounded-lg">
+                <label for="soundToggle" class="text-xl font-bold">Game Sounds</label>
+                <button id="soundToggle" class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors bg-gray-300">
+                    <span id="soundToggleKnob" class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform translate-x-1"></span>
+                </button>
+            </div>
+            <button id="closeSettingsBtn" class="modal-button bg-gray-500 text-white mt-8" style="box-shadow: 4px 4px 0px #111827;">Close</button>
+        </div>
+    </div>
+
     <div id="streakModal" class="modal-overlay hidden">
         <div class="modal-content" style="text-align: center;">
             <h2 class="text-5xl font-bold mb-4 text-purple-600 animate-[glow_1.5s_ease-in-out_infinite]">POWER UP!</h2>
@@ -999,6 +1022,7 @@
                 <button id="endTurnBtn" class="header-btn">End Game</button>
                 <button id="resetAllBtn" class="header-btn">Reset</button>
                 <button id="aboutBtn" class="header-btn">About</button>
+                <button id="settingsBtn" class="header-btn bg-slate-500">Settings</button>
             </div>
         </header>
 
@@ -1640,6 +1664,7 @@
         let isModalActive = false; 
         let isGamePaused = false;
         let notificationTimer = null;
+        let isMuted = false;
         let lastNotificationMessage = '';
         let reviewIndex = 0;
         let gameMode = 'EASY';
@@ -1678,6 +1703,7 @@
         const aboutModal = document.getElementById('aboutModal');
         const resetConfirmModal = document.getElementById('resetConfirmModal');
         const hintModal = document.getElementById('hintModal');
+        const settingsModal = document.getElementById('settingsModal');
         const streakModal = document.getElementById('streakModal');
         const streakTextEl = document.getElementById('streakText');
         const abilityInfoModal = document.getElementById('abilityInfoModal');
@@ -1721,6 +1747,9 @@
         const aboutBtn = document.getElementById('aboutBtn');
         const hintBtn = document.getElementById('hintBtn');
         const closeAboutBtn = document.getElementById('closeAboutBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const closeSettingsBtn = document.getElementById('closeSettingsBtn');
+        const soundToggle = document.getElementById('soundToggle');
         const confirmResetBtn = document.getElementById('confirmResetBtn');
         const cancelResetBtn = document.getElementById('cancelResetBtn');
         const closeHintBtn = document.getElementById('closeHintBtn');
@@ -1770,30 +1799,46 @@
 
 
         // --- SOUND ENGINE ---
+        const filter = new Tone.Filter(400, "lowpass").toDestination();
+        const filterEnv = new Tone.FrequencyEnvelope({
+            attack: 0.01,
+            decay: 0.1,
+            sustain: 0,
+            release: 0.1,
+            baseFrequency: 200,
+            octaves: 2
+        });
+        filterEnv.connect(filter.frequency);
         const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+        const pluckSynth = new Tone.PluckSynth().connect(filter);
+
         function playCorrectSound() {
+            if (isMuted) return;
             const now = Tone.now();
             synth.triggerAttackRelease("C4", "8n", now);
             synth.triggerAttackRelease("E4", "8n", now + 0.1);
             synth.triggerAttackRelease("G4", "8n", now + 0.2);
             synth.triggerAttackRelease("C5", "8n", now + 0.3);
         }
-        function playIncorrectSound() {
+        function playIncorrectSound() { if (isMuted) return;
             const now = Tone.now();
             synth.triggerAttackRelease("C2", "8n", now);
         }
-        function playClickSound() { synth.triggerAttackRelease("C5", "16n"); }
-        function playPurchaseSound() {
+        function playClickSound() { if (isMuted) return;
+            pluckSynth.triggerAttack("C4", Tone.now());
+            filterEnv.triggerAttack();
+        }
+        function playPurchaseSound() { if (isMuted) return;
             const now = Tone.now();
             synth.triggerAttackRelease("E5", "16n", now);
             synth.triggerAttackRelease("G5", "16n", now + 0.1);
         }
-        function playStartSound() {
+        function playStartSound() { if (isMuted) return;
             const now = Tone.now();
             synth.triggerAttackRelease("G3", "8n", now);
             synth.triggerAttackRelease("C4", "8n", now + 0.1);
         }
-        function playStreakSound() {
+        function playStreakSound() { if (isMuted) return;
             const now = Tone.now();
             synth.triggerAttackRelease("G4", "8n", now);
             synth.triggerAttackRelease("C5", "8n", now + 0.1);
@@ -1801,7 +1846,7 @@
         }
         function playPantherBuckSound() {
             const now = Tone.now();
-            synth.triggerAttackRelease("A5", "8n", now);
+            if (!isMuted) synth.triggerAttackRelease("A5", "8n", now);
         }
 
         // --- HELPER & NOTIFICATION FUNCTIONS ---
@@ -2074,7 +2119,7 @@
             } else {
                 abilityBoostEl.classList.remove('active');
                 // The 'locked' class is only added if no boost is active and streak is 0
-                abilityBoostEl.classList.add('locked');
+                if (playerState.streak < (isSkibidi ? 4 : 7)) abilityBoostEl.classList.add('locked');
             }
         }
         
@@ -2859,6 +2904,27 @@
         closeAboutBtn.addEventListener('click', () => { playClickSound(); aboutModal.classList.add('hidden'); });
         confirmResetBtn.addEventListener('click', resetAllData);
         cancelResetBtn.addEventListener('click', () => { playClickSound(); resetConfirmModal.classList.add('hidden'); });
+        
+        // Settings Modal Listeners
+        settingsBtn.addEventListener('click', () => {
+            playClickSound();
+            isGamePaused = true;
+            settingsModal.classList.remove('hidden');
+        });
+        closeSettingsBtn.addEventListener('click', () => {
+            playClickSound();
+            settingsModal.classList.add('hidden');
+            if (timerInterval) isGamePaused = false;
+        });
+        soundToggle.addEventListener('click', () => {
+            isMuted = !isMuted;
+            soundToggle.classList.toggle('bg-green-500', !isMuted);
+            soundToggle.classList.toggle('bg-gray-300', isMuted);
+            document.getElementById('soundToggleKnob').classList.toggle('translate-x-6', !isMuted);
+            document.getElementById('soundToggleKnob').classList.toggle('translate-x-1', isMuted);
+            if (!isMuted) playClickSound();
+        });
+
         closeHintBtn.addEventListener('click', () => { 
             playClickSound(); 
             hintModal.classList.add('hidden');
