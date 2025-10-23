@@ -356,8 +356,8 @@
             width: 100%;
             flex-grow: 1;
             min-height: 0;
-            /* Fix: Replace 'space-around' with a stack-from-top approach */
-            justify-content: flex-start;
+            /* Distribute space to fill the container vertically */
+            justify-content: space-around;
         }
         .top-abilities {
             display: grid;
@@ -372,9 +372,9 @@
             position: relative;
             width: 100%;
             font-size: clamp(0.6rem, 2vh, 0.9rem); 
-            
-            /* ADDED for stability on vertical squeeze: */
-            flex-shrink: 0;
+            /* Allow buttons to grow to fill space */
+            flex-grow: 1;
+            flex-shrink: 1;
         }
         .ability-btn.locked { opacity: 0.5; cursor: not-allowed; background-color: #e2e8f0; }
         .ability-btn.earned { cursor: pointer; }
@@ -399,6 +399,9 @@
         }
         .passive-abilities-container {
              display: flex; flex-direction: column; gap: clamp(0.1rem, 1vh, 0.25rem);
+             /* Allow this container to grow */
+             flex-grow: 1;
+             justify-content: space-around;
         }
         .passive-ability {
             background-color: #dcfce7; border: 4px solid #16a34a; box-shadow: 6px 6px 0px #15803d;
@@ -815,7 +818,7 @@
                         <h3 class="store-item-title">Time Freeze</h3>
                         <p class="store-item-desc">Adds 30 seconds to the clock.</p>
                     </div>
-                    <button class="buy-btn" data-item="timeFreeze">Buy (5 Pts)</button>
+                    <button class="buy-btn" data-item="timeFreeze">Buy (3 Pts)</button>
                 </div>
                  <div class="store-item">
                     <div>
@@ -823,7 +826,7 @@
                         <h3 class="store-item-title">Time Boost</h3>
                         <p class="store-item-desc">Adds 60 seconds to the clock.</p>
                     </div>
-                    <button class="buy-btn" data-item="timeBoost">Buy (15 Pts)</button>
+                    <button class="buy-btn" data-item="timeBoost">Buy (8 Pts)</button>
                 </div>
                 <div class="store-item">
                     <div>
@@ -831,7 +834,7 @@
                         <h3 class="store-item-title">Chronos's Reserve</h3>
                         <p class="store-item-desc">Rewinds the timer 60 seconds. Instant use.</p>
                     </div>
-                    <button class="buy-btn" data-item="chronosReserve">Buy (20 Pts)</button>
+                    <button class="buy-btn" data-item="chronosReserve">Buy (10 Pts)</button>
                 </div>
                 <div class="store-item">
                     <div>
@@ -839,7 +842,7 @@
                         <h3 class="store-item-title">Diplomat's Pass</h3>
                         <p class="store-item-desc">Next hint won't pause the timer. One-time use.</p>
                     </div>
-                    <button class="buy-btn" data-item="diplomatsPass">Buy (15 Pts)</button>
+                    <button class="buy-btn" data-item="diplomatsPass">Buy (8 Pts)</button>
                 </div>
                 <div class="store-item">
                     <div id="hunchUpgradeStoreItem">
@@ -852,7 +855,7 @@
                         <h3 class="store-item-title">Letter Insight</h3>
                         <p class="store-item-desc">Permanent: The letter hint shows the first AND last letter of the answer.</p>
                     </div>
-                    <button class="buy-btn" data-item="hunchUpgrade">Buy (30 Pts)</button>
+                    <button class="buy-btn" data-item="hunchUpgrade">Buy (15 Pts)</button>
                 </div>
                 <div class="store-item">
                     <div>
@@ -860,7 +863,7 @@
                         <h3 class="store-item-title">Streak Insurance</h3>
                         <p class="store-item-desc">Save your streak from one mistake. One-time use.</p>
                     </div>
-                    <button class="buy-btn" data-item="streakInsurance">Buy (10 Pts)</button>
+                    <button class="buy-btn" data-item="streakInsurance">Buy (5 Pts)</button>
                 </div>
                 <div class="store-item">
                     <div>
@@ -868,7 +871,7 @@
                         <h3 class="store-item-title">Scholar's Bookmark</h3>
                         <p class="store-item-desc">Instantly grants one use of the "SKIP" ability.</p>
                     </div>
-                    <button class="buy-btn" data-item="scholarsBookmark">Buy (8 Pts)</button>
+                    <button class="buy-btn" data-item="scholarsBookmark">Buy (4 Pts)</button>
                 </div>
                  <div class="store-item">
                     <div>
@@ -876,7 +879,7 @@
                         <h3 class="store-item-title">Lore Master's Scroll</h3>
                         <p class="store-item-desc">Permanent: Correct answers are worth 1.25 points.</p>
                     </div>
-                    <button class="buy-btn" data-item="loreMastersScroll">Buy (50 Pts)</button>
+                    <button class="buy-btn" data-item="loreMastersScroll">Buy (25 Pts)</button>
                 </div>
             </div>
             <div class="text-center mt-6">
@@ -1669,6 +1672,7 @@
         let reviewIndex = 0;
         let gameMode = 'EASY';
         let sigmaStage = 1;
+        let sigmaCorrectInStage = 0;
         let timeHistory = [];
         const correctMessages = [
             "Excellent!",
@@ -1922,15 +1926,15 @@
         
         // --- STORE LOGIC ---
         const storeItems = {
-            timeFreeze: { cost: 5 },
-            timeBoost: { cost: 15 },
-            chronosReserve: { cost: 20 },
-            diplomatsPass: { cost: 15 },
-            hunchUpgrade: { cost: 30, permanent: true },
-            streakInsurance: { cost: 10 },
-            scholarsBookmark: { cost: 8 },
-            loreMastersScroll: { cost: 50, permanent: true },
-            firstLastLetterUpgrade: { cost: 5, permanent: true }
+            timeFreeze: { cost: 3 },
+            timeBoost: { cost: 8 },
+            chronosReserve: { cost: 10 },
+            diplomatsPass: { cost: 8 },
+            hunchUpgrade: { cost: 15, permanent: true },
+            streakInsurance: { cost: 5 },
+            scholarsBookmark: { cost: 4 },
+            loreMastersScroll: { cost: 25, permanent: true },
+            firstLastLetterUpgrade: { cost: 3, permanent: true }
         };
 
         function openStore() {
@@ -2186,6 +2190,7 @@
 
             if (gameMode === 'SIGMA') {
                 sigmaStage = 1;
+                sigmaCorrectInStage = 0;
                 sigmaProgressContainer.classList.remove('hidden');
                 // Start with easy questions for stage 1
                 activeQuestionSet = allQuestions[selectedGrade];
@@ -2234,11 +2239,10 @@
             const totalQuestionsInStage = activeQuestionSet.length;
             const requiredForNextStage = Math.ceil(totalQuestionsInStage / 2);
 
-            // The number of questions done is the total minus what's left in the copy.
-            const questionsDoneInStage = totalQuestionsInStage - questionsCopy.length;
-            const progress = (questionsDoneInStage / requiredForNextStage) * 100;
+            // Progress is now based on correct answers in the stage
+            const progress = (sigmaCorrectInStage / requiredForNextStage) * 100;
             sigmaProgressBar.style.width = `${progress}%`;
-            sigmaProgressText.textContent = `${questionsDoneInStage} / ${requiredForNextStage} Questions`;
+            sigmaProgressText.textContent = `${sigmaCorrectInStage} / ${requiredForNextStage} Correct`;
             sigmaStageDisplay.textContent = sigmaStage;
         }
         function startTimer() {
@@ -2289,11 +2293,10 @@
             gameAreaEl.classList.add('switching');
             setTimeout(() => {
                 const totalQuestionsInStage = activeQuestionSet.length;
-                const questionsDoneInStage = totalQuestionsInStage - questionsCopy.length;
                 const requiredForNextStage = Math.ceil(totalQuestionsInStage / 2);
 
                 // SIGMA Mode Stage Progression
-                if (gameMode === 'SIGMA' && questionsDoneInStage >= requiredForNextStage) {
+                if (gameMode === 'SIGMA' && sigmaCorrectInStage >= requiredForNextStage) {
                     sigmaStage++;
                     const selectedGrade = gradeLevelSelect.value;
                     let nextQuestionSet = null;
@@ -2312,6 +2315,7 @@
                         isGamePaused = true;
                         questionsCopy = [...activeQuestionSet];
                         shuffleArray(questionsCopy);
+                        sigmaCorrectInStage = 0; // Reset correct counter for new stage
                         
                         sigmaStageUpText.textContent = `Congratulations! You are now entering Stage ${sigmaStage}: ${stageName} Questions!`;
                         sigmaStageUpModal.classList.remove('hidden');
@@ -2474,6 +2478,7 @@
                     if (sigmaStage === 2) timeToAdd = 20;
                     if (sigmaStage === 3) timeToAdd = 25;
                     timeLeft += timeToAdd;
+                    sigmaCorrectInStage++;
                     timeCardEl.classList.add('flash-green');
                     setTimeout(() => timeCardEl.classList.remove('flash-green'), 1000);
                 } else if (isSkibidi) {
