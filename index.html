@@ -2352,15 +2352,13 @@
             sigmaProgressContainer.classList.add('hidden'); // Hide by default
             gradeModal.classList.add('hidden');
 
-            const selectedGrade = gradeLevelSelect.value;
             let questionBank;
             let initialNotification = "The challenge has begun. Good luck!";
 
             if (gameMode === 'SIGMA') {
                 sigmaStage = 1;
                 sigmaCorrectInStage = 0;
-                sigmaProgressContainer.classList.remove('hidden');
-                let baseQuestions = allQuestions[selectedGrade];
+                sigmaProgressContainer.classList.remove('hidden');                let baseQuestions = allQuestions[selectedGrade];
                 if (selectedGrade === 'grade6') {
                     baseQuestions = allQuestions.grade6[`unit${unit}`];
                 }
