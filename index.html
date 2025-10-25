@@ -2543,6 +2543,7 @@
         }
 
         async function startGame(unit = null) {
+            selectedUnit = unit;
             const selectedGrade = gradeLevelSelect.value;
 
             // Handle 6th and 8th grade unit selection
@@ -2601,6 +2602,11 @@
 
                 if (selectedGrade === 'grade6') {
                     activeQuestionSet = questionBank.grade6[`unit${unit}`];
+                } else if (selectedGrade === 'grade8' && unit) {
+                    const mode = gameMode.toLowerCase();
+                    // Grade 8 questions are in a nested object, so we handle them separately.
+                    // NOTE: All new grade 8 questions (Easy, Hard, Skibidi) are currently stored in the `allSkibidiQuestions` object.
+                    activeQuestionSet = allSkibidiQuestions.grade8[`unit${unit}`][mode];
                 } else {
                     activeQuestionSet = questionBank[selectedGrade];
                 }
