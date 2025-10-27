@@ -2040,6 +2040,10 @@
                         updateNotification("Scholar's Bookmark purchased! +1 SKIP.");
                         break;
                     case 'loreMastersScroll':
+                        // Ensure score is updated immediately if it's not a whole number
+                        if (playerState.score % 1 !== 0) {
+                            scoreEl.textContent = playerState.score.toFixed(2);
+                        }
                         abilities.loreMasterActive = true;
                         updateNotification("Lore Master's Scroll purchased!");
                         break;
@@ -2278,7 +2282,7 @@
                     .filter(item => !item.permanent || !isItemPurchased(item))
                     .reduce((min, item) => Math.min(min, item.cost), Infinity);
 
-                if (playerState.score >= 8 && playerState.score >= minCost) {
+                if (playerState.score >= minCost) {
                     storeBtn.classList.add('store-ready');
                     updateNotification("You have enough points to buy items in the store! 🛍️");
                 } else {
@@ -2491,7 +2495,10 @@
                 playerState.wrongStreak = 0;
                 
                 let basePoints = abilities.loreMasterActive ? 1.25 : 1;
-                if (abilities.boost3xActive) playerState.score += basePoints * 3;
+                if (playerState.score % 1 !== 0) { // If score is already a decimal, keep it that way
+                    scoreEl.textContent = playerState.score.toFixed(2);
+                }
+                else if (abilities.boost3xActive) playerState.score += basePoints * 3;
                 else if (abilities.boost2xActive) playerState.score += basePoints * 2;
                 else playerState.score += basePoints;
 
@@ -2568,8 +2575,8 @@
                 playIncorrectSound();
                 document.body.classList.add('red-flash');
 
-                // Store the index of the incorrect question
-                if (!wrongAnswers.includes(currentQuestionIndex)) {
+                // Store the index of the incorrect question, preventing duplicates
+                if (currentQuestionIndex !== -1 && !wrongAnswers.includes(currentQuestionIndex)) {
                     wrongAnswers.push(currentQuestionIndex);
                 }
 
@@ -2671,6 +2678,15 @@
                     choice.classList.remove('correct', 'incorrect');
                 });
             } else {
+                // Reset store buttons to their default state on a new turn
+                buyBtns.forEach(btn => {
+                    btn.disabled = false;
+                    btn.classList.remove('purchased');
+                    const itemName = btn.dataset.item;
+                    if (storeItems[itemName]) {
+                        btn.textContent = `Buy (${storeItems[itemName].cost} Pts)`;
+                    }
+                });
                 skibidiInputEl.value = '';
             }
 
@@ -2682,8 +2698,8 @@
         
         function resetAllData() {
             playClickSound();
-            setupNewTurn();
             resetConfirmModal.classList.add('hidden');
+            setupNewTurn();
         }
 
         function showHint() {
