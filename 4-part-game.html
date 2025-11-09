@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expansion, Conflict, & Compromise Interactive</title>
+    
+    <!-- Load Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
+
+    <!-- Add canvas-confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <!-- Custom styles -->
+    <style>
+        /* --- Base & Typography (DARK THEME) --- */
+        :root {
+            /* Dark Theme Palette */
+            --bg-color: #111827; /* Dark Slate Blue */
+            --surface-color: #1F2937; /* Lighter Slate Blue */
+            --surface-light: #374151; /* Even Lighter Slate */
+            --text-color: #F3F4F6; /* Off-white */
+            --text-muted: #9CA3AF; /* Light Gray */
+            --border-color: #4B5563; /* Medium Gray for borders */
+            --shadow-color: #000000; /* Black for shadows */
+
+            /* Accent Colors */
+            --accent-color: #EC4899; /* Vibrant Pink */
+            --success-color: #84CC16; /* Lime Green */
+            --error-color: #ef4444; /* Red */
+            --blue-accent: #0EA5E9; /* Sky Blue */
+            
+            /* Text color for on-accent buttons */
+            --accent-dark: #1E293B; /* Dark text for contrast on bright backgrounds */
+
+            --font-heading: 'Fredoka One', cursive;
+            --font-body: 'Comic Neue', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body); font-weight: 700;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 1.5rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text-color);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        h2 {
+            font-size: 3.375rem;
+        }
+        h3 {
+            font-size: 2.25rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(90deg, var(--blue-accent), var(--accent-color), var(--blue-accent));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 5s ease infinite;
+        }
+        
+        /* --- Header & Navigation --- */
+        .header {
+            text-align: center;
+            margin: 2rem 0;
+            opacity: 0;
+            animation: fadeInSlideUp 0.8s 0.2s ease-out forwards;
+        }
+        .header p {
+            font-size: 1.875rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .main-nav {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            background-color: var(--surface-color);
+            padding: 1rem;
+            border-radius: 16px;
+            border: 3px solid var(--border-color);
+            box-shadow: 6px 6px 0px var(--shadow-color);
+            opacity: 0;
+            animation: fadeInSlideUp 0.8s 0.4s ease-out forwards;
+        }
+
+        .tab-btn {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.6rem; 
+            background-color: var(--surface-light);
+            color: var(--text-muted);
+            border: 3px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+            position: relative;
+            text-decoration: none;
+            border-radius: 12px;
+            flex-grow: 1; 
+            flex-basis: auto; 
+            text-align: center; 
+            box-shadow: 4px 4px 0px var(--shadow-color);
+        }
+        @media (max-width: 768px) {
+            .tab-btn {
+                flex-basis: 100%;
+            }
+        }
+        .tab-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--shadow-color);
+            border-color: var(--accent-color);
+            color: var(--text-color);
+        }
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: var(--accent-dark);
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--shadow-color);
+        }
+        .tab-btn.active:hover {
+            background-color: var(--accent-color);
+            opacity: 0.9;
+        }
+        .tab-btn.tab-completed {
+            background-color: var(--success-color);
+            border: 3px solid var(--border-color);
+            box-shadow: 4px 4px 0px var(--shadow-color);
+            color: var(--accent-dark);
+        }
+        .tab-btn.tab-completed:hover {
+            background-color: var(--success-color);
+            opacity: 0.9;
+        }
+        .tab-btn .checkmark {
+            display: inline-block;
+            margin-left: 8px;
+            font-weight: bold;
+        }
+        .tab-btn .checkmark.hidden {
+            display: none;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* --- Reusable Button --- */
+        .btn {
+            font-family: var(--font-body);
+            background-color: var(--accent-color);
+            color: var(--accent-dark);
+            font-weight: 700;
+            font-size: 1.5rem;
+            padding: 0.8rem 1.8rem;
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease-out;
+            box-shadow: 4px 4px 0px var(--shadow-color);
+        }
+        .btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--shadow-color);
+        }
+        .btn.btn-reset {
+            background-color: #4B5563; /* Dark gray for reset */
+            box-shadow: 4px 4px 0px var(--shadow-color);
+            color: var(--text-color);
+        }
+        .btn.btn-reset:hover {
+            background-color: #6B7280;
+            box-shadow: 2px 2px 0px var(--shadow-color);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* --- Game Cards (Key Points/Timeline) --- */
+        @keyframes pulse-accent {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+            50% { box-shadow: 0 0 24px 16px rgba(236, 72, 153, 0); }
+        }
+        @keyframes pulse-green {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        @keyframes jiggle-selected {
+            0%, 100% { transform: scale(1.03) rotate(-1deg); }
+            25% { transform: scale(1.03) rotate(-0.5deg); }
+            50% { transform: scale(1.03) rotate(-1.5deg); }
+            75% { transform: scale(1.03) rotate(-0.5deg); }
+        }
+        @keyframes screen-shake {
+            0%, 100% { transform: translate(0, 0) rotate(0); }
+            20%, 60% { transform: translate(-2px, 1px) rotate(-0.2deg); }
+            40%, 80% { transform: translate(2px, -1px) rotate(0.2deg); }
+        }
+        
+        .space-y-4 {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .space-y-3 {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .game-section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .game-section-header h2 {
+            border: 2px solid var(--border-color);
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .game-section-header p {
+            color: var(--text-muted);
+            font-size: 1.65rem;
+            margin: 0;
+        }
+        .game-controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        @media (min-width: 640px) {
+            .game-controls {
+                flex-direction: row;
+            }
+        }
+        .score-counter {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--surface-color);
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.65rem;
+            border-radius: 12px;
+            border: 3px solid var(--border-color);
+            box-shadow: 4px 4px 0px var(--shadow-color);
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            #timeline .game-grid {
+                grid-template-columns: 1fr;
+            }
+            #timeline .space-y-3 {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 1rem;
+            }
+            .game-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .game-pool {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: var(--surface-color);
+            border: 3px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 6px 6px 0px var(--shadow-color);
+        }
+        .game-pool h3 {
+            text-align: center;
+            color: var(--accent-color);
+        }
+        .descriptions-pool h3 {
+            color: var(--blue-accent);
+        }
+        
+        .emoji {
+            display: inline-block;
+            margin-right: 0.75rem;
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+        
+        .game-card {
+            background-color: var(--bg-color); /* Darker cards */
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.2s ease-out;
+            position: relative;
+        }
+        .game-card h3 {
+            font-size: 1.65rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+        .game-card p {
+            font-size: 1.35rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            padding-left: 2.25rem;
+        }
+        .game-card img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 0.75rem;
+        }
+        .concept-card img {
+            max-height: 150px; /* Constrain image height */
+            width: auto; /* Allow width to scale automatically */
+            margin-left: auto; margin-right: auto; /* Center the image */
+        }
+        .page-number {
+            font-size: 1.125rem;
+            font-style: italic;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.5rem;
+            font-family: var(--font-heading);
+        }
+        .timeline-card {
+            padding-left: 1.5rem;
+            font-weight: 500;
+        }
+
+        .draggable {
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        .draggable:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-4px) rotate(-1deg);
+            box-shadow: 6px 6px 0px var(--shadow-color);
+        }
+        .concept-card:not(.eaten):hover {
+            border-color: var(--accent-color);
+            transform: translateY(-4px) rotate(-1deg);
+            box-shadow: 6px 6px 0px var(--shadow-color);
+        }
+        .definition-drop-zone:not(.correct):hover {
+            border-color: var(--accent-color);
+            transform: translateY(-4px) rotate(-1deg);
+            box-shadow: 6px 6px 0px var(--shadow-color);
+        }
+        .dragging {
+            opacity: 0.5;
+            transform: scale(1.05);
+            background-color: var(--surface-color);
+            z-index: 50;
+        }
+
+        .drop-zone {
+            min-height: 80px;
+            border: 3px dashed var(--border-color);
+            transition: all 0.2s ease;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        .drop-zone .timeline-label {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        .drop-zone.drag-over {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-color);
+            border-style: solid;
+        }
+
+        .selected {
+            border-color: var(--accent-color) !important;
+            animation: pulse-accent 1.5s infinite, jiggle-selected 0.4s infinite;
+        }
+
+        .concept-card.eaten {
+            opacity: 0;
+            transform-origin: center;
+            scale: 0.1;
+            pointer-events: none;
+        }
+
+        .correct-match {
+            background-color: var(--success-color) !important;
+            border-color: var(--border-color) !important;
+            box-shadow: 4px 4px 0px var(--shadow-color);
+            cursor: not-allowed;
+            animation: pulse-green 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2;
+        }
+
+        .correct-match h3, .correct-match p {
+            color: var(--accent-dark) !important;
+        }
+        .correct-match:hover {
+            transform: none;
+        }
+
+        .timeline-card.correct {
+            background-color: var(--surface-light);
+            border-color: var(--border-color);
+            border-style: solid;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        .timeline-card.correct:hover {
+            transform: none; box-shadow: none;
+        }
+        .drop-zone.correct {
+            background-color: var(--surface-light);
+            border-color: var(--border-color);
+            border-style: solid;
+        }
+
+        .incorrect-match {
+            animation: shake 0.5s;
+            border-color: var(--error-color) !important;
+            background-color: #4c1d22 !important;
+        }
+
+        /* --- Quiz & Modals --- */
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 300px);
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .effect-learn-card {
+            background-color: var(--surface-color);
+            border: 3px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+            box-shadow: 4px 4px 0px var(--shadow-color);
+        }
+        .effect-learn-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-4px) rotate(-1deg);
+            box-shadow: 6px 6px 0px var(--shadow-color);
+        }
+
+        .effect-learn-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+        .effect-learn-card p {
+            color: var(--text-muted);
+            font-size: 1.425rem;
+            margin: 0;
+            padding-left: 2.25rem;
+        }
+        .effect-learn-card span {
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: var(--bg-color);
+            width: 100%;
+            max-width: 550px;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 4px solid var(--border-color);
+            box-shadow: 8px 8px 0px var(--shadow-color);
+            position: relative;
+            transform: scale(0.95) rotate(-2deg);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 3rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .modal-close-btn:hover {
+            color: var(--text-color);
+        }
+        .modal-content h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+        }
+        .modal-content p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .modal-content strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .quiz-container {
+            background-color: var(--surface-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 8px 8px 0px var(--shadow-color);
+            border: 1px solid var(--border-color);
+        }
+        .quiz-screen { display: none; }
+        .quiz-screen.active { display: block; }
+        .quiz-container #quiz-start-screen {
+            text-align: center;
+        }
+        .quiz-container #quiz-start-screen p {
+            color: var(--text-muted); 
+            font-size: 1.65rem;
+            margin-bottom: 2rem;
+        }
+        #quiz-question-display {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 2.25rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            min-height: 5rem;
+        }
+        #quiz-question-counter {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .quiz-hint-container {
+            text-align: center;
+        }
+        .quiz-hint-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 1.35rem;
+        }
+        #quiz-hint {
+            text-align: center;
+            color: var(--text-muted);
+            font-style: italic;
+            height: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        #quiz-answers {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            #quiz-answers {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .quiz-answer-btn {
+            font-family: var(--font-body);
+            width: 100%;
+            text-align: left;
+            padding: 1.2rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+            box-shadow: 4px 4px 0px var(--shadow-color);
+        }
+
+        .quiz-answer-btn:hover {
+            border-color: var(--accent-color) !important;
+            transform: translateY(-4px) rotate(-1deg);
+            box-shadow: 6px 6px 0px var(--shadow-color);
+        }
+        .quiz-answer-btn:disabled {
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+        .quiz-answer-btn.correct {
+            background-color: var(--success-color);
+            border-color: var(--border-color);
+            color: var(--accent-dark);
+            transform: scale(1.02);
+        }
+        .quiz-answer-btn.wrong {
+            background-color: var(--error-color);
+            border-color: var(--border-color);
+            color: var(--accent-dark);
+        }
+        #quiz-feedback {
+            text-align: center;
+            font-size: 1.65rem;
+            font-weight: 600;
+            min-height: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        #quiz-results-screen {
+            text-align: center;
+        }
+        #quiz-score {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 2rem 0;
+            color: var(--accent-color);
+        }
+
+        /* --- Floating Feedback --- */
+        .floating-feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            padding: 1.5rem 2.5rem;
+            border-radius: 8px;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid var(--border-color);
+            pointer-events: none;
+            text-align: center;
+        }
+        .floating-feedback.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .floating-feedback.correct-popup {
+            background-color: var(--success-color);
+            color: var(--accent-dark);
+            box-shadow: 0 4px 20px rgba(132, 204, 22, 0.4);
+        }
+        .floating-feedback.incorrect-popup {
+            background-color: var(--error-color);
+            color: var(--accent-dark);
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+        }
+        .floating-feedback.warning-popup {
+            background-color: #f59e0b;
+            color: var(--accent-dark);
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+            max-width: 400px;
+        }
+
+        /* --- Confetti --- */
+        #confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="confetti-container"></div>
+    <div id="floating-feedback" class="floating-feedback"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="animated-gradient-text">Expansion & Conflict</h1>
+            <p>An Interactive Guide to Texas & Oregon</p>
+        </header>
+
+        <nav class="main-nav">
+             <button id="tab-causeEffect" class="tab-btn active" data-tab="causeEffect">
+                Cause & Effect
+                <span class="checkmark hidden">✓</span>
+            </button>
+            <button id="tab-keyConcepts" class="tab-btn" data-tab="keyConcepts">
+                Key Concepts & Terms
+                <span class="checkmark hidden">✓</span>
+            </button>
+            <button id="tab-timeline" class="tab-btn" data-tab="timeline">
+                Timeline
+                <span class="checkmark hidden">✓</span>
+            </button>
+            <button id="tab-quiz" class="tab-btn" data-tab="quiz">
+                Quiz
+                <span class="checkmark hidden">✓</span>
+            </button>
+        </nav>
+
+        <main>
+            <!-- =================================== -->
+            <!-- Section 1: Cause & Effect           -->
+            <!-- =================================== -->
+            <section id="causeEffect" class="tab-content active">
+                <div class="game-section-header">
+                    <h2>Cause & Effect</h2>
+                    <p>Drag (or click) a "Cause" to its matching "Effect".</p>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="reset-causeEffect-btn" class="btn btn-reset">Reset Game</button>
+                    <div id="cause-effect-score" class="score-counter">
+                        Matched: 0 / 4
+                    </div>
+                </div>
+
+                <div id="cause-effect-game-container" class="game-grid">
+                    <div class="game-pool">
+                        <h3>Causes</h3>
+                        <div class="space-y-4">
+                            <div class="game-card concept-card" data-match-id="1" draggable="true">
+                                <h3><span class="emoji">👨‍🌾</span>Mexico Offers Cheap Land</h3>
+                                <p>To settle the region quickly, Mexico sold land in Texas to settlers from the United States.</p>
+                                <p class="page-number">p. 102</p>
+                            </div>
+                            <div class="game-card concept-card" data-match-id="2" draggable="true">
+                                <h3><span class="emoji">👑</span>Santa Anna's Power Grab</h3>
+                                <p>Mexico's president moved to centralize power and did away with the Constitution of 1824.</p>
+                                <p class="page-number">p. 103</p>
+                            </div>
+                             <div class="game-card concept-card" data-match-id="3" draggable="true">
+                                <h3><span class="emoji">💔</span>Defeat at the Alamo</h3>
+                                <p>Though a military loss, the bravery of the greatly outnumbered Texas fighters inspired others.</p>
+                                <p class="page-number">p. 103</p>
+                            </div>
+                            <div class="game-card concept-card" data-match-id="4" draggable="true">
+                                <h3><span class="emoji">🗳️</span>Polk Wins the Presidency</h3>
+                                <p>James K. Polk, a "dark horse" candidate, was elected in 1844 on a platform of westward expansion.</p>
+                                <p class="page-number">p. 104</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-pool descriptions-pool">
+                        <h3>Effects</h3>
+                        <div class="space-y-4">
+                             <div class="game-card definition-drop-zone" data-match-id="2" data-matched="false">
+                                <h3><span class="emoji">💥</span>Texas Declares Independence</h3>
+                                <p>Settlers, fearing a dictatorship and wanting to protect slavery, launched the Texas Revolution in 1836.</p>
+                                <p class="page-number">p. 103</p>
+                            </div>
+                            <div class="game-card definition-drop-zone" data-match-id="4" data-matched="false">
+                                <h3><span class="emoji">🇺🇸</span>Texas is Annexed</h3>
+                                <p>With the new president's support, Congress finally approved a plan for Texas to join the United States.</p>
+                                <p class="page-number">p. 104</p>
+                            </div>
+                             <div class="game-card definition-drop-zone" data-match-id="1" data-matched="false">
+                                <h3><span class="emoji">📈</span>Population Shift & Conflict</h3>
+                                <p>American settlers and enslaved people quickly outnumbered Mexican settlers, leading to tensions over slavery and influence.</p>
+                                <p class="page-number">p. 102</p>
+                            </div>
+                            <div class="game-card definition-drop-zone" data-match-id="3" data-matched="false">
+                                <h3><span class="emoji">🗣️</span>A New Rallying Cry</h3>
+                                <p>The loss became a symbolic event, and revolutionaries shouted "Remember the Alamo" as they fought.</p>
+                                <p class="page-number">p. 103</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- =================================== -->
+            <!-- Section 2: Key Concepts & Terms     -->
+            <!-- =================================== -->
+            <section id="keyConcepts" class="tab-content">
+                <div class="game-section-header">
+                    <h2>Key Concepts & Terms</h2>
+                    <p>Drag (or click) a "Concept" to its matching "Definition".</p>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="reset-keyConcepts-btn" class="btn btn-reset">Reset Game</button>
+                    <div id="key-concepts-score" class="score-counter">
+                        Matched: 0 / 4
+                    </div>
+                </div>
+
+                <div id="key-concepts-game-container" class="game-grid">
+                    
+                    <div class="game-pool">
+                        <h3>Concepts & Terms</h3>
+                        <div class="space-y-4">
+                            <div class="game-card concept-card" data-match-id="1" draggable="true">
+                                <h3><span class="emoji">⚔️</span>Texas Revolution</h3>
+                                <p>The 1836 rebellion where Texas settlers won independence from the central Mexican government.</p>
+                                <p class="page-number">p. 103</p>
+                                <a title="Henry Arthur McArdle, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:The_Battle_of_San_Jacinto.jpg"><img alt="The Battle of San Jacinto painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/The_Battle_of_San_Jacinto.jpg/512px-The_Battle_of_San_Jacinto.jpg"></a>
+                            </div>
+                            <div class="game-card concept-card" data-match-id="2" draggable="true">
+                                <h3><span class="emoji">⭐</span>Republic of Texas</h3>
+                                <p>The independent nation that existed for nine years after winning its freedom from Mexico.</p>
+                                <p class="page-number">p. 104</p>
+                                <a title="Public domain" href="https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg"><img alt="The Texas Flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Texas.svg/512px-Flag_of_Texas.svg.png"></a>
+                            </div>
+                            <div class="game-card concept-card" data-match-id="3" draggable="true">
+                                <h3><span class="emoji">➕</span>Annexation</h3>
+                                <p>The formal act of adding or joining a territory to a country, as the U.S. did with Texas.</p>
+                                <p class="page-number">p. 104</p>
+                                <a title="User:Wapcaplet, CC BY-SA 3.0, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Texas_annexation_map_1845.png"><img alt="Map of the 1845 Texas Annexation" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Texas_annexation_map_1845.png/512px-Texas_annexation_map_1845.png"></a>
+                            </div>
+                            <div class="game-card concept-card" data-match-id="4" draggable="true">
+                                <h3><span class="emoji">🗣️</span>"54-40 or fight!"</h3>
+                                <p>A political slogan about the Oregon Territory that threatened war with Great Britain.</p>
+                                <p class="page-number">p. 105</p>
+                                <a title="George Peter Alexander Healy, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:James_K_Polk_restored.jpg"><img alt="Portrait of James K. Polk" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/James_K_Polk_restored.jpg/256px-James_K_Polk_restored.jpg"></a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="game-pool descriptions-pool">
+                        <h3>Definitions & Meanings</h3>
+                        <div class="space-y-4">
+                             <div class="game-card definition-drop-zone" data-match-id="2" data-matched="false">
+                                <h3><span class="emoji"> NATION</span>A Lone Star Nation</h3>
+                                <p>For nine years, this territory was its own independent country, not part of the U.S. or Mexico.</p>
+                                <p class="page-number">p. 104</p>
+                            </div>
+                            <div class="game-card definition-drop-zone" data-match-id="1" data-matched="false">
+                                <h3><span class="emoji">🔥</span>An 18-Minute Victory</h3>
+                                <p>This conflict ended quickly after the Battle of San Jacinto, establishing an independent Texas.</p>
+                                <p class="page-number">p. 103</p>
+                            </div>
+                            <div class="game-card definition-drop-zone" data-match-id="4" data-matched="false">
+                                <h3><span class="emoji">🗺️</span>An Expansionist Slogan</h3>
+                                <p>Used by President Polk's campaign to claim all of the Oregon Territory for the United States.</p>
+                                <p class="page-number">p. 105</p>
+                            </div>
+                            <div class="game-card definition-drop-zone" data-match-id="3" data-matched="false">
+                                <h3><span class="emoji">🤝</span>Joining the Union</h3>
+                                <p>This process made Texas an official U.S. state on December 29, 1845, after years of debate.</p>
+                                <p class="page-number">p. 104</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================== -->
+            <!-- Section 3: Drag & Drop Timeline     -->
+            <!-- =================================== -->
+            <section id="timeline" class="tab-content">
+                <div class="game-section-header">
+                    <h2>Timeline of Expansion</h2>
+                    <p>Drag (or click) the events into the correct date slot.</p>
+                </div>
+                <div class="game-controls">
+                    <button id="reset-timeline-btn" class="btn btn-reset">Reset Timeline</button>
+                </div>
+
+                <div class="game-grid">
+                    <div id="event-pool" class="game-pool">
+                        <h3>Events</h3>
+                        <div class="space-y-3">
+                            <!-- Events will be populated here by JS to allow for shuffling -->
+                        </div>
+                    </div>
+
+                    <div class="game-pool">
+                        <h3>Timeline</h3>
+                        <div class="space-y-3">
+                            <div class="drop-zone" data-date="1821">
+                                <span class="timeline-label">1821:</span>
+                            </div>
+                            <div class="drop-zone" data-date="1836">
+                                <span class="timeline-label">1836:</span>
+                            </div>
+                            <div class="drop-zone" data-date="1844">
+                                <span class="timeline-label">1844:</span>
+                            </div>
+                            <div class="drop-zone" data-date="1845">
+                                <span class="timeline-label">1845:</span>
+                            </div>
+                            <div class="drop-zone" data-date="1846">
+                                <span class="timeline-label">1846:</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================== -->
+            <!-- Section 4: Quiz                     -->
+            <!-- =================================== -->
+            <section id="quiz" class="tab-content">
+                <div class="game-section-header">
+                    <h2>Test Your Knowledge!</h2>
+                </div>
+                
+                <div class="mb-12">
+                    <p class="text-center text-gray-600 mb-8" style="color: var(--text-muted); text-align: center; margin-bottom: 2rem;">Click on each topic to learn more before you start the quiz!</p>
+                    <div class="learn-grid">
+                        <button class="effect-learn-card" data-modal-target="modal-trouble-texas">
+                            <h3><span class="emoji">🌵</span>Trouble in Texas</h3>
+                            <p>Learn about the settlement of Texas and the rising tensions with the Mexican government.</p>
+                            <p class="page-number" style="margin-top: 0.5rem;">p. 102</p>
+                            <span>Learn More &rarr;</span>
+                        </button>
+                        <button class="effect-learn-card" data-modal-target="modal-texas-revolution">
+                            <h3><span class="emoji">⚔️</span>The Texas Revolution</h3>
+                            <p>Discover the key events and battles that led to the creation of the Republic of Texas.</p>
+                            <p class="page-number" style="margin-top: 0.5rem;">p. 103</p>
+                            <span>Learn More &rarr;</span>
+                        </button>
+                        <button class="effect-learn-card" data-modal-target="modal-texas-statehood">
+                            <h3><span class="emoji">🇺🇸</span>Texas Statehood</h3>
+                            <p>Understand why Texas was an independent republic for nine years and how it finally joined the U.S.</p>
+                            <p class="page-number" style="margin-top: 0.5rem;">p. 104</p>
+                            <span>Learn More &rarr;</span>
+                        </button>
+                        <button class="effect-learn-card" data-modal-target="modal-oregon-territory">
+                            <h3><span class="emoji">🌲</span>The Oregon Territory</h3>
+                            <p>Explore how the U.S. and Great Britain came to a compromise over land in the Northwest.</p>
+                            <p class="page-number" style="margin-top: 0.5rem;">p. 105</p>
+                            <span>Learn More &rarr;</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="quiz-container" class="quiz-container">
+                        <div id="quiz-start-screen" class="quiz-screen active">
+                            <p style="color: var(--text-muted); font-size: 1.65rem; margin-bottom: 1.5rem;">Ready to test your understanding of U.S. expansion in the 1840s?</p>
+                            <button id="quiz-start-btn" class="btn">Start Quiz</button>
+                        </div>
+
+                        <div id="quiz-game-screen" class="quiz-screen">
+                            <p id="quiz-question-counter"></p>
+                            <p id="quiz-question-display"></p>
+                             <div class="quiz-hint-container">
+                                <button id="quiz-hint-btn" class="quiz-hint-btn">Need a hint?</button>
+                            </div>
+                            <p id="quiz-hint"></p>
+                            <div id="quiz-answers"></div>
+                            <p id="quiz-feedback"></p>
+                            <button id="quiz-next-btn" class="btn" style="display: none; width: 100%;">Next Question</button>
+                        </div>
+                        
+                        <div id="quiz-results-screen" class="quiz-screen">
+                            <h4>Quiz Complete!</h4>
+                            <p id="quiz-score"></p>
+                            <button id="quiz-restart-btn" class="btn">Restart Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals for Quiz Section -->
+    <div id="modal-trouble-texas" class="modal">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-close="modal-trouble-texas">&times;</button>
+            <h3><span class="emoji">🌵</span>Trouble in Texas</h3>
+            <p>Initially, Mexico sold cheap land to American settlers to populate the region. However, by the 1830s, the American settlers and the enslaved people they brought with them vastly outnumbered the Mexican settlers.</p>
+            <p>The Mexican government grew concerned. It banned further American immigration and had also banned slavery in 1829. The <strong>continuation of slavery</strong> by American settlers and their growing influence became major sources of conflict.</p>
+            <p class="page-number">Source: p. 102</p>
+        </div>
+    </div>
+    <div id="modal-texas-revolution" class="modal">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-close="modal-texas-revolution">&times;</button>
+            <h3><span class="emoji">⚔️</span>The Texas Revolution</h3>
+            <p>In the mid-1830s, Mexico's President, General Antonio López de Santa Anna, began to centralize power, which angered many Texas settlers who feared he was becoming a dictator. This, combined with threats to the institution of slavery, led to rebellion.</p>
+            <p>In March 1836, Mexican forces defeated Texas revolutionaries at the <strong>Alamo</strong>. Despite the loss, it became a powerful symbol. In April 1836, Texan forces led by Sam Houston won a decisive victory at the <strong>Battle of San Jacinto</strong>, ending the war.</p>
+            <p class="page-number">Source: p. 103</p>
+        </div>
+    </div>
+    <div id="modal-texas-statehood" class="modal">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-close="modal-texas-statehood">&times;</button>
+            <h3><span class="emoji">🇺🇸</span>Texas Statehood</h3>
+            <p>After winning independence, Texas was its own country—the Republic of Texas—for <strong>nine years</strong>. The U.S. was hesitant to annex it for two main reasons: Northern citizens did not want to add another large slave state, and the U.S. government feared it would lead to war with Mexico.</p>
+            <p>The election of <strong>James K. Polk</strong> in 1844, who supported expansion, changed things. With his support, Congress passed an annexation plan, and Texas officially became a U.S. state on December 29, 1845.</p>
+            <p class="page-number">Source: p. 104</p>
+        </div>
+    </div>
+    <div id="modal-oregon-territory" class="modal">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-close="modal-oregon-territory">&times;</button>
+            <h3><span class="emoji">🌲</span>The Oregon Territory</h3>
+            <p>For over 25 years, the U.S. and Great Britain shared control of the Oregon Territory. President Polk, however, wanted the land for the U.S. His campaign used the slogan <strong>"54-40 or fight!"</strong>, threatening war to claim the entire territory up to the 54° 40' latitude line.</p>
+            <p>However, with war looming with Mexico over Texas, the U.S. wanted to avoid a second conflict. In June 1846, the countries compromised with the <strong>Oregon Treaty</strong>, which split the territory and set the boundary at the <strong>49th parallel</strong>.</p>
+            <p class="page-number">Source: p. 105</p>
+        </div>
+    </div>
+
+    <div id="modal-global-complete" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <button class="modal-close-btn" data-modal-close="modal-global-complete">&times;</button>
+            <h2 style="font-size: 2.5rem; color: var(--success-color);">Congratulations!</h2>
+            <p style="font-size: 1.5rem; color: var(--text-color); margin: 1.5rem 0;">You've completed all four sections!</p>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem;">You are now an expert on American expansion in the 1840s.</p>
+            <button class="btn" data-modal-close="modal-global-complete">Close</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. DEFINE ALL VARIABLES ---
+            const tabs = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const floatingFeedbackEl = document.getElementById('floating-feedback');
+            
+            let draggedItem = null;
+            let selectedItem = null;
+            let globalCompletionFired = false;
+            let wrongStreakCounter = 0;
+
+            // An object to hold all reset functions for easy access
+            const gameResets = {};
+            
+            const timelineEvents = [
+                { id: 'event-1', date: '1821', text: '🇲🇽 Mexico wins its independence from Spain.' },
+                { id: 'event-2', date: '1836', text: '⭐ The Texas Revolution ends, creating the Republic of Texas.' },
+                { id: 'event-3', date: '1844', text: '🗳️ James K. Polk is elected president on an expansionist platform.' },
+                { id: 'event-4', date: '1845', text: '🇺🇸 The United States annexes Texas, making it the 28th state.' },
+                { id: 'event-5', date: '1846', text: '🌲 The Oregon Treaty sets the U.S.-British border at the 49th parallel.' }
+            ];
+            
+            const quizQuestions = [
+                { question: "What was a primary reason for conflict between American settlers and the Mexican government in the 1830s?", answers: ["American settlers wanted to continue slavery", "Mexico was selling the land at too high a price", "American settlers wanted to remain loyal to Spain", "Mexico wanted to ban the fur trade"], correctIndex: 0, hint: "Review the 'Trouble in Texas' card for clues about settler life." },
+                { question: "What was the significance of the Battle of the Alamo?", answers: ["It was the final battle that won the war for Texas", "It was a defeat that became a motivating symbol", "It was where General Santa Anna was captured", "It was a naval battle in the Gulf of Mexico"], correctIndex: 1, hint: "The 'Texas Revolution' card explains its symbolic importance." },
+                { question: "Why was the United States initially hesitant to annex Texas?", answers: ["Texas did not have enough people to become a state", "President Polk was against westward expansion", "Fear of war with Mexico and adding a slave state", "Great Britain claimed Texas as its own territory"], correctIndex: 2, hint: "Check the 'Texas Statehood' card for the two main reasons." },
+                { question: "Who was the 'dark horse' candidate whose election helped push forward the annexation of Texas?", answers: ["Stephen F. Austin", "John Tyler", "Sam Houston", "James K. Polk"], correctIndex: 3, hint: "The 'Texas Statehood' card names this expansionist president." },
+                { question: "The political slogan '54-40 or fight!' was related to a border dispute in which territory?", answers: ["Texas", "Oregon", "Louisiana", "Mexico"], correctIndex: 1, hint: "The 'Oregon Territory' card covers this famous slogan." },
+                { question: "How was the dispute over the Oregon Territory ultimately resolved?", answers: ["The U.S. went to war and won the entire territory", "The U.S. and Great Britain compromised on the 49th parallel", "The U.S. purchased the territory from Great Britain", "The territory was given to Mexico in a treaty"], correctIndex: 1, hint: "Read about the final agreement in the 'Oregon Territory' section." },
+                { question: "After winning independence from Mexico, for how long was Texas its own country?", answers: ["About six months", "Two years", "Nine years", "It was never an independent country"], correctIndex: 2, hint: "The 'Texas Statehood' card mentions the duration of the Republic of Texas." }
+            ];
+
+            // --- 2. DEFINE ALL FUNCTIONS ---
+            function showTab(tabId) {
+                tabs.forEach(tab => tab.classList.remove('active'));
+                tabButtons.forEach(button => button.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            function openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if(modal) modal.classList.add('active');
+            }
+
+            function closeModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if(modal) modal.classList.remove('active');
+            }
+            
+             function handleCorrectAnswer() {
+                wrongStreakCounter = 0;
+                showFloatingFeedback("Correct!", 'correct');
+            }
+
+            function handleWrongAnswer() {
+                wrongStreakCounter++;
+                if (wrongStreakCounter === 1) {
+                    showFloatingFeedback("Careful! One more wrong answer will reset all games.", 'warning');
+                } else if (wrongStreakCounter >= 2) {
+                    showFloatingFeedback("Two wrong answers! Resetting all games.", 'incorrect');
+                    wrongStreakCounter = 0;
+                    // Call all registered reset functions
+                    Object.values(gameResets).forEach(resetFunc => resetFunc());
+                }
+            }
+
+            function handleItemSelect(item) {
+                if (item.classList.contains('correct-match') || item.classList.contains('eaten')) return;
+
+                if (selectedItem && selectedItem !== item) {
+                    selectedItem.classList.remove('selected');
+                }
+                if (selectedItem === item) {
+                    item.classList.remove('selected');
+                    selectedItem = null;
+                } else {
+                    item.classList.add('selected');
+                    selectedItem = item;
+                }
+            }
+
+            function showFloatingFeedback(message, type) {
+                if(!floatingFeedbackEl) return;
+                floatingFeedbackEl.innerHTML = message;
+                floatingFeedbackEl.className = 'floating-feedback';
+                floatingFeedbackEl.classList.add(`${type}-popup`);
+                floatingFeedbackEl.classList.add('show');
+                const duration = (type === 'warning' || type === 'incorrect') ? 2500 : 1500;
+                setTimeout(() => floatingFeedbackEl.classList.remove('show'), duration);
+            }
+
+            function showConfetti() {
+                if (typeof confetti !== 'function') return;
+
+                const duration = 5 * 1000;
+                const animationEnd = Date.now() + duration;
+                const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+                function randomInRange(min, max) {
+                    return Math.random() * (max - min) + min;
+                }
+
+                const interval = setInterval(function() {
+                    const timeLeft = animationEnd - Date.now();
+                    if (timeLeft <= 0) return clearInterval(interval);
+
+                    const particleCount = 50 * (timeLeft / duration);
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                }, 250);
+
+                document.body.style.animation = 'screen-shake 0.5s ease-in-out';
+                setTimeout(() => { document.body.style.animation = ''; }, 500);
+            }
+            
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function animateFlyTo(startEl, endEl, onComplete) {
+                const clone = startEl.cloneNode(true);
+                clone.style.position = 'fixed';
+                clone.style.margin = '0';
+                clone.style.zIndex = '100';
+                const startRect = startEl.getBoundingClientRect();
+                const endRect = endEl.getBoundingClientRect();
+                clone.style.left = `${startRect.left}px`;
+                clone.style.top = `${startRect.top}px`;
+                clone.style.width = `${startRect.width}px`;
+                clone.style.height = `${startRect.height}px`;
+                document.body.appendChild(clone);
+                startEl.style.opacity = '0';
+                requestAnimationFrame(() => {
+                    clone.style.transition = 'all 0.5s cubic-bezier(0.5, 0, 0.75, 0)';
+                    clone.style.left = `${endRect.left + endRect.width / 2 - startRect.width / 4}px`;
+                    clone.style.top = `${endRect.top + endRect.height / 2 - startRect.height / 4}px`;
+                    clone.style.transform = 'scale(0.25)';
+                    clone.style.opacity = '0';
+                });
+                setTimeout(() => {
+                    clone.remove();
+                    if (onComplete) onComplete();
+                }, 500);
+            }
+
+            function checkGlobalCompletion() {
+                if (globalCompletionFired) return;
+                const causeEffectDone = document.getElementById('tab-causeEffect').classList.contains('tab-completed');
+                const conceptsDone = document.getElementById('tab-keyConcepts').classList.contains('tab-completed');
+                const timelineDone = document.getElementById('tab-timeline').classList.contains('tab-completed');
+                const quizDone = document.getElementById('tab-quiz').classList.contains('tab-completed');
+                if (causeEffectDone && conceptsDone && timelineDone && quizDone) {
+                    showFloatingFeedback("GRAND CHAMPION!", 'correct');
+                    globalCompletionFired = true;
+                    showConfetti();
+                    setTimeout(() => openModal('modal-global-complete'), 500);
+                }
+            }
+
+            // --- Matching Game Logic (for Concepts and Cause/Effect) ---
+            function setupMatchingGame(gameId, totalItems) {
+                const container = document.getElementById(gameId);
+                if (!container) return;
+
+                let correctCount = 0;
+                const scoreEl = container.querySelector('.score-counter');
+                const tabButton = document.getElementById(`tab-${gameId}`);
+                const conceptCards = container.querySelectorAll('.concept-card');
+                const dropZones = container.querySelectorAll('.definition-drop-zone');
+
+                function processDrop(item, zone) {
+                    const isClick = (selectedItem === item);
+                    const conceptId = item.dataset.matchId;
+                    const definitionId = zone.dataset.matchId;
+
+                    if (conceptId === definitionId) {
+                        if(isClick) item.classList.remove('selected');
+                        item.draggable = false;
+
+                        animateFlyTo(item, zone, () => {
+                            item.classList.add('eaten');
+                            zone.classList.add('correct-match');
+                            zone.dataset.matched = 'true';
+
+                            correctCount++;
+                            if (scoreEl) scoreEl.textContent = `Matched: ${correctCount} / ${totalItems}`;
+                            handleCorrectAnswer();
+
+                            if (correctCount === totalItems) {
+                                showFloatingFeedback("Section Complete!", 'correct');
+                                showConfetti();
+                                if (tabButton) {
+                                    tabButton.classList.add('tab-completed');
+                                    tabButton.querySelector('.checkmark').classList.remove('hidden');
+                                }
+                                checkGlobalCompletion();
+                            }
+                        }, 400);
+                    } else {
+                        zone.classList.add('incorrect-match');
+                        if (isClick) item.classList.remove('selected');
+                        handleWrongAnswer();
+                        setTimeout(() => zone.classList.remove('incorrect-match'), 1000);
+                    }
+                    if (isClick) selectedItem = null;
+                }
+
+                function resetGame() {
+                    globalCompletionFired = false;
+                    selectedItem = null;
+                    correctCount = 0;
+                    if(wrongStreakCounter > 0) wrongStreakCounter = 0;
+                    if (scoreEl) scoreEl.textContent = `Matched: 0 / ${totalItems}`;
+                    if (tabButton) {
+                        tabButton.classList.remove('tab-completed');
+                        tabButton.querySelector('.checkmark').classList.add('hidden');
+                    }
+
+                    const definitionPoolContainer = container.querySelector('.descriptions-pool');
+                    if (definitionPoolContainer) {
+                        const definitionPool = definitionPoolContainer.querySelector('div.space-y-4');
+                        if (definitionPool) {
+                            const definitions = Array.from(definitionPool.children);
+                            shuffle(definitions);
+                            definitions.forEach(def => definitionPool.appendChild(def));
+                        }
+                    }
+
+                    conceptCards.forEach(card => {
+                        card.classList.remove('eaten', 'selected');
+                        card.style.opacity = '1';
+                        card.draggable = true;
+                    });
+                    dropZones.forEach(zone => {
+                        zone.classList.remove('correct-match', 'incorrect-match', 'selected');
+                        zone.dataset.matched = 'false';
+                    });
+                }
+                
+                gameResets[gameId] = resetGame;
+
+                conceptCards.forEach(card => {
+                    card.addEventListener('dragstart', (e) => {
+                        if (card.classList.contains('eaten')) { e.preventDefault(); return; }
+                        if (selectedItem) selectedItem.classList.remove('selected');
+                        selectedItem = null;
+                        draggedItem = card;
+                        setTimeout(() => card.classList.add('dragging'), 0);
+                    });
+                    card.addEventListener('dragend', () => {
+                        if(draggedItem) draggedItem.classList.remove('dragging');
+                        draggedItem = null;
+                    });
+                    card.addEventListener('click', () => handleItemSelect(card));
+                });
+
+                dropZones.forEach(zone => {
+                    zone.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        if (zone.dataset.matched === 'true') return;
+                        zone.classList.add('drag-over');
+                    });
+                    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+                    zone.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        zone.classList.remove('drag-over');
+                        if (!draggedItem || zone.dataset.matched === 'true' || !draggedItem.classList.contains('concept-card')) return;
+                        processDrop(draggedItem, zone);
+                        draggedItem = null;
+                    });
+                    zone.addEventListener('click', () => {
+                        if (zone.dataset.matched === 'true' || !selectedItem) return;
+                        if (selectedItem && selectedItem.classList.contains('concept-card')) {
+                            processDrop(selectedItem, zone);
+                        }
+                    });
+                });
+                
+                const resetButton = document.getElementById(`reset-${gameId.replace('Section', '').toLowerCase()}-btn`);
+                 if(resetButton) resetButton.addEventListener('click', resetGame);
+
+                resetGame();
+            }
+
+            // --- Timeline Game Functions ---
+            function setupTimelineGame() {
+                const eventPool = document.querySelector('#event-pool .space-y-3');
+                const dropZones = document.querySelectorAll('#timeline .drop-zone');
+                let timelineCorrectCount = 0;
+
+                function processTimelineDrop(item, zone) {
+                    const isClick = (selectedItem === item);
+                    if (zone.dataset.date === item.dataset.date) {
+                        if (isClick) item.classList.remove('selected');
+                        item.draggable = false;
+                        animateFlyTo(item, zone, () => {
+                            zone.appendChild(item);
+                            item.classList.add('correct');
+                            item.classList.remove('draggable');
+                            item.style.opacity = '1';
+                            zone.classList.add('correct');
+                            timelineCorrectCount++;
+                            handleCorrectAnswer();
+                            if (timelineCorrectCount === timelineEvents.length) {
+                                showFloatingFeedback("Timeline Complete!", 'correct');
+                                showConfetti();
+                                const btn = document.getElementById('tab-timeline');
+                                btn.classList.add('tab-completed');
+                                btn.querySelector('.checkmark').classList.remove('hidden');
+                                checkGlobalCompletion();
+                            }
+                        }, 400);
+                    } else {
+                        zone.classList.add('incorrect-match');
+                        if (isClick) item.classList.remove('selected');
+                        handleWrongAnswer();
+                        setTimeout(() => zone.classList.remove('incorrect-match'), 500);
+                    }
+                    if (isClick) selectedItem = null;
+                }
+
+                function resetTimelineGame() {
+                    globalCompletionFired = false;
+                    selectedItem = null;
+                    if(wrongStreakCounter > 0) wrongStreakCounter = 0;
+                    if(eventPool) eventPool.innerHTML = '';
+                    timelineCorrectCount = 0;
+                    
+                    dropZones.forEach(zone => {
+                        const label = zone.querySelector('span');
+                        if(label) zone.innerHTML = label.outerHTML;
+                        zone.classList.remove('correct');
+                    });
+
+                    if(eventPool) {
+                        shuffle([...timelineEvents]).forEach(event => {
+                            eventPool.innerHTML += `<div id="${event.id}" class="game-card draggable timeline-card" draggable="true" data-date="${event.date}">${event.text}</div>`;
+                        });
+                    }
+                    
+                    document.querySelectorAll('#timeline .draggable').forEach(item => {
+                        item.addEventListener('dragstart', (e) => {
+                            if (selectedItem) selectedItem.classList.remove('selected');
+                            selectedItem = null;
+                            draggedItem = item;
+                            setTimeout(() => item.classList.add('dragging'), 0);
+                        });
+                        item.addEventListener('dragend', () => {
+                           if(draggedItem) draggedItem.classList.remove('dragging');
+                            draggedItem = null;
+                        });
+                        item.addEventListener('click', () => {
+                            if (item.classList.contains('correct')) return;
+                            handleItemSelect(item);
+                        });
+                    });
+                    
+                    const btn = document.getElementById('tab-timeline');
+                    btn.classList.remove('tab-completed');
+                    btn.querySelector('.checkmark').classList.add('hidden');
+                }
+                
+                gameResets['timeline'] = resetTimelineGame;
+
+                dropZones.forEach(zone => {
+                    zone.addEventListener('dragover', (e) => { e.preventDefault(); if (!zone.classList.contains('correct')) zone.classList.add('drag-over'); });
+                    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+                    zone.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        zone.classList.remove('drag-over');
+                        if (draggedItem && !zone.classList.contains('correct') && draggedItem.classList.contains('draggable')) {
+                            processTimelineDrop(draggedItem, zone);
+                        }
+                    });
+                    zone.addEventListener('click', () => {
+                        if (zone.classList.contains('correct') || !selectedItem) return;
+                        if (selectedItem && selectedItem.hasAttribute('data-date')) {
+                            processTimelineDrop(selectedItem, zone);
+                        }
+                    });
+                });
+
+                document.getElementById('reset-timeline-btn').addEventListener('click', resetTimelineGame);
+                resetTimelineGame();
+            }
+
+            // --- Quiz Functions ---
+            function setupQuizGame() {
+                const startScreen = document.getElementById('quiz-start-screen');
+                const gameScreen = document.getElementById('quiz-game-screen');
+                const resultsScreen = document.getElementById('quiz-results-screen');
+                const questionDisplay = document.getElementById('quiz-question-display');
+                const answersContainer = document.getElementById('quiz-answers');
+                const feedback = document.getElementById('quiz-feedback');
+                const nextBtn = document.getElementById('quiz-next-btn');
+                const scoreDisplay = document.getElementById('quiz-score');
+                const counterDisplay = document.getElementById('quiz-question-counter');
+                const hintBtn = document.getElementById('quiz-hint-btn');
+                const hintDisplay = document.getElementById('quiz-hint');
+                let currentQuestionIndex = 0;
+                let quizScore = 0;
+
+                function resetQuizGame() {
+                    currentQuestionIndex = 0;
+                    quizScore = 0;
+                    if(wrongStreakCounter > 0) wrongStreakCounter = 0;
+                    gameScreen.classList.remove('active');
+                    resultsScreen.classList.remove('active');
+                    startScreen.classList.add('active');
+                    nextBtn.style.display = 'none';
+                    const btn = document.getElementById('tab-quiz');
+                    btn.classList.remove('tab-completed');
+                    btn.querySelector('.checkmark').classList.add('hidden');
+                }
+
+                gameResets['quiz'] = resetQuizGame;
+
+                function startQuiz() {
+                    globalCompletionFired = false;
+                    currentQuestionIndex = 0;
+                    quizScore = 0;
+                    wrongStreakCounter = 0;
+                    startScreen.classList.remove('active');
+                    resultsScreen.classList.remove('active');
+                    gameScreen.classList.add('active');
+                    nextBtn.style.display = 'none';
+                    const btn = document.getElementById('tab-quiz');
+                    btn.classList.remove('tab-completed');
+                    btn.querySelector('.checkmark').classList.add('hidden');
+                    loadQuizQuestion();
+                }
+
+                function loadQuizQuestion() {
+                    if (currentQuestionIndex >= quizQuestions.length) {
+                        showQuizResults();
+                        return;
+                    }
+                    const q = quizQuestions[currentQuestionIndex];
+                    counterDisplay.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+                    questionDisplay.textContent = q.question;
+                    answersContainer.innerHTML = '';
+                    feedback.textContent = '';
+                    hintDisplay.textContent = '';
+                    nextBtn.style.display = 'none';
+                    
+                    const shuffledAnswers = q.answers.map((answer, index) => ({ text: answer, originalIndex: index })).sort(() => Math.random() - 0.5);
+                    shuffledAnswers.forEach((answer) => {
+                        const button = document.createElement('button');
+                        button.className = 'quiz-answer-btn';
+                        button.innerHTML = answer.text;
+                        button.onclick = () => checkAnswer(answer.originalIndex, button);
+                        answersContainer.appendChild(button);
+                    });
+                }
+
+                 function showQuizHint() {
+                    if(!hintDisplay || !quizQuestions[currentQuestionIndex]) return;
+                    hintDisplay.textContent = quizQuestions[currentQuestionIndex].hint;
+                }
+
+                function checkAnswer(selectedIndex, buttonElement) {
+                    const q = quizQuestions[currentQuestionIndex];
+                    answersContainer.querySelectorAll('button').forEach(btn => btn.disabled = true);
+
+                    if (selectedIndex === q.correctIndex) {
+                        quizScore++;
+                        buttonElement.classList.add('correct');
+                        feedback.textContent = "Correct!";
+                        feedback.style.color = 'var(--success-color)';
+                        wrongStreakCounter = 0; // Reset streak on correct answer
+                    } else {
+                        buttonElement.classList.add('wrong');
+                        feedback.textContent = `Incorrect. The answer was: ${q.answers[q.correctIndex]}`;
+                        feedback.style.color = 'var(--error-color)';
+                        answersContainer.querySelectorAll('button').forEach(btn => {
+                            if (btn.textContent.trim() === q.answers[q.correctIndex].trim()) {
+                                btn.classList.add('correct');
+                            }
+                        });
+                        handleWrongAnswer();
+                    }
+                    
+                    // Only show next button if a reset hasn't been triggered
+                    if (wrongStreakCounter < 2) {
+                        nextBtn.textContent = (currentQuestionIndex < quizQuestions.length - 1) ? 'Next Question' : 'Show Results';
+                        nextBtn.style.display = 'block';
+                    }
+                }
+
+                function nextQuestion() {
+                    currentQuestionIndex++;
+                    loadQuizQuestion();
+                }
+
+                function showQuizResults() {
+                    gameScreen.classList.remove('active');
+                    resultsScreen.classList.add('active');
+                    scoreDisplay.textContent = `You scored ${quizScore} out of ${quizQuestions.length}!`;
+                    const btn = document.getElementById('tab-quiz');
+
+                    if (quizScore === quizQuestions.length) {
+                        showFloatingFeedback("Quiz Perfect Score!", 'correct');
+                        showConfetti();
+                        btn.classList.add('tab-completed');
+                        btn.querySelector('.checkmark').classList.remove('hidden');
+                        checkGlobalCompletion();
+                    } else {
+                       btn.classList.remove('tab-completed');
+                       btn.querySelector('.checkmark').classList.add('hidden');
+                    }
+                }
+                document.getElementById('quiz-start-btn').addEventListener('click', startQuiz);
+                document.getElementById('quiz-restart-btn').addEventListener('click', startQuiz);
+                nextBtn.addEventListener('click', nextQuestion);
+                hintBtn.addEventListener('click', showQuizHint);
+            }
+
+
+            // --- 3. ATTACH GENERAL LISTENERS & INITIALIZE ---
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => showTab(btn.dataset.tab));
+            });
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', () => openModal(button.dataset.modalTarget));
+            });
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', () => closeModal(modal.id));
+            });
+            document.querySelectorAll('.modal-content').forEach(content => {
+                content.addEventListener('click', e => e.stopPropagation());
+            });
+            document.querySelectorAll('[data-modal-close]').forEach(button => {
+                button.addEventListener('click', () => closeModal(button.dataset.modalClose));
+            });
+            
+            // Initialize all games
+            setupMatchingGame('causeEffect', 4);
+            setupMatchingGame('keyConcepts', 4);
+            setupTimelineGame();
+            setupQuizGame();
+            
+            showTab('causeEffect');
+        });
+    </script>
+</body>
+</html>
