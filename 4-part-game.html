@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expansion, Conflict, & Compromise Interactive</title>
+    <title>French Colonial Louisiana Interactive</title>
     
     <!-- Load Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -329,16 +329,17 @@
             gap: 2rem;
         }
         @media (min-width: 768px) {
+            .game-grid {
+                grid-template-columns: 1fr 1fr;
+            }
             #timeline .game-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
             #timeline .space-y-3 {
                 display: grid;
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: minmax(80px, auto);
                 gap: 1rem;
-            }
-            .game-grid {
-                grid-template-columns: 1fr 1fr;
             }
         }
         .game-pool {
@@ -792,8 +793,8 @@
 
     <div class="container">
         <header class="header">
-            <h1 class="animated-gradient-text">Expansion & Conflict</h1>
-            <p>An Interactive Guide to Texas & Oregon</p>
+            <h1 class="animated-gradient-text">French Colonial Louisiana</h1>
+            <p>An Interactive Learning Guide</p>
         </header>
 
         <nav class="main-nav">
@@ -828,7 +829,7 @@
                 <div class="game-controls">
                     <button id="reset-causeEffect-btn" class="btn btn-reset">Reset Game</button>
                     <div id="cause-effect-score" class="score-counter">
-                        Matched: 0 / 4
+                        Matched: 0 / 5
                     </div>
                 </div>
 
@@ -837,24 +838,29 @@
                         <h3>Causes</h3>
                         <div class="space-y-4">
                             <div class="game-card concept-card" data-match-id="1" draggable="true">
-                                <h3><span class="emoji">👨‍🌾</span>Mexico Offers Cheap Land</h3>
-                                <p>To settle the region quickly, Mexico sold land in Texas to settlers from the United States.</p>
+                                <h3><span class="emoji">😠</span>Commander Demands Land</h3>
+                                <p>A French military commander ordered the Natchez people to give up their farmland for his personal use.</p>
                                 <p class="page-number">p. 102</p>
                             </div>
                             <div class="game-card concept-card" data-match-id="2" draggable="true">
-                                <h3><span class="emoji">👑</span>Santa Anna's Power Grab</h3>
-                                <p>Mexico's president moved to centralize power and did away with the Constitution of 1824.</p>
-                                <p class="page-number">p. 103</p>
+                                <h3><span class="emoji">😨</span>Investors Panic</h3>
+                                <p>Nervous investors heard reports of John Law's mismanagement of the Louisiana colony and demanded their money back.</p>
+                                <p class="page-number">p. 93</p>
                             </div>
                              <div class="game-card concept-card" data-match-id="3" draggable="true">
-                                <h3><span class="emoji">💔</span>Defeat at the Alamo</h3>
-                                <p>Though a military loss, the bravery of the greatly outnumbered Texas fighters inspired others.</p>
-                                <p class="page-number">p. 103</p>
+                                <h3><span class="emoji">⚔️</span>Competition for Land</h3>
+                                <p>The relationship between England and France broke down, leading to increased competition for territory in North America.</p>
+                                <p class="page-number">p. 102</p>
                             </div>
                             <div class="game-card concept-card" data-match-id="4" draggable="true">
-                                <h3><span class="emoji">🗳️</span>Polk Wins the Presidency</h3>
-                                <p>James K. Polk, a "dark horse" candidate, was elected in 1844 on a platform of westward expansion.</p>
-                                <p class="page-number">p. 104</p>
+                                <h3><span class="emoji">💰</span>A Costly Colony</h3>
+                                <p>France had lost too much money and needed a powerful ally to help fight against England.</p>
+                                <p class="page-number">p. 102</p>
+                            </div>
+                            <div class="game-card concept-card" data-match-id="5" draggable="true">
+                                <h3><span class="emoji">🌍</span>Arrival of Enslaved Africans</h3>
+                                <p>In the 1720s, more than 6,000 enslaved African people were forcibly brought to Louisiana.</p>
+                                <p class="page-number">p. 99</p>
                             </div>
                         </div>
                     </div>
@@ -863,24 +869,29 @@
                         <h3>Effects</h3>
                         <div class="space-y-4">
                              <div class="game-card definition-drop-zone" data-match-id="2" data-matched="false">
-                                <h3><span class="emoji">💥</span>Texas Declares Independence</h3>
-                                <p>Settlers, fearing a dictatorship and wanting to protect slavery, launched the Texas Revolution in 1836.</p>
-                                <p class="page-number">p. 103</p>
+                                <h3><span class="emoji">💥</span>The Mississippi Bubble Collapses</h3>
+                                <p>The Company of the West went bankrupt, causing a financial crash that negatively impacted the colony.</p>
+                                <p class="page-number">p. 93</p>
                             </div>
                             <div class="game-card definition-drop-zone" data-match-id="4" data-matched="false">
-                                <h3><span class="emoji">🇺🇸</span>Texas is Annexed</h3>
-                                <p>With the new president's support, Congress finally approved a plan for Texas to join the United States.</p>
-                                <p class="page-number">p. 104</p>
+                                <h3><span class="emoji">✍️</span>Treaty of Fontainebleau</h3>
+                                <p>France allied with Spain and secretly transferred the Louisiana territory west of the Mississippi River to them.</p>
+                                <p class="page-number">p. 103</p>
                             </div>
                              <div class="game-card definition-drop-zone" data-match-id="1" data-matched="false">
-                                <h3><span class="emoji">📈</span>Population Shift & Conflict</h3>
-                                <p>American settlers and enslaved people quickly outnumbered Mexican settlers, leading to tensions over slavery and influence.</p>
+                                <h3><span class="emoji">🔥</span>The Natchez Revolt</h3>
+                                <p>Natchez warriors attacked, killing more than 200 French people and taking hostages in a major rebellion.</p>
                                 <p class="page-number">p. 102</p>
                             </div>
                             <div class="game-card definition-drop-zone" data-match-id="3" data-matched="false">
-                                <h3><span class="emoji">🗣️</span>A New Rallying Cry</h3>
-                                <p>The loss became a symbolic event, and revolutionaries shouted "Remember the Alamo" as they fought.</p>
-                                <p class="page-number">p. 103</p>
+                                <h3><span class="emoji">divide</span>Divided Alliances</h3>
+                                <p>The French and Indian War began, and Native American tribes and nations divided into alliances with European powers.</p>
+                                <p class="page-number">p. 102</p>
+                            </div>
+                            <div class="game-card definition-drop-zone" data-match-id="5" data-matched="false">
+                                <h3><span class="emoji">🔄</span>A Cultural Shift</h3>
+                                <p>The demographics and culture of the colony changed significantly, with new skills in farming and craftsmanship.</p>
+                                <p class="page-number">p. 99</p>
                             </div>
                         </div>
                     </div>
@@ -899,7 +910,7 @@
                 <div class="game-controls">
                     <button id="reset-keyConcepts-btn" class="btn btn-reset">Reset Game</button>
                     <div id="key-concepts-score" class="score-counter">
-                        Matched: 0 / 4
+                        Matched: 0 / 5
                     </div>
                 </div>
 
@@ -909,30 +920,30 @@
                         <h3>Concepts & Terms</h3>
                         <div class="space-y-4">
                             <div class="game-card concept-card" data-match-id="1" draggable="true">
-                                <h3><span class="emoji">⚔️</span>Texas Revolution</h3>
-                                <p>The 1836 rebellion where Texas settlers won independence from the central Mexican government.</p>
-                                <p class="page-number">p. 103</p>
-                                <a title="Henry Arthur McArdle, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:The_Battle_of_San_Jacinto.jpg"><img alt="The Battle of San Jacinto painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/The_Battle_of_San_Jacinto.jpg/512px-The_Battle_of_San_Jacinto.jpg"></a>
+                                <h3><span class="emoji">📉</span>Company of the West</h3>
+                                <p>A proprietorship started by John Law to develop Louisiana's economy through investment.</p>
+                                <p class="page-number">p. 93</p>
                             </div>
                             <div class="game-card concept-card" data-match-id="2" draggable="true">
-                                <h3><span class="emoji">⭐</span>Republic of Texas</h3>
-                                <p>The independent nation that existed for nine years after winning its freedom from Mexico.</p>
-                                <p class="page-number">p. 104</p>
-                                <a title="Public domain" href="https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg"><img alt="The Texas Flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Texas.svg/512px-Flag_of_Texas.svg.png"></a>
+                                <h3><span class="emoji">📜</span>Code Noir (Black Code)</h3>
+                                <p>A set of laws implemented in 1724 to regulate the lives of enslaved and free Africans.</p>
+                                <p class="page-number">p. 100</p>
                             </div>
                             <div class="game-card concept-card" data-match-id="3" draggable="true">
-                                <h3><span class="emoji">➕</span>Annexation</h3>
-                                <p>The formal act of adding or joining a territory to a country, as the U.S. did with Texas.</p>
-                                <p class="page-number">p. 104</p>
-                                <a title="User:Wapcaplet, CC BY-SA 3.0, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Texas_annexation_map_1845.png"><img alt="Map of the 1845 Texas Annexation" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Texas_annexation_map_1845.png/512px-Texas_annexation_map_1845.png"></a>
+                                <h3><span class="emoji">⚜️</span>Gens de Couleur Libres</h3>
+                                <p>A distinct cultural group of free people of African descent, primarily in New Orleans.</p>
+                                <p class="page-number">p. 99</p>
                             </div>
                             <div class="game-card concept-card" data-match-id="4" draggable="true">
-                                <h3><span class="emoji">🗣️</span>"54-40 or fight!"</h3>
-                                <p>A political slogan about the Oregon Territory that threatened war with Great Britain.</p>
-                                <p class="page-number">p. 105</p>
-                                <a title="George Peter Alexander Healy, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:James_K_Polk_restored.jpg"><img alt="Portrait of James K. Polk" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/James_K_Polk_restored.jpg/256px-James_K_Polk_restored.jpg"></a>
+                                <h3><span class="emoji">🔥</span>The Natchez Revolt</h3>
+                                <p>A major 1729 rebellion by the Natchez nation against French intrusion on their land.</p>
+                                <p class="page-number">p. 102</p>
                             </div>
-
+                            <div class="game-card concept-card" data-match-id="5" draggable="true">
+                                <h3><span class="emoji">🎭</span>Creole Culture</h3>
+                                <p>A new cultural group formed from the forced migration of African people to Louisiana.</p>
+                                <p class="page-number">p. 101</p>
+                            </div>
                         </div>
                     </div>
 
@@ -940,24 +951,29 @@
                         <h3>Definitions & Meanings</h3>
                         <div class="space-y-4">
                              <div class="game-card definition-drop-zone" data-match-id="2" data-matched="false">
-                                <h3><span class="emoji"> NATION</span>A Lone Star Nation</h3>
-                                <p>For nine years, this territory was its own independent country, not part of the U.S. or Mexico.</p>
-                                <p class="page-number">p. 104</p>
+                                <h3><span class="emoji">⚖️</span>An Attempt at Control</h3>
+                                <p>These rules covered topics from religion and punishment to interracial marriage, but were not very effective.</p>
+                                <p class="page-number">p. 100</p>
                             </div>
                             <div class="game-card definition-drop-zone" data-match-id="1" data-matched="false">
-                                <h3><span class="emoji">🔥</span>An 18-Minute Victory</h3>
-                                <p>This conflict ended quickly after the Battle of San Jacinto, establishing an independent Texas.</p>
-                                <p class="page-number">p. 103</p>
+                                <h3><span class="emoji">💸</span>The Mississippi Bubble</h3>
+                                <p>This scheme's failure caused a financial crash and led to inflation in the Louisiana colony.</p>
+                                <p class="page-number">p. 93</p>
                             </div>
                             <div class="game-card definition-drop-zone" data-match-id="4" data-matched="false">
-                                <h3><span class="emoji">🗺️</span>An Expansionist Slogan</h3>
-                                <p>Used by President Polk's campaign to claim all of the Oregon Territory for the United States.</p>
-                                <p class="page-number">p. 105</p>
+                                <h3><span class="emoji">💥</span>Retaliation for an Order</h3>
+                                <p>This attack contributed to the French government reclaiming control of the colony from the Company of the Indies.</p>
+                                <p class="page-number">p. 102</p>
                             </div>
                             <div class="game-card definition-drop-zone" data-match-id="3" data-matched="false">
-                                <h3><span class="emoji">🤝</span>Joining the Union</h3>
-                                <p>This process made Texas an official U.S. state on December 29, 1845, after years of debate.</p>
-                                <p class="page-number">p. 104</p>
+                                <h3><span class="emoji">🤝</span>A New Social Class</h3>
+                                <p>Meaning "free people of color," this group spoke French and formed a distinct part of the colony's society.</p>
+                                <p class="page-number">p. 99</p>
+                            </div>
+                            <div class="game-card definition-drop-zone" data-match-id="5" data-matched="false">
+                                <h3><span class="emoji">🤝</span>A Mix of Origins</h3>
+                                <p>A group of mixed African and European origin, vital in developing the unique architecture, food, and music of Louisiana.</p>
+                                <p class="page-number">p. 101</p>
                             </div>
                         </div>
                     </div>
@@ -969,7 +985,7 @@
             <!-- =================================== -->
             <section id="timeline" class="tab-content">
                 <div class="game-section-header">
-                    <h2>Timeline of Expansion</h2>
+                    <h2>Timeline of French Louisiana</h2>
                     <p>Drag (or click) the events into the correct date slot.</p>
                 </div>
                 <div class="game-controls">
@@ -987,21 +1003,14 @@
                     <div class="game-pool">
                         <h3>Timeline</h3>
                         <div class="space-y-3">
-                            <div class="drop-zone" data-date="1821">
-                                <span class="timeline-label">1821:</span>
-                            </div>
-                            <div class="drop-zone" data-date="1836">
-                                <span class="timeline-label">1836:</span>
-                            </div>
-                            <div class="drop-zone" data-date="1844">
-                                <span class="timeline-label">1844:</span>
-                            </div>
-                            <div class="drop-zone" data-date="1845">
-                                <span class="timeline-label">1845:</span>
-                            </div>
-                            <div class="drop-zone" data-date="1846">
-                                <span class="timeline-label">1846:</span>
-                            </div>
+                            <div class="drop-zone" data-date="1682"><span class="timeline-label">1682:</span></div>
+                            <div class="drop-zone" data-date="1717"><span class="timeline-label">1717:</span></div>
+                            <div class="drop-zone" data-date="1718"><span class="timeline-label">1718:</span></div>
+                            <div class="drop-zone" data-date="1722"><span class="timeline-label">1722:</span></div>
+                            <div class="drop-zone" data-date="1724"><span class="timeline-label">1724:</span></div>
+                            <div class="drop-zone" data-date="1729"><span class="timeline-label">1729:</span></div>
+                            <div class="drop-zone" data-date="1731"><span class="timeline-label">1731:</span></div>
+                            <div class="drop-zone" data-date="1762"><span class="timeline-label">1762:</span></div>
                         </div>
                     </div>
                 </div>
@@ -1018,28 +1027,28 @@
                 <div class="mb-12">
                     <p class="text-center text-gray-600 mb-8" style="color: var(--text-muted); text-align: center; margin-bottom: 2rem;">Click on each topic to learn more before you start the quiz!</p>
                     <div class="learn-grid">
-                        <button class="effect-learn-card" data-modal-target="modal-trouble-texas">
-                            <h3><span class="emoji">🌵</span>Trouble in Texas</h3>
-                            <p>Learn about the settlement of Texas and the rising tensions with the Mexican government.</p>
+                        <button class="effect-learn-card" data-modal-target="modal-john-law">
+                            <h3><span class="emoji">📉</span>John Law & the Bubble</h3>
+                            <p>Learn about the investment scheme meant to save the colony that ended in financial ruin.</p>
+                            <p class="page-number" style="margin-top: 0.5rem;">p. 93</p>
+                            <span>Learn More &rarr;</span>
+                        </button>
+                        <button class="effect-learn-card" data-modal-target="modal-new-orleans">
+                            <h3><span class="emoji">⚜️</span>Founding of New Orleans</h3>
+                            <p>Discover why the new capital was founded and the challenges of building on swampy land.</p>
+                            <p class="page-number" style="margin-top: 0.5rem;">p. 95</p>
+                            <span>Learn More &rarr;</span>
+                        </button>
+                        <button class="effect-learn-card" data-modal-target="modal-cultural-groups">
+                            <h3><span class="emoji">🌍</span>A Multicultural Colony</h3>
+                            <p>Learn about the African, German, and Native American people who shaped the colony.</p>
+                            <p class="page-number" style="margin-top: 0.5rem;">p. 99, 101</p>
+                            <span>Learn More &rarr;</span>
+                        </button>
+                        <button class="effect-learn-card" data-modal-target="modal-tensions">
+                            <h3><span class="emoji">🔥</span>Tensions & End of an Era</h3>
+                            <p>Explore the Natchez Revolt and the French and Indian War, which led to the end of French rule.</p>
                             <p class="page-number" style="margin-top: 0.5rem;">p. 102</p>
-                            <span>Learn More &rarr;</span>
-                        </button>
-                        <button class="effect-learn-card" data-modal-target="modal-texas-revolution">
-                            <h3><span class="emoji">⚔️</span>The Texas Revolution</h3>
-                            <p>Discover the key events and battles that led to the creation of the Republic of Texas.</p>
-                            <p class="page-number" style="margin-top: 0.5rem;">p. 103</p>
-                            <span>Learn More &rarr;</span>
-                        </button>
-                        <button class="effect-learn-card" data-modal-target="modal-texas-statehood">
-                            <h3><span class="emoji">🇺🇸</span>Texas Statehood</h3>
-                            <p>Understand why Texas was an independent republic for nine years and how it finally joined the U.S.</p>
-                            <p class="page-number" style="margin-top: 0.5rem;">p. 104</p>
-                            <span>Learn More &rarr;</span>
-                        </button>
-                        <button class="effect-learn-card" data-modal-target="modal-oregon-territory">
-                            <h3><span class="emoji">🌲</span>The Oregon Territory</h3>
-                            <p>Explore how the U.S. and Great Britain came to a compromise over land in the Northwest.</p>
-                            <p class="page-number" style="margin-top: 0.5rem;">p. 105</p>
                             <span>Learn More &rarr;</span>
                         </button>
                     </div>
@@ -1048,7 +1057,7 @@
                 <div>
                     <div id="quiz-container" class="quiz-container">
                         <div id="quiz-start-screen" class="quiz-screen active">
-                            <p style="color: var(--text-muted); font-size: 1.65rem; margin-bottom: 1.5rem;">Ready to test your understanding of U.S. expansion in the 1840s?</p>
+                            <p style="color: var(--text-muted); font-size: 1.65rem; margin-bottom: 1.5rem;">Ready to test your understanding of French Colonial Louisiana?</p>
                             <button id="quiz-start-btn" class="btn">Start Quiz</button>
                         </div>
 
@@ -1076,40 +1085,40 @@
     </div>
 
     <!-- Modals for Quiz Section -->
-    <div id="modal-trouble-texas" class="modal">
+    <div id="modal-john-law" class="modal">
         <div class="modal-content">
-            <button class="modal-close-btn" data-modal-close="modal-trouble-texas">&times;</button>
-            <h3><span class="emoji">🌵</span>Trouble in Texas</h3>
-            <p>Initially, Mexico sold cheap land to American settlers to populate the region. However, by the 1830s, the American settlers and the enslaved people they brought with them vastly outnumbered the Mexican settlers.</p>
-            <p>The Mexican government grew concerned. It banned further American immigration and had also banned slavery in 1829. The <strong>continuation of slavery</strong> by American settlers and their growing influence became major sources of conflict.</p>
-            <p class="page-number">Source: p. 102</p>
+            <button class="modal-close-btn" data-modal-close="modal-john-law">&times;</button>
+            <h3><span class="emoji">📉</span>John Law & the Mississippi Bubble</h3>
+            <p>In 1717, financier John Law created the <strong>Company of the West</strong>. His plan was to sell stocks to investors to fund the development of Louisiana and use the profits to pay off France's national debt.</p>
+            <p>Stock prices soared, but the "Mississippi Bubble" collapsed in 1720 when investors learned of Law's mismanagement. The company went bankrupt, causing a financial crash. Despite this failure, Law incentivised settlement and played a key role in founding New Orleans.</p>
+            <p class="page-number">Source: p. 93</p>
         </div>
     </div>
-    <div id="modal-texas-revolution" class="modal">
+    <div id="modal-new-orleans" class="modal">
         <div class="modal-content">
-            <button class="modal-close-btn" data-modal-close="modal-texas-revolution">&times;</button>
-            <h3><span class="emoji">⚔️</span>The Texas Revolution</h3>
-            <p>In the mid-1830s, Mexico's President, General Antonio López de Santa Anna, began to centralize power, which angered many Texas settlers who feared he was becoming a dictator. This, combined with threats to the institution of slavery, led to rebellion.</p>
-            <p>In March 1836, Mexican forces defeated Texas revolutionaries at the <strong>Alamo</strong>. Despite the loss, it became a powerful symbol. In April 1836, Texan forces led by Sam Houston won a decisive victory at the <strong>Battle of San Jacinto</strong>, ending the war.</p>
-            <p class="page-number">Source: p. 103</p>
+            <button class="modal-close-btn" data-modal-close="modal-new-orleans">&times;</button>
+            <h3><span class="emoji">⚜️</span>The Founding of New Orleans</h3>
+            <p>In 1718, Jean-Baptiste Le Moyne de Bienville founded New Orleans on a piece of elevated land near the Mississippi River. The location offered fertile soil, resources, and defensive advantages. However, the swampy land made building difficult and floods were common.</p>
+            <p>After a hurricane in 1722 demolished most buildings, French engineer Adrien de Pauger designed a <strong>grid system</strong> of streets and blocks to rebuild. This grid became the foundation for the area known today as the French Quarter.</p>
+            <p class="page-number">Source: p. 95</p>
         </div>
     </div>
-    <div id="modal-texas-statehood" class="modal">
+    <div id="modal-cultural-groups" class="modal">
         <div class="modal-content">
-            <button class="modal-close-btn" data-modal-close="modal-texas-statehood">&times;</button>
-            <h3><span class="emoji">🇺🇸</span>Texas Statehood</h3>
-            <p>After winning independence, Texas was its own country—the Republic of Texas—for <strong>nine years</strong>. The U.S. was hesitant to annex it for two main reasons: Northern citizens did not want to add another large slave state, and the U.S. government feared it would lead to war with Mexico.</p>
-            <p>The election of <strong>James K. Polk</strong> in 1844, who supported expansion, changed things. With his support, Congress passed an annexation plan, and Texas officially became a U.S. state on December 29, 1845.</p>
-            <p class="page-number">Source: p. 104</p>
+            <button class="modal-close-btn" data-modal-close="modal-cultural-groups">&times;</button>
+            <h3><span class="emoji">🌍</span>A Multicultural Colony</h3>
+            <p>The Louisiana colony was multicultural. Enslaved African people, first brought in 1719, possessed valuable farming and craftsmanship skills that helped develop the culture of Louisiana. <strong>Gens de Couleur Libres</strong>, or free people of color, formed a distinct cultural group in New Orleans.</p>
+            <p>In 1722, the first <strong>German immigrants</strong> arrived, bringing knowledge of dairy farming, agriculture, and brewing. By the 1730s, German people were one of the largest European cultural groups in the colony.</p>
+            <p class="page-number">Source: p. 99, 101</p>
         </div>
     </div>
-    <div id="modal-oregon-territory" class="modal">
+    <div id="modal-tensions" class="modal">
         <div class="modal-content">
-            <button class="modal-close-btn" data-modal-close="modal-oregon-territory">&times;</button>
-            <h3><span class="emoji">🌲</span>The Oregon Territory</h3>
-            <p>For over 25 years, the U.S. and Great Britain shared control of the Oregon Territory. President Polk, however, wanted the land for the U.S. His campaign used the slogan <strong>"54-40 or fight!"</strong>, threatening war to claim the entire territory up to the 54° 40' latitude line.</p>
-            <p>However, with war looming with Mexico over Texas, the U.S. wanted to avoid a second conflict. In June 1846, the countries compromised with the <strong>Oregon Treaty</strong>, which split the territory and set the boundary at the <strong>49th parallel</strong>.</p>
-            <p class="page-number">Source: p. 105</p>
+            <button class="modal-close-btn" data-modal-close="modal-tensions">&times;</button>
+            <h3><span class="emoji">🔥</span>Tensions & End of an Era</h3>
+            <p>Tensions with Native Americans grew as French settlers took their land. In 1729, this erupted in the <strong>Natchez Revolt</strong> after a commander ordered the Natchez to give up their land. The Natchez killed over 200 settlers in response.</p>
+            <p>By the 1740s, competition between France and England led to the French and Indian War. Needing an ally and wanting to be free of the costly Louisiana colony, France signed the secret <strong>Treaty of Fontainebleau</strong> in 1762, giving the territory to Spain.</p>
+            <p class="page-number">Source: p. 102, 103</p>
         </div>
     </div>
 
@@ -1118,7 +1127,7 @@
             <button class="modal-close-btn" data-modal-close="modal-global-complete">&times;</button>
             <h2 style="font-size: 2.5rem; color: var(--success-color);">Congratulations!</h2>
             <p style="font-size: 1.5rem; color: var(--text-color); margin: 1.5rem 0;">You've completed all four sections!</p>
-            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem;">You are now an expert on American expansion in the 1840s.</p>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem;">You are now an expert on French Colonial Louisiana.</p>
             <button class="btn" data-modal-close="modal-global-complete">Close</button>
         </div>
     </div>
@@ -1140,21 +1149,24 @@
             const gameResets = {};
             
             const timelineEvents = [
-                { id: 'event-1', date: '1821', text: '🇲🇽 Mexico wins its independence from Spain.' },
-                { id: 'event-2', date: '1836', text: '⭐ The Texas Revolution ends, creating the Republic of Texas.' },
-                { id: 'event-3', date: '1844', text: '🗳️ James K. Polk is elected president on an expansionist platform.' },
-                { id: 'event-4', date: '1845', text: '🇺🇸 The United States annexes Texas, making it the 28th state.' },
-                { id: 'event-5', date: '1846', text: '🌲 The Oregon Treaty sets the U.S.-British border at the 49th parallel.' }
+                { id: 'event-1', date: '1682', text: '🗺️ La Salle claims the Mississippi River basin for France.' },
+                { id: 'event-2', date: '1717', text: '📈 John Law creates the Company of the West.' },
+                { id: 'event-3', date: '1718', text: '⚜️ Jean-Baptiste Le Moyne de Bienville founds New Orleans.' },
+                { id: 'event-4', date: '1722', text: '🇩🇪 The first German immigrants arrive on the German Coast.' },
+                { id: 'event-5', date: '1724', text: '📜 The French implement the Code Noir (Black Code).' },
+                { id: 'event-6', date: '1729', text: '🔥 The Natchez Revolt begins after a commander demands land.' },
+                { id: 'event-7', date: '1731', text: '👑 The French government reclaims control from the Company.' },
+                { id: 'event-8', date: '1762', text: '✍️ The Treaty of Fontainebleau transfers Louisiana to Spain.' }
             ];
             
             const quizQuestions = [
-                { question: "What was a primary reason for conflict between American settlers and the Mexican government in the 1830s?", answers: ["American settlers wanted to continue slavery", "Mexico was selling the land at too high a price", "American settlers wanted to remain loyal to Spain", "Mexico wanted to ban the fur trade"], correctIndex: 0, hint: "Review the 'Trouble in Texas' card for clues about settler life." },
-                { question: "What was the significance of the Battle of the Alamo?", answers: ["It was the final battle that won the war for Texas", "It was a defeat that became a motivating symbol", "It was where General Santa Anna was captured", "It was a naval battle in the Gulf of Mexico"], correctIndex: 1, hint: "The 'Texas Revolution' card explains its symbolic importance." },
-                { question: "Why was the United States initially hesitant to annex Texas?", answers: ["Texas did not have enough people to become a state", "President Polk was against westward expansion", "Fear of war with Mexico and adding a slave state", "Great Britain claimed Texas as its own territory"], correctIndex: 2, hint: "Check the 'Texas Statehood' card for the two main reasons." },
-                { question: "Who was the 'dark horse' candidate whose election helped push forward the annexation of Texas?", answers: ["Stephen F. Austin", "John Tyler", "Sam Houston", "James K. Polk"], correctIndex: 3, hint: "The 'Texas Statehood' card names this expansionist president." },
-                { question: "The political slogan '54-40 or fight!' was related to a border dispute in which territory?", answers: ["Texas", "Oregon", "Louisiana", "Mexico"], correctIndex: 1, hint: "The 'Oregon Territory' card covers this famous slogan." },
-                { question: "How was the dispute over the Oregon Territory ultimately resolved?", answers: ["The U.S. went to war and won the entire territory", "The U.S. and Great Britain compromised on the 49th parallel", "The U.S. purchased the territory from Great Britain", "The territory was given to Mexico in a treaty"], correctIndex: 1, hint: "Read about the final agreement in the 'Oregon Territory' section." },
-                { question: "After winning independence from Mexico, for how long was Texas its own country?", answers: ["About six months", "Two years", "Nine years", "It was never an independent country"], correctIndex: 2, hint: "The 'Texas Statehood' card mentions the duration of the Republic of Texas." }
+                { question: "What was a primary goal of John Law's Company of the West?", answers: ["To find gold and silver", "To develop the colony's economy and pay France's debt", "To start a war with Spain", "To establish religious freedom"], correctIndex: 1, hint: "Review the 'John Law & the Bubble' card for his plan." },
+                { question: "Why was New Orleans a difficult place to establish a settlement?", answers: ["The land was swampy and prone to floods", "It was too far from any major rivers", "There were no natural resources", "The soil was not fertile"], correctIndex: 0, hint: "The 'Founding of New Orleans' card has the answer." },
+                { question: "What was the main purpose of the Code Noir?", answers: ["To encourage trade with Native Americans", "To grant legal rights to all settlers", "To control the lives of free and enslaved Africans", "To establish a new economic policy"], correctIndex: 2, hint: "Check the 'A Multicultural Colony' card for details on the Black Code." },
+                { question: "Who were the 'Gens de Couleur Libres'?", answers: ["French soldiers stationed in the colony", "Free people of African descent", "A specific Native American tribe", "German indentured servants"], correctIndex: 1, hint: "The 'A Multicultural Colony' card defines this term." },
+                { question: "What event directly caused the Natchez Revolt of 1729?", answers: ["A dispute over the fur trade", "The collapse of the Mississippi Bubble", "A French commander ordering the Natchez to give up their land", "The signing of the Treaty of Paris"], correctIndex: 2, hint: "Re-read the 'Tensions & End of an Era' card." },
+                { question: "Besides labor, what valuable contributions did enslaved Africans make to the Louisiana colony?", answers: ["They introduced the French language", "They had valuable farming skills and agricultural knowledge", "They were experienced shipbuilders", "They discovered gold in the Mississippi River"], correctIndex: 1, hint: "The 'A Multicultural Colony' card explains their expertise." },
+                { question: "Why did France give the Louisiana territory to Spain in the Treaty of Fontainebleau?", answers: ["Spain won the territory in a war", "France wanted Spain as an ally and the colony was costly", "The King of Spain inherited it", "The settlers voted to join Spain"], correctIndex: 1, hint: "The 'Tensions & End of an Era' card explains the reason for the treaty." }
             ];
 
             // --- 2. DEFINE ALL FUNCTIONS ---
@@ -1666,8 +1678,8 @@
             });
             
             // Initialize all games
-            setupMatchingGame('causeEffect', 4);
-            setupMatchingGame('keyConcepts', 4);
+            setupMatchingGame('causeEffect', 5);
+            setupMatchingGame('keyConcepts', 5);
             setupTimelineGame();
             setupQuizGame();
             
