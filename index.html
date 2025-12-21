@@ -312,7 +312,7 @@
         #storeBtn { background-color: #f59e0b; }
         #endTurnBtn { background-color: #8b5cf6; }
         #storeBtn.store-ready {
-            animation: store-glow 1.5s infinite, store-jiggle 0.4s infinite;
+            animation: store-glow 1.5s infinite;
         }
         #resetAllBtn { background-color: #ec4899; }
         #aboutBtn { background-color: #10b981; }
@@ -2422,6 +2422,7 @@
         }
 
         function adjustFontSize(element) {
+            if (!element.offsetParent) return; // Exit if element is hidden
             let fontSize = 150; // Start with a very large font size
             element.style.fontSize = `${fontSize}px`;
 
