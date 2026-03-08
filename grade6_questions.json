@@ -1,0 +1,970 @@
+{
+    "EASY": {
+        "grade6": {
+            "unit1": [
+                {
+                    "question": "Which European power primarily sought land claims in North America for gold and silver after 1600?",
+                    "choices": [
+                        "France",
+                        "Spain",
+                        "England",
+                        "Netherlands"
+                    ],
+                    "answer": 1,
+                    "hint": "They focused on the southern parts of North America and South America.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who was the founder of the Pennsylvania colony?",
+                    "choices": [
+                        "John Smith",
+                        "William Penn",
+                        "Roger Williams",
+                        "William Bradford"
+                    ],
+                    "answer": 1,
+                    "hint": "He was a Quaker.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which colony was Jamestown located in?",
+                    "choices": [
+                        "Massachusetts",
+                        "Virginia",
+                        "Pennsylvania",
+                        "New York"
+                    ],
+                    "answer": 1,
+                    "hint": "It was the first permanent English settlement.",
+                    "dok": 1
+                },
+                {
+                    "question": "What was the main motivation for the Pilgrims and Puritans to settle in North America?",
+                    "choices": [
+                        "Gold",
+                        "Fur trade",
+                        "Religious freedom",
+                        "Finding a route to Asia"
+                    ],
+                    "answer": 2,
+                    "hint": "They wanted to escape persecution in England.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who was Anne Hutchinson?",
+                    "choices": [
+                        "A leader who was banished from Massachusetts for her religious views",
+                        "A Native American guide",
+                        "The founder of Virginia",
+                        "A French explorer"
+                    ],
+                    "answer": 0,
+                    "hint": "She challenged Puritan leaders.",
+                    "dok": 1
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "Which colonies were known as the 'Breadbasket' colonies due to their wheat production?",
+                    "choices": [
+                        "New England colonies",
+                        "Southern colonies",
+                        "Middle colonies",
+                        "Spanish colonies"
+                    ],
+                    "answer": 2,
+                    "hint": "They had fertile soil and moderate climate.",
+                    "dok": 1
+                },
+                {
+                    "question": "What was the Middle Passage?",
+                    "choices": [
+                        "The route from Europe to Asia",
+                        "The forced migration of enslaved Africans to the Americas",
+                        "A trail across the Appalachian mountains",
+                        "The path taken by Pilgrims"
+                    ],
+                    "answer": 1,
+                    "hint": "It was part of the triangular trade.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which region's economy relied heavily on cash crops like tobacco and indigo?",
+                    "choices": [
+                        "New England colonies",
+                        "Middle colonies",
+                        "Southern colonies",
+                        "French colonies"
+                    ],
+                    "answer": 2,
+                    "hint": "They used plantation systems.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who were indentured servants?",
+                    "choices": [
+                        "Wealthy landowners",
+                        "People who worked for a set period to pay for their passage to America",
+                        "Enslaved Africans",
+                        "Native American chiefs"
+                    ],
+                    "answer": 1,
+                    "hint": "They worked under a contract for 4 to 7 years.",
+                    "dok": 1
+                },
+                {
+                    "question": "What role did artisans play in colonial North America?",
+                    "choices": [
+                        "They were the primary farmers",
+                        "They made goods by hand such as tools and furniture",
+                        "They governed the colonies",
+                        "They navigated trade ships"
+                    ],
+                    "answer": 1,
+                    "hint": "They were skilled craftsmen.",
+                    "dok": 1
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "What was the physical geography of colonial Louisiana like?",
+                    "choices": [
+                        "Mountainous and cold",
+                        "Desert and dry",
+                        "Swampy, fertile, and located near the Mississippi River",
+                        "Rocky and suitable for fishing"
+                    ],
+                    "answer": 2,
+                    "hint": "It was prone to flooding.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who influenced colonial Louisiana by establishing the Code Noir?",
+                    "choices": [
+                        "The Spanish",
+                        "The British",
+                        "The French",
+                        "The Native Americans"
+                    ],
+                    "answer": 2,
+                    "hint": "It was a set of laws governing enslaved people.",
+                    "dok": 1
+                },
+                {
+                    "question": "What group of people were expelled from Canada and settled in Louisiana?",
+                    "choices": [
+                        "The Isle\u00f1os",
+                        "The Acadians",
+                        "The Germans",
+                        "The Haitians"
+                    ],
+                    "answer": 1,
+                    "hint": "They became known as Cajuns.",
+                    "dok": 1
+                },
+                {
+                    "question": "How did the climate of colonial Louisiana affect its economic activities?",
+                    "choices": [
+                        "It allowed for the growth of cash crops like sugarcane and indigo",
+                        "It made fur trapping the only option",
+                        "It forced colonists to rely entirely on mining",
+                        "It prevented any agricultural development"
+                    ],
+                    "answer": 0,
+                    "hint": "The warm, humid climate was ideal for certain plants.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who was King Louis XIV in relation to Louisiana?",
+                    "choices": [
+                        "A Spanish governor",
+                        "The King of France for whom Louisiana was named",
+                        "A Native American leader",
+                        "A British general"
+                    ],
+                    "answer": 1,
+                    "hint": "La Salle claimed the territory in his honor.",
+                    "dok": 1
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "What was the primary cause of the French and Indian War?",
+                    "choices": [
+                        "Dispute over the Ohio River Valley",
+                        "The Boston Tea Party",
+                        "The Stamp Act",
+                        "The signing of the Declaration of Independence"
+                    ],
+                    "answer": 0,
+                    "hint": "Both Britain and France wanted this territory.",
+                    "dok": 1
+                },
+                {
+                    "question": "What did the Quartering Act require colonists to do?",
+                    "choices": [
+                        "Pay a tax on all paper",
+                        "Provide housing and food for British soldiers",
+                        "Stop trading with France",
+                        "Surrender their weapons"
+                    ],
+                    "answer": 1,
+                    "hint": "It forced them to host troops.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who were the minutemen?",
+                    "choices": [
+                        "British soldiers",
+                        "French spies",
+                        "Colonial militia who could be ready to fight at a minute's notice",
+                        "Loyalists to the King"
+                    ],
+                    "answer": 2,
+                    "hint": "They fought at Lexington and Concord.",
+                    "dok": 1
+                },
+                {
+                    "question": "What was the purpose of the First Continental Congress?",
+                    "choices": [
+                        "To declare independence",
+                        "To organize a response to the Intolerable Acts",
+                        "To elect George Washington as President",
+                        "To sign the Treaty of Paris"
+                    ],
+                    "answer": 1,
+                    "hint": "They met in Philadelphia in 1774.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who wrote the pamphlet 'Common Sense'?",
+                    "choices": [
+                        "George Washington",
+                        "Thomas Jefferson",
+                        "Thomas Paine",
+                        "John Adams"
+                    ],
+                    "answer": 2,
+                    "hint": "It argued for independence from Britain.",
+                    "dok": 1
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "What was one major weakness of the Articles of Confederation?",
+                    "choices": [
+                        "It gave too much power to the President",
+                        "The national government could not collect taxes",
+                        "It established a strong national army",
+                        "It allowed the Supreme Court too much authority"
+                    ],
+                    "answer": 1,
+                    "hint": "The government had no way to fund itself.",
+                    "dok": 1
+                },
+                {
+                    "question": "What did the Three-Fifths Compromise address?",
+                    "choices": [
+                        "How states would be represented in the Senate",
+                        "How enslaved people would be counted for representation and taxation",
+                        "The process of electing the President",
+                        "The regulation of interstate commerce"
+                    ],
+                    "answer": 1,
+                    "hint": "It counted a portion of the enslaved population.",
+                    "dok": 1
+                },
+                {
+                    "question": "What is the role of the three branches of government?",
+                    "choices": [
+                        "To concentrate all power in the President",
+                        "To ensure no single branch becomes too powerful through checks and balances",
+                        "To allow states to ignore federal laws",
+                        "To let the military govern the country"
+                    ],
+                    "answer": 1,
+                    "hint": "Separation of powers.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who is known as the 'Father of the Constitution'?",
+                    "choices": [
+                        "George Washington",
+                        "Benjamin Franklin",
+                        "James Madison",
+                        "Alexander Hamilton"
+                    ],
+                    "answer": 2,
+                    "hint": "He drafted the Virginia Plan.",
+                    "dok": 1
+                },
+                {
+                    "question": "What was the purpose of the Constitutional Convention?",
+                    "choices": [
+                        "To declare independence from Britain",
+                        "To revise the Articles of Confederation and create a new government",
+                        "To sign a peace treaty with France",
+                        "To elect the first President"
+                    ],
+                    "answer": 1,
+                    "hint": "It took place in Philadelphia in 1787.",
+                    "dok": 1
+                }
+            ]
+        }
+    },
+    "HARD": {
+        "grade6": {
+            "unit1": [
+                {
+                    "question": "Evaluate how the motivations of the Puritans differed from those of the Jamestown settlers.",
+                    "choices": [
+                        "Puritans sought religious freedom; Jamestown settlers sought economic profit.",
+                        "Puritans sought gold; Jamestown settlers sought religious freedom.",
+                        "Both sought only military outposts.",
+                        "Both sought exclusively to trade with Native Americans."
+                    ],
+                    "answer": 0,
+                    "hint": "Consider the Massachusetts Bay Company vs the Virginia Company.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the impact of European land claims on Native American populations in the 17th century.",
+                    "choices": [
+                        "They led to peaceful coexistence and shared governance.",
+                        "They resulted in the total immediate assimilation of Native tribes.",
+                        "They caused displacement, conflict over resources, and spread of disease.",
+                        "They had no significant effect on Native American ways of life."
+                    ],
+                    "answer": 2,
+                    "hint": "Think about the consequences of colonization.",
+                    "dok": 3
+                },
+                {
+                    "question": "Compare the contributions of John Smith and John Rolfe to the survival of Jamestown.",
+                    "choices": [
+                        "Smith brought tobacco; Rolfe established military discipline.",
+                        "Smith established strict rules for work; Rolfe introduced a profitable strain of tobacco.",
+                        "Both primarily focused on religious conversion of Native Americans.",
+                        "Both explored the New England coast."
+                    ],
+                    "answer": 1,
+                    "hint": "Smith said 'He that will not work shall not eat'.",
+                    "dok": 3
+                },
+                {
+                    "question": "Explain the significance of the 1621 Autumn Harvest Celebration.",
+                    "choices": [
+                        "It marked the final defeat of the Wampanoag tribe.",
+                        "It was a symbol of early cooperation and alliance between the Pilgrims and the Wampanoag.",
+                        "It was the signing of the Mayflower Compact.",
+                        "It celebrated the discovery of gold in Plymouth."
+                    ],
+                    "answer": 1,
+                    "hint": "It is often referred to as the First Thanksgiving.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the role of religious factors in the development of government in colonies like Massachusetts and Pennsylvania.",
+                    "choices": [
+                        "Religion played no role in colonial governments.",
+                        "Colonial governments were strictly secular from the beginning.",
+                        "Religious beliefs heavily influenced laws, leadership, and the concept of community covenants.",
+                        "Governments were entirely controlled by the King of England regardless of religion."
+                    ],
+                    "answer": 2,
+                    "hint": "Think about the 'City upon a Hill' and Quaker ideals.",
+                    "dok": 3
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "Analyze how physical geography influenced the economic development of the New England versus Southern colonies.",
+                    "choices": [
+                        "New England's fertile soil led to large plantations; the South's rocky soil led to fishing.",
+                        "Both regions relied entirely on manufacturing.",
+                        "New England relied on maritime industries due to rocky soil; the South relied on agriculture due to fertile soil and warm climate.",
+                        "Geography had no impact on colonial economies."
+                    ],
+                    "answer": 2,
+                    "hint": "Consider the climate and terrain of each region.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the experiences and perspectives of indentured servants compared to enslaved people in colonial America.",
+                    "choices": [
+                        "Both groups had the exact same legal rights and permanent status.",
+                        "Indentured servants worked for a limited term by contract; enslaved people faced permanent, hereditary bondage.",
+                        "Enslaved people were paid wages; indentured servants were not.",
+                        "Both groups eventually became large plantation owners."
+                    ],
+                    "answer": 1,
+                    "hint": "One had a contract, the other did not.",
+                    "dok": 3
+                },
+                {
+                    "question": "Explain the role of the Middle Colonies as a region of cooperation and competition among diverse groups.",
+                    "choices": [
+                        "They were exclusively populated by English Puritans.",
+                        "Their diversity led to a blend of cultures, religious tolerance, and economic competition.",
+                        "They experienced constant, unified warfare against all other colonies.",
+                        "They isolated themselves completely from trade."
+                    ],
+                    "answer": 1,
+                    "hint": "They were known as the 'Breadbasket' and were highly diverse.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the impact of the Triangular Trade on the development of the colonial economy.",
+                    "choices": [
+                        "It isolated the colonies from global markets.",
+                        "It created wealth for colonial merchants and heavily relied on the labor of enslaved Africans.",
+                        "It primarily benefited Native American trade networks.",
+                        "It led to the collapse of the Southern plantation system."
+                    ],
+                    "answer": 1,
+                    "hint": "It connected the Americas, Europe, and Africa.",
+                    "dok": 4
+                },
+                {
+                    "question": "Compare the governments of the New England, Middle, and Southern colonies.",
+                    "choices": [
+                        "All were direct democracies without any English oversight.",
+                        "They all had representative assemblies, but varied in who could participate based on religion and land ownership.",
+                        "They were all military dictatorships.",
+                        "None of the colonies had any form of local government."
+                    ],
+                    "answer": 1,
+                    "hint": "Think about town meetings vs. the House of Burgesses.",
+                    "dok": 3
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "Analyze the importance of the Mississippi River to the economic activities of colonial Louisiana.",
+                    "choices": [
+                        "It served as a barrier that prevented trade.",
+                        "It provided a vital transportation route for goods to reach the Gulf of Mexico and global markets.",
+                        "It was only used for local fishing.",
+                        "It was entirely controlled by the British."
+                    ],
+                    "answer": 1,
+                    "hint": "New Orleans is located near its mouth.",
+                    "dok": 3
+                },
+                {
+                    "question": "Evaluate the influence of the Napoleonic Code on the legal system of Louisiana compared to British colonies.",
+                    "choices": [
+                        "It established a system based on English common law.",
+                        "It resulted in Louisiana having a civil law system based on written codes rather than precedent.",
+                        "It had no lasting impact on Louisiana's laws.",
+                        "It banned the practice of slavery in Louisiana."
+                    ],
+                    "answer": 1,
+                    "hint": "Louisiana's legal system is unique in the US.",
+                    "dok": 4
+                },
+                {
+                    "question": "Explain how the migration of Acadians and Isle\u00f1os contributed to the culture and development of Louisiana.",
+                    "choices": [
+                        "They brought English traditions and Protestantism.",
+                        "They completely replaced the French culture with pure Spanish customs.",
+                        "They added unique cultural elements, language, and strengthened the colony's population and defenses.",
+                        "They primarily migrated to establish large industrial factories."
+                    ],
+                    "answer": 2,
+                    "hint": "They contributed to the 'melting pot' of the region.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the causes and consequences of the Treaty of Fontainebleau.",
+                    "choices": [
+                        "France secretly gave Louisiana to Spain to prevent it from falling into British hands after the French and Indian War.",
+                        "Spain sold Louisiana to France to pay off war debts.",
+                        "It granted Louisiana independence from European powers.",
+                        "It forced all French colonists to leave Louisiana."
+                    ],
+                    "answer": 0,
+                    "hint": "It was a secret agreement during the Seven Years' War.",
+                    "dok": 4
+                },
+                {
+                    "question": "Compare and contrast the interactions of the French and Spanish governments with the Native American tribes in Louisiana.",
+                    "choices": [
+                        "Both sought to exterminate the tribes entirely.",
+                        "The French often sought trade alliances and intermarriage; the Spanish focused more on establishing missions and military control.",
+                        "Neither government interacted with the Native Americans.",
+                        "The Spanish focused exclusively on the fur trade while the French built missions."
+                    ],
+                    "answer": 1,
+                    "hint": "Think about French fur traders (coureurs de bois).",
+                    "dok": 3
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "Evaluate the role of Enlightenment philosophies in the development of American government and the cause of the Revolution.",
+                    "choices": [
+                        "They supported the idea of the divine right of kings.",
+                        "Ideas like natural rights and the social contract inspired colonists to challenge British authority.",
+                        "They argued that colonies should always remain subservient to the mother country.",
+                        "They promoted the establishment of a colonial monarchy."
+                    ],
+                    "answer": 1,
+                    "hint": "Think of John Locke.",
+                    "dok": 4
+                },
+                {
+                    "question": "Analyze how the end of Salutary Neglect impacted the relationship between Britain and the American colonies.",
+                    "choices": [
+                        "It improved relations by providing more British protection.",
+                        "It caused tension as Britain began strictly enforcing trade laws and imposing new taxes.",
+                        "It led to an immediate, peaceful granting of independence.",
+                        "It allowed the colonies to freely trade with France and Spain."
+                    ],
+                    "answer": 1,
+                    "hint": "The period of 'healthy ignoring' came to an end.",
+                    "dok": 3
+                },
+                {
+                    "question": "Explain how key ideas expressed in the Declaration of Independence justified the American Revolution.",
+                    "choices": [
+                        "It argued that the King had protected their rights and they wanted to form a new empire.",
+                        "It asserted that governments derive their power from the consent of the governed and can be overthrown if they become destructive.",
+                        "It stated that the colonies were too large to be governed by an island.",
+                        "It claimed that the colonies had a right to conquer all of North America."
+                    ],
+                    "answer": 1,
+                    "hint": "Focus on unalienable rights.",
+                    "dok": 4
+                },
+                {
+                    "question": "Compare the strengths and weaknesses of the Continental Army and the British Army during the Revolution.",
+                    "choices": [
+                        "The British had a small, untrained army; the Americans had a massive, professional army.",
+                        "The Americans had home-field advantage and strong motivation; the British had a professional military, strong navy, but long supply lines.",
+                        "Both armies were equally matched in naval power.",
+                        "The Americans relied entirely on mercenaries."
+                    ],
+                    "answer": 1,
+                    "hint": "Think about resources and logistics.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the significance of the Franco-American alliance formed in 1778.",
+                    "choices": [
+                        "It provided the Americans with crucial military, naval, and financial support needed to win the war.",
+                        "It resulted in France taking control of the American colonies after the war.",
+                        "It had little impact as the French provided no actual troops.",
+                        "It caused Spain to ally with Great Britain against the colonies."
+                    ],
+                    "answer": 0,
+                    "hint": "Saratoga convinced them to join.",
+                    "dok": 3
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "Evaluate how the major issues debated at the Constitutional Convention reflected the failures of the Articles of Confederation.",
+                    "choices": [
+                        "Delegates focused on weakening the national government further.",
+                        "Debates centered on creating a stronger central government with the power to tax and regulate commerce while balancing state power.",
+                        "The convention aimed to establish a monarchy to restore order.",
+                        "The main focus was on returning the colonies to British rule."
+                    ],
+                    "answer": 1,
+                    "hint": "They needed to fix the lack of federal power.",
+                    "dok": 4
+                },
+                {
+                    "question": "Analyze the division and sharing of power between the federal and state governments (federal system) established by the Constitution.",
+                    "choices": [
+                        "All power was given to the states, making the federal government symbolic.",
+                        "All power was centralized in the federal government, abolishing state governments.",
+                        "It created a system where power is divided and shared, with the Constitution as the supreme law.",
+                        "It gave the President absolute power over state governors."
+                    ],
+                    "answer": 2,
+                    "hint": "This is known as federalism.",
+                    "dok": 3
+                },
+                {
+                    "question": "Explain how the ideas of Alexander Hamilton and James Madison contributed to the ratification of the Constitution.",
+                    "choices": [
+                        "They wrote the Federalist Papers to persuade the public and states to support the new, stronger government.",
+                        "They strongly opposed ratification and demanded a Bill of Rights immediately.",
+                        "They argued for the continuation of the Articles of Confederation.",
+                        "They threatened military force to compel states to ratify."
+                    ],
+                    "answer": 0,
+                    "hint": "They argued for a strong central government.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the role of the Commerce Clause in establishing the power of the federal government.",
+                    "choices": [
+                        "It gave the federal government the power to regulate trade with foreign nations and among the states.",
+                        "It banned all international trade to protect domestic industries.",
+                        "It allowed states to create their own individual currencies.",
+                        "It gave the President the sole power to set prices for all goods."
+                    ],
+                    "answer": 0,
+                    "hint": "It solved the problem of states taxing each other's goods.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the political and social implications of the Northwest Ordinance of 1787.",
+                    "choices": [
+                        "It allowed slavery to spread unhindered across the entire continent.",
+                        "It provided a clear, orderly process for admitting new states to the Union as equals and banned slavery in the Northwest Territory.",
+                        "It sold all western lands back to European powers.",
+                        "It established a permanent Native American nation in the Ohio Valley."
+                    ],
+                    "answer": 1,
+                    "hint": "It set the precedent for westward expansion.",
+                    "dok": 3
+                }
+            ]
+        }
+    },
+    "SKIBIDI": {
+        "grade6": {
+            "unit1": [
+                {
+                    "question": "The European power that claimed areas in North America primarily for gold and silver was ___.",
+                    "answer": [
+                        "spain"
+                    ],
+                    "hint": "They conquered the Aztec and Inca empires."
+                },
+                {
+                    "question": "The founder of Pennsylvania who created a safe haven for Quakers was William ___.",
+                    "answer": [
+                        "penn"
+                    ],
+                    "hint": "The state is named after him."
+                },
+                {
+                    "question": "The strong-willed leader who told Jamestown colonists 'He that will not work shall not eat' was John ___.",
+                    "answer": [
+                        "smith"
+                    ],
+                    "hint": "He had a legendary encounter with Pocahontas."
+                },
+                {
+                    "question": "The religious group that wanted to 'purify' the Church of England and settled in Massachusetts was the ___.",
+                    "answer": [
+                        "puritans",
+                        "puritan"
+                    ],
+                    "hint": "They were known for their strict religious rules."
+                },
+                {
+                    "question": "The woman banished from Massachusetts for challenging Puritan authority was Anne ___.",
+                    "answer": [
+                        "hutchinson"
+                    ],
+                    "hint": "She helped found Rhode Island."
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "The colonial region known as the 'Breadbasket' because of its grain production was the ___ colonies.",
+                    "answer": [
+                        "middle"
+                    ],
+                    "hint": "It includes New York and Pennsylvania."
+                },
+                {
+                    "question": "People who agreed to work for a set period in exchange for passage to America were ___ servants.",
+                    "answer": [
+                        "indentured"
+                    ],
+                    "hint": "They signed a contract."
+                },
+                {
+                    "question": "Skilled workers who made goods by hand, like blacksmiths and carpenters, were called ___.",
+                    "answer": [
+                        "artisans",
+                        "artisan"
+                    ],
+                    "hint": "They were the craftsmen of the colonies."
+                },
+                {
+                    "question": "The forced journey of enslaved Africans across the Atlantic was the ___ Passage.",
+                    "answer": [
+                        "middle"
+                    ],
+                    "hint": "It was a brutal and deadly voyage."
+                },
+                {
+                    "question": "Large agricultural estates in the Southern colonies that relied on enslaved labor were ___.",
+                    "answer": [
+                        "plantations",
+                        "plantation"
+                    ],
+                    "hint": "They grew cash crops."
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "The set of French laws designed to govern the lives of enslaved people in Louisiana was the ___ Noir.",
+                    "answer": [
+                        "code"
+                    ],
+                    "hint": "It means 'Black Code'."
+                },
+                {
+                    "question": "The group of French exiles from Canada who settled in Louisiana are the ___.",
+                    "answer": [
+                        "acadians",
+                        "cajuns"
+                    ],
+                    "hint": "They were expelled by the British."
+                },
+                {
+                    "question": "The Spanish governor who aggressively put down the 1768 rebellion in Louisiana was Alejandro ___.",
+                    "answer": [
+                        "oreilly",
+                        "o'reilly"
+                    ],
+                    "hint": "He earned the nickname 'Bloody'."
+                },
+                {
+                    "question": "The major river that was the lifeline of colonial Louisiana's economy is the ___ River.",
+                    "answer": [
+                        "mississippi"
+                    ],
+                    "hint": "New Orleans sits near its mouth."
+                },
+                {
+                    "question": "The free people of color in colonial Louisiana were known as the Gens de Couleur ___.",
+                    "answer": [
+                        "libres",
+                        "libre"
+                    ],
+                    "hint": "It means 'free' in French."
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "The war fought between Britain and France over the Ohio River Valley is the ___ and Indian War.",
+                    "answer": [
+                        "french"
+                    ],
+                    "hint": "Also known as the Seven Years' War."
+                },
+                {
+                    "question": "The act that required colonists to provide housing for British soldiers was the ___ Act.",
+                    "answer": [
+                        "quartering"
+                    ],
+                    "hint": "It forced colonists to 'quarter' troops."
+                },
+                {
+                    "question": "Colonial militia who could be ready to fight very quickly were called ___.",
+                    "answer": [
+                        "minutemen",
+                        "minute men"
+                    ],
+                    "hint": "They fought at Lexington and Concord."
+                },
+                {
+                    "question": "The author of the pamphlet 'Common Sense' was Thomas ___.",
+                    "answer": [
+                        "paine"
+                    ],
+                    "hint": "He argued for independence."
+                },
+                {
+                    "question": "The British King during the American Revolution was King George the ___.",
+                    "answer": [
+                        "third",
+                        "3rd",
+                        "iii"
+                    ],
+                    "hint": "He was the target of the Declaration of Independence."
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "The first constitution of the United States was the ___ of Confederation.",
+                    "answer": [
+                        "articles"
+                    ],
+                    "hint": "It created a weak central government."
+                },
+                {
+                    "question": "The 1786 rebellion of Massachusetts farmers that showed the weakness of the national government was ___ Rebellion.",
+                    "answer": [
+                        "shays",
+                        "shays's",
+                        "shayss"
+                    ],
+                    "hint": "Led by Daniel Shays."
+                },
+                {
+                    "question": "The agreement that counted a portion of enslaved people for representation was the ___-Fifths Compromise.",
+                    "answer": [
+                        "three",
+                        "3"
+                    ],
+                    "hint": "It gave Southern states more power in Congress."
+                },
+                {
+                    "question": "The branch of government that makes the laws is the ___ branch.",
+                    "answer": [
+                        "legislative"
+                    ],
+                    "hint": "It includes Congress."
+                },
+                {
+                    "question": "The 'Father of the Constitution' is James ___.",
+                    "answer": [
+                        "madison"
+                    ],
+                    "hint": "He drafted the Virginia Plan."
+                }
+            ]
+        }
+    },
+    "MYTH": {
+        "grade6": {
+            "unit1": [
+                {
+                    "question": "MYTH or FACT: The Pilgrims were the first English people to settle in North America.",
+                    "isFact": false,
+                    "explanation": "MYTH: The Jamestown colonists arrived in Virginia in 1607, 13 years before the Pilgrims landed at Plymouth in 1620."
+                },
+                {
+                    "question": "MYTH or FACT: William Penn purchased land fairly from Native Americans to establish Pennsylvania.",
+                    "isFact": true,
+                    "explanation": "FACT: True to his Quaker beliefs in equality, Penn insisted on buying land from the Lenape rather than simply taking it, fostering a period of peace."
+                },
+                {
+                    "question": "MYTH or FACT: John Smith and Pocahontas had a romantic relationship and were married.",
+                    "isFact": false,
+                    "explanation": "MYTH: Pocahontas was a young girl when she met John Smith. She later married the tobacco planter John Rolfe."
+                },
+                {
+                    "question": "MYTH or FACT: The Puritans came to America to establish religious freedom for all people.",
+                    "isFact": false,
+                    "explanation": "MYTH: The Puritans wanted freedom for themselves, but they were deeply intolerant of other religions and banished those who disagreed with them."
+                },
+                {
+                    "question": "MYTH or FACT: Bacon's Rebellion was a revolt by poor farmers against wealthy elites and the colonial governor.",
+                    "isFact": true,
+                    "explanation": "FACT: Nathaniel Bacon led poor farmers and indentured servants against Governor Berkeley, primarily over disputes regarding Native American policy and lack of protection."
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "MYTH or FACT: Enslaved people in the colonies never resisted or rebelled against their captivity.",
+                    "isFact": false,
+                    "explanation": "MYTH: Enslaved people resisted in many ways, including working slowly, breaking tools, escaping, and organizing armed rebellions like the Stono Rebellion."
+                },
+                {
+                    "question": "MYTH or FACT: The New England colonies relied heavily on cash crops like tobacco for their economy.",
+                    "isFact": false,
+                    "explanation": "MYTH: New England's rocky soil and cold climate made large-scale farming impossible. Their economy was based on fishing, shipbuilding, and trade."
+                },
+                {
+                    "question": "MYTH or FACT: Indentured servants were legally enslaved for their entire lives.",
+                    "isFact": false,
+                    "explanation": "MYTH: Indentured servitude was a temporary contract (usually 4-7 years). Once the contract was fulfilled, they were legally free citizens."
+                },
+                {
+                    "question": "MYTH or FACT: The Middle Colonies were known for their diversity and religious tolerance.",
+                    "isFact": true,
+                    "explanation": "FACT: The Middle Colonies attracted immigrants from many European countries and various religious backgrounds, earning the nickname 'the Breadbasket' colonies."
+                },
+                {
+                    "question": "MYTH or FACT: Women in colonial America had the same legal rights as men, including the right to vote.",
+                    "isFact": false,
+                    "explanation": "MYTH: Under colonial law, women had very few legal rights. Married women generally could not own property, vote, or hold public office."
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "MYTH or FACT: The French originally established Louisiana primarily to find gold.",
+                    "isFact": false,
+                    "explanation": "MYTH: While they hoped for mineral wealth, their main strategic goals were to control the mouth of the Mississippi River and expand the fur trade."
+                },
+                {
+                    "question": "MYTH or FACT: The Code Noir was a set of laws that granted freedom to all enslaved people in Louisiana.",
+                    "isFact": false,
+                    "explanation": "MYTH: The Code Noir (Black Code) was a harsh set of laws designed to regulate the lives, behavior, and punishments of enslaved people, though it also mandated Catholic instruction."
+                },
+                {
+                    "question": "MYTH or FACT: Natchitoches is older than New Orleans.",
+                    "isFact": true,
+                    "explanation": "FACT: Natchitoches was founded in 1714 as a trade outpost, making it the oldest permanent European settlement in the Louisiana Purchase territory. New Orleans was founded in 1718."
+                },
+                {
+                    "question": "MYTH or FACT: The Acadians were originally from South America before moving to Louisiana.",
+                    "isFact": false,
+                    "explanation": "MYTH: The Acadians were French colonists who were expelled from Acadia (modern-day Nova Scotia, Canada) by the British."
+                },
+                {
+                    "question": "MYTH or FACT: Free People of Color (Gens de Couleur Libres) played a significant role in colonial Louisiana's economy and society.",
+                    "isFact": true,
+                    "explanation": "FACT: They formed a distinct middle class, often owning property, running businesses, and serving in the militia, which was unique compared to many British colonies."
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "MYTH or FACT: The French and Indian War was fought between the French and Native Americans against the British.",
+                    "isFact": true,
+                    "explanation": "FACT: Despite the name, it was a conflict where the French and their Native American allies fought against the British and their colonists for control of North America."
+                },
+                {
+                    "question": "MYTH or FACT: Paul Revere was the only person who rode to warn the colonists that the British were coming.",
+                    "isFact": false,
+                    "explanation": "MYTH: Paul Revere was one of several riders, including William Dawes and Samuel Prescott. Revere was actually captured by the British before reaching Concord."
+                },
+                {
+                    "question": "MYTH or FACT: The Boston Massacre involved British soldiers killing hundreds of unarmed colonists.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was a chaotic skirmish where British soldiers fired into a hostile crowd, killing five colonists. It was heavily propagandized by the Patriots."
+                },
+                {
+                    "question": "MYTH or FACT: All American colonists strongly supported the Revolutionary War against Britain.",
+                    "isFact": false,
+                    "explanation": "MYTH: The colonies were deeply divided. Historians estimate only about one-third were Patriots, while a large portion remained Loyalists or neutral."
+                },
+                {
+                    "question": "MYTH or FACT: The Battle of Saratoga was the turning point of the American Revolution.",
+                    "isFact": true,
+                    "explanation": "FACT: The decisive American victory at Saratoga convinced France to formally ally with the United States, providing crucial military and financial support."
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "MYTH or FACT: The Articles of Confederation created a very strong central government with a powerful President.",
+                    "isFact": false,
+                    "explanation": "MYTH: The Articles created a weak central government intentionally, with no executive branch (President) and no power to collect taxes."
+                },
+                {
+                    "question": "MYTH or FACT: The Constitutional Convention was held in secret to allow delegates to debate freely.",
+                    "isFact": true,
+                    "explanation": "FACT: The delegates kept the windows closed and swore an oath of secrecy so they could compromise and change their minds without public pressure."
+                },
+                {
+                    "question": "MYTH or FACT: The Three-Fifths Compromise ended the practice of slavery in the United States.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was a political agreement that counted three-fifths of the enslaved population for determining a state's representation in Congress, actually increasing Southern political power."
+                },
+                {
+                    "question": "MYTH or FACT: George Washington wrote the majority of the United States Constitution.",
+                    "isFact": false,
+                    "explanation": "MYTH: While Washington presided over the convention, James Madison was the primary architect of the document and is known as the 'Father of the Constitution'."
+                },
+                {
+                    "question": "MYTH or FACT: The Electoral College was created to ensure the President was chosen directly by a popular vote.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was created as a compromise between election by Congress and election by popular vote, serving as a buffer and balancing state power."
+                }
+            ]
+        }
+    }
+}

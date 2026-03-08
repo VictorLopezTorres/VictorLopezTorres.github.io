@@ -1,0 +1,966 @@
+{
+    "EASY": {
+        "grade8": {
+            "unit1": [
+                {
+                    "question": "What were the 'Exodusters' seeking when they moved to Kansas?",
+                    "choices": [
+                        "Gold",
+                        "Land and freedom from the Jim Crow South",
+                        "Factory jobs",
+                        "Religious missions"
+                    ],
+                    "answer": 1,
+                    "hint": "They were African Americans leaving the post-Reconstruction South.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which battle is famously known as 'Custer's Last Stand'?",
+                    "choices": [
+                        "Battle of Gettysburg",
+                        "Battle of Wounded Knee",
+                        "Battle of Little Bighorn",
+                        "Battle of the Alamo"
+                    ],
+                    "answer": 2,
+                    "hint": "The Lakota and Cheyenne won this 1876 battle.",
+                    "dok": 1
+                },
+                {
+                    "question": "What system enforced strict racial segregation in the South?",
+                    "choices": [
+                        "The Spoils System",
+                        "The Jim Crow system",
+                        "The Feudal System",
+                        "The Encomienda System"
+                    ],
+                    "answer": 1,
+                    "hint": "It mandated 'separate but equal' facilities.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who founded the Tuskegee Institute to promote vocational education for African Americans?",
+                    "choices": [
+                        "W.E.B. Du Bois",
+                        "Martin Luther King Jr.",
+                        "Booker T. Washington",
+                        "Frederick Douglass"
+                    ],
+                    "answer": 2,
+                    "hint": "He gave the 'Atlanta Compromise' speech.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which Supreme Court case established the 'separate but equal' doctrine?",
+                    "choices": [
+                        "Brown v. Board of Education",
+                        "Dred Scott v. Sandford",
+                        "Plessy v. Ferguson",
+                        "Marbury v. Madison"
+                    ],
+                    "answer": 2,
+                    "hint": "It legalized segregation in 1896.",
+                    "dok": 1
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "What economic system relies on a free market and private ownership?",
+                    "choices": [
+                        "Socialism",
+                        "Communism",
+                        "Capitalism",
+                        "Mercantilism"
+                    ],
+                    "answer": 2,
+                    "hint": "It drove the industrial revolution in the US.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which industrialist made his fortune in the steel industry?",
+                    "choices": [
+                        "John D. Rockefeller",
+                        "Andrew Carnegie",
+                        "J.P. Morgan",
+                        "Cornelius Vanderbilt"
+                    ],
+                    "answer": 1,
+                    "hint": "He wrote 'The Gospel of Wealth'.",
+                    "dok": 1
+                },
+                {
+                    "question": "Journalists who exposed corruption and poor living conditions were called...",
+                    "choices": [
+                        "Muckrakers",
+                        "Robber Barons",
+                        "Carpetbaggers",
+                        "Scalawags"
+                    ],
+                    "answer": 0,
+                    "hint": "They 'raked the muck' of society.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which political party was formed by farmers to fight against big business?",
+                    "choices": [
+                        "The Whig Party",
+                        "The Progressive Party",
+                        "The Populist (People's) Party",
+                        "The Republican Party"
+                    ],
+                    "answer": 2,
+                    "hint": "They wanted the free coinage of silver.",
+                    "dok": 1
+                },
+                {
+                    "question": "The massive movement of people from rural areas to cities is called...",
+                    "choices": [
+                        "Industrialization",
+                        "Urbanization",
+                        "Assimilation",
+                        "Segregation"
+                    ],
+                    "answer": 1,
+                    "hint": "It led to the growth of slums and tenements.",
+                    "dok": 1
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "Which war made the United States a global power in 1898?",
+                    "choices": [
+                        "World War I",
+                        "The Mexican-American War",
+                        "The Spanish-American War",
+                        "The Civil War"
+                    ],
+                    "answer": 2,
+                    "hint": "It was sparked by the sinking of the USS Maine.",
+                    "dok": 1
+                },
+                {
+                    "question": "What engineering marvel connected the Atlantic and Pacific oceans?",
+                    "choices": [
+                        "The Suez Canal",
+                        "The Erie Canal",
+                        "The Panama Canal",
+                        "The Transcontinental Railroad"
+                    ],
+                    "answer": 2,
+                    "hint": "Theodore Roosevelt pushed for its construction.",
+                    "dok": 1
+                },
+                {
+                    "question": "The sinking of which British ship outraged Americans during WWI?",
+                    "choices": [
+                        "The Titanic",
+                        "The Maine",
+                        "The Lusitania",
+                        "The Arizona"
+                    ],
+                    "answer": 2,
+                    "hint": "It was sunk by a German U-boat in 1915.",
+                    "dok": 1
+                },
+                {
+                    "question": "What type of warfare characterized the Western Front in World War I?",
+                    "choices": [
+                        "Naval blockades",
+                        "Trench warfare",
+                        "Guerilla warfare",
+                        "Cavalry charges"
+                    ],
+                    "answer": 1,
+                    "hint": "Soldiers fought from deep ditches.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which amendment granted women the right to vote?",
+                    "choices": [
+                        "13th Amendment",
+                        "15th Amendment",
+                        "18th Amendment",
+                        "19th Amendment"
+                    ],
+                    "answer": 3,
+                    "hint": "It was passed in 1920.",
+                    "dok": 1
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "What was the era when the sale and manufacture of alcohol was illegal?",
+                    "choices": [
+                        "The Great Depression",
+                        "The Progressive Era",
+                        "Prohibition",
+                        "The Cold War"
+                    ],
+                    "answer": 2,
+                    "hint": "It was established by the 18th Amendment.",
+                    "dok": 1
+                },
+                {
+                    "question": "The 1920s cultural movement celebrating African American arts was the...",
+                    "choices": [
+                        "Harlem Renaissance",
+                        "Second Great Awakening",
+                        "Civil Rights Movement",
+                        "Transcendentalist Movement"
+                    ],
+                    "answer": 0,
+                    "hint": "It featured figures like Langston Hughes.",
+                    "dok": 1
+                },
+                {
+                    "question": "What environmental disaster struck the Great Plains in the 1930s?",
+                    "choices": [
+                        "The Great Flood",
+                        "The Dust Bowl",
+                        "The San Francisco Earthquake",
+                        "The Galveston Hurricane"
+                    ],
+                    "answer": 1,
+                    "hint": "It was caused by drought and over-farming.",
+                    "dok": 1
+                },
+                {
+                    "question": "What was FDR's program to help the country recover from the Great Depression?",
+                    "choices": [
+                        "The Square Deal",
+                        "The Great Society",
+                        "The New Deal",
+                        "The Fair Deal"
+                    ],
+                    "answer": 2,
+                    "hint": "It included programs like the CCC and WPA.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which Louisiana governor promoted the 'Share Our Wealth' program?",
+                    "choices": [
+                        "Jimmie Davis",
+                        "Huey Long",
+                        "Edwin Edwards",
+                        "John McKeithen"
+                    ],
+                    "answer": 1,
+                    "hint": "He was known as 'The Kingfish'.",
+                    "dok": 1
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "What type of government is ruled by a dictator with total control?",
+                    "choices": [
+                        "Democracy",
+                        "Republic",
+                        "Totalitarianism",
+                        "Monarchy"
+                    ],
+                    "answer": 2,
+                    "hint": "Examples include Nazi Germany and Fascist Italy.",
+                    "dok": 1
+                },
+                {
+                    "question": "What event brought the United States into World War II?",
+                    "choices": [
+                        "The invasion of Poland",
+                        "The sinking of the Lusitania",
+                        "The attack on Pearl Harbor",
+                        "The bombing of London"
+                    ],
+                    "answer": 2,
+                    "hint": "It happened on December 7, 1941.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which side did the U.S., Britain, and the Soviet Union fight on in WWII?",
+                    "choices": [
+                        "The Axis Powers",
+                        "The Central Powers",
+                        "The Allied Powers",
+                        "The Triple Entente"
+                    ],
+                    "answer": 2,
+                    "hint": "They fought against Germany, Italy, and Japan.",
+                    "dok": 1
+                },
+                {
+                    "question": "What was the systematic murder of millions of Jews and others by the Nazis?",
+                    "choices": [
+                        "The Holodomor",
+                        "The Nanjing Massacre",
+                        "The Holocaust",
+                        "The Bataan Death March"
+                    ],
+                    "answer": 2,
+                    "hint": "It was carried out in concentration and extermination camps.",
+                    "dok": 1
+                },
+                {
+                    "question": "What top-secret program developed the atomic bomb?",
+                    "choices": [
+                        "The Apollo Program",
+                        "The Manhattan Project",
+                        "Operation Overlord",
+                        "The Enigma Code"
+                    ],
+                    "answer": 1,
+                    "hint": "It was led by J. Robert Oppenheimer.",
+                    "dok": 1
+                }
+            ]
+        }
+    },
+    "HARD": {
+        "grade8": {
+            "unit1": [
+                {
+                    "question": "Analyze the motivations of the 'Exodusters' migrating to the West.",
+                    "choices": [
+                        "They sought factory jobs in California.",
+                        "They fled Southern oppression and violence for land and freedom.",
+                        "They were recruited by railroad companies to lay track.",
+                        "They were European immigrants seeking religious freedom."
+                    ],
+                    "answer": 1,
+                    "hint": "Consider the situation for African Americans after Reconstruction.",
+                    "dok": 3
+                },
+                {
+                    "question": "Evaluate the argument presented in Frederick Jackson Turner's 'Frontier Thesis'.",
+                    "choices": [
+                        "He argued the frontier was irrelevant to American history.",
+                        "He argued the frontier shaped American character, democracy, and independence.",
+                        "He argued the West should be returned to Native American control.",
+                        "He argued that industrial cities were the true source of American culture."
+                    ],
+                    "answer": 1,
+                    "hint": "He believed facing the wild made Americans who they are.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the strategic impact of the near-extermination of the American buffalo.",
+                    "choices": [
+                        "It allowed Native American tribes to develop new agricultural techniques.",
+                        "It destroyed the Plains Indians' nomadic way of life, forcing them onto reservations.",
+                        "It had no effect on the conflict between settlers and tribes.",
+                        "It was solely the result of a natural disease outbreak."
+                    ],
+                    "answer": 1,
+                    "hint": "Without the buffalo, their way of life was impossible.",
+                    "dok": 4
+                },
+                {
+                    "question": "Compare the civil rights philosophies of Booker T. Washington and W.E.B. Du Bois.",
+                    "choices": [
+                        "Both demanded immediate integration and voting rights.",
+                        "Washington urged vocational training and self-reliance; Du Bois urged immediate political equality and higher education.",
+                        "Du Bois focused on farming, while Washington founded the NAACP.",
+                        "Both believed African Americans should emigrate to Africa."
+                    ],
+                    "answer": 1,
+                    "hint": "Think of the 'Atlanta Compromise' vs. the 'Talented Tenth'.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the long-term legal impact of the Plessy v. Ferguson decision.",
+                    "choices": [
+                        "It immediately ended all segregation in the United States.",
+                        "It established the 'separate but equal' doctrine, providing legal cover for systemic racism.",
+                        "It applied only to railroad travel and had no broader impact.",
+                        "It guaranteed equal funding for all segregated public schools."
+                    ],
+                    "answer": 1,
+                    "hint": "This 1896 ruling legalized Jim Crow laws.",
+                    "dok": 4
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "Analyze how 'laissez-faire' capitalism contributed to the rise of monopolies.",
+                    "choices": [
+                        "It created strict labor laws that protected workers.",
+                        "It resulted in heavy taxation on large corporations.",
+                        "Lack of government regulation allowed powerful businesses to crush competition and form monopolies.",
+                        "It provided government subsidies exclusively to small family farms."
+                    ],
+                    "answer": 2,
+                    "hint": "The term translates to 'let do' or 'hands off'.",
+                    "dok": 3
+                },
+                {
+                    "question": "Evaluate the effectiveness of early labor unions in improving the lives of industrial workers.",
+                    "choices": [
+                        "They immediately secured an 8-hour workday and high wages for all.",
+                        "While many early strikes were crushed, they laid the groundwork for future labor reforms and regulations.",
+                        "They were entirely controlled by the factory owners.",
+                        "They focused solely on political elections rather than workplace conditions."
+                    ],
+                    "answer": 1,
+                    "hint": "Change was slow and often violent.",
+                    "dok": 4
+                },
+                {
+                    "question": "Explain the strategy of 'horizontal integration' used by industrialists like John D. Rockefeller.",
+                    "choices": [
+                        "Owning every step of the supply chain, from raw materials to transport.",
+                        "Buying out or destroying competitors to control an entire market.",
+                        "Refusing to use any new technological advancements.",
+                        "Paying workers high wages to ensure loyalty."
+                    ],
+                    "answer": 1,
+                    "hint": "Think of expanding outward to absorb all your rivals.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the role of 'muckrakers' in driving the reforms of the Progressive Era.",
+                    "choices": [
+                        "They lobbied Congress to lower taxes on the wealthy.",
+                        "Their investigative journalism exposed corruption and horrific conditions, swaying public opinion to demand reform.",
+                        "They organized the construction of new factories.",
+                        "They promoted the expansion of American imperialism."
+                    ],
+                    "answer": 1,
+                    "hint": "Their exposes forced the government to act.",
+                    "dok": 4
+                },
+                {
+                    "question": "Synthesize the core economic grievances that led to the formation of the Populist Party.",
+                    "choices": [
+                        "Wealthy bankers were angry about low interest rates.",
+                        "Urban factory workers wanted to ban all immigration.",
+                        "Farmers faced massive debt, falling crop prices, and high shipping rates charged by railroad monopolies.",
+                        "Southern planters wanted to expand slavery into the West."
+                    ],
+                    "answer": 2,
+                    "hint": "The movement was rooted in the struggles of the agricultural working class.",
+                    "dok": 4
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "Analyze the role of 'yellow journalism' in the outbreak of the Spanish-American War.",
+                    "choices": [
+                        "It provided objective reporting that calmed public tensions.",
+                        "Sensationalized and exaggerated news stories inflamed public anger and pushed the nation toward war.",
+                        "It focused entirely on domestic issues, ignoring the conflict in Cuba.",
+                        "It was a Spanish propaganda tool used to intimidate Americans."
+                    ],
+                    "answer": 1,
+                    "hint": "Publishers used dramatic headlines to sell papers.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the strategic importance of the Panama Canal to American imperialism.",
+                    "choices": [
+                        "It was built primarily as a tourist attraction.",
+                        "It drastically improved global trade and allowed the U.S. Navy to move quickly between oceans.",
+                        "It was designed to protect Central America from European invasion.",
+                        "It severely damaged the U.S. economy due to construction costs."
+                    ],
+                    "answer": 1,
+                    "hint": "Think about Theodore Roosevelt's 'Big Stick' diplomacy.",
+                    "dok": 3
+                },
+                {
+                    "question": "Explain how the Zimmermann Telegram influenced the United States' entry into World War I.",
+                    "choices": [
+                        "It was a plea for peace from the German government.",
+                        "It revealed a secret German plot to ally with Mexico against the U.S., outraging the American public.",
+                        "It proved that the British were illegally sinking American ships.",
+                        "It contained the designs for a new, devastating weapon."
+                    ],
+                    "answer": 1,
+                    "hint": "It brought the threat of the European war directly to the American border.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the purpose of the Espionage and Sedition Acts during World War I.",
+                    "choices": [
+                        "To protect the free speech rights of anti-war protestors.",
+                        "To recruit more soldiers into the military.",
+                        "To silence dissent, suppress criticism of the war effort, and punish suspected spies.",
+                        "To expose German spies operating in Washington D.C."
+                    ],
+                    "answer": 2,
+                    "hint": "The government argued that civil liberties could be restricted during wartime.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the reasons for the U.S. Senate's rejection of the Treaty of Versailles and the League of Nations.",
+                    "choices": [
+                        "They believed the treaty was far too lenient on Germany.",
+                        "They feared joining the League would force the U.S. into future foreign conflicts and compromise national sovereignty.",
+                        "President Wilson refused to sign the final document.",
+                        "The treaty did not grant the U.S. enough new territory."
+                    ],
+                    "answer": 1,
+                    "hint": "Many senators wanted a return to the policy of isolationism.",
+                    "dok": 4
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "Analyze the unintended consequences of the 18th Amendment (Prohibition).",
+                    "choices": [
+                        "It successfully eliminated all alcohol consumption in the U.S.",
+                        "It caused a massive rise in organized crime, bootlegging, and illegal speakeasies.",
+                        "It caused the immediate start of the Great Depression.",
+                        "It forced the closure of all movie theaters and jazz clubs."
+                    ],
+                    "answer": 1,
+                    "hint": "Banning a popular product created a lucrative black market.",
+                    "dok": 3
+                },
+                {
+                    "question": "Explain how the practice of 'buying on margin' contributed to the 1929 stock market crash.",
+                    "choices": [
+                        "It meant the government heavily insured all stock purchases.",
+                        "Buying stocks with borrowed money created an unstable bubble that burst when investors couldn't repay their loans.",
+                        "It prevented ordinary citizens from investing in the market.",
+                        "It required buyers to use only gold to purchase stocks."
+                    ],
+                    "answer": 1,
+                    "hint": "When the market dipped, people had to sell off everything to pay back their brokers.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the fundamental shift in the role of the federal government caused by the New Deal.",
+                    "choices": [
+                        "The government withdrew completely from economic regulation.",
+                        "The government took an active, unprecedented role in managing the economy and providing a social safety net.",
+                        "The government abolished the capitalist system entirely.",
+                        "The government focused solely on foreign policy and ignored domestic issues."
+                    ],
+                    "answer": 1,
+                    "hint": "Programs like Social Security changed the relationship between citizens and the government.",
+                    "dok": 4
+                },
+                {
+                    "question": "Analyze how human actions contributed to the environmental disaster of the Dust Bowl.",
+                    "choices": [
+                        "Decades of over-farming and deep plowing destroyed the native prairie grasses that held the soil in place.",
+                        "The construction of massive dams disrupted the natural water cycle of the plains.",
+                        "Excessive pollution from new urban factories poisoned the soil.",
+                        "The introduction of invasive species destroyed the local crops."
+                    ],
+                    "answer": 0,
+                    "hint": "Farmers ignored traditional ecological balances in the pursuit of higher yields.",
+                    "dok": 3
+                },
+                {
+                    "question": "Synthesize the political appeal of Huey Long's 'Share Our Wealth' program during the Great Depression.",
+                    "choices": [
+                        "He appealed only to the wealthy elite and powerful corporations.",
+                        "He appealed to the desperate working class by promising to heavily tax the rich and redistribute wealth to provide a guaranteed income.",
+                        "He promised to completely dismantle the state's infrastructure.",
+                        "He advocated for a return to the laissez-faire policies of the Gilded Age."
+                    ],
+                    "answer": 1,
+                    "hint": "He promised to 'make every man a king'.",
+                    "dok": 4
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "Analyze the causes and consequences of Japanese internment in the United States during World War II.",
+                    "choices": [
+                        "It was a necessary and legally sound military strategy that uncovered massive espionage rings.",
+                        "Fueled by racism and wartime hysteria after Pearl Harbor, the U.S. unjustly imprisoned over 100,000 Japanese Americans, violating their civil rights.",
+                        "It was a voluntary program that protected Japanese Americans from anti-Asian violence.",
+                        "It only affected Japanese citizens living in Hawaii."
+                    ],
+                    "answer": 1,
+                    "hint": "The Supreme Court tragically upheld the policy in Korematsu v. United States.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the significance of the D-Day invasion (Operation Overlord) in the European Theater.",
+                    "choices": [
+                        "It was the final battle that forced Germany to surrender.",
+                        "It successfully opened a massive two-front war in Europe, beginning the liberation of France from Nazi control.",
+                        "It was a diversionary tactic to draw German forces away from Italy.",
+                        "It resulted in a devastating defeat for the Allied forces."
+                    ],
+                    "answer": 1,
+                    "hint": "The Allies stormed the beaches of Normandy.",
+                    "dok": 4
+                },
+                {
+                    "question": "Explain the strategic reasoning behind the U.S. policy of 'island hopping' in the Pacific Theater.",
+                    "choices": [
+                        "To conquer every single island held by the Japanese Empire.",
+                        "To bypass heavily fortified islands and capture strategically important ones to get close enough to bomb Japan.",
+                        "To build a massive naval blockade around Australia.",
+                        "To focus entirely on submarine warfare rather than land invasions."
+                    ],
+                    "answer": 1,
+                    "hint": "They didn't need to take everything, just stepping stones.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the role of Louisiana in the mobilization effort for World War II.",
+                    "choices": [
+                        "Louisiana remained strictly neutral and refused to participate in the war effort.",
+                        "It hosted massive military training exercises (Louisiana Maneuvers) and manufactured vital Higgins Boats.",
+                        "It served as the primary command center for the Manhattan Project.",
+                        "It was the only state attacked directly by the German navy."
+                    ],
+                    "answer": 1,
+                    "hint": "The boats designed in New Orleans were crucial for D-Day.",
+                    "dok": 3
+                },
+                {
+                    "question": "Evaluate the complex decision by President Truman to use atomic bombs against Japan.",
+                    "choices": [
+                        "He used them solely to test the weapon's destructive capabilities on a civilian population.",
+                        "He hoped to end the war quickly, avoid a horrific land invasion of Japan, and demonstrate U.S. power to the Soviet Union.",
+                        "He was forced to use them by the United Nations.",
+                        "He believed the bombs would cause minimal casualties."
+                    ],
+                    "answer": 1,
+                    "hint": "The decision remains one of the most debated in history.",
+                    "dok": 4
+                }
+            ]
+        }
+    },
+    "SKIBIDI": {
+        "grade8": {
+            "unit1": [
+                {
+                    "question": "African Americans who migrated to Kansas to escape the Jim Crow South were called ___.",
+                    "answer": [
+                        "exodusters"
+                    ],
+                    "hint": "Their name references a biblical journey."
+                },
+                {
+                    "question": "The 1876 battle known as 'Custer's Last Stand' was the Battle of Little ___.",
+                    "answer": [
+                        "bighorn",
+                        "big horn"
+                    ],
+                    "hint": "A major victory for the Plains Indians."
+                },
+                {
+                    "question": "The system of laws enforcing racial segregation in the South was called ___ Crow.",
+                    "answer": [
+                        "jim"
+                    ],
+                    "hint": "Named after a minstrel show character."
+                },
+                {
+                    "question": "The civil rights leader who co-founded the NAACP and demanded immediate equality was W.E.B. ___.",
+                    "answer": [
+                        "dubois",
+                        "du bois"
+                    ],
+                    "hint": "He opposed Booker T. Washington's gradual approach."
+                },
+                {
+                    "question": "The 1896 Supreme Court case that legalized 'separate but equal' segregation was Plessy v. ___.",
+                    "answer": [
+                        "ferguson"
+                    ],
+                    "hint": "It upheld a Louisiana train car law."
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "A company that has complete control over an entire industry is a ___.",
+                    "answer": [
+                        "monopoly"
+                    ],
+                    "hint": "Standard Oil is a famous example."
+                },
+                {
+                    "question": "Journalists who exposed corruption and social problems were known as ___.",
+                    "answer": [
+                        "muckrakers",
+                        "muckraker"
+                    ],
+                    "hint": "Upton Sinclair was one."
+                },
+                {
+                    "question": "The industrialist who built a monopoly in the American steel industry was Andrew ___.",
+                    "answer": [
+                        "carnegie"
+                    ],
+                    "hint": "He used the Bessemer process."
+                },
+                {
+                    "question": "The industrialist who created the Standard Oil trust was John D. ___.",
+                    "answer": [
+                        "rockefeller"
+                    ],
+                    "hint": "He used horizontal integration."
+                },
+                {
+                    "question": "The political party formed by farmers to fight big business was the ___ Party.",
+                    "answer": [
+                        "populist",
+                        "peoples",
+                        "people's"
+                    ],
+                    "hint": "They wanted the free coinage of silver."
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "The man-made waterway built to connect the Atlantic and Pacific oceans is the ___ Canal.",
+                    "answer": [
+                        "panama"
+                    ],
+                    "hint": "Theodore Roosevelt championed its construction."
+                },
+                {
+                    "question": "The 1898 conflict that made the U.S. a world power was the ___-American War.",
+                    "answer": [
+                        "spanish"
+                    ],
+                    "hint": "Remember the Maine!"
+                },
+                {
+                    "question": "The British passenger ship sunk by a German U-boat in 1915 was the ___.",
+                    "answer": [
+                        "lusitania"
+                    ],
+                    "hint": "128 Americans died."
+                },
+                {
+                    "question": "The secret message proposing an alliance between Germany and Mexico was the ___ Telegram.",
+                    "answer": [
+                        "zimmermann",
+                        "zimmerman"
+                    ],
+                    "hint": "It pushed the U.S. into WWI."
+                },
+                {
+                    "question": "The primary style of fighting on the Western Front in WWI was ___ warfare.",
+                    "answer": [
+                        "trench"
+                    ],
+                    "hint": "Soldiers dug deep defensive networks."
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "The era in which the manufacture and sale of alcohol was illegal was known as ___.",
+                    "answer": [
+                        "prohibition"
+                    ],
+                    "hint": "It was established by the 18th Amendment."
+                },
+                {
+                    "question": "The 1920s cultural movement celebrating African American art and music was the ___ Renaissance.",
+                    "answer": [
+                        "harlem"
+                    ],
+                    "hint": "Located in a New York City neighborhood."
+                },
+                {
+                    "question": "The severe environmental disaster of the 1930s on the Great Plains was the ___ Bowl.",
+                    "answer": [
+                        "dust"
+                    ],
+                    "hint": "Caused by drought and over-farming."
+                },
+                {
+                    "question": "President Franklin D. Roosevelt's program to combat the Great Depression was the New ___.",
+                    "answer": [
+                        "deal"
+                    ],
+                    "hint": "It included Relief, Recovery, and Reform."
+                },
+                {
+                    "question": "The populist Louisiana governor known for his 'Share Our Wealth' program was Huey ___.",
+                    "answer": [
+                        "long"
+                    ],
+                    "hint": "His nickname was 'The Kingfish'."
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "The surprise attack that brought the U.S. into WWII happened at Pearl ___.",
+                    "answer": [
+                        "harbor"
+                    ],
+                    "hint": "December 7, 1941."
+                },
+                {
+                    "question": "The systematic murder of millions of Jews by the Nazis is known as the ___.",
+                    "answer": [
+                        "holocaust"
+                    ],
+                    "hint": "It was a horrific genocide."
+                },
+                {
+                    "question": "The massive Allied invasion of Normandy, France is known as ___-Day.",
+                    "answer": [
+                        "d",
+                        "dday",
+                        "d day"
+                    ],
+                    "hint": "Operation Overlord."
+                },
+                {
+                    "question": "The top-secret U.S. program to develop the atomic bomb was the ___ Project.",
+                    "answer": [
+                        "manhattan"
+                    ],
+                    "hint": "Led by J. Robert Oppenheimer."
+                },
+                {
+                    "question": "The boats designed and built in Louisiana that were crucial for amphibious invasions were ___ Boats.",
+                    "answer": [
+                        "higgins"
+                    ],
+                    "hint": "Eisenhower said they won the war."
+                }
+            ]
+        }
+    },
+    "MYTH": {
+        "grade8": {
+            "unit1": [
+                {
+                    "question": "MYTH or FACT: The 'Wild West' was a chaotic place where gunfights happened in the streets every day.",
+                    "isFact": false,
+                    "explanation": "MYTH: While violence occurred, most frontier towns strictly enforced gun control laws to maintain order. The Hollywood image of daily 'high noon' shootouts is highly exaggerated."
+                },
+                {
+                    "question": "MYTH or FACT: The 'Exodusters' were African Americans who migrated to Kansas to escape the Jim Crow South.",
+                    "isFact": true,
+                    "explanation": "FACT: In the late 1870s, thousands of African Americans fled the violence and economic oppression of the post-Reconstruction South to seek land and freedom on the plains."
+                },
+                {
+                    "question": "MYTH or FACT: The Supreme Court's ruling in Plessy v. Ferguson ensured that segregated facilities were truly equal.",
+                    "isFact": false,
+                    "explanation": "MYTH: The 'separate but equal' doctrine provided legal cover for systemic racism. In reality, facilities for Black Americans were almost universally underfunded and inferior."
+                },
+                {
+                    "question": "MYTH or FACT: Booker T. Washington and W.E.B. Du Bois agreed entirely on the strategy for achieving civil rights.",
+                    "isFact": false,
+                    "explanation": "MYTH: They deeply disagreed. Washington advocated for gradual economic self-reliance (the 'Atlanta Compromise'), while Du Bois demanded immediate political equality and founded the NAACP."
+                },
+                {
+                    "question": "MYTH or FACT: The U.S. government actively encouraged the slaughter of the American buffalo.",
+                    "isFact": true,
+                    "explanation": "FACT: Officials recognized that the Plains Indians depended entirely on the buffalo. Exterminating the herds was a calculated strategy to force tribes onto reservations."
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "MYTH or FACT: Laissez-faire government policies helped prevent the rise of corporate monopolies.",
+                    "isFact": false,
+                    "explanation": "MYTH: 'Laissez-faire' means 'hands off'. Because the government refused to regulate businesses, powerful industrialists were able to ruthlessly crush competition and form massive monopolies."
+                },
+                {
+                    "question": "MYTH or FACT: Muckraking journalists played a major role in exposing corruption and bringing about Progressive reforms.",
+                    "isFact": true,
+                    "explanation": "FACT: Investigative writers like Upton Sinclair and Ida Tarbell shocked the public with their findings, leading directly to laws like the Meat Inspection Act and anti-trust enforcement."
+                },
+                {
+                    "question": "MYTH or FACT: Immigrants arriving in the late 1800s easily found safe, high-paying jobs in factories.",
+                    "isFact": false,
+                    "explanation": "MYTH: Most immigrants faced brutal working conditions, extremely long hours, low wages, and dangerous environments. Child labor was also rampant due to deep poverty."
+                },
+                {
+                    "question": "MYTH or FACT: Horizontal integration involves buying out all competing companies in the same industry.",
+                    "isFact": true,
+                    "explanation": "FACT: This strategy, famously used by John D. Rockefeller's Standard Oil, allows a company to eliminate competition and control the market price of a product."
+                },
+                {
+                    "question": "MYTH or FACT: The Populist Party was formed by wealthy bankers to protect their profits.",
+                    "isFact": false,
+                    "explanation": "MYTH: The Populist (or People's) Party was a grassroots movement formed by desperate farmers and laborers fighting against the power of banks, railroads, and big business."
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "MYTH or FACT: The United States joined the League of Nations to help prevent future global wars.",
+                    "isFact": false,
+                    "explanation": "MYTH: Despite President Woodrow Wilson being the chief architect of the League, the U.S. Senate refused to ratify the treaty, fearing it would drag the country into foreign conflicts."
+                },
+                {
+                    "question": "MYTH or FACT: 'Yellow Journalism' played a major role in pushing the U.S. into the Spanish-American War.",
+                    "isFact": true,
+                    "explanation": "FACT: Newspaper publishers sensationalized stories, particularly the explosion of the USS Maine, to inflame public anger and boost sales, highly influencing the push for war."
+                },
+                {
+                    "question": "MYTH or FACT: The Zimmermann Telegram was a German proposal of alliance to Mexico against the U.S.",
+                    "isFact": true,
+                    "explanation": "FACT: Germany promised to help Mexico recover lost territory (like Texas) if they attacked the U.S. Its interception and publication outraged the American public."
+                },
+                {
+                    "question": "MYTH or FACT: The 19th Amendment guaranteeing women the right to vote was passed without any opposition.",
+                    "isFact": false,
+                    "explanation": "MYTH: The suffrage movement fought a grueling, decades-long battle. Activists faced public mockery, arrest, physical violence, and force-feeding in prison before winning the vote in 1920."
+                },
+                {
+                    "question": "MYTH or FACT: Trench warfare on the Western Front led to quick, decisive military victories in WWI.",
+                    "isFact": false,
+                    "explanation": "MYTH: Trench warfare resulted in a brutal, years-long stalemate. The defensive advantage of machine guns and barbed wire made advancing across 'No Man's Land' nearly impossible and deadly."
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "MYTH or FACT: Prohibition successfully stopped all alcohol consumption in the United States.",
+                    "isFact": false,
+                    "explanation": "MYTH: While legal sales stopped, it fueled a massive black market. People drank in illegal 'speakeasies,' and it led to the rapid rise of violent organized crime syndicates."
+                },
+                {
+                    "question": "MYTH or FACT: Buying stocks 'on margin' was a safe, risk-free way to invest in the 1920s.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was incredibly reckless. Buying on margin meant borrowing money to buy stocks. When the market crashed, investors lost everything and couldn't repay their massive loans."
+                },
+                {
+                    "question": "MYTH or FACT: The Dust Bowl was an environmental disaster worsened by poor farming practices.",
+                    "isFact": true,
+                    "explanation": "FACT: While a severe drought was the trigger, decades of deep plowing had destroyed the native prairie grasses. Without roots to hold the soil, the wind blew it away in massive dust storms."
+                },
+                {
+                    "question": "MYTH or FACT: The New Deal ended the Great Depression immediately within its first year.",
+                    "isFact": false,
+                    "explanation": "MYTH: While the New Deal provided vital relief and reformed the banking system, unemployment remained high for years. The massive industrial production required for WWII ultimately ended the Depression."
+                },
+                {
+                    "question": "MYTH or FACT: Huey Long was a popular Louisiana politician because he advocated for heavily taxing the rich.",
+                    "isFact": true,
+                    "explanation": "FACT: His populist 'Share Our Wealth' program appealed strongly to poor and working-class citizens during the Depression by promising to redistribute wealth from corporations and the elite."
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "MYTH or FACT: Japanese internment camps in the U.S. were necessary to stop massive, proven espionage rings.",
+                    "isFact": false,
+                    "explanation": "MYTH: There was no widespread evidence of espionage by Japanese Americans. Internment was fueled by racism and wartime panic, unjustly imprisoning over 100,000 people and violating their civil rights."
+                },
+                {
+                    "question": "MYTH or FACT: The Higgins Boats, designed in New Orleans, were crucial to Allied amphibious invasions like D-Day.",
+                    "isFact": true,
+                    "explanation": "FACT: General Eisenhower famously said that Andrew Higgins 'won the war for us.' His shallow-draft boats allowed troops to land directly on beaches without needing a captured port."
+                },
+                {
+                    "question": "MYTH or FACT: The Holocaust only targeted Jewish people.",
+                    "isFact": false,
+                    "explanation": "MYTH: While the Jewish population was the primary target, the Nazi regime also systematically murdered millions of others, including Romani people, people with disabilities, and political dissidents."
+                },
+                {
+                    "question": "MYTH or FACT: The 'Island Hopping' strategy involved the U.S. conquering every single Japanese-held island in the Pacific.",
+                    "isFact": false,
+                    "explanation": "MYTH: The strategy involved bypassing heavily fortified islands and capturing strategically important ones, essentially cutting off supply lines to the bypassed islands as they moved closer to Japan."
+                },
+                {
+                    "question": "MYTH or FACT: The use of the atomic bombs on Hiroshima and Nagasaki remains a highly debated historical decision.",
+                    "isFact": true,
+                    "explanation": "FACT: While it brought a quick end to the war without a devastating land invasion of Japan, the horrific civilian casualties make it a deeply complex and debated moral issue to this day."
+                }
+            ]
+        }
+    }
+}

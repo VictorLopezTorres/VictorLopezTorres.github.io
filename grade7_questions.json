@@ -1,0 +1,960 @@
+{
+    "EASY": {
+        "grade7": {
+            "unit1": [
+                {
+                    "question": "Who was the second President of the United States?",
+                    "choices": [
+                        "Thomas Jefferson",
+                        "Alexander Hamilton",
+                        "John Adams",
+                        "James Madison"
+                    ],
+                    "answer": 2,
+                    "hint": "He was Washington's Vice President.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which political party was led by Thomas Jefferson and opposed the National Bank?",
+                    "choices": [
+                        "Federalist Party",
+                        "Democratic-Republican Party",
+                        "Whig Party",
+                        "Liberty Party"
+                    ],
+                    "answer": 1,
+                    "hint": "They believed in a strict interpretation of the Constitution.",
+                    "dok": 1
+                },
+                {
+                    "question": "What event involved Pennsylvania farmers rebelling against a federal tax on liquor?",
+                    "choices": [
+                        "Shays' Rebellion",
+                        "Bacon's Rebellion",
+                        "The Whiskey Rebellion",
+                        "The Boston Tea Party"
+                    ],
+                    "answer": 2,
+                    "hint": "George Washington sent the military to put it down.",
+                    "dok": 1
+                },
+                {
+                    "question": "What did George Washington warn the nation to avoid in his Farewell Address?",
+                    "choices": [
+                        "Westward expansion and taxes",
+                        "Public education and farming",
+                        "Political parties and permanent foreign alliances",
+                        "The abolition of slavery"
+                    ],
+                    "answer": 2,
+                    "hint": "He wanted the US to remain neutral and united.",
+                    "dok": 1
+                },
+                {
+                    "question": "The Alien and Sedition Acts were passed to limit criticism of which President?",
+                    "choices": [
+                        "George Washington",
+                        "John Adams",
+                        "Thomas Jefferson",
+                        "Andrew Jackson"
+                    ],
+                    "answer": 1,
+                    "hint": "He belonged to the Federalist Party.",
+                    "dok": 1
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "Which President authorized the Louisiana Purchase in 1803?",
+                    "choices": [
+                        "John Adams",
+                        "George Washington",
+                        "Thomas Jefferson",
+                        "James Madison"
+                    ],
+                    "answer": 2,
+                    "hint": "He bought it from France.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who did Thomas Jefferson hire to explore the Louisiana Territory?",
+                    "choices": [
+                        "Zebulon Pike",
+                        "Lewis and Clark",
+                        "Daniel Boone",
+                        "John C. Fremont"
+                    ],
+                    "answer": 1,
+                    "hint": "They were guided by Sacagawea.",
+                    "dok": 1
+                },
+                {
+                    "question": "What was the main cause of the War of 1812?",
+                    "choices": [
+                        "The bombing of Fort Sumter",
+                        "British impressment of American sailors",
+                        "The dispute over Texas",
+                        "The assassination of Abraham Lincoln"
+                    ],
+                    "answer": 1,
+                    "hint": "The British were kidnapping American sailors.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who wrote 'The Star-Spangled Banner' during the War of 1812?",
+                    "choices": [
+                        "Thomas Jefferson",
+                        "Andrew Jackson",
+                        "Francis Scott Key",
+                        "Alexander Hamilton"
+                    ],
+                    "answer": 2,
+                    "hint": "He witnessed the bombardment of Fort McHenry.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which battle made Andrew Jackson a national hero?",
+                    "choices": [
+                        "Battle of Gettysburg",
+                        "Battle of Yorktown",
+                        "Battle of Tippecanoe",
+                        "Battle of New Orleans"
+                    ],
+                    "answer": 3,
+                    "hint": "It was fought after the peace treaty had been signed.",
+                    "dok": 1
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "What was the purpose of the Monroe Doctrine?",
+                    "choices": [
+                        "To declare war on Spain",
+                        "To warn European nations to stay out of the Western Hemisphere",
+                        "To end the slave trade",
+                        "To establish a national bank"
+                    ],
+                    "answer": 1,
+                    "hint": "It was a policy of isolationism and protection.",
+                    "dok": 1
+                },
+                {
+                    "question": "What was the idea that the United States was destined to expand across the continent to the Pacific Ocean?",
+                    "choices": [
+                        "Popular Sovereignty",
+                        "Manifest Destiny",
+                        "Abolitionism",
+                        "Sectionalism"
+                    ],
+                    "answer": 1,
+                    "hint": "It justified westward expansion.",
+                    "dok": 1
+                },
+                {
+                    "question": "What invention by Eli Whitney increased the need for enslaved labor in the South?",
+                    "choices": [
+                        "The steamboat",
+                        "The telegraph",
+                        "The cotton gin",
+                        "The mechanical reaper"
+                    ],
+                    "answer": 2,
+                    "hint": "It made cleaning seeds much faster.",
+                    "dok": 1
+                },
+                {
+                    "question": "The forced removal of the Cherokee from their lands to Indian Territory is known as what?",
+                    "choices": [
+                        "The Middle Passage",
+                        "The Oregon Trail",
+                        "The Trail of Tears",
+                        "The Underground Railroad"
+                    ],
+                    "answer": 2,
+                    "hint": "Thousands died on this tragic journey.",
+                    "dok": 1
+                },
+                {
+                    "question": "Which President signed the Indian Removal Act of 1830?",
+                    "choices": [
+                        "Thomas Jefferson",
+                        "James Monroe",
+                        "Andrew Jackson",
+                        "Abraham Lincoln"
+                    ],
+                    "answer": 2,
+                    "hint": "He was known as the hero of New Orleans.",
+                    "dok": 1
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "What was the main goal of the abolitionist movement?",
+                    "choices": [
+                        "To ban alcohol",
+                        "To improve public education",
+                        "To end slavery",
+                        "To secure voting rights for women"
+                    ],
+                    "answer": 2,
+                    "hint": "Frederick Douglass was a famous leader of this movement.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who was the famous 'conductor' on the Underground Railroad?",
+                    "choices": [
+                        "Elizabeth Cady Stanton",
+                        "Susan B. Anthony",
+                        "Harriet Tubman",
+                        "Dorothea Dix"
+                    ],
+                    "answer": 2,
+                    "hint": "She was known as 'Moses'.",
+                    "dok": 1
+                },
+                {
+                    "question": "What event in 1848 marked the beginning of the organized women's rights movement?",
+                    "choices": [
+                        "The Albany Congress",
+                        "The Seneca Falls Convention",
+                        "The Constitutional Convention",
+                        "The signing of the Declaration of Independence"
+                    ],
+                    "answer": 1,
+                    "hint": "They drafted the Declaration of Sentiments.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who was Horace Mann?",
+                    "choices": [
+                        "A leader in the movement for public education reform",
+                        "An abolitionist newspaper publisher",
+                        "A general in the Mexican-American War",
+                        "The inventor of the telegraph"
+                    ],
+                    "answer": 0,
+                    "hint": "He believed education was the 'great equalizer'.",
+                    "dok": 1
+                },
+                {
+                    "question": "What book did Harriet Beecher Stowe write that exposed the harsh realities of slavery?",
+                    "choices": [
+                        "The North Star",
+                        "The Liberator",
+                        "Uncle Tom's Cabin",
+                        "Common Sense"
+                    ],
+                    "answer": 2,
+                    "hint": "It deeply affected Northern attitudes towards slavery.",
+                    "dok": 1
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "What 1857 Supreme Court decision ruled that enslaved people were property, not citizens?",
+                    "choices": [
+                        "Marbury v. Madison",
+                        "Plessy v. Ferguson",
+                        "Dred Scott v. Sandford",
+                        "Worcester v. Georgia"
+                    ],
+                    "answer": 2,
+                    "hint": "It declared the Missouri Compromise unconstitutional.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who was elected President in 1860, prompting several Southern states to secede?",
+                    "choices": [
+                        "Jefferson Davis",
+                        "Andrew Jackson",
+                        "Stephen Douglas",
+                        "Abraham Lincoln"
+                    ],
+                    "answer": 3,
+                    "hint": "He was the first Republican president.",
+                    "dok": 1
+                },
+                {
+                    "question": "Where did the first battle of the Civil War take place?",
+                    "choices": [
+                        "Gettysburg",
+                        "Fort Sumter",
+                        "Antietam",
+                        "Appomattox Court House"
+                    ],
+                    "answer": 1,
+                    "hint": "It was a federal fort in South Carolina.",
+                    "dok": 1
+                },
+                {
+                    "question": "Who was the President of the Confederate States of America?",
+                    "choices": [
+                        "Robert E. Lee",
+                        "Stonewall Jackson",
+                        "Jefferson Davis",
+                        "John C. Calhoun"
+                    ],
+                    "answer": 2,
+                    "hint": "He was a former Senator from Mississippi.",
+                    "dok": 1
+                },
+                {
+                    "question": "What document issued by Abraham Lincoln declared enslaved people in rebelling states to be free?",
+                    "choices": [
+                        "The 13th Amendment",
+                        "The Declaration of Independence",
+                        "The Emancipation Proclamation",
+                        "The Gettysburg Address"
+                    ],
+                    "answer": 2,
+                    "hint": "It changed the focus of the war to ending slavery.",
+                    "dok": 1
+                }
+            ]
+        }
+    },
+    "HARD": {
+        "grade7": {
+            "unit1": [
+                {
+                    "question": "Analyze how the Whiskey Rebellion tested the power of the new federal government.",
+                    "choices": [
+                        "It proved that the government could not collect taxes without state approval.",
+                        "It demonstrated the federal government's ability and willingness to enforce its laws with military power.",
+                        "It led directly to the writing of the Constitution.",
+                        "It forced George Washington to resign from office."
+                    ],
+                    "answer": 1,
+                    "hint": "Compare this to the government's response during Shays's Rebellion.",
+                    "dok": 3
+                },
+                {
+                    "question": "Evaluate the contrasting visions of Alexander Hamilton and Thomas Jefferson regarding the U.S. economy.",
+                    "choices": [
+                        "Hamilton favored an agrarian society; Jefferson favored an industrial economy.",
+                        "Both leaders agreed that the National Bank was unconstitutional.",
+                        "Hamilton supported a National Bank and industrialization; Jefferson supported agriculture and states' rights.",
+                        "Jefferson wanted strict trade tariffs, while Hamilton wanted free trade with France."
+                    ],
+                    "answer": 2,
+                    "hint": "Think about Federalists vs. Democratic-Republicans.",
+                    "dok": 4
+                },
+                {
+                    "question": "Explain the significance of the Kentucky and Virginia Resolutions in American political history.",
+                    "choices": [
+                        "They established the power of judicial review for the Supreme Court.",
+                        "They argued that states had the right to nullify unconstitutional federal laws like the Alien and Sedition Acts.",
+                        "They called for the immediate abolition of slavery.",
+                        "They officially declared war on France during the Quasi-War."
+                    ],
+                    "answer": 1,
+                    "hint": "They were written secretly by Jefferson and Madison.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the impact of the Election of 1800 on the American political system.",
+                    "choices": [
+                        "It led to the collapse of the two-party system.",
+                        "It was the first peaceful transfer of power between opposing political parties.",
+                        "It resulted in the immediate secession of New England states.",
+                        "It permanently abolished the Electoral College."
+                    ],
+                    "answer": 1,
+                    "hint": "Jefferson called it the 'Revolution of 1800'.",
+                    "dok": 3
+                },
+                {
+                    "question": "Evaluate the precedent set by George Washington regarding foreign policy.",
+                    "choices": [
+                        "He advocated for permanent military alliances with European powers.",
+                        "He initiated the policy of isolationism and neutrality to avoid being dragged into European conflicts.",
+                        "He declared that the U.S. must conquer all territories in North America.",
+                        "He encouraged the U.S. to establish colonies in Africa and Asia."
+                    ],
+                    "answer": 1,
+                    "hint": "Think of his Farewell Address.",
+                    "dok": 3
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "Analyze the constitutional dilemma Thomas Jefferson faced when purchasing the Louisiana Territory.",
+                    "choices": [
+                        "He believed the purchase was explicitly authorized by the Constitution.",
+                        "He sought to pass a constitutional amendment before finalizing the treaty.",
+                        "As a strict constructionist, he struggled because the Constitution did not explicitly grant the power to buy land.",
+                        "He ignored the Constitution entirely and bypassed Congress."
+                    ],
+                    "answer": 2,
+                    "hint": "He had to use 'loose construction' to justify the purchase.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the most significant long-term domestic consequence of the War of 1812 for the United States.",
+                    "choices": [
+                        "The U.S. successfully annexed large portions of Canada.",
+                        "The war triggered a severe, decades-long economic depression.",
+                        "The war destroyed American manufacturing capabilities in New England.",
+                        "It boosted national pride and spurred the growth of domestic industry."
+                    ],
+                    "answer": 3,
+                    "hint": "Cut off from British goods, Americans had to start making things themselves.",
+                    "dok": 4
+                },
+                {
+                    "question": "Explain the role of impressment in causing the War of 1812.",
+                    "choices": [
+                        "Britain was forcing American citizens to pay British taxes.",
+                        "Britain was seizing American ships and forcing sailors to serve in the Royal Navy, violating U.S. sovereignty.",
+                        "Britain was building military forts inside the United States.",
+                        "Britain was refusing to buy American cotton."
+                    ],
+                    "answer": 1,
+                    "hint": "It was essentially the kidnapping of sailors.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the political effects of the Battle of New Orleans.",
+                    "choices": [
+                        "It was viewed as a minor skirmish with no real significance.",
+                        "It boosted nationalism and propelled Andrew Jackson to national prominence.",
+                        "Jackson's defeat at the battle ruined his political career.",
+                        "It led to the immediate surrender of the United States to Great Britain."
+                    ],
+                    "answer": 1,
+                    "hint": "Focus on the symbolic importance of overwhelmingly defeating the British military.",
+                    "dok": 3
+                },
+                {
+                    "question": "Evaluate the impact of the Monroe Doctrine on U.S. foreign relations.",
+                    "choices": [
+                        "It declared the U.S. would actively intervene in all European wars.",
+                        "It established the U.S. as the dominant power in the Western Hemisphere and warned Europe against further colonization.",
+                        "It surrendered control of South America to Spain.",
+                        "It proposed a global peacekeeping organization."
+                    ],
+                    "answer": 1,
+                    "hint": "It was a bold statement for a young nation.",
+                    "dok": 4
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "Analyze how the concept of Manifest Destiny was used to justify U.S. actions during the 19th century.",
+                    "choices": [
+                        "It encouraged diplomacy to preserve peace with Native Americans and Mexico.",
+                        "It provided a moral and religious justification for aggressive territorial expansion.",
+                        "It focused national attention solely on acquiring the Oregon Territory peacefully.",
+                        "It was primarily used to argue against the annexation of Texas."
+                    ],
+                    "answer": 1,
+                    "hint": "It means 'obvious fate'.",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate President Andrew Jackson's actions regarding the Indian Removal Act and the Supreme Court decision in Worcester v. Georgia.",
+                    "choices": [
+                        "He utilized the military to enforce the ruling and protect Cherokee lands.",
+                        "He respected the Court's authority and halted all removal efforts.",
+                        "He ignored the Supreme Court's ruling that protected Cherokee sovereignty, leading to the Trail of Tears.",
+                        "He asked Congress to repeal the Indian Removal Act."
+                    ],
+                    "answer": 2,
+                    "hint": "He allegedly said, 'John Marshall has made his decision; now let him enforce it.'",
+                    "dok": 4
+                },
+                {
+                    "question": "Explain how the Transportation Revolution, including the Erie Canal, affected the U.S. economy.",
+                    "choices": [
+                        "It made transportation slower and significantly more expensive.",
+                        "It connected agricultural markets in the West to manufacturing centers in the East, lowering shipping costs and boosting trade.",
+                        "It primarily benefited only the state of New York and harmed the national economy.",
+                        "It caused a total collapse of the Southern plantation economy."
+                    ],
+                    "answer": 1,
+                    "hint": "Moving goods by water became much cheaper and faster.",
+                    "dok": 3
+                },
+                {
+                    "question": "Analyze the constitutional conflict at the center of the Nullification Crisis.",
+                    "choices": [
+                        "It was a debate over whether the President could declare war.",
+                        "It tested the theory that individual states had the right to reject or 'nullify' federal laws they deemed unconstitutional.",
+                        "It argued that the Supreme Court was an illegal institution.",
+                        "It focused entirely on whether the National Bank should be re-chartered."
+                    ],
+                    "answer": 1,
+                    "hint": "South Carolina threatened to secede over tariffs.",
+                    "dok": 4
+                },
+                {
+                    "question": "Compare the economic development of the North and the South prior to the Civil War.",
+                    "choices": [
+                        "Both regions were entirely reliant on heavy industry.",
+                        "The North industrialized with factories and immigrant labor, while the South developed an agrarian economy heavily dependent on enslaved labor and cotton.",
+                        "The South industrialized rapidly while the North remained purely agricultural.",
+                        "Both regions abandoned agriculture in favor of shipping and trade."
+                    ],
+                    "answer": 1,
+                    "hint": "Think about textile mills vs. plantations.",
+                    "dok": 4
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "Analyze the significance of the 'Declaration of Sentiments' produced at the Seneca Falls Convention.",
+                    "choices": [
+                        "It was written in French to appeal to international allies.",
+                        "It modeled itself on the Declaration of Independence to argue that women, as well as men, are endowed with unalienable rights.",
+                        "It focused entirely on the abolition of slavery rather than women's rights.",
+                        "It was a legal contract to establish public schools."
+                    ],
+                    "answer": 1,
+                    "hint": "It stated, 'We hold these truths to be self-evident: that all men and women are created equal.'",
+                    "dok": 4
+                },
+                {
+                    "question": "Evaluate the impact of Harriet Beecher Stowe's 'Uncle Tom's Cabin' on the growing sectional divide.",
+                    "choices": [
+                        "It convinced the South to peacefully abolish slavery.",
+                        "It personalized the horrors of slavery for Northern readers, increasing abolitionist sentiment and infuriating the South.",
+                        "It was widely ignored and had no impact on public opinion.",
+                        "It successfully ended the enforcement of the Fugitive Slave Act."
+                    ],
+                    "answer": 1,
+                    "hint": "It was a powerful piece of anti-slavery literature.",
+                    "dok": 4
+                },
+                {
+                    "question": "Explain the relationship between the Second Great Awakening and the reform movements of the 19th century.",
+                    "choices": [
+                        "It taught that society was perfect and needed no changing.",
+                        "Its emphasis on free will and individual moral duty inspired people to actively work to improve society through abolition, temperance, and education reform.",
+                        "It focused entirely on building new churches and ignored social issues.",
+                        "It argued that only the government could fix social problems."
+                    ],
+                    "answer": 1,
+                    "hint": "If you can save your soul, you can save society.",
+                    "dok": 3
+                },
+                {
+                    "question": "Compare the strategies used by different abolitionists like William Lloyd Garrison and Frederick Douglass.",
+                    "choices": [
+                        "Both believed the Constitution was inherently pro-slavery and advocated for violence.",
+                        "Garrison demanded immediate emancipation and condemned the Constitution, while Douglass used his experience as a formerly enslaved person to speak out and work within the political system.",
+                        "Douglass advocated for violence, while Garrison strictly advocated for gradual political reform.",
+                        "Both focused exclusively on colonizing freed slaves in Africa."
+                    ],
+                    "answer": 1,
+                    "hint": "One burned the Constitution; the other used it to argue for equality.",
+                    "dok": 4
+                },
+                {
+                    "question": "Analyze the role and importance of the Underground Railroad.",
+                    "choices": [
+                        "It was a legal organization sanctioned by the Supreme Court.",
+                        "It was a highly organized, secret network of routes and safe houses that actively resisted the institution of slavery by helping enslaved people escape to freedom.",
+                        "It was a literal train system that ran from Atlanta to New York.",
+                        "It was primarily a fundraising organization to buy the freedom of enslaved people."
+                    ],
+                    "answer": 1,
+                    "hint": "It relied on 'conductors' like Harriet Tubman.",
+                    "dok": 3
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "Evaluate the impact of the Kansas-Nebraska Act and the concept of 'popular sovereignty'.",
+                    "choices": [
+                        "It successfully banned slavery in the territories, bringing peace.",
+                        "By allowing settlers to vote on slavery, it led to violent clashes known as 'Bleeding Kansas', demonstrating the failure of compromise.",
+                        "It forced all Native Americans to leave the territory.",
+                        "It resulted in a unanimous, peaceful vote in favor of abolition."
+                    ],
+                    "answer": 1,
+                    "hint": "Pro-slavery and anti-slavery forces rushed into the territory to sway the vote.",
+                    "dok": 4
+                },
+                {
+                    "question": "Analyze the core legal reasoning and consequences of the Supreme Court's Dred Scott decision.",
+                    "choices": [
+                        "The Court ruled Scott was free because he lived in a free state.",
+                        "It ruled that Black Americans were not citizens and that Congress could not ban slavery in the territories, outraging the North.",
+                        "The Court ruled that slavery was illegal nationwide.",
+                        "The Court refused to hear the case entirely."
+                    ],
+                    "answer": 1,
+                    "hint": "Chief Justice Taney delivered this landmark pro-slavery ruling.",
+                    "dok": 4
+                },
+                {
+                    "question": "Explain how the Election of 1860 demonstrated the severe sectional divide in the United States.",
+                    "choices": [
+                        "Lincoln won unanimously across all states.",
+                        "Lincoln won the presidency without a single electoral vote from the South, proving to Southern states that they had lost national political power.",
+                        "The election was delayed due to the ongoing violence in Kansas.",
+                        "A Southern Democrat won the election, causing the North to secede."
+                    ],
+                    "answer": 1,
+                    "hint": "His election directly triggered the secession crisis.",
+                    "dok": 3
+                },
+                {
+                    "question": "Evaluate the strategic and moral purpose of the Emancipation Proclamation.",
+                    "choices": [
+                        "It instantly freed all enslaved people in the United States.",
+                        "It shifted the war's objective from merely preserving the Union to ending slavery, and discouraged European nations from aiding the Confederacy.",
+                        "It was purely a symbolic gesture with no military impact.",
+                        "It surrendered Northern territory to the Confederacy in exchange for peace."
+                    ],
+                    "answer": 1,
+                    "hint": "It only freed enslaved people in rebelling states.",
+                    "dok": 4
+                },
+                {
+                    "question": "Analyze the message and significance of Abraham Lincoln's Gettysburg Address.",
+                    "choices": [
+                        "He declared that the South would be harshly punished for treason.",
+                        "He redefined the Civil War as a struggle not just for the Union, but for the principle of human equality and the survival of democracy.",
+                        "He announced the immediate end of the war.",
+                        "He formally recognized the independence of the Confederate States."
+                    ],
+                    "answer": 1,
+                    "hint": "Think about the phrase 'a new birth of freedom'.",
+                    "dok": 4
+                }
+            ]
+        }
+    },
+    "SKIBIDI": {
+        "grade7": {
+            "unit1": [
+                {
+                    "question": "The first President of the United States was George ___.",
+                    "answer": [
+                        "washington"
+                    ],
+                    "hint": "He set the precedent of serving only two terms."
+                },
+                {
+                    "question": "The Federalist leader who served as the first Secretary of the Treasury was Alexander ___.",
+                    "answer": [
+                        "hamilton"
+                    ],
+                    "hint": "He advocated for a National Bank."
+                },
+                {
+                    "question": "The 1794 rebellion by farmers over a federal tax was the ___ Rebellion.",
+                    "answer": [
+                        "whiskey",
+                        "whiskeys"
+                    ],
+                    "hint": "Washington sent troops to stop it."
+                },
+                {
+                    "question": "The political party led by Thomas Jefferson was the ___-Republican party.",
+                    "answer": [
+                        "democratic"
+                    ],
+                    "hint": "They opposed the Federalists."
+                },
+                {
+                    "question": "The laws passed by John Adams that made it illegal to criticize the government were the Alien and ___ Acts.",
+                    "answer": [
+                        "sedition"
+                    ],
+                    "hint": "They were seen as a violation of the 1st Amendment."
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "The massive land deal with France in 1803 was the ___ Purchase.",
+                    "answer": [
+                        "louisiana"
+                    ],
+                    "hint": "It doubled the size of the US."
+                },
+                {
+                    "question": "The explorers hired by Jefferson to map the new territory were ___ and Clark.",
+                    "answer": [
+                        "lewis"
+                    ],
+                    "hint": "They were guided by Sacagawea."
+                },
+                {
+                    "question": "The British practice of kidnapping American sailors and forcing them into service is called ___.",
+                    "answer": [
+                        "impressment"
+                    ],
+                    "hint": "It was a major cause of the War of 1812."
+                },
+                {
+                    "question": "The author of 'The Star-Spangled Banner' was Francis Scott ___.",
+                    "answer": [
+                        "key"
+                    ],
+                    "hint": "He wrote it after the Battle of Fort McHenry."
+                },
+                {
+                    "question": "The American general who became a hero at the Battle of New Orleans was Andrew ___.",
+                    "answer": [
+                        "jackson"
+                    ],
+                    "hint": "He later became the 7th President."
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "The policy warning European nations against interfering in the Americas is the ___ Doctrine.",
+                    "answer": [
+                        "monroe"
+                    ],
+                    "hint": "It was issued in 1823."
+                },
+                {
+                    "question": "The belief that the US was destined to expand to the Pacific Ocean is Manifest ___.",
+                    "answer": [
+                        "destiny"
+                    ],
+                    "hint": "It justified westward expansion."
+                },
+                {
+                    "question": "The invention by Eli Whitney that increased the demand for enslaved labor was the ___ gin.",
+                    "answer": [
+                        "cotton"
+                    ],
+                    "hint": "It separated seeds from the fiber."
+                },
+                {
+                    "question": "The forced relocation of the Cherokee to Indian Territory is known as the Trail of ___.",
+                    "answer": [
+                        "tears"
+                    ],
+                    "hint": "Thousands perished on the journey."
+                },
+                {
+                    "question": "The crisis where South Carolina threatened to secede over tariffs was the ___ Crisis.",
+                    "answer": [
+                        "nullification"
+                    ],
+                    "hint": "They claimed the right to ignore federal law."
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "The movement to end slavery was called the ___ movement.",
+                    "answer": [
+                        "abolition",
+                        "abolitionist"
+                    ],
+                    "hint": "Frederick Douglass was a key leader."
+                },
+                {
+                    "question": "The famous conductor of the Underground Railroad was Harriet ___.",
+                    "answer": [
+                        "tubman"
+                    ],
+                    "hint": "She was known as 'Moses'."
+                },
+                {
+                    "question": "The first women's rights convention was held in ___ Falls, NY.",
+                    "answer": [
+                        "seneca"
+                    ],
+                    "hint": "They drafted the Declaration of Sentiments."
+                },
+                {
+                    "question": "The reformer who worked to improve conditions in prisons and mental asylums was Dorothea ___.",
+                    "answer": [
+                        "dix"
+                    ],
+                    "hint": "She presented horrifying reports to legislatures."
+                },
+                {
+                    "question": "The author of 'Uncle Tom's Cabin' was Harriet Beecher ___.",
+                    "answer": [
+                        "stowe"
+                    ],
+                    "hint": "Her book fueled anti-slavery sentiment in the North."
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "The Supreme Court case that ruled enslaved people were not citizens was the ___ Scott decision.",
+                    "answer": [
+                        "dred"
+                    ],
+                    "hint": "He sued for his freedom after living in free territory."
+                },
+                {
+                    "question": "The violence in the territories over the issue of slavery was called Bleeding ___.",
+                    "answer": [
+                        "kansas"
+                    ],
+                    "hint": "It resulted from popular sovereignty."
+                },
+                {
+                    "question": "The first shots of the Civil War were fired at Fort ___.",
+                    "answer": [
+                        "sumter"
+                    ],
+                    "hint": "It was located in South Carolina."
+                },
+                {
+                    "question": "The President of the Confederate States of America was Jefferson ___.",
+                    "answer": [
+                        "davis"
+                    ],
+                    "hint": "He was a former US Senator."
+                },
+                {
+                    "question": "The document that freed enslaved people in the rebelling states was the ___ Proclamation.",
+                    "answer": [
+                        "emancipation"
+                    ],
+                    "hint": "Issued by Lincoln after Antietam."
+                }
+            ]
+        }
+    },
+    "MYTH": {
+        "grade7": {
+            "unit1": [
+                {
+                    "question": "MYTH or FACT: George Washington chopped down his father's cherry tree and confessed to it.",
+                    "isFact": false,
+                    "explanation": "MYTH: This famous story was completely invented by an early biographer, Parson Weems, to illustrate Washington's honesty. There is no historical evidence it happened."
+                },
+                {
+                    "question": "MYTH or FACT: The Whiskey Rebellion proved the new federal government was weak and powerless.",
+                    "isFact": false,
+                    "explanation": "MYTH: It proved the exact opposite. By raising an army to crush the rebellion, Washington proved the new Constitutional government could enforce its laws, unlike the Articles of Confederation."
+                },
+                {
+                    "question": "MYTH or FACT: Alexander Hamilton and Thomas Jefferson's disagreements led to the creation of the first political parties.",
+                    "isFact": true,
+                    "explanation": "FACT: Their intense conflicts over the National Bank, the economy, and federal power directly resulted in the formation of the Federalist and Democratic-Republican parties."
+                },
+                {
+                    "question": "MYTH or FACT: The Alien and Sedition Acts were created to expand free speech rights.",
+                    "isFact": false,
+                    "explanation": "MYTH: They severely restricted free speech, allowing the government to jail newspaper editors and politicians who criticized President John Adams and the Federalist party."
+                },
+                {
+                    "question": "MYTH or FACT: George Washington was a member of the Federalist Party.",
+                    "isFact": false,
+                    "explanation": "MYTH: Washington officially remained non-partisan and warned against political parties, though his policies generally aligned with Hamilton and the Federalists."
+                }
+            ],
+            "unit2": [
+                {
+                    "question": "MYTH or FACT: Thomas Jefferson fought a war with France to conquer the Louisiana Territory.",
+                    "isFact": false,
+                    "explanation": "MYTH: He purchased it peacefully. Napoleon Bonaparte, needing funds for his wars in Europe, sold the massive territory to the U.S. for $15 million in 1803."
+                },
+                {
+                    "question": "MYTH or FACT: The Lewis and Clark expedition discovered a direct, all-water route to the Pacific Ocean.",
+                    "isFact": false,
+                    "explanation": "MYTH: While they successfully mapped the region and reached the ocean, they proved that a 'Northwest Passage' (a continuous water route) did not exist across the continent."
+                },
+                {
+                    "question": "MYTH or FACT: The United States decisively won the War of 1812 and took over Canada.",
+                    "isFact": false,
+                    "explanation": "MYTH: The war was largely a military stalemate. The Treaty of Ghent restored all pre-war borders, though the U.S. did gain a surge of national pride and international respect."
+                },
+                {
+                    "question": "MYTH or FACT: The Battle of New Orleans was fought after the peace treaty ending the war had already been signed.",
+                    "isFact": true,
+                    "explanation": "FACT: The Treaty of Ghent was signed in Europe weeks before the battle, but news traveled slowly across the Atlantic by ship, so the armies in Louisiana didn't know the war was over."
+                },
+                {
+                    "question": "MYTH or FACT: The British successfully burned the White House during the War of 1812.",
+                    "isFact": true,
+                    "explanation": "FACT: In 1814, British forces captured Washington D.C. and set fire to the White House and the Capitol building."
+                }
+            ],
+            "unit3": [
+                {
+                    "question": "MYTH or FACT: Manifest Destiny was an official law passed by Congress to force expansion.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was not a law, but a widely held cultural belief that Americans were divinely ordained by God to settle the entire North American continent."
+                },
+                {
+                    "question": "MYTH or FACT: The Trail of Tears was a voluntary migration by Native Americans seeking better land.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was a brutal, forced relocation enacted by the U.S. government under the Indian Removal Act, resulting in the deaths of thousands of indigenous people."
+                },
+                {
+                    "question": "MYTH or FACT: The invention of the cotton gin led to a decrease in the use of enslaved labor.",
+                    "isFact": false,
+                    "explanation": "MYTH: The cotton gin made processing cotton so incredibly profitable that plantation owners rapidly expanded their operations, drastically increasing the demand for enslaved labor."
+                },
+                {
+                    "question": "MYTH or FACT: Andrew Jackson fully supported and enforced the Supreme Court's decision in Worcester v. Georgia.",
+                    "isFact": false,
+                    "explanation": "MYTH: Jackson blatantly ignored Chief Justice John Marshall's ruling that protected Cherokee sovereignty, allowing the state of Georgia to proceed with forced removal."
+                },
+                {
+                    "question": "MYTH or FACT: The Erie Canal was a massive financial failure.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was an incredible success. It drastically lowered the cost of shipping goods between the Midwest and New York, booming the economy."
+                }
+            ],
+            "unit4": [
+                {
+                    "question": "MYTH or FACT: The Underground Railroad was a literal train system running under the soil.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was a metaphor. It was actually a highly organized, secret network of safe houses, guides (conductors), and routes used to help enslaved people escape to freedom."
+                },
+                {
+                    "question": "MYTH or FACT: The Seneca Falls Convention of 1848 immediately granted women the right to vote.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was the launching point of the movement. Women would not secure the national right to vote until the 19th Amendment was ratified 72 years later."
+                },
+                {
+                    "question": "MYTH or FACT: Most people in the Northern states before the Civil War were radical abolitionists.",
+                    "isFact": false,
+                    "explanation": "MYTH: Radical abolitionists who wanted to end slavery immediately were a minority. Most Northerners were either indifferent or simply wanted to stop the *expansion* of slavery into new territories."
+                },
+                {
+                    "question": "MYTH or FACT: William Lloyd Garrison believed the Constitution was a great anti-slavery document.",
+                    "isFact": false,
+                    "explanation": "MYTH: Garrison, a radical abolitionist, believed the Constitution was a pro-slavery agreement with the devil and famously burned a copy of it in protest."
+                },
+                {
+                    "question": "MYTH or FACT: The Temperance Movement was an effort to ban the consumption of alcohol.",
+                    "isFact": true,
+                    "explanation": "FACT: Reformers believed alcohol was the root cause of poverty, crime, and domestic violence, and they pushed heavily for prohibition laws."
+                }
+            ],
+            "unit5": [
+                {
+                    "question": "MYTH or FACT: The Dred Scott Supreme Court decision ruled that enslaved people were property, not citizens.",
+                    "isFact": true,
+                    "explanation": "FACT: The 1857 ruling was a massive blow to the abolitionist movement, declaring that Black Americans had no constitutional rights and that Congress couldn't ban slavery in the territories."
+                },
+                {
+                    "question": "MYTH or FACT: The Emancipation Proclamation immediately freed every enslaved person in the United States.",
+                    "isFact": false,
+                    "explanation": "MYTH: It only freed enslaved people in the Confederate states that were currently in rebellion. It did not apply to border states that stayed in the Union."
+                },
+                {
+                    "question": "MYTH or FACT: The primary cause of Southern secession was states' rights, not slavery.",
+                    "isFact": false,
+                    "explanation": "MYTH: While they used the argument of 'states' rights', their own secession documents explicitly stated that the primary right they were fighting to protect was the institution of slavery."
+                },
+                {
+                    "question": "MYTH or FACT: Abraham Lincoln won the 1860 election without a single electoral vote from the South.",
+                    "isFact": true,
+                    "explanation": "FACT: He wasn't even on the ballot in most Southern states. His election proved to the South that they had lost their national political power, sparking secession."
+                },
+                {
+                    "question": "MYTH or FACT: The Battle of Gettysburg was a massive victory for the Confederacy.",
+                    "isFact": false,
+                    "explanation": "MYTH: It was a devastating defeat for Robert E. Lee that destroyed a huge portion of his army and permanently ended his invasions of the North."
+                }
+            ]
+        }
+    }
+}
