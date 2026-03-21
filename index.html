@@ -2060,6 +2060,7 @@
         let notificationQueue = [];
         let isModalActive = false;
         let isGamePaused = false;
+        let isTransitioning = false;
         let notificationTimer = null;
         let isMuted = false;
         let lastNotificationMessage = '';
@@ -2350,7 +2351,7 @@
 
                 // Toggle store items based on game mode
                 if (originalItemName === 'hunchUpgrade') {
-                    const isSkibidi = gameMode === 'SKIBIDI';
+                    const isSkibidi = gameMode === 'SKIBIDI' || (gameMode === 'SIGMA' && sigmaStage === 3);
                     hunchUpgradeStoreItem.classList.toggle('hidden', isSkibidi);
                     firstLastLetterStoreItem.classList.toggle('hidden', !isSkibidi);
 
@@ -2539,6 +2540,7 @@
         }
 
         function activateSkip() {
+            if (isTransitioning) return;
             if (abilities.skip > 0) {
                 playClickSound();
                 abilities.skip--;
@@ -2549,6 +2551,7 @@
         }
 
         function activateRedo() {
+            if (isTransitioning) return;
             if (abilities.redo > 0 && wrongAnswers.length > 0) {
                 playClickSound();
                 abilities.redo--;
@@ -2869,6 +2872,7 @@
 
                 // Update progress AFTER the question has been shifted from the array.
                 updateSigmaProgress();
+                isTransitioning = false;
             }, 300);
         }
 
@@ -2941,6 +2945,7 @@
         }
 
         function handleAnswer(isCorrect, selectedChoiceEl) {
+            isTransitioning = true;
             let proceedToNextQuestionAutomatically = true;
             playerState.questionsAnswered++;
             const isSkibidi = gameMode === 'SKIBIDI';
@@ -3111,6 +3116,7 @@
                     }
                     const correctAnswer = Array.isArray(question.answer) ? question.answer.join(' / ') : question.answer;
                     skibidiCorrectAnswerTextEl.textContent = correctAnswer;
+                    isGamePaused = true;
                     skibidiIncorrectModal.classList.remove('hidden');
                 } else {
                     updateNotification("Incorrect. Don't lose focus!");
@@ -3231,7 +3237,7 @@
                 } else {
                     hintText = answer.split(' ').map(word => word.charAt(0)).join(' ');
                 }
-                firstLetterTextEl.textContent = hintText;
+                firstLetterTextEl.textContent = hintText.toUpperCase();
                 firstLetterModal.classList.remove('hidden');
             }
         }
@@ -3485,6 +3491,7 @@
         closeExplanationBtn.addEventListener('click', () => {
             playClickSound();
             explanationModal.classList.add('hidden');
+            isGamePaused = false;
             displayNextQuestion(); // Move to the next question after closing the explanation
         });
         closeStreakBtn.addEventListener('click', () => {
@@ -3508,6 +3515,7 @@
         closeSkibidiIncorrectBtn.addEventListener('click', () => {
             playClickSound();
             skibidiIncorrectModal.classList.add('hidden');
+            isGamePaused = false;
             displayNextQuestion(); // Proceed to the next question only after closing the modal
         });
 
