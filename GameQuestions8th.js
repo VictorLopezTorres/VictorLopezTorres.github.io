@@ -247,4 +247,417 @@ const gameQuestions8th = {
             { question: "MYTH or FACT: The Holocaust was a secret, accidental consequence of the war.", isFact: false, explanation: "MYTH: It was the horrific, deliberate, and highly organized genocide of six million Jewish people and millions of others, planned and executed by the Nazi regime." }
         ]
     }
-};
+,
+    FILL_BLANK: {
+    "unit1": [
+        {
+            "text": "The [BLANK_0] Amendment permanently abolished [BLANK_1] in the United States.",
+            "blanks": [
+                "13th",
+                "slavery"
+            ],
+            "wordBank": [
+                "13th",
+                "14th",
+                "slavery",
+                "segregation",
+                "poll taxes"
+            ],
+            "hint": "Passed shortly before Lincoln's death.",
+            "dok": 1
+        },
+        {
+            "text": "The [BLANK_0] Amendment granted citizenship and equal [BLANK_1] under the law.",
+            "blanks": [
+                "14th",
+                "protection"
+            ],
+            "wordBank": [
+                "14th",
+                "15th",
+                "protection",
+                "voting",
+                "rights"
+            ],
+            "hint": "Aimed to protect formerly enslaved people.",
+            "dok": 2
+        },
+        {
+            "text": "In the agricultural system of [BLANK_0], poor farmers worked land in exchange for a portion of the [BLANK_1].",
+            "blanks": [
+                "sharecropping",
+                "crops"
+            ],
+            "wordBank": [
+                "sharecropping",
+                "homesteading",
+                "crops",
+                "money",
+                "debt"
+            ],
+            "hint": "It often trapped families in debt.",
+            "dok": 2
+        },
+        {
+            "text": "State laws enforcing strict racial [BLANK_0] in the South were known as [BLANK_1] Crow laws.",
+            "blanks": [
+                "segregation",
+                "Jim"
+            ],
+            "wordBank": [
+                "segregation",
+                "integration",
+                "Jim",
+                "Black",
+                "Code"
+            ],
+            "hint": "Named after a minstrel show character.",
+            "dok": 2
+        },
+        {
+            "text": "The Supreme Court case [BLANK_0] v. Ferguson established the doctrine of 'separate but [BLANK_1]'.",
+            "blanks": [
+                "Plessy",
+                "equal"
+            ],
+            "wordBank": [
+                "Plessy",
+                "Brown",
+                "equal",
+                "free",
+                "fair"
+            ],
+            "hint": "Involved a man arrested on a train.",
+            "dok": 2
+        }
+    ],
+    "unit2": [
+        {
+            "text": "The [BLANK_0] Age was a period of extreme wealth for a few and deep [BLANK_1] for many.",
+            "blanks": [
+                "Gilded",
+                "poverty"
+            ],
+            "wordBank": [
+                "Gilded",
+                "Progressive",
+                "poverty",
+                "equality",
+                "corruption"
+            ],
+            "hint": "Coined by Mark Twain.",
+            "dok": 2
+        },
+        {
+            "text": "Investigative journalists who exposed corruption were called [BLANK_0], such as Upton Sinclair who wrote 'The [BLANK_1]'.",
+            "blanks": [
+                "muckrakers",
+                "Jungle"
+            ],
+            "wordBank": [
+                "muckrakers",
+                "yellow journalists",
+                "Jungle",
+                "Octopus",
+                "History"
+            ],
+            "hint": "They raked through the dirt of society.",
+            "dok": 2
+        },
+        {
+            "text": "John D. [BLANK_0] dominated the American oil industry with his company, [BLANK_1] Oil.",
+            "blanks": [
+                "Rockefeller",
+                "Standard"
+            ],
+            "wordBank": [
+                "Rockefeller",
+                "Carnegie",
+                "Standard",
+                "Gulf",
+                "Imperial"
+            ],
+            "hint": "He became extremely wealthy.",
+            "dok": 1
+        },
+        {
+            "text": "The majority of European immigrants arrived and were processed at [BLANK_0] Island in New [BLANK_1].",
+            "blanks": [
+                "Ellis",
+                "York"
+            ],
+            "wordBank": [
+                "Ellis",
+                "Angel",
+                "York",
+                "Jersey",
+                "Boston"
+            ],
+            "hint": "Near the Statue of Liberty.",
+            "dok": 1
+        },
+        {
+            "text": "Henry Ford perfected the assembly [BLANK_0] to lower the costs of manufacturing [BLANK_1].",
+            "blanks": [
+                "line",
+                "cars"
+            ],
+            "wordBank": [
+                "line",
+                "plant",
+                "cars",
+                "steel",
+                "trains"
+            ],
+            "hint": "Workers stayed in one place.",
+            "dok": 2
+        }
+    ],
+    "unit3": [
+        {
+            "text": "The policy of powerful countries seeking to control weaker ones is called [BLANK_0], which the U.S. pursued by acquiring [BLANK_1].",
+            "blanks": [
+                "imperialism",
+                "territories"
+            ],
+            "wordBank": [
+                "imperialism",
+                "isolationism",
+                "territories",
+                "allies",
+                "states"
+            ],
+            "hint": "Like Hawaii and the Philippines.",
+            "dok": 2
+        },
+        {
+            "text": "The mysterious explosion of the USS [BLANK_0] helped spark the [BLANK_1]-American War.",
+            "blanks": [
+                "Maine",
+                "Spanish"
+            ],
+            "wordBank": [
+                "Maine",
+                "Lusitania",
+                "Spanish",
+                "Mexican",
+                "British"
+            ],
+            "hint": "'Remember the ___!'",
+            "dok": 1
+        },
+        {
+            "text": "The engineering marvel that connected the Atlantic and Pacific oceans is the [BLANK_0] [BLANK_1].",
+            "blanks": [
+                "Panama",
+                "Canal"
+            ],
+            "wordBank": [
+                "Panama",
+                "Suez",
+                "Canal",
+                "Strait",
+                "River"
+            ],
+            "hint": "Pushed by Teddy Roosevelt.",
+            "dok": 1
+        },
+        {
+            "text": "World War I combat on the Western Front was characterized by [BLANK_0] warfare and 'No Man's [BLANK_1]'.",
+            "blanks": [
+                "trench",
+                "Land"
+            ],
+            "wordBank": [
+                "trench",
+                "guerilla",
+                "Land",
+                "Zone",
+                "Area"
+            ],
+            "hint": "Deep ditches and stalemates.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Telegram proposed an alliance between Germany and [BLANK_1] against the U.S.",
+            "blanks": [
+                "Zimmerman",
+                "Mexico"
+            ],
+            "wordBank": [
+                "Zimmerman",
+                "Lusitania",
+                "Mexico",
+                "Spain",
+                "Japan"
+            ],
+            "hint": "Intercepted by the British.",
+            "dok": 2
+        }
+    ],
+    "unit4": [
+        {
+            "text": "The Stock Market Crash of [BLANK_0] signaled the start of the Great [BLANK_1].",
+            "blanks": [
+                "1929",
+                "Depression"
+            ],
+            "wordBank": [
+                "1929",
+                "1914",
+                "Depression",
+                "Recession",
+                "War"
+            ],
+            "hint": "Billions disappeared in days.",
+            "dok": 1
+        },
+        {
+            "text": "The severe environmental disaster on the Great Plains in the 1930s was the [BLANK_0] [BLANK_1].",
+            "blanks": [
+                "Dust",
+                "Bowl"
+            ],
+            "wordBank": [
+                "Dust",
+                "Dirt",
+                "Bowl",
+                "Storm",
+                "Drought"
+            ],
+            "hint": "Forced 'Okies' to migrate.",
+            "dok": 1
+        },
+        {
+            "text": "Franklin D. Roosevelt promised Americans a '[BLANK_0] [BLANK_1]' to fix the economy.",
+            "blanks": [
+                "New",
+                "Deal"
+            ],
+            "wordBank": [
+                "New",
+                "Square",
+                "Deal",
+                "Plan",
+                "Era"
+            ],
+            "hint": "Included programs like the WPA and CCC.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Security Act provided a safety net, specifically pensions for the [BLANK_1].",
+            "blanks": [
+                "Social",
+                "elderly"
+            ],
+            "wordBank": [
+                "Social",
+                "National",
+                "elderly",
+                "youth",
+                "farmers"
+            ],
+            "hint": "Still exists today.",
+            "dok": 2
+        },
+        {
+            "text": "The period in the 1920s when alcohol was illegal was known as [BLANK_0], leading to the rise of organized [BLANK_1].",
+            "blanks": [
+                "Prohibition",
+                "crime"
+            ],
+            "wordBank": [
+                "Prohibition",
+                "Temperance",
+                "crime",
+                "speakeasies",
+                "gangs"
+            ],
+            "hint": "The 18th Amendment.",
+            "dok": 2
+        }
+    ],
+    "unit5": [
+        {
+            "text": "The United States entered WWII after the attack on [BLANK_0] [BLANK_1].",
+            "blanks": [
+                "Pearl",
+                "Harbor"
+            ],
+            "wordBank": [
+                "Pearl",
+                "Midway",
+                "Harbor",
+                "Island",
+                "Base"
+            ],
+            "hint": "A date which will live in infamy.",
+            "dok": 1
+        },
+        {
+            "text": "The alliance of Germany, Italy, and Japan during WWII was known as the [BLANK_0] [BLANK_1].",
+            "blanks": [
+                "Axis",
+                "Powers"
+            ],
+            "wordBank": [
+                "Axis",
+                "Allied",
+                "Powers",
+                "Forces",
+                "Nations"
+            ],
+            "hint": "They were the enemies of the U.S.",
+            "dok": 2
+        },
+        {
+            "text": "The massive Allied invasion of Normandy, France on June 6, 1944, is known as [BLANK_0]-[BLANK_1].",
+            "blanks": [
+                "D",
+                "Day"
+            ],
+            "wordBank": [
+                "D",
+                "V",
+                "Day",
+                "E",
+                "Invasion"
+            ],
+            "hint": "Opened a crucial second front.",
+            "dok": 1
+        },
+        {
+            "text": "The top-secret U.S. program to develop the atomic bomb was the [BLANK_0] [BLANK_1].",
+            "blanks": [
+                "Manhattan",
+                "Project"
+            ],
+            "wordBank": [
+                "Manhattan",
+                "Apollo",
+                "Project",
+                "Experiment",
+                "Plan"
+            ],
+            "hint": "Led by Oppenheimer.",
+            "dok": 2
+        },
+        {
+            "text": "The horrific genocide of six million Jewish people by the Nazi regime is known as the [BLANK_0], the execution of Hitler's 'Final [BLANK_1]'.",
+            "blanks": [
+                "Holocaust",
+                "Solution"
+            ],
+            "wordBank": [
+                "Holocaust",
+                "Internment",
+                "Solution",
+                "Plan",
+                "Order"
+            ],
+            "hint": "A systematic mass murder.",
+            "dok": 2
+        }
+    ]
+}
+}

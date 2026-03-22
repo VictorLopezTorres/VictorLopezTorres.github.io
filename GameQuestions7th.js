@@ -247,4 +247,417 @@ const gameQuestions7th = {
             { question: "MYTH or FACT: Louisiana was strategically unimportant during the Civil War.", isFact: false, explanation: "MYTH: Because it controlled the mouth of the Mississippi River, New Orleans was the most vital port in the South, making it a primary target for the Union navy." }
         ]
     }
-};
+,
+    FILL_BLANK: {
+    "unit1": [
+        {
+            "text": "George Washington warned against political [BLANK_0] and foreign [BLANK_1] in his Farewell Address.",
+            "blanks": [
+                "parties",
+                "alliances"
+            ],
+            "wordBank": [
+                "parties",
+                "taxes",
+                "alliances",
+                "trade",
+                "banks"
+            ],
+            "hint": "He feared these would divide and endanger the nation.",
+            "dok": 2
+        },
+        {
+            "text": "Alexander Hamilton served as the first Secretary of the [BLANK_0] and championed the National [BLANK_1].",
+            "blanks": [
+                "Treasury",
+                "Bank"
+            ],
+            "wordBank": [
+                "Treasury",
+                "State",
+                "Bank",
+                "Army",
+                "Debt"
+            ],
+            "hint": "He is featured on the ten-dollar bill.",
+            "dok": 1
+        },
+        {
+            "text": "The [BLANK_0] Rebellion was an uprising of farmers protesting a federal [BLANK_1].",
+            "blanks": [
+                "Whiskey",
+                "tax"
+            ],
+            "wordBank": [
+                "Whiskey",
+                "Shays'",
+                "tax",
+                "law",
+                "tariff"
+            ],
+            "hint": "Washington led troops to stop it.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] and Sedition Acts restricted freedom of speech and the [BLANK_1].",
+            "blanks": [
+                "Alien",
+                "press"
+            ],
+            "wordBank": [
+                "Alien",
+                "Stamp",
+                "press",
+                "religion",
+                "assembly"
+            ],
+            "hint": "Passed under John Adams.",
+            "dok": 2
+        },
+        {
+            "text": "Marbury v. [BLANK_0] established the principle of judicial [BLANK_1].",
+            "blanks": [
+                "Madison",
+                "review"
+            ],
+            "wordBank": [
+                "Madison",
+                "Maryland",
+                "review",
+                "branch",
+                "supremacy"
+            ],
+            "hint": "It involved 'midnight judges'.",
+            "dok": 2
+        }
+    ],
+    "unit2": [
+        {
+            "text": "The Louisiana [BLANK_0] doubled the size of the United States in [BLANK_1].",
+            "blanks": [
+                "Purchase",
+                "1803"
+            ],
+            "wordBank": [
+                "Purchase",
+                "Territory",
+                "1803",
+                "1812",
+                "1776"
+            ],
+            "hint": "It was bought from France.",
+            "dok": 1
+        },
+        {
+            "text": "The British practice of [BLANK_0] forced American sailors to serve in the British [BLANK_1].",
+            "blanks": [
+                "impressment",
+                "navy"
+            ],
+            "wordBank": [
+                "impressment",
+                "embargo",
+                "navy",
+                "army",
+                "merchant"
+            ],
+            "hint": "A major cause of the War of 1812.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Doctrine warned Europe not to [BLANK_1] the Americas.",
+            "blanks": [
+                "Monroe",
+                "colonize"
+            ],
+            "wordBank": [
+                "Monroe",
+                "Truman",
+                "colonize",
+                "invade",
+                "trade"
+            ],
+            "hint": "Issued in 1823.",
+            "dok": 2
+        },
+        {
+            "text": "Lewis and [BLANK_0] explored the new western territory with the help of [BLANK_1].",
+            "blanks": [
+                "Clark",
+                "Sacagawea"
+            ],
+            "wordBank": [
+                "Clark",
+                "Pike",
+                "Sacagawea",
+                "Pocahontas",
+                "Tecumseh"
+            ],
+            "hint": "Their group was called the Corps of Discovery.",
+            "dok": 1
+        },
+        {
+            "text": "The Battle of New [BLANK_0] made Andrew [BLANK_1] a national hero.",
+            "blanks": [
+                "Orleans",
+                "Jackson"
+            ],
+            "wordBank": [
+                "Orleans",
+                "York",
+                "Jackson",
+                "Washington",
+                "Harrison"
+            ],
+            "hint": "Fought after the treaty was signed.",
+            "dok": 2
+        }
+    ],
+    "unit3": [
+        {
+            "text": "Manifest [BLANK_0] was the belief that the U.S. was meant to expand to the [BLANK_1] Ocean.",
+            "blanks": [
+                "Destiny",
+                "Pacific"
+            ],
+            "wordBank": [
+                "Destiny",
+                "Expansion",
+                "Pacific",
+                "Atlantic",
+                "Gulf"
+            ],
+            "hint": "Translates to 'obvious fate'.",
+            "dok": 1
+        },
+        {
+            "text": "The [BLANK_0] gin vastly increased the demand for [BLANK_1] labor in the South.",
+            "blanks": [
+                "cotton",
+                "enslaved"
+            ],
+            "wordBank": [
+                "cotton",
+                "steam",
+                "enslaved",
+                "free",
+                "factory"
+            ],
+            "hint": "Invented by Eli Whitney.",
+            "dok": 2
+        },
+        {
+            "text": "The forced march of the [BLANK_0] people is known as the Trail of [BLANK_1].",
+            "blanks": [
+                "Cherokee",
+                "Tears"
+            ],
+            "wordBank": [
+                "Cherokee",
+                "Seminole",
+                "Tears",
+                "Sorrow",
+                "Death"
+            ],
+            "hint": "To Indian Territory.",
+            "dok": 1
+        },
+        {
+            "text": "The [BLANK_0] Revolution was the rapid shift to machine-made goods in [BLANK_1].",
+            "blanks": [
+                "Industrial",
+                "factories"
+            ],
+            "wordBank": [
+                "Industrial",
+                "Agricultural",
+                "factories",
+                "farms",
+                "homes"
+            ],
+            "hint": "Began in New England.",
+            "dok": 2
+        },
+        {
+            "text": "Andrew Jackson rewarded his supporters with government jobs in the [BLANK_0] [BLANK_1].",
+            "blanks": [
+                "Spoils",
+                "System"
+            ],
+            "wordBank": [
+                "Spoils",
+                "Merit",
+                "System",
+                "Bargain",
+                "Branch"
+            ],
+            "hint": "To the victor go the spoils.",
+            "dok": 2
+        }
+    ],
+    "unit4": [
+        {
+            "text": "The Seneca Falls Convention was the first public meeting focused on [BLANK_0] [BLANK_1].",
+            "blanks": [
+                "women's",
+                "rights"
+            ],
+            "wordBank": [
+                "women's",
+                "civil",
+                "rights",
+                "suffrage",
+                "labor"
+            ],
+            "hint": "Held in New York in 1848.",
+            "dok": 2
+        },
+        {
+            "text": "Harriet [BLANK_0] was a famous 'conductor' on the [BLANK_1] Railroad.",
+            "blanks": [
+                "Tubman",
+                "Underground"
+            ],
+            "wordBank": [
+                "Tubman",
+                "Stowe",
+                "Underground",
+                "Transcontinental",
+                "Erie"
+            ],
+            "hint": "Known as 'Moses'.",
+            "dok": 1
+        },
+        {
+            "text": "Dorothea [BLANK_0] campaigned to improve conditions in prisons and mental [BLANK_1].",
+            "blanks": [
+                "Dix",
+                "asylums"
+            ],
+            "wordBank": [
+                "Dix",
+                "Truth",
+                "asylums",
+                "factories",
+                "schools"
+            ],
+            "hint": "Lobbied for humane hospitals.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Movement sought to ban the consumption and sale of [BLANK_1].",
+            "blanks": [
+                "Temperance",
+                "alcohol"
+            ],
+            "wordBank": [
+                "Temperance",
+                "Abolition",
+                "alcohol",
+                "tobacco",
+                "sugar"
+            ],
+            "hint": "Blamed for poverty and violence.",
+            "dok": 2
+        },
+        {
+            "text": "Frederick [BLANK_0] was a formerly enslaved man who published the abolitionist newspaper The North [BLANK_1].",
+            "blanks": [
+                "Douglass",
+                "Star"
+            ],
+            "wordBank": [
+                "Douglass",
+                "Garrison",
+                "Star",
+                "Liberator",
+                "Press"
+            ],
+            "hint": "A powerful speaker and writer.",
+            "dok": 1
+        }
+    ],
+    "unit5": [
+        {
+            "text": "The [BLANK_0] Scott decision ruled that enslaved people were [BLANK_1] and could not sue.",
+            "blanks": [
+                "Dred",
+                "property"
+            ],
+            "wordBank": [
+                "Dred",
+                "Fugitive",
+                "property",
+                "citizens",
+                "free"
+            ],
+            "hint": "Declared the Missouri Compromise unconstitutional.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Slave Act allowed catchers into Northern states to capture escaped [BLANK_1].",
+            "blanks": [
+                "Fugitive",
+                "enslaved"
+            ],
+            "wordBank": [
+                "Fugitive",
+                "Missouri",
+                "enslaved",
+                "criminals",
+                "immigrants"
+            ],
+            "hint": "Part of the Compromise of 1850.",
+            "dok": 2
+        },
+        {
+            "text": "The first shots of the American [BLANK_0] War were fired at Fort [BLANK_1].",
+            "blanks": [
+                "Civil",
+                "Sumter"
+            ],
+            "wordBank": [
+                "Civil",
+                "Revolutionary",
+                "Sumter",
+                "Wagner",
+                "Knox"
+            ],
+            "hint": "Located in South Carolina.",
+            "dok": 1
+        },
+        {
+            "text": "The [BLANK_0] Proclamation freed enslaved people specifically in the [BLANK_1] states.",
+            "blanks": [
+                "Emancipation",
+                "Confederate"
+            ],
+            "wordBank": [
+                "Emancipation",
+                "Gettysburg",
+                "Confederate",
+                "Union",
+                "Border"
+            ],
+            "hint": "Issued by Lincoln after Antietam.",
+            "dok": 2
+        },
+        {
+            "text": "General Robert E. [BLANK_0] surrendered to Ulysses S. [BLANK_1] at Appomattox Court House.",
+            "blanks": [
+                "Lee",
+                "Grant"
+            ],
+            "wordBank": [
+                "Lee",
+                "Jackson",
+                "Grant",
+                "Sherman",
+                "Lincoln"
+            ],
+            "hint": "Effectively ending the Civil War.",
+            "dok": 1
+        }
+    ]
+}
+}
