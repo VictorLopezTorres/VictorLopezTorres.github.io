@@ -246,5 +246,192 @@ const gameQuestions6th = {
             { question: "MYTH or FACT: The Northwest Ordinance of 1787 allowed slavery to expand into the Ohio River Valley.", isFact: false, explanation: "MYTH: The Ordinance specifically banned slavery in the new Northwest Territory, while establishing the blueprint for admitting new, equal states to the Union." },
             { question: "MYTH or FACT: The Constitution establishes separation of powers to prevent any one branch of government from becoming too powerful.", isFact: true, explanation: "FACT: By dividing power among the Legislative, Executive, and Judicial branches, the framers created a system of checks and balances." }
         ]
+    },
+    FILL_IN: {
+        unit1: [
+            {
+                text: "In the early years of the Jamestown colony, [BLANK] introduced a new strain of tobacco that became a highly profitable [BLANK].",
+                blanks: ["John Rolfe", "cash crop"],
+                bank: ["John Rolfe", "John Smith", "cash crop", "subsistence crop"],
+                hint: "He famously married Pocahontas and saved the colony's economy.",
+                dok: 2
+            },
+            {
+                text: "The Pilgrims signed the [BLANK] in 1620, establishing an early form of [BLANK] based on the consent of the governed.",
+                blanks: ["Mayflower Compact", "self-government"],
+                bank: ["Mayflower Compact", "self-government", "Magna Carta", "monarchy"],
+                hint: "This agreement was signed on their ship before landing at Plymouth.",
+                dok: 2
+            },
+            {
+                text: "Unlike the English, who sought land for farming, the French were primarily interested in the [BLANK] and established strong alliances with [BLANK] groups.",
+                blanks: ["fur trade", "Native American"],
+                bank: ["fur trade", "Native American", "gold mining", "Spanish"],
+                hint: "They focused on trading animal pelts rather than building large permanent settlements.",
+                dok: 2
+            },
+            {
+                text: "In 1621, the Pilgrims and the Wampanoag people, including [BLANK], held an [BLANK] to celebrate a successful growing season.",
+                blanks: ["Squanto", "Autumn Harvest Celebration"],
+                bank: ["Squanto", "Autumn Harvest Celebration", "John Winthrop", "Independence Day"],
+                hint: "This event is often remembered as the 'First Thanksgiving'.",
+                dok: 2
+            },
+            {
+                text: "Dissenters like [BLANK] and Anne Hutchinson were banished from Massachusetts and helped found [BLANK] for the sake of religious freedom.",
+                blanks: ["Roger Williams", "Rhode Island"],
+                bank: ["Roger Williams", "Rhode Island", "William Penn", "Pennsylvania"],
+                hint: "They challenged the strict religious rules of the Puritan leaders.",
+                dok: 2
+            }
+        ],
+        unit2: [
+            {
+                text: "The [BLANK] colonies had rocky soil and a cold climate, leading them to rely on [BLANK] and fishing for their economy.",
+                blanks: ["New England", "shipbuilding"],
+                bank: ["New England", "shipbuilding", "Southern", "tobacco"],
+                hint: "These colonies were in the north.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] colonies were known as the 'breadbasket' because they grew large amounts of [BLANK] and other grains.",
+                blanks: ["Middle", "wheat"],
+                bank: ["Middle", "wheat", "New England", "rice"],
+                hint: "This region included Pennsylvania and New York.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] was the horrific middle leg of the triangular trade where enslaved Africans were transported across the Atlantic.",
+                blanks: ["Middle", "Passage"],
+                bank: ["Middle", "Passage", "Northwest", "Journey"],
+                hint: "It was a brutal journey for millions.",
+                dok: 2
+            },
+            {
+                text: "In the Southern colonies, the economy was dominated by large [BLANK] that used enslaved labor to grow [BLANK] crops like tobacco.",
+                blanks: ["plantations", "cash"],
+                bank: ["plantations", "cash", "factories", "food"],
+                hint: "These were massive farms.",
+                dok: 2
+            },
+            {
+                text: "William Penn founded [BLANK] as a safe haven for [BLANK], a religious group that believed in equality and pacifism.",
+                blanks: ["Pennsylvania", "Quakers"],
+                bank: ["Pennsylvania", "Quakers", "Maryland", "Puritans"],
+                hint: "The state is named after him.",
+                dok: 2
+            }
+        ],
+        unit3: [
+            {
+                text: "Jean-Baptiste Le Moyne de [BLANK] is known as the 'Father of Louisiana' and founded the city of [BLANK] in 1718.",
+                blanks: ["Bienville", "New Orleans"],
+                bank: ["Bienville", "New Orleans", "Iberville", "Baton Rouge"],
+                hint: "He served as governor multiple times.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] was a set of laws established by the French to regulate the lives of enslaved people in the colony.",
+                blanks: ["Code", "Noir"],
+                bank: ["Code", "Noir", "Napoleonic", "Law"],
+                hint: "It translates to 'Black Code'.",
+                dok: 2
+            },
+            {
+                text: "In 1762, the secret Treaty of [BLANK] transferred control of Louisiana from [BLANK] to Spain.",
+                blanks: ["Fontainebleau", "France"],
+                bank: ["Fontainebleau", "France", "Paris", "Britain"],
+                hint: "France wanted to keep it from the British.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] were exiles from Canada who settled in Louisiana and developed the unique [BLANK] culture.",
+                blanks: ["Acadians", "Cajun"],
+                bank: ["Acadians", "Cajun", "Isleños", "Creole"],
+                hint: "They were kicked out of Nova Scotia.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] of color (Gens de Couleur Libres) were a significant group in New Orleans who often owned property and operated [BLANK].",
+                blanks: ["Free People", "businesses"],
+                bank: ["Free People", "businesses", "Enslaved people", "plantations"],
+                hint: "They held a middle-class status unique in the South.",
+                dok: 2
+            }
+        ],
+        unit4: [
+            {
+                text: "The [BLANK] [BLANK] War was fought between Britain and France for control of the Ohio River Valley.",
+                blanks: ["French", "and Indian"],
+                bank: ["French", "and Indian", "Seven", "Years"],
+                hint: "Native Americans fought on both sides.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] was a protest where the Sons of Liberty dumped British tea into the harbor to oppose taxes.",
+                blanks: ["Boston", "Tea Party"],
+                bank: ["Boston", "Tea Party", "Massacre", "Stamp Act"],
+                hint: "They disguised themselves as Native Americans.",
+                dok: 2
+            },
+            {
+                text: "Thomas Jefferson was the primary author of the [BLANK] of [BLANK], which declared the colonies' break from Britain.",
+                blanks: ["Declaration", "Independence"],
+                bank: ["Declaration", "Independence", "Constitution", "Rights"],
+                hint: "It was signed in 1776.",
+                dok: 2
+            },
+            {
+                text: "The Battle of [BLANK] is considered the turning point of the war because it convinced [BLANK] to join the Americans as an ally.",
+                blanks: ["Saratoga", "France"],
+                bank: ["Saratoga", "France", "Yorktown", "Spain"],
+                hint: "It happened in New York.",
+                dok: 2
+            },
+            {
+                text: "General Cornwallis surrendered to George Washington at the Battle of [BLANK], effectively [BLANK] the Revolutionary War.",
+                blanks: ["Yorktown", "ending"],
+                bank: ["Yorktown", "ending", "Lexington", "starting"],
+                hint: "The British were trapped on a peninsula.",
+                dok: 2
+            }
+        ],
+        unit5: [
+            {
+                text: "The [BLANK] of [BLANK] was the first national government of the U.S., but it was too weak to collect taxes.",
+                blanks: ["Articles", "Confederation"],
+                bank: ["Articles", "Confederation", "Constitution", "Union"],
+                hint: "It was replaced in 1787.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] settled the dispute over representation by creating a two-house Congress.",
+                blanks: ["Great", "Compromise"],
+                bank: ["Great", "Compromise", "Three-Fifths", "Agreement"],
+                hint: "It combined the Virginia and New Jersey plans.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] branches of government (Legislative, Executive, and Judicial) were created to ensure a [BLANK] of powers.",
+                blanks: ["three", "separation"],
+                bank: ["three", "separation", "four", "balance"],
+                hint: "This prevents any one branch from becoming too powerful.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] of [BLANK] are the first ten amendments to the Constitution that protect individual liberties.",
+                blanks: ["Bill", "Rights"],
+                bank: ["Bill", "Rights", "Declaration", "Law"],
+                hint: "Many states refused to ratify without these.",
+                dok: 2
+            },
+            {
+                text: "[BLANK] [BLANK] is known as the 'Father of the Constitution' for his central role in drafting the document.",
+                blanks: ["James", "Madison"],
+                bank: ["James", "Madison", "Thomas", "Jefferson"],
+                hint: "He also kept detailed notes of the convention.",
+                dok: 2
+            }
+        ]
     }
 };

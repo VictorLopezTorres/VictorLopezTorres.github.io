@@ -246,5 +246,192 @@ const gameQuestions8th = {
             { question: "MYTH or FACT: The GI Bill was passed to punish soldiers returning from the war.", isFact: false, explanation: "MYTH: The GI Bill provided massive federal benefits to veterans, including paying for college tuition and offering low-cost mortgages, which created the modern American middle class." },
             { question: "MYTH or FACT: The Holocaust was a secret, accidental consequence of the war.", isFact: false, explanation: "MYTH: It was the horrific, deliberate, and highly organized genocide of six million Jewish people and millions of others, planned and executed by the Nazi regime." }
         ]
+    },
+    FILL_IN: {
+        unit1: [
+            {
+                text: "The Supreme Court case [BLANK] (1896) established the doctrine of '[BLANK]' which legalized racial segregation.",
+                blanks: ["Plessy v. Ferguson", "separate but equal"],
+                bank: ["Plessy v. Ferguson", "separate but equal", "Brown v. Board", "Jim Crow"],
+                hint: "This ruling was a major setback for civil rights in America.",
+                dok: 2
+            },
+            {
+                text: "To escape poverty and violence in the South, many African Americans known as [BLANK] migrated to [BLANK] in search of the 'American Dream'.",
+                blanks: ["Exodusters", "Kansas"],
+                bank: ["Exodusters", "Kansas", "Pioneers", "California"],
+                hint: "They were inspired by the biblical story of the exodus.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] of 1887 aimed to assimilate Native Americans by breaking up tribal lands into [BLANK] plots.",
+                blanks: ["Dawes Act", "individual"],
+                bank: ["Dawes Act", "individual", "Homestead Act", "collective"],
+                hint: "This policy had a devastating impact on Native American culture and sovereignty.",
+                dok: 2
+            },
+            {
+                text: "Civil rights leaders like [BLANK] advocated for immediate political equality, while [BLANK] focused on vocational training and economic self-reliance.",
+                blanks: ["W.E.B. DuBois", "Booker T. Washington"],
+                bank: ["W.E.B. DuBois", "Booker T. Washington", "Ida B. Wells", "Marcus Garvey"],
+                hint: "These two leaders had very different strategies for achieving racial equality.",
+                dok: 2
+            },
+            {
+                text: "In his thesis on the '[BLANK]', Frederick Jackson Turner argued that westward expansion was central to the development of the [BLANK] identity.",
+                blanks: ["Frontier", "American"],
+                bank: ["Frontier", "American", "Coastline", "European"],
+                hint: "He believed that the experience of settling the wilderness shaped the national character.",
+                dok: 2
+            }
+        ],
+        unit2: [
+            {
+                text: "The [BLANK] Age was a period in the late 1800s characterized by extreme wealth for a few and deep [BLANK] for many.",
+                blanks: ["Gilded", "poverty"],
+                bank: ["Gilded", "poverty", "Golden", "prosperity"],
+                hint: "Mark Twain coined this term.",
+                dok: 2
+            },
+            {
+                text: "[BLANK] were investigative journalists who exposed corruption and unsafe [BLANK] conditions during the Progressive Era.",
+                blanks: ["Muckrakers", "working"],
+                bank: ["Muckrakers", "working", "Yellow journalists", "living"],
+                hint: "They 'raked' through the problems of society.",
+                dok: 2
+            },
+            {
+                text: "John D. Rockefeller used [BLANK] [BLANK] to create a monopoly by buying out his competitors in the oil industry.",
+                blanks: ["horizontal", "integration"],
+                bank: ["horizontal", "integration", "vertical", "expansion"],
+                hint: "This involved controlling one level of production.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] of 1890 was the first major federal law aimed at preventing [BLANK] and trusts from interfering with trade.",
+                blanks: ["Sherman Antitrust Act", "monopolies"],
+                bank: ["Sherman Antitrust Act", "monopolies", "Clayton Act", "labor unions"],
+                hint: "It was named after a senator.",
+                dok: 2
+            },
+            {
+                text: "Henry Ford perfected the [BLANK] [BLANK] to mass-produce automobiles, making them affordable for the average American.",
+                blanks: ["assembly", "line"],
+                bank: ["assembly", "line", "factory", "system"],
+                hint: "The product moves while the worker stays in one place.",
+                dok: 2
+            }
+        ],
+        unit3: [
+            {
+                text: "The [BLANK] explosion of the USS [BLANK] in Havana Harbor helped spark the Spanish-American War in 1898.",
+                blanks: ["mysterious", "Maine"],
+                bank: ["mysterious", "Maine", "accidental", "Lusitania"],
+                hint: "'Remember the ___!' became a rallying cry.",
+                dok: 2
+            },
+            {
+                text: "[BLANK] Journalism used sensational headlines and exaggerated stories to influence public opinion and push for [BLANK].",
+                blanks: ["Yellow", "war"],
+                bank: ["Yellow", "war", "Investigative", "peace"],
+                hint: "It was named after a popular cartoon character.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] connected the Atlantic and Pacific Oceans, drastically reducing travel time for ships.",
+                blanks: ["Panama", "Canal"],
+                bank: ["Panama", "Canal", "Erie", "Canal"],
+                hint: "Teddy Roosevelt heavily supported its construction.",
+                dok: 2
+            },
+            {
+                text: "World War I was characterized by [BLANK] [BLANK], where soldiers fought from deep ditches across a 'No Man's Land'.",
+                blanks: ["trench", "warfare"],
+                bank: ["trench", "warfare", "guerilla", "tactics"],
+                hint: "It led to a long and deadly stalemate.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] was a secret message from Germany to Mexico proposing an alliance against the United States.",
+                blanks: ["Zimmermann", "Telegram"],
+                bank: ["Zimmermann", "Telegram", "Fourteen", "Points"],
+                hint: "It was intercepted by British intelligence.",
+                dok: 2
+            }
+        ],
+        unit4: [
+            {
+                text: "The [BLANK] [BLANK] [BLANK] of 1929 signaled the beginning of the Great Depression.",
+                blanks: ["Stock", "Market", "Crash"],
+                bank: ["Stock", "Market", "Crash", "Bank", "Failure"],
+                hint: "Billions of dollars in wealth disappeared in days.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] was a severe environmental disaster in the Great Plains caused by drought and poor farming practices.",
+                blanks: ["Dust", "Bowl"],
+                bank: ["Dust", "Bowl", "Great", "Flood"],
+                hint: "It forced many families to migrate West.",
+                dok: 2
+            },
+            {
+                text: "President Franklin D. Roosevelt's [BLANK] [BLANK] programs aimed to provide relief, recovery, and reform for the economy.",
+                blanks: ["New", "Deal"],
+                bank: ["New", "Deal", "Great", "Society"],
+                hint: "He famously said, 'the only thing we have to fear is fear itself'.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] [BLANK] was created to provide a safety net for the elderly, unemployed, and disabled.",
+                blanks: ["Social", "Security", "Act"],
+                bank: ["Social", "Security", "Act", "Fair", "Labor", "Standards"],
+                hint: "It established federal pensions.",
+                dok: 2
+            },
+            {
+                text: "[BLANK] [BLANK] was a populist Louisiana politician who promised to 'Share Our Wealth' during the Depression.",
+                blanks: ["Huey", "Long"],
+                bank: ["Huey", "Long", "Earl", "Long"],
+                hint: "He was known as 'The Kingfish'.",
+                dok: 2
+            }
+        ],
+        unit5: [
+            {
+                text: "The Japanese attack on [BLANK] [BLANK] on December 7, 1941, brought the U.S. into World War II.",
+                blanks: ["Pearl", "Harbor"],
+                bank: ["Pearl", "Harbor", "Midway", "Island"],
+                hint: "It was a surprise military strike in Hawaii.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] was the top-secret U.S. project to develop the first atomic bomb.",
+                blanks: ["Manhattan", "Project"],
+                bank: ["Manhattan", "Project", "Apollo", "Program"],
+                hint: "It was led by J. Robert Oppenheimer.",
+                dok: 2
+            },
+            {
+                text: "[BLANK] the [BLANK] became an iconic symbol of the millions of women who worked in defense industries during the war.",
+                blanks: ["Rosie", "Riveter"],
+                bank: ["Rosie", "Riveter", "Uncle", "Sam"],
+                hint: "'We Can Do It!' was her famous slogan.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] of six million Jewish people by the Nazi regime is known as the [BLANK].",
+                blanks: ["genocide", "Holocaust"],
+                bank: ["genocide", "Holocaust", "persecution", "Blitz"],
+                hint: "It was Hitler's 'Final Solution'.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] [BLANK] (GI Bill) provided educational and housing benefits to returning World War II veterans.",
+                blanks: ["Servicemen's", "Readjustment", "Act"],
+                bank: ["Servicemen's", "Readjustment", "Act", "Social", "Security", "Act"],
+                hint: "It helped create the modern American middle class.",
+                dok: 2
+            }
+        ]
     }
 };

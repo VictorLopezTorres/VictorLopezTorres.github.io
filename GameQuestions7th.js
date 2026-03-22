@@ -246,5 +246,192 @@ const gameQuestions7th = {
             { question: "MYTH or FACT: John Brown's raid on Harper's Ferry successfully started a massive slave rebellion.", isFact: false, explanation: "MYTH: The raid was a military failure, and Brown was captured and executed. However, it terrified the South and pushed the nation closer to war." },
             { question: "MYTH or FACT: Louisiana was strategically unimportant during the Civil War.", isFact: false, explanation: "MYTH: Because it controlled the mouth of the Mississippi River, New Orleans was the most vital port in the South, making it a primary target for the Union navy." }
         ]
+    },
+    FILL_IN: {
+        unit1: [
+            {
+                text: "George Washington set many [BLANK], such as creating a [BLANK] of advisors to help lead the Executive Branch.",
+                blanks: ["precedents", "Cabinet"],
+                bank: ["precedents", "Cabinet", "monarchy", "laws"],
+                hint: "These were traditions that future presidents would follow.",
+                dok: 2
+            },
+            {
+                text: "The disagreements between Alexander Hamilton and [BLANK] over federal power led to the emergence of the [BLANK] and Democratic-Republican parties.",
+                blanks: ["Thomas Jefferson", "Federalist"],
+                bank: ["Thomas Jefferson", "Federalist", "John Adams", "Whig"],
+                hint: "This was the beginning of the two-party system in the United States.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] of 1794 was a significant domestic challenge that proved the federal government had the authority to enforce its [BLANK].",
+                blanks: ["Whiskey Rebellion", "right to tax"],
+                bank: ["Whiskey Rebellion", "right to tax", "Shays' Rebellion", "right to bear arms"],
+                hint: "Washington himself led troops to stop this uprising of farmers.",
+                dok: 2
+            },
+            {
+                text: "During the presidency of John Adams, the [BLANK] scandal occurred when French agents demanded a [BLANK] before beginning negotiations.",
+                blanks: ["XYZ Affair", "bribe"],
+                bank: ["XYZ Affair", "bribe", "Louisiana Purchase", "treaty"],
+                hint: "The agents were referred to by three letters in official reports.",
+                dok: 2
+            },
+            {
+                text: "In his [BLANK], George Washington advised the nation to avoid [BLANK] and permanent alliances with foreign countries.",
+                blanks: ["Farewell Address", "political parties"],
+                bank: ["Farewell Address", "political parties", "Inaugural Address", "public schools"],
+                hint: "This was his final message to the American people before leaving office.",
+                dok: 2
+            }
+        ],
+        unit2: [
+            {
+                text: "In 1803, President Thomas Jefferson authorized the [BLANK] [BLANK], which doubled the size of the United States.",
+                blanks: ["Louisiana", "Purchase"],
+                bank: ["Louisiana", "Purchase", "Florida", "Cession"],
+                hint: "It was bought from France.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] and [BLANK] expedition was sent to explore and map the newly acquired western territory.",
+                blanks: ["Lewis", "Clark"],
+                bank: ["Lewis", "Clark", "Pike", "Boone"],
+                hint: "They were guided by Sacagawea.",
+                dok: 2
+            },
+            {
+                text: "A major cause of the War of 1812 was the British practice of [BLANK], or forcing American sailors into the Royal Navy.",
+                blanks: ["impressment"],
+                bank: ["impressment", "blockading", "boycotting"],
+                hint: "This violated American sovereignty at sea.",
+                dok: 2
+            },
+            {
+                text: "The Battle of [BLANK] [BLANK] was a major American victory fought after the peace treaty had already been signed in Europe.",
+                blanks: ["New", "Orleans"],
+                bank: ["New", "Orleans", "Lake", "Erie"],
+                hint: "Andrew Jackson became a national hero here.",
+                dok: 2
+            },
+            {
+                text: "The Treaty of [BLANK] ended the War of 1812, restoring pre-war borders and establishing a sense of national pride.",
+                blanks: ["Ghent"],
+                bank: ["Ghent", "Paris", "Versailles"],
+                hint: "It was signed in a city in modern-day Belgium.",
+                dok: 2
+            }
+        ],
+        unit3: [
+            {
+                text: "The belief that the United States was divinely ordained to expand across the continent is known as [BLANK] [BLANK].",
+                blanks: ["Manifest", "Destiny"],
+                bank: ["Manifest", "Destiny", "National", "Identity"],
+                hint: "It translates to 'obvious fate'.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] [BLANK] was the forced relocation of the Cherokee and other tribes to Indian Territory, resulting in thousands of deaths.",
+                blanks: ["Trail", "of", "Tears"],
+                bank: ["Trail", "of", "Tears", "Path", "Liberty"],
+                hint: "It was a tragic consequence of the Indian Removal Act.",
+                dok: 2
+            },
+            {
+                text: "Eli Whitney's invention of the [BLANK] [BLANK] significantly increased the profitability of cotton and the demand for enslaved labor.",
+                blanks: ["cotton", "gin"],
+                bank: ["cotton", "gin", "steam", "engine"],
+                hint: "It removed seeds from the fiber quickly.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] in New York revolutionized trade by connecting the Great Lakes to the Atlantic Ocean.",
+                blanks: ["Erie", "Canal"],
+                bank: ["Erie", "Canal", "Panama", "Railroad"],
+                hint: "It was a major engineering feat of the early 1800s.",
+                dok: 2
+            },
+            {
+                text: "During the [BLANK] [BLANK], South Carolina threatened to secede over high federal tariffs they called the 'Tariff of Abominations'.",
+                blanks: ["Nullification", "Crisis"],
+                bank: ["Nullification", "Crisis", "Whiskey", "Rebellion"],
+                hint: "It was a major states' rights dispute.",
+                dok: 2
+            }
+        ],
+        unit4: [
+            {
+                text: "The [BLANK] [BLANK] Convention of 1848 was the first public meeting in the U.S. to discuss women's rights.",
+                blanks: ["Seneca", "Falls"],
+                bank: ["Seneca", "Falls", "Albany", "Congress"],
+                hint: "They issued the Declaration of Sentiments.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] was a secret network of routes and safe houses used to help enslaved people escape to freedom.",
+                blanks: ["Underground", "Railroad"],
+                bank: ["Underground", "Railroad", "Pony", "Express"],
+                hint: "Harriet Tubman was its most famous conductor.",
+                dok: 2
+            },
+            {
+                text: "Harriet Beecher Stowe's novel, [BLANK] [BLANK] [BLANK], exposed the horrors of slavery and fueled the abolitionist movement.",
+                blanks: ["Uncle", "Tom's", "Cabin"],
+                bank: ["Uncle", "Tom's", "Cabin", "Common", "Sense"],
+                hint: "It was a massive bestseller in the North.",
+                dok: 2
+            },
+            {
+                text: "[BLANK] [BLANK] was a formerly enslaved man who became a leading abolitionist and published 'The North Star'.",
+                blanks: ["Frederick", "Douglass"],
+                bank: ["Frederick", "Douglass", "William", "Garrison"],
+                hint: "He was a powerful public speaker.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] [BLANK] was a religious revival that inspired many social reform movements like temperance and prison reform.",
+                blanks: ["Second", "Great", "Awakening"],
+                bank: ["Second", "Great", "Awakening", "Age", "Enlightenment"],
+                hint: "It emphasized individual salvation and improving society.",
+                dok: 2
+            }
+        ],
+        unit5: [
+            {
+                text: "The Supreme Court's [BLANK] [BLANK] decision ruled that enslaved people were not citizens and that Congress could not ban slavery in territories.",
+                blanks: ["Dred", "Scott"],
+                bank: ["Dred", "Scott", "Plessy", "Ferguson"],
+                hint: "It effectively declared the Missouri Compromise unconstitutional.",
+                dok: 2
+            },
+            {
+                text: "The [BLANK] [BLANK] [BLANK] of 1850 required citizens to assist in the capture of runaway slaves, outraging many Northerners.",
+                blanks: ["Fugitive", "Slave", "Act"],
+                bank: ["Fugitive", "Slave", "Act", "Kansas", "Nebraska"],
+                hint: "It was part of the Compromise of 1850.",
+                dok: 2
+            },
+            {
+                text: "The first shots of the Civil War were fired at [BLANK] [BLANK] in South Carolina.",
+                blanks: ["Fort", "Sumter"],
+                bank: ["Fort", "Sumter", "Battle", "Gettysburg"],
+                hint: "It was a federal fort in Charleston Harbor.",
+                dok: 2
+            },
+            {
+                text: "President Abraham Lincoln issued the [BLANK] [BLANK] to free enslaved people in the states currently in rebellion.",
+                blanks: ["Emancipation", "Proclamation"],
+                bank: ["Emancipation", "Proclamation", "Gettysburg", "Address"],
+                hint: "It was issued after the Battle of Antietam.",
+                dok: 2
+            },
+            {
+                text: "The Battle of [BLANK] is considered the turning point of the war because it ended Confederate General Robert E. Lee's invasion of the North.",
+                blanks: ["Gettysburg"],
+                bank: ["Gettysburg", "Vicksburg", "Bull", "Run"],
+                hint: "It was a three-day battle in Pennsylvania.",
+                dok: 2
+            }
+        ]
     }
 };
