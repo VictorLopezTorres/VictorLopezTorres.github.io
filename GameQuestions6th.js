@@ -247,4 +247,418 @@ const gameQuestions6th = {
             { question: "MYTH or FACT: The Constitution establishes separation of powers to prevent any one branch of government from becoming too powerful.", isFact: true, explanation: "FACT: By dividing power among the Legislative, Executive, and Judicial branches, the framers created a system of checks and balances." }
         ]
     }
-};
+,
+    FILL_BLANK: {
+    "unit1": [
+        {
+            "text": "The primary motivation for [BLANK_0] to explore North America was the lucrative [BLANK_1] trade.",
+            "blanks": [
+                "France",
+                "fur"
+            ],
+            "wordBank": [
+                "France",
+                "England",
+                "fur",
+                "spice",
+                "gold"
+            ],
+            "hint": "They built strong alliances with Native Americans.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Compact was signed by the [BLANK_1] to establish self-government before landing at Plymouth.",
+            "blanks": [
+                "Mayflower",
+                "Pilgrims"
+            ],
+            "wordBank": [
+                "Mayflower",
+                "Magna",
+                "Pilgrims",
+                "Puritans",
+                "Declaration"
+            ],
+            "hint": "It was an early agreement for self-government.",
+            "dok": 2
+        },
+        {
+            "text": "The first permanent [BLANK_0] settlement in North America was [BLANK_1], founded in 1607.",
+            "blanks": [
+                "English",
+                "Jamestown"
+            ],
+            "wordBank": [
+                "English",
+                "French",
+                "Jamestown",
+                "Plymouth",
+                "Roanoke"
+            ],
+            "hint": "It was saved by tobacco.",
+            "dok": 1
+        },
+        {
+            "text": "William Penn founded [BLANK_0] as a safe haven for [BLANK_1], who believed in pacifism.",
+            "blanks": [
+                "Pennsylvania",
+                "Quakers"
+            ],
+            "wordBank": [
+                "Pennsylvania",
+                "Massachusetts",
+                "Quakers",
+                "Puritans",
+                "Catholics"
+            ],
+            "hint": "The state is named after him.",
+            "dok": 2
+        },
+        {
+            "text": "[BLANK_0]'s Rebellion was an uprising of poor farmers in [BLANK_1] protesting the governor's policies.",
+            "blanks": [
+                "Bacon",
+                "Virginia"
+            ],
+            "wordBank": [
+                "Bacon",
+                "Shays",
+                "Virginia",
+                "Massachusetts",
+                "Pontiac"
+            ],
+            "hint": "It resulted in the burning of Jamestown.",
+            "dok": 2
+        }
+    ],
+    "unit2": [
+        {
+            "text": "The [BLANK_0] colonies' economy was heavily based on shipbuilding and [BLANK_1] due to rocky soil.",
+            "blanks": [
+                "New England",
+                "fishing"
+            ],
+            "wordBank": [
+                "New England",
+                "Southern",
+                "Middle",
+                "fishing",
+                "farming",
+                "mining"
+            ],
+            "hint": "Think about Massachusetts and Rhode Island.",
+            "dok": 2
+        },
+        {
+            "text": "The horrific journey of enslaved Africans across the Atlantic was called the [BLANK_0] [BLANK_1].",
+            "blanks": [
+                "Middle",
+                "Passage"
+            ],
+            "wordBank": [
+                "Middle",
+                "Columbian",
+                "Passage",
+                "Exchange",
+                "Northwest"
+            ],
+            "hint": "It was the center leg of the Triangular Trade.",
+            "dok": 1
+        },
+        {
+            "text": "Large farms in the [BLANK_0] colonies that relied on enslaved labor to grow cash crops were called [BLANK_1].",
+            "blanks": [
+                "Southern",
+                "plantations"
+            ],
+            "wordBank": [
+                "Southern",
+                "Middle",
+                "plantations",
+                "granges",
+                "homesteads"
+            ],
+            "hint": "They grew tobacco, rice, and indigo.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Colonies were known as the 'Breadbasket' and had the most [BLANK_1] populations.",
+            "blanks": [
+                "Middle",
+                "diverse"
+            ],
+            "wordBank": [
+                "Middle",
+                "New England",
+                "diverse",
+                "uniform",
+                "Southern"
+            ],
+            "hint": "They included Pennsylvania and New York.",
+            "dok": 2
+        },
+        {
+            "text": "An [BLANK_0] servant agreed to work for a set time in exchange for [BLANK_1] to the colonies.",
+            "blanks": [
+                "indentured",
+                "passage"
+            ],
+            "wordBank": [
+                "indentured",
+                "enslaved",
+                "passage",
+                "money",
+                "land"
+            ],
+            "hint": "They signed a contract, usually for 4 to 7 years.",
+            "dok": 2
+        }
+    ],
+    "unit3": [
+        {
+            "text": "Jean-Baptiste Le Moyne de [BLANK_0] is considered the 'Father of Louisiana' and founded [BLANK_1] in 1718.",
+            "blanks": [
+                "Bienville",
+                "New Orleans"
+            ],
+            "wordBank": [
+                "Bienville",
+                "Iberville",
+                "New Orleans",
+                "Baton Rouge",
+                "Natchitoches"
+            ],
+            "hint": "He served as governor of the colony multiple times.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Noir was a set of laws created by the French to govern the lives of [BLANK_1] people.",
+            "blanks": [
+                "Code",
+                "enslaved"
+            ],
+            "wordBank": [
+                "Code",
+                "Magna",
+                "enslaved",
+                "free",
+                "Native"
+            ],
+            "hint": "It translates to the 'Black Code'.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] were exiles from Canada who settled in Louisiana and became known as [BLANK_1].",
+            "blanks": [
+                "Acadians",
+                "Cajuns"
+            ],
+            "wordBank": [
+                "Acadians",
+                "Isleños",
+                "Cajuns",
+                "Creoles",
+                "Haitians"
+            ],
+            "hint": "They were expelled from Nova Scotia by the British.",
+            "dok": 2
+        },
+        {
+            "text": "The secret Treaty of [BLANK_0] transferred control of Louisiana from [BLANK_1] to Spain in 1762.",
+            "blanks": [
+                "Fontainebleau",
+                "France"
+            ],
+            "wordBank": [
+                "Fontainebleau",
+                "Paris",
+                "France",
+                "Britain",
+                "Portugal"
+            ],
+            "hint": "France wanted to keep the territory out of British hands.",
+            "dok": 2
+        },
+        {
+            "text": "The Spanish governor Alejandro [BLANK_0] earned a 'Bloody' nickname for crushing the 1768 [BLANK_1].",
+            "blanks": [
+                "O'Reilly",
+                "rebellion"
+            ],
+            "wordBank": [
+                "O'Reilly",
+                "Galvez",
+                "rebellion",
+                "election",
+                "treaty"
+            ],
+            "hint": "He firmly established Spanish authority in the colony.",
+            "dok": 2
+        }
+    ],
+    "unit4": [
+        {
+            "text": "The French and [BLANK_0] War was fought primarily between France and [BLANK_1] for control of the Ohio River Valley.",
+            "blanks": [
+                "Indian",
+                "Great Britain"
+            ],
+            "wordBank": [
+                "Indian",
+                "Spanish",
+                "Great Britain",
+                "Spain",
+                "Netherlands"
+            ],
+            "hint": "It led to massive British war debt.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Act placed a tax on all paper goods, such as newspapers and legal [BLANK_1].",
+            "blanks": [
+                "Stamp",
+                "documents"
+            ],
+            "wordBank": [
+                "Stamp",
+                "Sugar",
+                "documents",
+                "tea",
+                "glass"
+            ],
+            "hint": "Colonists had to buy a special seal.",
+            "dok": 1
+        },
+        {
+            "text": "Thomas [BLANK_0] was the primary author of the Declaration of [BLANK_1].",
+            "blanks": [
+                "Jefferson",
+                "Independence"
+            ],
+            "wordBank": [
+                "Jefferson",
+                "Washington",
+                "Independence",
+                "Rights",
+                "Confederation"
+            ],
+            "hint": "He wrote that 'all men are created equal.'",
+            "dok": 1
+        },
+        {
+            "text": "The Battle of [BLANK_0] is considered the turning point of the Revolution because it convinced [BLANK_1] to ally with the colonists.",
+            "blanks": [
+                "Saratoga",
+                "France"
+            ],
+            "wordBank": [
+                "Saratoga",
+                "Yorktown",
+                "France",
+                "Spain",
+                "Britain"
+            ],
+            "hint": "It proved the Americans could fight a conventional war.",
+            "dok": 2
+        },
+        {
+            "text": "The Proclamation of [BLANK_0] forbade colonists from settling west of the [BLANK_1] Mountains.",
+            "blanks": [
+                "1763",
+                "Appalachian"
+            ],
+            "wordBank": [
+                "1763",
+                "1776",
+                "Appalachian",
+                "Rocky",
+                "Andes"
+            ],
+            "hint": "King George III issued this to avoid conflict with Native Americans.",
+            "dok": 2
+        }
+    ],
+    "unit5": [
+        {
+            "text": "The [BLANK_0] of Confederation was the first written [BLANK_1] of the United States.",
+            "blanks": [
+                "Articles",
+                "constitution"
+            ],
+            "wordBank": [
+                "Articles",
+                "Declaration",
+                "constitution",
+                "treaty",
+                "law"
+            ],
+            "hint": "It created a very weak central government.",
+            "dok": 1
+        },
+        {
+            "text": "The [BLANK_0] Compromise settled the dispute over representation by creating a [BLANK_1] legislature.",
+            "blanks": [
+                "Great",
+                "bicameral"
+            ],
+            "wordBank": [
+                "Great",
+                "Three-Fifths",
+                "bicameral",
+                "unicameral",
+                "judicial"
+            ],
+            "hint": "It combined the Virginia and New Jersey plans.",
+            "dok": 2
+        },
+        {
+            "text": "The [BLANK_0] Compromise determined how enslaved people would be counted for [BLANK_1] and taxation.",
+            "blanks": [
+                "Three-Fifths",
+                "representation"
+            ],
+            "wordBank": [
+                "Three-Fifths",
+                "Great",
+                "representation",
+                "voting",
+                "freedom"
+            ],
+            "hint": "It counted a portion of the enslaved population.",
+            "dok": 2
+        },
+        {
+            "text": "James [BLANK_0] is known as the 'Father of the Constitution' for his role in drafting the [BLANK_1].",
+            "blanks": [
+                "Madison",
+                "document"
+            ],
+            "wordBank": [
+                "Madison",
+                "Jefferson",
+                "document",
+                "declaration",
+                "treaty"
+            ],
+            "hint": "He kept detailed notes of the convention.",
+            "dok": 1
+        },
+        {
+            "text": "Shays's [BLANK_0] proved that the national government was too [BLANK_1] under the Articles of Confederation.",
+            "blanks": [
+                "Rebellion",
+                "weak"
+            ],
+            "wordBank": [
+                "Rebellion",
+                "War",
+                "weak",
+                "strong",
+                "rich"
+            ],
+            "hint": "It was an uprising of Massachusetts farmers.",
+            "dok": 2
+        }
+    ]
+}
+}
