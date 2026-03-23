@@ -246,5 +246,14 @@ const gameQuestions6th = {
             { question: "MYTH or FACT: The Northwest Ordinance of 1787 allowed slavery to expand into the Ohio River Valley.", isFact: false, explanation: "MYTH: The Ordinance specifically banned slavery in the new Northwest Territory, while establishing the blueprint for admitting new, equal states to the Union." },
             { question: "MYTH or FACT: The Constitution establishes separation of powers to prevent any one branch of government from becoming too powerful.", isFact: true, explanation: "FACT: By dividing power among the Legislative, Executive, and Judicial branches, the framers created a system of checks and balances." }
         ]
+    },
+    FILL_IN: {
+        unit1: [
+            { text: "After 1600, [BLANK] powers like England, France, and Spain sought land claims in [BLANK] America.", blanks: ["European", "North"], bank: ["North", "European", "South", "Asian"], hint: "Who was exploring and settling?", dok: 2 },
+            { text: "The [BLANK] Compact was a written agreement by the Pilgrims for self-government, while [BLANK] Rebellion was an uprising of poor farmers in Virginia.", blanks: ["Mayflower", "Bacon's"], bank: ["Bacon's", "Mayflower", "Shays's"], hint: "One is an early agreement, the other an uprising.", dok: 2 },
+            { text: "The Plymouth settlement was aided by [BLANK], who taught them how to farm, and Chief [BLANK], who maintained peace.", blanks: ["Squanto", "Massasoit"], bank: ["Massasoit", "Squanto", "Metacom"], hint: "Native American figures crucial to Plymouth.", dok: 2 },
+            { text: "European [BLANK] of North America had significant effects on [BLANK] Americans, often leading to conflict and displacement.", blanks: ["colonization", "Native"], bank: ["Native", "colonization", "African"], hint: "The process of settling and the people impacted.", dok: 2 },
+            { text: "The Triangular Trade involved interactions and consequences among different groups in North America, including the [BLANK], [BLANK], and Southern colonies.", blanks: ["New England", "Middle"], bank: ["Middle", "New England", "Western"], hint: "The regions of the thirteen colonies.", dok: 2 }
+        ]
     }
 };

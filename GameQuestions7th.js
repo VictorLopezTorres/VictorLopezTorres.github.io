@@ -246,5 +246,14 @@ const gameQuestions7th = {
             { question: "MYTH or FACT: John Brown's raid on Harper's Ferry successfully started a massive slave rebellion.", isFact: false, explanation: "MYTH: The raid was a military failure, and Brown was captured and executed. However, it terrified the South and pushed the nation closer to war." },
             { question: "MYTH or FACT: Louisiana was strategically unimportant during the Civil War.", isFact: false, explanation: "MYTH: Because it controlled the mouth of the Mississippi River, New Orleans was the most vital port in the South, making it a primary target for the Union navy." }
         ]
+    },
+    FILL_IN: {
+        unit1: [
+            { text: "The first President, [BLANK] [BLANK], set the precedent of leaving office after two terms.", blanks: ["George", "Washington"], bank: ["George", "Washington", "Thomas", "Jefferson"], hint: "The first president.", dok: 2 },
+            { text: "Alexander Hamilton and Thomas Jefferson had different views on [BLANK] policy and the creation of a National [BLANK].", blanks: ["economic", "Bank"], bank: ["Bank", "economic", "social"], hint: "What did Hamilton want to establish?", dok: 2 },
+            { text: "Washington's administration responded to the [BLANK] Rebellion, enforcing the government's right to [BLANK].", blanks: ["Whiskey", "tax"], bank: ["tax", "Whiskey", "Shays's"], hint: "A rebellion over an excise tax.", dok: 2 },
+            { text: "In his Farewell Address, Washington gave advice against permanent foreign [BLANK] and the division of political [BLANK].", blanks: ["alliances", "parties"], bank: ["parties", "alliances", "expansion"], hint: "What did Washington warn against?", dok: 2 },
+            { text: "John Adams faced foreign challenges like the [BLANK] Affair and passed the controversial Alien and [BLANK] Acts.", blanks: ["XYZ", "Sedition"], bank: ["Sedition", "XYZ", "Embargo"], hint: "Diplomatic incident and controversial laws.", dok: 2 }
+        ]
     }
 };

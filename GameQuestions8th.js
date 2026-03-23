@@ -246,5 +246,14 @@ const gameQuestions8th = {
             { question: "MYTH or FACT: The GI Bill was passed to punish soldiers returning from the war.", isFact: false, explanation: "MYTH: The GI Bill provided massive federal benefits to veterans, including paying for college tuition and offering low-cost mortgages, which created the modern American middle class." },
             { question: "MYTH or FACT: The Holocaust was a secret, accidental consequence of the war.", isFact: false, explanation: "MYTH: It was the horrific, deliberate, and highly organized genocide of six million Jewish people and millions of others, planned and executed by the Nazi regime." }
         ]
+    },
+    FILL_IN: {
+        unit1: [
+            { text: "During the late 1800s, the [BLANK] and American Indian experience changed due to westward [BLANK].", blanks: ["West", "expansion"], bank: ["expansion", "West", "North"], hint: "Moving towards the Pacific.", dok: 2 },
+            { text: "Frederick Turner wrote about the significance of the [BLANK] in American history, related to the American [BLANK].", blanks: ["Frontier", "Dream"], bank: ["Dream", "Frontier", "City"], hint: "Exploring new lands and seeking opportunities.", dok: 2 },
+            { text: "The U.S. government implemented policies of [BLANK] and created a [BLANK] system for Native Americans.", blanks: ["assimilation", "reservation"], bank: ["reservation", "assimilation", "segregation"], hint: "Trying to absorb cultures and restrict land.", dok: 2 },
+            { text: "Conflicts like the Battle of [BLANK] Bighorn and Wounded [BLANK] occurred between Native Americans and the U.S.", blanks: ["Little", "Knee"], bank: ["Knee", "Little", "Big"], hint: "Major conflicts in the late 19th century.", dok: 2 },
+            { text: "Following the Civil War, the [BLANK] Era saw the emergence of the [BLANK] Crow system affecting Black Americans.", blanks: ["Post-Reconstruction", "Jim"], bank: ["Jim", "Post-Reconstruction", "Antebellum"], hint: "The period after Reconstruction and segregational laws.", dok: 2 }
+        ]
     }
 };
