@@ -161,10 +161,22 @@
             border-color: #fbcfe8;
         }
 
-        .drop-zone.drag-over {
-            border-color: #22c55e;
-            background-color: rgba(34, 197, 94, 0.2);
-            transform: scale(1.05);
+        @keyframes drop-zone-wiggle {
+            0%, 100% { transform: scale(1.05) rotate(0deg); box-shadow: inset 0 0 10px rgba(34, 197, 94, 0.3), 0 0 10px rgba(34, 197, 94, 0.3); }
+            25% { transform: scale(1.05) rotate(-2deg); box-shadow: inset 0 0 15px rgba(34, 197, 94, 0.5), 0 0 15px rgba(34, 197, 94, 0.5); }
+            50% { transform: scale(1.05) rotate(2deg); box-shadow: inset 0 0 20px rgba(34, 197, 94, 0.7), 0 0 20px rgba(34, 197, 94, 0.7); }
+            75% { transform: scale(1.05) rotate(-2deg); box-shadow: inset 0 0 15px rgba(34, 197, 94, 0.5), 0 0 15px rgba(34, 197, 94, 0.5); }
+        }
+
+        .drop-zone.drag-over,
+        body.word-selected .drop-zone:hover {
+            border-color: #22c55e !important;
+            background-color: rgba(34, 197, 94, 0.2) !important;
+            animation: drop-zone-wiggle 0.4s ease-in-out infinite;
+        }
+        .drop-zone.drag-over:empty::before,
+        body.word-selected .drop-zone:empty:hover::before {
+            color: #15803d !important;
         }
         .drop-zone.filled {
             border-style: solid;
@@ -434,6 +446,7 @@
         #questionText {
             flex-grow: 1;
             /* font-size is now set by JS */
+            width: 100%;
             text-align: center;
             user-select: none;
             -webkit-user-select: none;
@@ -2560,6 +2573,8 @@
             const targetHeight = element.clientHeight;
             const targetWidth = element.clientWidth;
 
+            if (targetHeight === 0 || targetWidth === 0) return;
+
             element.style.fontSize = `${fontSize}px`;
 
             // Loop to reduce font size until the text fits within the fixed boundaries.
@@ -2651,23 +2666,28 @@
                 // Toggle store items based on game mode
                 if (originalItemName === 'hunchUpgrade') {
                     const isSkibidi = gameMode === 'SKIBIDI' || (gameMode === 'SIGMA' && sigmaStage === 3);
-                    hunchUpgradeStoreItem.classList.toggle('hidden', isSkibidi);
-                    firstLastLetterStoreItem.classList.toggle('hidden', !isSkibidi);
+                    const isHunchEnabled = gameMode === 'EASY' || gameMode === 'HARD' || (gameMode === 'SIGMA' && sigmaStage < 3);
 
                     const storeItem = btn.closest('.store-item');
-                    if (isSkibidi) {
-                        storeItem.dataset.description = "Permanent: The letter hint shows the first AND last letter of the answer.";
+                    
+                    if (!isSkibidi && !isHunchEnabled) {
+                        storeItem.classList.add('hidden');
                     } else {
-                        storeItem.dataset.description = "Permanent: Hunch removes 2 wrong answers.";
-                    }
+                        storeItem.classList.remove('hidden');
+                        hunchUpgradeStoreItem.classList.toggle('hidden', isSkibidi);
+                        firstLastLetterStoreItem.classList.toggle('hidden', !isSkibidi);
 
-                    if (isSkibidi) {
-                        itemName = 'firstLastLetterUpgrade';
-                    } else {
-                        itemName = 'hunchUpgrade';
+                        if (isSkibidi) {
+                            storeItem.dataset.description = "Permanent: The letter hint shows the first AND last letter of the answer.";
+                            itemName = 'firstLastLetterUpgrade';
+                        } else {
+                            storeItem.dataset.description = "Permanent: Hunch removes 2 wrong answers.";
+                            itemName = 'hunchUpgrade';
+                        }
+                        
+                        btn.textContent = `Buy (${storeItems[itemName].cost} Pts)`; // Explicitly update text here
+                        btn.dataset.item = itemName; // Update the button's current data attribute
                     }
-                    btn.textContent = `Buy (${storeItems[itemName].cost} Pts)`; // Explicitly update text here
-                    btn.dataset.item = itemName; // Update the button's current data attribute
                 }
 
                 // Re-fetch item after potential name change
@@ -2766,14 +2786,15 @@
 
         // --- ABILITY LOGIC ---
         function updateAbilitiesUI() {
-            const isSkibidi = gameMode === 'SKIBIDI';
+            const isSkibidi = gameMode === 'SKIBIDI' || (gameMode === 'SIGMA' && sigmaStage === 3);
+            const isHunchEnabled = gameMode === 'EASY' || gameMode === 'HARD' || (gameMode === 'SIGMA' && sigmaStage < 3);
             const hunchThreshold = isSkibidi ? 3 : 5;
             const tinkerThreshold = isSkibidi ? 2 : 4;
             const buckStreakThreshold = gameMode === 'HARD' ? 7 : (isSkibidi ? 5 : (gameMode === 'FILL_BLANK' ? 4 : 10));
 
             pantherBuckCounterEl.textContent = `${playerState.pantherBucksEarned} 🐾`;
 
-            if(isSkibidi) {
+            if(!isHunchEnabled) {
                 hunchAbilityEl.style.display = 'none';
             } else {
                 hunchAbilityEl.style.display = 'block';
@@ -3085,6 +3106,7 @@
                 const isFitbTypeQuestion = gameMode === 'FILL_BLANK';
 
                 selectedWordEl = null; // Reset selection
+                document.body.classList.remove('word-selected');
                 // Reset UI elements for all modes
                 answerGridEl.classList.add('hidden');
                 skibidiFormEl.classList.add('hidden');
@@ -3236,12 +3258,14 @@
                 if (selectedWordEl === draggable) {
                     draggable.classList.remove('selected');
                     selectedWordEl = null;
+                    document.body.classList.remove('word-selected');
                 } else {
                     if (selectedWordEl) {
                         selectedWordEl.classList.remove('selected');
                     }
                     draggable.classList.add('selected');
                     selectedWordEl = draggable;
+                    document.body.classList.add('word-selected');
                 }
             });
 
@@ -3373,6 +3397,7 @@
 
             if (selectedWordEl === draggable) {
                 selectedWordEl = null;
+                document.body.classList.remove('word-selected');
             }
 
             const word = draggable.dataset.word;
@@ -3446,6 +3471,15 @@
                     zone.classList.add('error-shake');
                 }
             });
+
+            if (!allCorrect) {
+                const bankWords = document.querySelectorAll('#fitbWordBank .draggable-word');
+                bankWords.forEach(wordEl => {
+                    if (currentQuestion.blanks.includes(wordEl.dataset.word)) {
+                        wordEl.classList.add('correct');
+                    }
+                });
+            }
 
             setTimeout(() => {
                 handleAnswer(allCorrect, null);
@@ -3525,7 +3559,8 @@
             isTransitioning = true;
             let proceedToNextQuestionAutomatically = true;
             playerState.questionsAnswered++;
-            const isSkibidi = gameMode === 'SKIBIDI';
+            const isSkibidi = gameMode === 'SKIBIDI' || (gameMode === 'SIGMA' && sigmaStage === 3);
+            const isHunchEnabled = gameMode === 'EASY' || gameMode === 'HARD' || (gameMode === 'SIGMA' && sigmaStage < 3);
             const hunchThreshold = isSkibidi ? 3 : 5;
             const tinkerThreshold = isSkibidi ? 2 : 4;
             const skipThreshold = isSkibidi ? 2 : 3;
@@ -3573,7 +3608,7 @@
                 scoreEl.textContent = Number(playerState.score.toFixed(2)).toString().replace(/\.00$/, ''); // Then update the display
                 correctAnswersEl.textContent = playerState.correctAnswers;
 
-                if (!isSkibidi && playerState.correctAnswers > 0 && playerState.correctAnswers % hunchThreshold === 0) {
+                if (isHunchEnabled && playerState.correctAnswers > 0 && playerState.correctAnswers % hunchThreshold === 0) {
                     playerState.historiansHunchPending = true;
                 }
 
@@ -3635,7 +3670,7 @@
                     updateNotification(randomMessage);
                 }
 
-                if (gameMode === 'SKIBIDI' && !abilities.firstLastLetterUpgraded && playerState.score >= 5) {
+                if (isSkibidi && !abilities.firstLastLetterUpgraded && playerState.score >= 5) {
                     updateNotification("You can afford Letter Insight in the store!");
                 }
 
@@ -3773,6 +3808,7 @@
             document.getElementById('fitbWordBank').innerHTML = '';
 
             selectedWordEl = null; // Reset selection
+            document.body.classList.remove('word-selected');
             resetPlayerState();
             updateAbilitiesUI();
             storeBtn.classList.remove('store-ready');
@@ -3898,7 +3934,13 @@
             const question = permanentWrongAnswers[reviewIndex];
 
             document.getElementById('reviewCounter').textContent = `${reviewIndex + 1} / ${permanentWrongAnswers.length}`;
-            reviewQuestionEl.textContent = question.question;
+            
+            if (question.text) {
+                reviewQuestionEl.innerHTML = question.text.replace(/\[\[\d+\]\]/g, '_______');
+            } else {
+                reviewQuestionEl.textContent = question.question;
+            }
+
             reviewChoicesEl.innerHTML = ''; // Clear previous choices
 
             if (gameMode === 'MYTH') {
@@ -3908,6 +3950,10 @@
                     <div class="p-3 rounded-lg bg-green-200 border-2 border-green-700 text-green-800 font-bold">Correct Answer: ${correctAnswerText}</div>
                     <div class="p-3 mt-2 rounded-lg bg-yellow-100 border-2 border-yellow-400 text-yellow-800">${question.explanation}</div>
                 `;
+            } else if (question.blanks) { // FILL_BLANK check
+                reviewUserAnswerEl.classList.add('hidden');
+                const correctAnswerText = question.blanks.join(', ');
+                reviewChoicesEl.innerHTML = `<div class="p-3 rounded-lg bg-green-200 border-2 border-green-700 text-green-800 font-bold">Correct Answers: ${correctAnswerText}</div>`;
             } else if (!question.choices) { // Check if it's a skibidi-type question
                 reviewUserAnswerEl.classList.add('hidden'); // Not tracking user's typed answer for now
                 const correctAnswerText = Array.isArray(question.answer) ? question.answer.join(' / ') : question.answer;
