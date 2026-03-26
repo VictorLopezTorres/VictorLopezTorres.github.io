@@ -116,6 +116,102 @@
             animation: typing 1s steps(60, end);
         }
 
+        /* FITB Styles */
+        #questionText.fitb-text {
+            display: block;
+            padding: 0.5rem;
+            padding-bottom: 1rem; /* Adds buffer so descenders aren't clipped by overflow:hidden */
+            width: 100%;
+            line-height: 1.8; /* Reduced line-height prevents premature scaling overflow triggers */
+        }
+        .drop-zone {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* Tie width to font-size so it shrinks in the adjustFontSize loop */
+            min-width: 5em; 
+            height: 1.5em;
+            border: 0.1em dashed #ca8a04;
+            white-space: nowrap;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.5);
+            vertical-align: middle;
+            margin: 0 0.3em;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+        .drop-zone:empty::before {
+            content: '?';
+            color: rgba(202, 138, 4, 0.5);
+            font-weight: 900;
+        }
+        .draggable-word {
+            display: inline-block; padding: clamp(0.25rem, 1vh, 0.5rem) clamp(0.5rem, 2vw, 1rem);
+            background-color: #ec4899; color: white; border: 4px solid #be185d; border-radius: 1rem;
+            font-weight: 900; font-size: clamp(0.9rem, 2.5vh, 1.5rem); cursor: grab;
+            box-shadow: 4px 4px 0px #be185d; transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Montserrat', sans-serif; user-select: none;
+        }
+        .draggable-word:hover { transform: translateY(-4px) scale(1.05); box-shadow: 6px 6px 0px #be185d; }
+
+        .draggable-word.selected {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 6px 6px 0px #be185d, 0 0 15px #fbcfe8;
+            border-color: #fbcfe8;
+        }
+
+        .drop-zone.drag-over {
+            border-color: #22c55e;
+            background-color: rgba(34, 197, 94, 0.2);
+            transform: scale(1.05);
+        }
+        .drop-zone.filled {
+            border-style: solid;
+            background-color: #fef08a;
+            color: #854d0e;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #ca8a04;
+        }
+        .drop-zone.filled:hover { transform: scale(1.05); }
+
+        .drop-zone.hint-highlight {
+            animation: pulse-glow 1.5s infinite;
+            border-color: #f59e0b;
+        }
+        
+        @keyframes success-bounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); background-color: #22c55e; border-color: #14532d; color: white; }
+            100% { transform: scale(1); background-color: #22c55e; border-color: #14532d; color: white; box-shadow: 2px 2px 0px #14532d; }
+        }
+        .drop-zone.success-bounce {
+            animation: success-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            pointer-events: none; /* Prevent clicking during animation */
+        }
+        
+        @keyframes error-shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); background-color: #ef4444; border-color: #991b1b; color: white; }
+            50% { transform: translateX(5px); background-color: #ef4444; border-color: #991b1b; color: white; }
+            75% { transform: translateX(-5px); background-color: #ef4444; border-color: #991b1b; color: white; }
+            100% { transform: translateX(0); background-color: #ef4444; border-color: #991b1b; color: white; box-shadow: 2px 2px 0px #991b1b; }
+        }
+        .drop-zone.error-shake {
+            animation: error-shake 0.5s cubic-bezier(.36,.07,.19,.97) forwards;
+            pointer-events: none;
+        }
+        
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .draggable-word {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Override the base transition to apply to all properties for smooth reflow/hover */
+            transition: all 0.3s ease, transform 0.2s, box-shadow 0.2s;
+        }
+
         /* NEW MODAL ANIMATIONS */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -168,14 +264,17 @@
             color: white;
         }
         .mode-card.simple h3 {
-            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             border-bottom: none;
             padding-bottom: 0;
             margin-bottom: 0;
             text-align: center;
         }
         .mode-card h3 span.text-5xl { /* Target the emoji specifically */
-            font-size: clamp(1.5rem, 4vw, 2.75rem);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+        }
+        .mode-card.simple {
+            padding: clamp(1.5rem, 4vw, 2.5rem);
         }
         .mode-details {
             font-size: clamp(0.6rem, 1.8vw, 0.85rem);
@@ -329,6 +428,8 @@
         .question-box {
             background-color: #fde047; border-color: #ca8a04; box-shadow: 8px 8px 0px #ca8a04;
             padding: 1.5rem; flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem;
+            min-height: 0; /* Prevents flex items from stretching outside parent bounds */
+            width: 100%;
         }
         #questionText {
             flex-grow: 1;
@@ -343,6 +444,8 @@
             line-height: 1.1;
             padding: 0;
             margin: 0;
+            min-height: 0; /* Ensures clientHeight is tightly bound */
+            overflow: hidden; /* Ensures scrollHeight calculates correctly */
         }
         #hintBtn {
             background-color: #fb923c; border: 4px solid #c2410c; box-shadow: 4px 4px 0px #c2410c;
@@ -760,9 +863,9 @@
 <body>
 
      <div id="difficultyModal" class="modal-overlay">
-        <div class="modal-content" style="text-align: center; background-color: #f9fafb;">
-            <h2 class="text-4xl font-bold mb-6" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.75rem, 4vw, 2.5rem);">Choose Your Challenge</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="modal-content" style="text-align: center; background-color: #f9fafb; max-width: min(95vw, 1200px);">
+            <h2 class="font-bold mb-8" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 6vw, 4rem);">Choose Your Challenge</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
                 <!-- Easy Mode -->
                 <div id="easyModeBtn" class="mode-card simple" style="--main-color: #3b82f6; --shadow-color: #1d4ed8;">
                     <h3 class="flex flex-col items-center gap-2">
@@ -791,8 +894,16 @@
                         <span>Skibidi</span>
                     </h3>
                 </div>
+                <!-- Fill in the Blank Mode -->
+                <div id="fitbModeBtn" class="mode-card simple relative" style="--main-color: #ec4899; --shadow-color: #be185d;">
+                    <div class="absolute -top-4 -right-4 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-black text-xl border-4 border-yellow-700 z-10" style="box-shadow: 4px 4px 0px #a16207; transform: rotate(12deg);">NEW!</div>
+                    <h3 class="flex flex-col items-center gap-2">
+                        <span class="text-5xl">🧩</span>
+                        <span>Fill Blank</span>
+                    </h3>
+                </div>
                 <!-- Sigma Mode -->
-                <div id="sigmaModeBtn" class="mode-card simple col-span-2" style="--main-color: #374151; --shadow-color: #111827;">
+                <div id="sigmaModeBtn" class="mode-card simple" style="--main-color: #374151; --shadow-color: #111827;">
                     <h3 class="flex flex-col items-center gap-2">
                         <span class="text-5xl">⚡</span>
                         <span>Sigma</span>
@@ -894,6 +1005,24 @@
         </div>
     </div>
 
+    <div id="fitbRulesModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 class="text-4xl font-bold mb-4">Welcome to Fill-in-the-Blank! 🧩</h2>
+            <div class="space-y-4 text-lg">
+                <p>Drag the correct words to complete the historical passage!</p>
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li><strong>Question Type:</strong> Drag-and-drop fill-in-the-blanks.</li>
+                    <li><strong>Time Limit:</strong> 5:00 minutes.</li>
+                    <li><strong>Abilities:</strong> Earned at a standard rate.</li>
+                </ul>
+                <p class="font-bold text-center mt-4">Ready to test your memory?</p>
+            </div>
+            <div class="flex justify-center mt-6">
+                <button id="acceptFitbBtn" class="modal-button bg-green-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Let's Go!</button>
+                <button id="declineFitbBtn" class="modal-button bg-gray-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Go Back</button>
+            </div>
+        </div>
+    </div>
 
     <div id="sigmaRulesModal" class="modal-overlay hidden">
         <div class="modal-content">
@@ -1177,6 +1306,11 @@
                 <div id="mythAnswerButtons" class="hidden flex justify-center gap-4 mt-4">
                     <button id="factBtn" class="modal-button bg-blue-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Fact</button>
                     <button id="mythBtn" class="modal-button bg-red-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Myth</button>
+                </div>
+                <!-- Drag-and-Drop Area (FITB Mode) -->
+                <div id="fitbAnswerArea" class="hidden w-full flex flex-col gap-4 items-center justify-center p-4">
+                    <div id="fitbWordBank" class="flex flex-wrap justify-center gap-2"></div>
+                    <button id="fitbSubmitBtn" class="modal-button bg-green-500 text-white hidden" style="box-shadow: 4px 4px 0px #111827;">Submit Answer</button>
                 </div>
             </div>
         </section>
@@ -1992,8 +2126,121 @@
             { question: "MYTH or FACT: The Holocaust was a secret, accidental consequence of the war.", isFact: false, explanation: "MYTH: It was the horrific, deliberate, and highly organized genocide of six million Jewish people and millions of others, planned and executed by the Nazi regime." }
         ]
         }
+    },
+    FILL_BLANK: {
+        grade6: {
+            unit1: [
+                { text: "\"Having undertaken, for the Glory of God, and advancements of the Christian faith... a voyage to plant the first colony in the Northern parts of Virginia...\" This document, the [[0]], was signed by the [[1]] in 1620 to establish self-government.", blanks: ["Mayflower Compact", "Pilgrims"], distractors: ["Magna Carta", "Puritans", "Declaration of Independence", "Quakers"], hint: "Think about the name of the ship they sailed on and the specific religious group that wanted to separate from the Church of England.", dok: 2 },
+                { text: "\"He that will not [[0]] shall not [[1]].\" This strict rule was implemented by [[2]] to save the failing colony of Jamestown from starvation.", blanks: ["work", "eat", "John Smith"], distractors: ["pray", "sleep", "William Penn", "William Bradford"], hint: "The colony was failing because gentlemen were looking for gold instead of doing necessary chores.", dok: 2 },
+                { text: "While [[0]] primarily sought to extract gold and convert Native Americans in the South, [[1]] focused on building strong alliances with Native tribes in the North to dominate the lucrative [[2]] trade.", blanks: ["Spain", "France", "fur"], distractors: ["England", "Netherlands", "tobacco", "timber"], hint: "Think about which country conquered the Aztecs versus which country traded heavily along the Mississippi and St. Lawrence rivers.", dok: 3 },
+                { text: "In 1676, a group of angry poor farmers and former [[0]] revolted against the Virginia governor's friendly policies toward Native Americans in an uprising known as [[1]].", blanks: ["indentured servants", "Bacon's Rebellion"], distractors: ["enslaved people", "Shays's Rebellion", "King Philip's War", "Patriots"], hint: "The uprising was named after its leader, Nathaniel, and involved burning down Jamestown.", dok: 2 },
+                { text: "The survival of the Plymouth colony was heavily dependent on [[0]], a Native American who taught the colonists how to fertilize soil with fish, leading to the 1621 celebration known today as [[1]].", blanks: ["Squanto", "Thanksgiving"], distractors: ["Pocahontas", "Christmas", "Metacom", "Chief Massasoit"], hint: "He was part of the Patuxet tribe, spoke English, and helped forge an alliance with Chief Massasoit.", dok: 1 }
+            ],
+            unit2: [
+                { text: "Because of its rocky soil and cold climate, the [[0]] colonies relied on shipbuilding and fishing, whereas the [[1]] colonies utilized their rich soil and long growing seasons to establish large cash-crop [[2]].", blanks: ["New England", "Southern", "plantations"], distractors: ["Middle", "factories", "Western", "missions"], hint: "Contrast the economies of Massachusetts and Virginia based on their environments.", dok: 2 },
+                { text: "\"No people can be truly happy... if abridged of the freedom of their consciences.\" This belief led [[0]] to found the colony of [[1]] as a safe haven for the pacifist religious group known as the [[2]].", blanks: ["William Penn", "Pennsylvania", "Quakers"], distractors: ["John Winthrop", "Massachusetts", "Puritans", "Pilgrims"], hint: "The colony's name literally means 'Penn's Woods', and its major city is the 'City of Brotherly Love.'", dok: 2 },
+                { text: "\"The closeness of the place, and the heat of the climate, added to the number in the ship... nearly suffocated us.\" This firsthand account by Olaudah Equiano describes the brutal [[0]], which was the deadliest leg of the transatlantic [[1]] trade network.", blanks: ["Middle Passage", "Triangular"], distractors: ["Northwest Passage", "Columbian", "Mercantilism", "Silk Road"], hint: "The trade route formed a specific geometric shape across the Atlantic Ocean.", dok: 2 },
+                { text: "Under colonial law, an [[0]] was a temporary worker who signed a contract to pay off travel debts, whereas an [[1]] was considered permanent property for life due to the institution of chattel slavery.", blanks: ["indentured servant", "enslaved person"], distractors: ["artisan", "apprentice", "patriot", "loyalist"], hint: "One status was based on a legal agreement for a few years, while the other was a horrific, lifelong, and hereditary condition.", dok: 2 },
+                { text: "Known as the \"Breadbasket Colonies\" due to their massive grain production, the [[0]] colonies were the most culturally and religiously [[1]] region in British North America.", blanks: ["Middle", "diverse"], distractors: ["New England", "Southern", "uniform", "intolerant"], hint: "This region included New York and Pennsylvania and attracted immigrants from all over Europe.", dok: 1 }
+            ],
+            unit3: [
+                { text: "\"We forbid our white subjects... to contract marriage with blacks... We command that all slaves in our islands be baptized.\" These rules are from the [[0]], a set of laws issued by the [[1]] King to control colonial Louisiana.", blanks: ["Code Noir", "French"], distractors: ["Napoleonic Code", "Spanish", "Magna Carta", "British"], hint: "The document's name translates to the 'Black Code' in English.", dok: 2 },
+                { text: "In the secret Treaty of [[0]] (1762), France transferred control of the Louisiana territory to [[1]] to ensure it would not fall into the hands of the [[2]] at the end of the French and Indian War.", blanks: ["Fontainebleau", "Spain", "British"], distractors: ["Paris", "United States", "Ghent", "Dutch"], hint: "France gave the land to their ally because they knew they were going to lose the war against King George III's empire.", dok: 2 },
+                { text: "Known as the \"Father of Louisiana,\" Jean-Baptiste Le Moyne de [[0]] founded the city of [[1]] in 1718 along a sharp bend in the Mississippi River.", blanks: ["Bienville", "New Orleans"], distractors: ["La Salle", "Baton Rouge", "Natchitoches", "John Law"], hint: "His brother was Iberville, and the city he founded became the colony's most important port.", dok: 1 },
+                { text: "After refusing to swear an oath of allegiance to the British king, the [[0]] were exiled from Nova Scotia in an event called Le Grand Dérangement. They eventually settled in Louisiana and became known as [[1]].", blanks: ["Acadians", "Cajuns"], distractors: ["Isleños", "Creoles", "Haitians", "Germans"], hint: "Their name changed over time in Louisiana due to dialect shifts.", dok: 2 },
+                { text: "Scottish economist [[0]] created a massive financial scheme to populate and fund French Louisiana. When investors realized the colony wasn't making money, the scheme collapsed in a disaster known as the Mississippi [[1]].", blanks: ["John Law", "Bubble"], distractors: ["Alejandro O'Reilly", "Massacre", "Bienville", "Rebellion"], hint: "Like a balloon that expands too fast, this financial scheme eventually 'popped.'", dok: 2 }
+            ],
+            unit4: [
+                { text: "\"We hold these truths to be self-evident, that all men are created [[0]]... endowed by their Creator with certain unalienable Rights...\" This famous line from the [[1]] was primarily written by [[2]].", blanks: ["equal", "Declaration of Independence", "Thomas Jefferson"], distractors: ["free", "Constitution", "George Washington", "Thomas Paine"], hint: "The document was adopted on July 4, 1776, to formally separate from Great Britain.", dok: 2 },
+                { text: "\"There is something absurd, in supposing a continent to be perpetually governed by an island.\" This logical argument was published in the highly influential pamphlet [[0]] written by [[1]].", blanks: ["Common Sense", "Thomas Paine"], distractors: ["The Crisis", "Paul Revere", "The Federalist Papers", "John Hancock"], hint: "The title implies that declaring independence is the only reasonable and rational choice.", dok: 2 },
+                { text: "In response to the [[0]], where the Sons of Liberty dumped taxed goods into the harbor, the British Parliament passed the Coercive Acts, which American colonists angrily nicknamed the [[1]] Acts.", blanks: ["Boston Tea Party", "Intolerable"], distractors: ["Boston Massacre", "Stamp", "Townshend", "Quartering"], hint: "The colonists felt these harsh punishment laws were simply 'unbearable' to live under.", dok: 2 },
+                { text: "The American victory at the Battle of [[0]] is considered the turning point of the war because it convinced [[1]] to formally ally with the United States. The war effectively ended when the British surrendered at [[2]].", blanks: ["Saratoga", "France", "Yorktown"], distractors: ["Lexington", "Spain", "Valley Forge", "Bunker Hill"], hint: "The turning point was in New York, and the final major surrender was on a peninsula in Virginia.", dok: 3 },
+                { text: "George Washington heavily relied on military intelligence provided by a secret espionage network operating out of New York called the [[0]] Spy Ring, which used invisible ink and ciphers to outsmart the [[1]] army.", blanks: ["Culper", "British"], distractors: ["Sons of Liberty", "French", "Minutemen", "Hessian"], hint: "This ring's name starts with a 'C' and they spied on the Redcoats.", dok: 1 }
+            ],
+            unit5: [
+                { text: "Because the [[0]] intentionally created a weak national government that lacked the power to collect taxes, it was unable to pay for an army to stop a violent uprising of Massachusetts farmers known as [[1]].", blanks: ["Articles of Confederation", "Shays's Rebellion"], distractors: ["Constitution", "Bacon's Rebellion", "Declaration of Independence", "Whiskey Rebellion"], hint: "The first framework of government failed a major stress test led by a Revolutionary War veteran named Daniel.", dok: 3 },
+                { text: "\"The House of Representatives shall be composed of Members chosen... according to their respective Numbers.\" This reflects the [[0]], which combined James Madison's Virginia Plan and the New Jersey Plan to create a [[1]] (two-house) legislature.", blanks: ["Great Compromise", "bicameral"], distractors: ["Three-Fifths Compromise", "unicameral", "Electoral College", "monarchy"], hint: "This agreement satisfied both the large states (who wanted representation by population) and small states (who wanted equal representation).", dok: 2 },
+                { text: "\"We the People of the United States, in Order to form a more perfect Union... do ordain and establish this [[0]].\" This document officially replaced the flawed [[1]] in 1789.", blanks: ["Constitution", "Articles of Confederation"], distractors: ["Declaration of Independence", "Bill of Rights", "Magna Carta", "Northwest Ordinance"], hint: "This is the preamble to the supreme law of the land that governs the United States today.", dok: 2 },
+                { text: "During the Constitutional Convention, Southern states wanted to count [[0]] for political representation but not for taxation. This horrific debate was settled by the [[1]] Compromise, which counted a fraction of this population.", blanks: ["enslaved people", "Three-Fifths"], distractors: ["Native Americans", "Great", "women", "Commerce"], hint: "The agreement gave the South disproportionate political power in Congress for decades.", dok: 2 },
+                { text: "The [[0]] of 1787 was a major success of the early government because it established a peaceful process for admitting new [[1]] to the Union and explicitly banned [[2]] in the new territory.", blanks: ["Northwest Ordinance", "states", "slavery"], distractors: ["Land Ordinance", "colonies", "taxes", "religion"], hint: "It set the rules for how territories like Ohio and Indiana could become equal members of the country.", dok: 1 }
+            ]
+        },
+        grade7: {
+            unit1: [
+                { text: "In his Farewell Address, [[0]] famously warned the young nation against forming permanent [[1]] with foreign nations and the dangers of political [[2]].", blanks: ["George Washington", "alliances", "parties"], distractors: ["Thomas Jefferson", "taxes", "monopolies", "religions"], hint: "Think about his advice on staying neutral globally and avoiding intense division domestically.", dok: 2 },
+                { text: "While Alexander Hamilton and the [[0]] supported a strong federal government and the creation of a [[1]], Thomas Jefferson and his supporters favored states' rights and an agrarian economy.", blanks: ["Federalists", "National Bank"], distractors: ["Democratic-Republicans", "monarchy", "Whigs", "standing army"], hint: "Consider the very first political party and the financial institution they argued over to manage revolutionary debt.", dok: 2 },
+                { text: "To prove the federal government's constitutional power to enforce its right to [[0]], George Washington personally led an army to stop a violent uprising of Pennsylvania farmers known as the [[1]].", blanks: ["tax", "Whiskey Rebellion"], distractors: ["vote", "Shays's Rebellion", "trade", "Bacon's Rebellion"], hint: "The uprising was named after the distilled spirit the farmers were protesting paying a federal fee on.", dok: 2 },
+                { text: "During John Adams' presidency, the controversial [[0]] Acts made it illegal to criticize the government, prompting Jefferson and Madison to write resolutions arguing for the states' right to [[1]] unconstitutional laws.", blanks: ["Alien and Sedition", "nullify"], distractors: ["Intolerable", "veto", "Stamp", "amend"], hint: "The laws restricted free speech and targeted immigrants, and the response suggested states could completely cancel federal rules.", dok: 3 },
+                { text: "The [[0]] Affair occurred when French agents demanded a bribe from American diplomats, outraging the public and leading President [[1]] into an undeclared naval conflict known as the Quasi-War.", blanks: ["XYZ", "John Adams"], distractors: ["ABC", "Thomas Jefferson", "Trent", "James Madison"], hint: "The French agents were kept anonymous in official reports by using the last three letters of the alphabet.", dok: 1 }
+            ],
+            unit2: [
+                { text: "In 1803, President [[0]] used a loose interpretation of his treaty-making powers to acquire the [[1]] from France, instantly doubling the size of the United States.", blanks: ["Thomas Jefferson", "Louisiana Purchase"], distractors: ["George Washington", "Gadsden Purchase", "John Adams", "Florida Territory"], hint: "He bought this massive piece of land from Napoleon Bonaparte for $15 million.", dok: 1 },
+                { text: "The Corps of Discovery, led by [[0]], was commissioned to explore the newly acquired western territory and find a water route to the Pacific Ocean, greatly aided by a Shoshone guide named [[1]].", blanks: ["Lewis and Clark", "Sacagawea"], distractors: ["Dunbar and Hunter", "Pocahontas", "Zebulon Pike", "Squanto"], hint: "The two captains kept detailed journals, and their famous interpreter helped them communicate with indigenous tribes.", dok: 1 },
+                { text: "A major cause of the War of 1812 was the practice of [[0]], which involved capturing American sailors and forcing them to serve in the [[1]] navy.", blanks: ["impressment", "British"], distractors: ["embargo", "French", "blockade", "Spanish"], hint: "It was basically the legal kidnapping of sailors at sea by the empire ruled by King George III.", dok: 2 },
+                { text: "Even though the Treaty of [[0]] had already been signed in Europe to end the war, General [[1]] achieved a massive victory at the Battle of [[2]], boosting immense national pride.", blanks: ["Ghent", "Andrew Jackson", "New Orleans"], distractors: ["Paris", "George Washington", "Baton Rouge", "Yorktown"], hint: "The hero of this battle later became the 7th President, fighting on a famous Louisiana field alongside Jean Lafitte.", dok: 2 },
+                { text: "Before Louisiana officially gained statehood, a lawless border region known as the [[0]] was established to prevent conflict between the United States and [[1]].", blanks: ["Neutral Strip", "Spain"], distractors: ["Indian Territory", "France", "West Florida", "Britain"], hint: "Think about the 'No Man's Land' buffer zone and the European country that controlled Texas at the time.", dok: 3 }
+            ],
+            unit3: [
+                { text: "The [[0]] of 1823 established a policy of isolationism by warning European powers that the United States would not tolerate further colonization in the [[1]] Hemisphere.", blanks: ["Monroe Doctrine", "Western"], distractors: ["American System", "Eastern", "Manifest Destiny", "Northern"], hint: "This presidential statement essentially drew a line in the Atlantic Ocean, telling Europe to stay out of the Americas.", dok: 2 },
+                { text: "Driven by the belief in [[0]], the United States expanded its borders to the Pacific Ocean through events like the annexation of Texas and the [[1]] War.", blanks: ["Manifest Destiny", "Mexican-American"], distractors: ["Imperialism", "Spanish-American", "Abolitionism", "Civil"], hint: "This ideology claimed it was America's 'obvious fate' to spread democracy across the continent.", dok: 2 },
+                { text: "President [[0]] completely ignored the Supreme Court's ruling in Worcester v. Georgia, leading to the forced relocation of the Cherokee people to Indian Territory in a tragic event known as the [[1]].", blanks: ["Andrew Jackson", "Trail of Tears"], distractors: ["Thomas Jefferson", "Long Walk", "James K. Polk", "Middle Passage"], hint: "The President known for the 'spoils system' caused this deadly winter march.", dok: 2 },
+                { text: "During the first [[0]], Eli Whitney's invention of the [[1]] made processing short-staple cotton highly profitable, tragically leading to a massive expansion of [[2]] in the South.", blanks: ["Industrial Revolution", "cotton gin", "enslaved labor"], distractors: ["Agricultural Revolution", "steamboat", "indentured servitude", "textile mills"], hint: "This machine separated seeds from fibers much faster than by hand, permanently altering the Southern agrarian economy.", dok: 3 },
+                { text: "The invention of [[0]] by innovators like Captain Henry Miller Shreve transformed the Mississippi River into a massive trade network, making the port city of [[1]] one of the wealthiest in the nation.", blanks: ["steamboats", "New Orleans"], distractors: ["railroads", "Baton Rouge", "canals", "Shreveport"], hint: "These steam-powered vessels could travel upstream against the river's current.", dok: 2 }
+            ],
+            unit4: [
+                { text: "At the 1848 [[0]] Convention, Elizabeth Cady Stanton presented the Declaration of Sentiments, deliberately mimicking the Declaration of Independence to state that 'all men and [[1]] are created equal.'", blanks: ["Seneca Falls", "women"], distractors: ["National Women's", "children", "Abolitionist", "citizens"], hint: "This New York meeting was the official birth of the women's rights and suffrage movement.", dok: 2 },
+                { text: "The [[0]] was a secret network of safe houses and routes used by enslaved people to escape to freedom, often guided by incredibly brave 'conductors' like [[1]].", blanks: ["Underground Railroad", "Harriet Tubman"], distractors: ["Northwest Ordinance", "Sojourner Truth", "Erie Canal", "Dorothea Dix"], hint: "It wasn't a real train, and its most famous leader was nicknamed 'Moses.'", dok: 1 },
+                { text: "Written by [[0]], the deeply influential anti-slavery novel [[1]] outraged the South but mobilized Northerners by exposing the brutal, emotional reality of the institution of slavery.", blanks: ["Harriet Beecher Stowe", "Uncle Tom's Cabin"], distractors: ["William Lloyd Garrison", "The Liberator", "Frederick Douglass", "Common Sense"], hint: "Abraham Lincoln supposedly greeted this author as the 'little woman who wrote the book that made this great war.'", dok: 2 },
+                { text: "To maintain the balance of power in Congress, the [[0]] temporarily settled disputes over western territories, while the strict Fugitive Slave Act of 1850 drastically increased [[1]] tensions.", blanks: ["Missouri Compromise", "sectional"], distractors: ["Northwest Ordinance", "international", "Nullification Crisis", "economic"], hint: "This 1820 agreement drew a line across the map dividing free and slave states.", dok: 3 },
+                { text: "The landmark 1857 [[0]] decision by the Supreme Court worsened the national divide by ruling that Black Americans were not citizens and that Congress could not ban [[1]] in the territories.", blanks: ["Dred Scott", "slavery"], distractors: ["Plessy v. Ferguson", "voting", "Marbury v. Madison", "immigration"], hint: "The plaintiff sued for his freedom after living in free territory, but Chief Justice Roger Taney ruled against him.", dok: 3 }
+            ],
+            unit5: [
+                { text: "Following the Battle of Antietam, Abraham Lincoln issued the [[0]], which fundamentally changed the purpose of the war by declaring that all enslaved people in the rebelling [[1]] states were forever free.", blanks: ["Emancipation Proclamation", "Confederate"], distractors: ["Gettysburg Address", "Union", "13th Amendment", "Border"], hint: "It was a military order that made ending slavery a central goal of the conflict.", dok: 2 },
+                { text: "\"Four score and seven years ago...\" begins the [[0]], in which Abraham Lincoln honored fallen soldiers and framed the Civil War as a supreme test of whether a nation dedicated to [[1]] could endure.", blanks: ["Gettysburg Address", "equality"], distractors: ["Second Inaugural Address", "states' rights", "Emancipation Proclamation", "manifest destiny"], hint: "This famous two-minute speech was given at the dedication of a national cemetery in Pennsylvania.", dok: 2 },
+                { text: "Because it controlled the mouth of the Mississippi River, the capture of the Port of [[0]] by Union naval forces was a devastating economic and strategic blow to the [[1]].", blanks: ["New Orleans", "Confederacy"], distractors: ["Baton Rouge", "Union", "Shreveport", "Republicans"], hint: "The Union Navy's Admiral Farragut captured the Crescent City very early in the war.", dok: 2 },
+                { text: "During the Civil War, a highly recognizable and fierce group of Confederate soldiers from Louisiana, known for their colorful Zouave uniforms and aggressive fighting style, were called the [[0]].", blanks: ["Louisiana Tigers"], distractors: ["Minutemen", "Rough Riders", "Green Mountain Boys", "Buffalo Soldiers"], hint: "They share a mascot with the modern-day LSU sports teams.", dok: 1 },
+                { text: "In his [[0]], Lincoln urged the nation to heal its wounds \"with malice toward none, with [[1]] for all,\" shortly before General Lee surrendered to General Grant at [[2]].", blanks: ["Second Inaugural Address", "charity", "Appomattox Court House"], distractors: ["First Inaugural Address", "vengeance", "Gettysburg", "Fort Sumter"], hint: "This speech happened as the war was ending, asking for forgiveness and a peaceful rebuilding of the country.", dok: 3 }
+            ]
+        },
+        grade8: {
+            unit1: [
+                { text: "In the landmark 1896 case [[0]], the Supreme Court legally justified the segregation of the [[1]] system by establishing the disastrous \"[[2]]\" doctrine.", blanks: ["Plessy v. Ferguson", "Jim Crow", "separate but equal"], distractors: ["Dred Scott v. Sandford", "sharecropping", "Black Codes", "manifest destiny"], hint: "This ruling originated from an incident on a train in Louisiana and legalized racial segregation for decades.", dok: 3 },
+                { text: "Although the [[0]] abolished slavery, and the [[1]] guaranteed equal protection under the law, Southern states systematically bypassed the 15th Amendment's voting rights by implementing [[2]] and poll taxes.", blanks: ["13th Amendment", "14th Amendment", "literacy tests"], distractors: ["19th Amendment", "18th Amendment", "Emancipation Proclamation", "Dawes Act"], hint: "Consider the constitutional additions that were meant to secure freedom and citizenship for formerly enslaved people.", dok: 2 },
+                { text: "To force assimilation, the U.S. government passed the [[0]], which broke up Native American reservations into individual plots of land, severely undermining traditional [[1]] culture and resulting in massive losses of [[2]].", blanks: ["Dawes Act", "tribal", "territory"], distractors: ["Homestead Act", "industrial", "buffalo", "Exodusters"], hint: "This 1887 law sought to turn Native Americans into independent farmers rather than members of a collective group.", dok: 3 },
+                { text: "Seeking to escape the violence of the Ku Klux Klan and the economic trap of [[0]] in the post-Reconstruction South, thousands of African Americans known as [[1]] migrated westward to establish independent farming communities in states like [[2]].", blanks: ["sharecropping", "Exodusters", "Kansas"], distractors: ["industrialization", "muckrakers", "California", "New York"], hint: "Their name is inspired by a biblical story of escaping slavery, and they sought land under the Homestead Act.", dok: 2 },
+                { text: "During the Jim Crow era, [[0]] advocated for vocational training and economic self-reliance, while [[1]] demanded immediate political equality and helped found the [[2]] to fight for civil rights through the legal system.", blanks: ["Booker T. Washington", "W.E.B. DuBois", "NAACP"], distractors: ["Ida B. Wells", "Grange", "People's Party", "Freedmen's Bureau"], hint: "The founder of the Tuskegee Institute focused on practical skills, whereas the author of \"The Souls of Black Folk\" pushed for full, immediate civil rights.", dok: 3 }
+            ],
+            unit2: [
+                { text: "By exposing the horrific, unsanitary conditions of the meatpacking industry in his novel \"[[0]]\", investigative [[1]] Upton Sinclair sparked public outrage that directly led to the passage of the [[2]].", blanks: ["The Jungle", "muckraker", "Meat Inspection Act"], distractors: ["How the Other Half Lives", "yellow journalist", "Sherman Antitrust Act", "capitalist"], hint: "Think about reporters who \"dug up the dirt\" to expose corruption, and the resulting food safety laws.", dok: 2 },
+                { text: "Industrialists like John D. Rockefeller ruthlessly eliminated competition to form massive [[0]]. By controlling the entire [[1]] industry, Standard Oil could artificially dictate prices, eventually leading the government to pass the [[2]] to break them up.", blanks: ["monopolies", "oil", "Sherman Antitrust Act"], distractors: ["labor unions", "steel", "Interstate Commerce Act", "populists"], hint: "He dominated the energy sector before electricity and cars took over, making him the richest American in history.", dok: 3 },
+                { text: "In response to dangerous working conditions, extremely low [[0]], and the widespread use of [[1]], workers began to organize into [[2]] to demand better treatment through collective bargaining and strikes.", blanks: ["wages", "child labor", "labor unions"], distractors: ["tariffs", "monopolies", "trusts", "mass production"], hint: "When individuals lack power against massive corporations, they have to unite as a single organized group.", dok: 2 },
+                { text: "The rapid expansion of [[0]] pulled millions of immigrants to the United States seeking factory jobs, leading to massive [[1]] as cities became dangerously overcrowded and characterized by cramped [[2]].", blanks: ["industrialization", "urbanization", "tenements"], distractors: ["agriculture", "isolationism", "plantations", "populism"], hint: "Think about the shift from farming to manufacturing and the specific term for the slum apartments many immigrants were forced to live in.", dok: 2 },
+                { text: "Frustrated by high railroad shipping rates and crushing debt, farmers formed the [[0]] movement, which eventually evolved into the [[1]], a political organization demanding government regulation of corporations and a bimetallic currency standard.", blanks: ["Granger", "People's Party"], distractors: ["Muckraker", "Progressive Party", "Abolitionist", "Federalist"], hint: "This political movement aimed to represent the \"common man,\" specifically agricultural workers fighting against the power of big banks and railroads.", dok: 3 }
+            ],
+            unit3: [
+                { text: "The United States abandoned its policy of [[0]] and entered World War I after Germany resumed unrestricted [[1]] warfare and British intelligence intercepted the [[2]], which proposed a German-Mexican alliance against the U.S.", blanks: ["isolationism", "submarine", "Zimmermann Telegram"], distractors: ["imperialism", "trench", "Lusitania", "Fourteen Points"], hint: "The U.S. wanted to stay out of European conflicts, but secret messages and U-boat attacks made that impossible.", dok: 3 },
+                { text: "Despite President Woodrow Wilson's push for the [[0]] to prevent future conflicts, the U.S. Senate refused to ratify the [[1]], fearing that joining the international organization would drag America into more European wars.", blanks: ["League of Nations", "Treaty of Versailles"], distractors: ["United Nations", "Treaty of Paris", "Fourteen Points", "Espionage Act"], hint: "The Senate wanted to retain its constitutional power to declare war rather than be bound by a global alliance.", dok: 3 },
+                { text: "Driven by the ideology of [[0]] and sensationalized [[1]], the United States defeated Spain and acquired overseas territories including Guam, Puerto Rico, and the [[2]], signaling America's emergence as a global power.", blanks: ["imperialism", "yellow journalism", "Philippines"], distractors: ["isolationism", "muckraking", "Hawaii", "Panama Canal"], hint: "Think about the exaggerated news stories involving the USS Maine and the island nation in the Pacific that the U.S. took control of.", dok: 2 },
+                { text: "Driven by the [[0]] of African Americans fleeing the segregated South for Northern industrial jobs, a massive cultural, artistic, and musical explosion occurred in New York known as the [[1]], featuring legendary figures like [[2]].", blanks: ["Great Migration", "Harlem Renaissance", "Louis Armstrong"], distractors: ["Red Scare", "Roaring Twenties", "Babe Ruth", "Exoduster movement"], hint: "This era brought jazz to the mainstream and established a powerful new Black cultural identity in the 1920s.", dok: 2 },
+                { text: "Established by the 18th Amendment, [[0]] banned the sale and production of alcohol, but it spectacularly failed as it led to widespread bootlegging and the rapid growth of violent [[1]] syndicates.", blanks: ["Prohibition", "organized crime"], distractors: ["Temperance", "capitalism", "suffrage", "labor unions"], hint: "This period in the 1920s made gangsters like Al Capone incredibly wealthy through illegal 'speakeasies'.", dok: 1 }
+            ],
+            unit4: [
+                { text: "The prosperity of the 1920s collapsed during the 1929 [[0]], largely caused by the dangerous practice of buying stocks on [[1]] and the massive overextension of consumer [[2]].", blanks: ["stock market crash", "margin", "credit"], distractors: ["Dust Bowl", "tariffs", "social security", "rationing"], hint: "People were borrowing money they didn't have to invest in a market that eventually completely plummeted.", dok: 2 },
+                { text: "As part of the [[0]], FDR established alphabet agencies to provide relief: the [[1]] hired young men to plant trees, and the [[2]] built dams to provide electricity to rural areas.", blanks: ["New Deal", "Civilian Conservation Corps", "Tennessee Valley Authority"], distractors: ["Great Society", "Works Progress Administration", "Federal Deposit Insurance Corporation", "Square Deal"], hint: "Think about the broad name of Roosevelt's recovery program and the specific agencies focused on the environment and hydro-power.", dok: 2 },
+                { text: "To prevent future financial ruin, the government created the [[0]] to insure bank deposits, and passed the [[1]] to establish a permanent federal safety net for the elderly, unemployed, and disabled.", blanks: ["Federal Deposit Insurance Corporation", "Social Security Act"], distractors: ["Securities Exchange Act", "National Housing Act", "Glass-Steagall Act", "Civilian Conservation Corps"], hint: "One agency guarantees your money won't disappear if a bank closes; the other provides pensions for retirees.", dok: 2 },
+                { text: "Decades of severe over-plowing removed the deep-rooted prairie grasses of the Great Plains, which, combined with a massive [[0]], created the devastating environmental disaster known as the [[1]], forcing thousands of farmers into westward [[2]].", blanks: ["drought", "Dust Bowl", "migration"], distractors: ["flood", "Great Depression", "Hoovervilles", "isolationism"], hint: "This disaster caused terrifying 'black blizzards' that choked livestock and ruined crops.", dok: 2 },
+                { text: "Following the devastation of the Great Mississippi River [[0]], charismatic Louisiana politician [[1]] gained immense popularity by fiercely criticizing wealthy corporations and proposing his radical \"[[2]]\" program to redistribute wealth.", blanks: ["Flood of 1927", "Huey Long", "Share Our Wealth"], distractors: ["Dust Bowl", "Herbert Hoover", "New Deal", "Grange"], hint: "Known as 'The Kingfish,' he promised to make 'Every Man a King' during the height of the Great Depression.", dok: 3 }
+            ],
+            unit5: [
+                { text: "\"Yesterday, December 7, 1941—a date which will live in infamy—the United States of America was suddenly and deliberately attacked by naval and air forces of the Empire of [[0]].\" This speech by [[1]] led to an immediate declaration of war following the bombing of [[2]].", blanks: ["Japan", "Franklin D. Roosevelt", "Pearl Harbor"], distractors: ["Germany", "Harry S. Truman", "the Lusitania", "the Soviet Union"], hint: "It was a surprise Sunday morning attack on a major Pacific naval base.", dok: 2 },
+                { text: "Driven by virulent [[0]], the Nazi regime systematically murdered six million Jewish people in a horrific genocide known as the [[1]]. After the war, top Nazi leaders were finally held accountable for crimes against humanity during the [[2]].", blanks: ["antisemitism", "Holocaust", "Nuremberg trials"], distractors: ["nationalism", "Bataan Death March", "Manhattan Project", "Japanese internment"], hint: "The hatred of Jewish people led to the Final Solution, and the post-war trials established international human rights law.", dok: 2 },
+                { text: "To force a surrender without launching a catastrophic ground invasion, President [[0]] authorized the use of weapons developed by the top-secret [[1]], dropping atomic bombs on the Japanese cities of Hiroshima and [[2]].", blanks: ["Harry S. Truman", "Manhattan Project", "Nagasaki"], distractors: ["Franklin D. Roosevelt", "Operation Overlord", "Okinawa", "Midway"], hint: "FDR died before the war ended, leaving his Vice President to make the most destructive military decision in history.", dok: 2 },
+                { text: "At the [[0]] Conference, the \"Big Three\" leaders discussed the postwar reorganization of Europe, resulting in the controversial decision to divide [[1]] into occupation zones, which drastically heightened tensions with the [[2]].", blanks: ["Yalta", "Germany", "Soviet Union"], distractors: ["Tehran", "Potsdam", "Japan", "League of Nations"], hint: "This meeting took place in the Crimea in early 1945 between Churchill, Roosevelt, and Stalin to shape the post-war peace.", dok: 3 },
+                { text: "The massive Allied amphibious invasion of Normandy on [[0]] was made possible by shallow-draft landing craft known as [[1]], which were designed and manufactured in [[2]], Louisiana.", blanks: ["D-Day", "Higgins Boats", "New Orleans"], distractors: ["V-E Day", "Liberty Ships", "Baton Rouge", "Pearl Harbor"], hint: "General Eisenhower stated that without the boats built by this specific Louisiana manufacturer, the war could not have been won.", dok: 1 }
+            ]
+        }
     }
-};;;
+};
 
         // --- SOUND ENGINE ---
         const filter = new Tone.Filter(400, "lowpass").toDestination();
@@ -2022,8 +2269,15 @@
             synth.triggerAttackRelease("C2", "8n", now);
         }
         function playClickSound() { if (isMuted) return;
-            pluckSynth.triggerAttack("C4", Tone.now());
-            filterEnv.triggerAttack();
+            if (Tone.context.state !== 'running') Tone.start();
+            window.lastClickTime = window.lastClickTime || 0;
+            let playTime = Tone.now() + 0.05;
+            if (playTime <= window.lastClickTime) {
+                playTime = window.lastClickTime + 0.01;
+            }
+            window.lastClickTime = playTime;
+            pluckSynth.triggerAttack("C4", playTime);
+            filterEnv.triggerAttack(playTime);
         }
         function playPurchaseSound() { if (isMuted) return;
             const now = Tone.now();
@@ -2103,6 +2357,7 @@
         const hardRulesModal = document.getElementById('hardRulesModal');
         const mythRulesModal = document.getElementById('mythRulesModal');
         const skibidiRulesModal = document.getElementById('skibidiRulesModal');
+        const fitbRulesModal = document.getElementById('fitbRulesModal');
         const aboutModal = document.getElementById('aboutModal');
         const resetConfirmModal = document.getElementById('resetConfirmModal');
         const hintModal = document.getElementById('hintModal');
@@ -2133,6 +2388,7 @@
         const easyModeBtn = document.getElementById('easyModeBtn');
         const hardModeBtn = document.getElementById('hardModeBtn');
         const skibidiModeBtn = document.getElementById('skibidiModeBtn');
+        const fitbModeBtn = document.getElementById('fitbModeBtn');
         const acceptEasyBtn = document.getElementById('acceptEasyBtn');
         const declineEasyBtn = document.getElementById('declineEasyBtn');
         const acceptHardBtn = document.getElementById('acceptHardBtn');
@@ -2140,6 +2396,8 @@
         const acceptSkibidiBtn = document.getElementById('acceptSkibidiBtn');
         const declineSkibidiBtn = document.getElementById('declineSkibidiBtn');
         const mythModeBtn = document.getElementById('mythModeBtn');
+        const acceptFitbBtn = document.getElementById('acceptFitbBtn');
+        const declineFitbBtn = document.getElementById('declineFitbBtn');
         const acceptMythBtn = document.getElementById('acceptMythBtn');
         const declineMythBtn = document.getElementById('declineMythBtn');
         const sigmaModeBtn = document.getElementById('sigmaModeBtn');
@@ -2187,6 +2445,9 @@
         const storeScoreDisplay = document.getElementById('storeScoreDisplay');
         const skibidiCorrectAnswerTextEl = document.getElementById('skibidiCorrectAnswerText');
         const firstLetterTextEl = document.getElementById('firstLetterText');
+        
+        const firstLastLetterStoreItem = document.getElementById('firstLastLetterStoreItem');
+        const fitbWordBank = document.getElementById('fitbWordBank');
 
         // Ability & Notification Elements
         const abilitySkipEl = document.getElementById('abilitySkip');
@@ -2213,6 +2474,10 @@
         const mythAnswerButtons = document.getElementById('mythAnswerButtons');
         const factBtn = document.getElementById('factBtn');
         const mythBtn = document.getElementById('mythBtn');
+        
+        // FITB elements placeholder
+        const fitbAnswerArea = document.getElementById('fitbAnswerArea');
+        const fitbSubmitBtn = document.getElementById('fitbSubmitBtn');
 
 
         // --- SOUND ENGINE ---
@@ -2229,8 +2494,17 @@
             synth.triggerAttackRelease("C2", "8n", now);
         }
         function playClickSound() { if (isMuted) return;
-            pluckSynth.triggerAttack("C4", Tone.now());
-            filterEnv.triggerAttack();
+            if (Tone.context.state !== 'running') {
+                Tone.start().catch(e => console.warn('Tone.start failed', e));
+            }
+            window.lastClickTime = window.lastClickTime || 0;
+            let playTime = Tone.now() + 0.05;
+            if (playTime <= window.lastClickTime) {
+                playTime = window.lastClickTime + 0.01;
+            }
+            window.lastClickTime = playTime;
+            pluckSynth.triggerAttack("C4", playTime);
+            filterEnv.triggerAttack(playTime);
         }
         function playPurchaseSound() { if (isMuted) return;
             const now = Tone.now();
@@ -2253,6 +2527,21 @@
             if (!isMuted) synth.triggerAttackRelease("A5", "8n", now);
         }
 
+        // --- FITB SOUND FUNCTIONS ---
+        function playDragStartSound() {
+            if (isMuted) return;
+            pluckSynth.triggerAttack("E3", Tone.now());
+            filterEnv.triggerAttack();
+        }
+        function playDropSound() {
+            if (isMuted) return;
+            synth.triggerAttackRelease("C6", "32n", Tone.now());
+        }
+        function playUndoSound() {
+            if (isMuted) return;
+            synth.triggerAttackRelease("G2", "16n", Tone.now());
+        }
+
         // --- HELPER & NOTIFICATION FUNCTIONS ---
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -2262,11 +2551,21 @@
         }
 
         function adjustFontSize(element) {
-            let fontSize = 150; // Start with a very large font size
+            const isFitb = gameMode === 'FILL_BLANK';
+            // Start at 80 for FITB to maximize the new wrapped flex layout real estate
+            let fontSize = isFitb ? 80 : 150; 
+            const minFontSize = isFitb ? 14 : 10; // Higher minimum font size for FITB to keep readable
+            
+            // Capture the absolute dimensions BEFORE the massive font size stretches the flex container.
+            const targetHeight = element.clientHeight;
+            const targetWidth = element.clientWidth;
+
             element.style.fontSize = `${fontSize}px`;
 
-            // Loop to reduce font size until the text fits within the element's own bounds
-            while ((element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth) && fontSize > 10) {
+            // Loop to reduce font size until the text fits within the fixed boundaries.
+            // Since .drop-zone now uses 'em' units, shrinking the font size here 
+            // proportionately shrinks the drop-zones too, keeping scrollHeight math accurate.
+            while ((element.scrollHeight > targetHeight + 5 || element.scrollWidth > targetWidth) && fontSize > minFontSize) {
                 fontSize--;
                 element.style.fontSize = `${fontSize}px`;
             }
@@ -2470,7 +2769,7 @@
             const isSkibidi = gameMode === 'SKIBIDI';
             const hunchThreshold = isSkibidi ? 3 : 5;
             const tinkerThreshold = isSkibidi ? 2 : 4;
-            const buckStreakThreshold = gameMode === 'HARD' ? 7 : (isSkibidi ? 5 : 10);
+            const buckStreakThreshold = gameMode === 'HARD' ? 7 : (isSkibidi ? 5 : (gameMode === 'FILL_BLANK' ? 4 : 10));
 
             pantherBuckCounterEl.textContent = `${playerState.pantherBucksEarned} 🐾`;
 
@@ -2608,7 +2907,13 @@
         }
 
         async function startGame() {
-            await Tone.start();
+            try {
+                if (Tone.context.state !== 'running') {
+                    await Tone.start();
+                }
+            } catch (error) {
+                console.warn("Tone.start() failed:", error);
+            }
             if (storeNotificationInterval) clearInterval(storeNotificationInterval);
             playStartSound();
             resetPlayerState();
@@ -2632,10 +2937,13 @@
                 activeQuestionSet = getQuestions('EASY', activeQuestionSetKey);
                 questionsCopy = [...activeQuestionSet];
                 initialNotification = "SIGMA MODE: Stage 1 - Easy Questions. Good luck!";
+            } else if (gameMode === 'FILL_BLANK') { // Handle FITB mode data loading
+                activeQuestionSet = getQuestions('FILL_BLANK', activeQuestionSetKey);
+                questionsCopy = [...activeQuestionSet];
+                initialNotification = "Drag the correct words to complete the historical passage!";
             } else {
                 activeQuestionSet = getQuestions(gameMode, activeQuestionSetKey);
                 questionsCopy = [...activeQuestionSet];
-                shuffleArray(questionsCopy);
             }
 
             shuffleArray(questionsCopy);
@@ -2644,13 +2952,16 @@
             answerGridEl.classList.toggle('hidden', isSkibidi);
             skibidiFormEl.classList.toggle('hidden', !isSkibidi);
             mythAnswerButtons.classList.add('hidden'); // Hide myth buttons by default
+            fitbAnswerArea.classList.add('hidden');
             hunchAbilityEl.classList.toggle('hidden', isSkibidi);
             firstLetterBtn.classList.toggle('hidden', !isSkibidi);
+            
+            const hunchUpgradeBtn = hunchUpgradeStoreItem.parentElement.querySelector('.buy-btn');
             if (isSkibidi) {
                 firstLetterBtn.classList.remove('first-letter-btn-glow');
-                hunchUpgradeStoreItem.nextElementSibling.dataset.item = 'firstLastLetterUpgrade';
+                if (hunchUpgradeBtn) hunchUpgradeBtn.dataset.item = 'firstLastLetterUpgrade';
             } else {
-                hunchUpgradeStoreItem.nextElementSibling.dataset.item = 'hunchUpgrade';
+                if (hunchUpgradeBtn) hunchUpgradeBtn.dataset.item = 'hunchUpgrade';
             }
 
             updateAbilitiesUI();
@@ -2718,7 +3029,7 @@
             }, 10000); // Check every 10 seconds
         }
 
-        function isItemPurchased(item) { return false; /* Placeholder for more complex logic if needed */ }
+        function isItemPurchased(item) { return false; }
 
         function displayNextQuestion() {
             gameAreaEl.classList.add('switching');
@@ -2771,18 +3082,21 @@
 
                 const isMythTypeQuestion = gameMode === 'MYTH';
                 const isSkibidiTypeQuestion = gameMode === 'SKIBIDI' || (gameMode === 'SIGMA' && sigmaStage === 3);
+                const isFitbTypeQuestion = gameMode === 'FILL_BLANK';
 
+                selectedWordEl = null; // Reset selection
                 // Reset UI elements for all modes
                 answerGridEl.classList.add('hidden');
                 skibidiFormEl.classList.add('hidden');
                 mythAnswerButtons.classList.add('hidden');
+                fitbAnswerArea.classList.add('hidden');
                 hintBtn.classList.add('hidden'); // Hide by default, then show if applicable
                 firstLetterBtn.classList.add('hidden'); // Hide by default, then show if applicable
                 dokLabel.classList.add('hidden'); // Hide by default, then show if applicable
 
                 // DOK Label Logic
                 // DOK is only relevant for multiple-choice questions (Easy/Hard/Sigma-MC)
-                if (question.dok && (gameMode === 'EASY' || gameMode === 'HARD' || (gameMode === 'SIGMA' && sigmaStage < 3))) {
+                if (question.dok && (gameMode === 'EASY' || gameMode === 'HARD' || gameMode === 'FILL_BLANK' || (gameMode === 'SIGMA' && sigmaStage < 3))) {
                     dokLabel.textContent = `DOK ${question.dok}`;
                     dokLabel.classList.remove('hidden');
                 } else {
@@ -2800,14 +3114,17 @@
                     skibidiFormEl.classList.remove('hidden');
                     hintBtn.classList.remove('hidden'); // Show the standard hint button
                     firstLetterBtn.classList.remove('hidden'); // Show letter hint button for skibidi
+                } else if (isFitbTypeQuestion) {
+                    // --- FILL IN THE BLANK LOGIC ---
+                    fitbAnswerArea.classList.remove('hidden');
+                    hintBtn.classList.remove('hidden'); 
                 } else {
                     // --- MULTIPLE CHOICE LOGIC (EASY/HARD/SIGMA-MC) ---
                     answerGridEl.classList.remove('hidden');
                     hintBtn.classList.remove('hidden'); // Show the standard hint button
                 }
 
-
-                if(!isSkibidiTypeQuestion && !isMythTypeQuestion) {
+                if(!isSkibidiTypeQuestion && !isMythTypeQuestion && !isFitbTypeQuestion) {
                     // --- MULTIPLE CHOICE LOGIC (EASY/HARD/SIGMA-MC) ---
 
                     // --- Answer Randomization ---
@@ -2846,6 +3163,8 @@
                         // Temporarily store the new correct index on the game area for handleAnswerClick
                         gameAreaEl.dataset.correct = newCorrectAnswerIndex;
                     });
+                } else if (isFitbTypeQuestion) {
+                    renderFitbQuestion(question);
                 } else { // --- TYPED ANSWER LOGIC (SKIBIDI/SIGMA-SKIBIDI) ---
                 }
 
@@ -2855,8 +3174,12 @@
                     firstLetterBtn.disabled = false;
                 }
 
-                const questionText = question.question;
-                questionTextEl.textContent = questionText;
+                if (isFitbTypeQuestion) {
+                    questionTextEl.classList.add('fitb-text');
+                } else {
+                    questionTextEl.classList.remove('fitb-text');
+                    questionTextEl.textContent = question.question;
+                }
 
                 // For Skibidi and Myth mode, clear and enable input/buttons
                 if (isSkibidiTypeQuestion) {
@@ -2876,6 +3199,260 @@
             }, 300);
         }
 
+        // --- FITB ENGINE ---
+        function renderFitbQuestion(question) {
+            // 1. Render question text with drop zones
+            let formattedText = question.text.replace(/\[\[(\d+)\]\]/g, '<span class="drop-zone empty" data-blank-index="$1"></span>');
+            questionTextEl.innerHTML = formattedText;
+
+            // 2. Generate Word Bank
+            fitbWordBank.innerHTML = '';
+            let allWords = [...question.blanks, ...question.distractors];
+            shuffleArray(allWords);
+
+            allWords.forEach(word => {
+                const wordEl = document.createElement('div');
+                wordEl.className = 'draggable-word';
+                wordEl.textContent = word;
+                wordEl.setAttribute('draggable', 'true');
+                wordEl.dataset.word = word;
+                fitbWordBank.appendChild(wordEl);
+            });
+            
+            fitbSubmitBtn.classList.remove('hidden');
+            fitbSubmitBtn.disabled = false;
+            setupDragAndDrop();
+        }
+
+        let draggedWordEl = null;
+        let touchClone = null;
+        let currentDropZone = null;
+        let selectedWordEl = null;
+
+        function attachDraggableListeners(draggable) {
+            // Click Events (Click to select)
+            draggable.addEventListener('click', (e) => {
+                playClickSound();
+                if (selectedWordEl === draggable) {
+                    draggable.classList.remove('selected');
+                    selectedWordEl = null;
+                } else {
+                    if (selectedWordEl) {
+                        selectedWordEl.classList.remove('selected');
+                    }
+                    draggable.classList.add('selected');
+                    selectedWordEl = draggable;
+                }
+            });
+
+            // Mouse Events
+            draggable.addEventListener('dragstart', (e) => {
+                playDragStartSound();
+                draggedWordEl = draggable;
+                // Deselect if dragging
+                if (selectedWordEl) {
+                    selectedWordEl.classList.remove('selected');
+                    selectedWordEl = null;
+                }
+                e.dataTransfer.setData('text/plain', draggable.dataset.word);
+                setTimeout(() => draggable.classList.add('opacity-50'), 0);
+            });
+            draggable.addEventListener('dragend', () => {
+                draggable.classList.remove('opacity-50');
+                draggedWordEl = null;
+            });
+
+            // Touch Events (Mobile Support)
+            draggable.addEventListener('touchstart', (e) => {
+                playDragStartSound();
+                draggedWordEl = draggable;
+                if (selectedWordEl) {
+                    selectedWordEl.classList.remove('selected');
+                    selectedWordEl = null;
+                }
+                const touch = e.touches[0];
+                
+                // Create a floating clone to follow the finger
+                touchClone = draggable.cloneNode(true);
+                touchClone.style.position = 'fixed';
+                touchClone.style.left = (touch.clientX - draggable.offsetWidth / 2) + 'px';
+                touchClone.style.top = (touch.clientY - draggable.offsetHeight / 2) + 'px';
+                touchClone.style.opacity = '0.8';
+                touchClone.style.pointerEvents = 'none'; // Essential so document.elementFromPoint works
+                touchClone.style.zIndex = '1000';
+                document.body.appendChild(touchClone);
+                
+                draggable.classList.add('opacity-50');
+            }, { passive: false });
+
+            draggable.addEventListener('touchmove', (e) => {
+                if (!touchClone) return;
+                e.preventDefault(); // Prevent screen scrolling while dragging
+                const touch = e.touches[0];
+                touchClone.style.left = (touch.clientX - touchClone.offsetWidth / 2) + 'px';
+                touchClone.style.top = (touch.clientY - touchClone.offsetHeight / 2) + 'px';
+
+                // Detect if the finger is hovering over a drop zone
+                const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+                const dropZoneBelow = elemBelow ? elemBelow.closest('.drop-zone') : null;
+
+                if (currentDropZone !== dropZoneBelow) {
+                    if (currentDropZone) currentDropZone.classList.remove('drag-over');
+                    currentDropZone = dropZoneBelow;
+                    if (currentDropZone) currentDropZone.classList.add('drag-over');
+                }
+            }, { passive: false });
+
+            draggable.addEventListener('touchend', (e) => {
+                if (touchClone) {
+                    touchClone.remove();
+                    touchClone = null;
+                }
+                draggable.classList.remove('opacity-50');
+
+                if (currentDropZone) {
+                    currentDropZone.classList.remove('drag-over');
+                    handleDrop(currentDropZone, draggedWordEl);
+                    currentDropZone = null;
+                }
+                draggedWordEl = null;
+            });
+            
+            draggable.addEventListener('touchcancel', () => {
+                if (touchClone) {
+                    touchClone.remove();
+                    touchClone = null;
+                }
+                draggable.classList.remove('opacity-50');
+                if (currentDropZone) {
+                    currentDropZone.classList.remove('drag-over');
+                    currentDropZone = null;
+                }
+                draggedWordEl = null;
+            });
+        }
+
+        function setupDragAndDrop() {
+            const draggables = document.querySelectorAll('.draggable-word');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            draggables.forEach(attachDraggableListeners);
+
+            dropZones.forEach(zone => {
+                // Mouse Events for Drop Zones
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault(); // Necessary to allow dropping
+                    zone.classList.add('drag-over');
+                });
+                zone.addEventListener('dragleave', () => {
+                    zone.classList.remove('drag-over');
+                });
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    if (draggedWordEl) {
+                        handleDrop(zone, draggedWordEl);
+                    }
+                });
+
+                // Undo Mechanic & Click-to-drop
+                zone.addEventListener('click', () => {
+                    if (selectedWordEl) {
+                        // User clicked a zone while a word is selected -> drop it
+                        handleDrop(zone, selectedWordEl);
+                    } else if (!zone.classList.contains('empty')) {
+                        // User clicked a filled zone with no word selected -> undo
+                        undoDrop(zone);
+                    }
+                });
+            });
+        }
+
+        function handleDrop(zone, draggable) {
+            if (!zone.classList.contains('empty')) { undoDrop(zone); } // Swap out existing word
+
+            if (selectedWordEl === draggable) {
+                selectedWordEl = null;
+            }
+
+            const word = draggable.dataset.word;
+            zone.textContent = word;
+            zone.dataset.filledWord = word;
+            zone.classList.remove('empty');
+            zone.classList.remove('hint-highlight');
+            zone.classList.add('filled'); 
+            
+            draggable.remove(); // Remove from word bank
+            playDropSound();
+
+            adjustFontSize(questionTextEl);
+        }
+
+        function undoDrop(zone) {
+            const word = zone.dataset.filledWord;
+            zone.textContent = '';
+            zone.dataset.filledWord = '';
+            zone.classList.add('empty');
+            zone.classList.remove('filled');
+            
+            // Return to word bank
+            const wordEl = document.createElement('div');
+            wordEl.className = 'draggable-word';
+            wordEl.textContent = word;
+            wordEl.setAttribute('draggable', 'true');
+            wordEl.dataset.word = word;
+            fitbWordBank.appendChild(wordEl);
+            attachDraggableListeners(wordEl);
+            
+            playUndoSound();
+
+            adjustFontSize(questionTextEl);
+        }
+
+        function handleFitbSubmit() {
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let allFilled = true;
+            let allCorrect = true;
+
+            const currentQuestion = activeQuestionSet[currentQuestionIndex];
+
+            dropZones.forEach(zone => {
+                if (zone.classList.contains('empty')) {
+                    allFilled = false;
+                } else {
+                    const blankIndex = parseInt(zone.dataset.blankIndex);
+                    const userWord = zone.dataset.filledWord;
+                    if (userWord !== currentQuestion.blanks[blankIndex]) {
+                        allCorrect = false;
+                    }
+                }
+            });
+
+            if (!allFilled) {
+                updateNotification("Finish the passage first!");
+                return;
+            }
+
+            // Disable buttons to prevent double-clicks
+            fitbSubmitBtn.disabled = true;
+            hintBtn.disabled = true;
+
+            dropZones.forEach(zone => {
+                const blankIndex = parseInt(zone.dataset.blankIndex);
+                const userWord = zone.dataset.filledWord;
+                if (userWord === currentQuestion.blanks[blankIndex]) {
+                    zone.classList.add('success-bounce');
+                } else {
+                    zone.classList.add('error-shake');
+                }
+            });
+
+            setTimeout(() => {
+                handleAnswer(allCorrect, null);
+            }, 500); // Give the animation time to play
+        }
+        // --- END FITB ENGINE ---
+
         function normalizeAnswer(answer) {
             return answer.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
         }
@@ -2885,7 +3462,7 @@
             const userAnswer = skibidiInputEl.value;
             if (!userAnswer) return;
 
-            const question = activeQuestionSet[currentQuestionIndex]; // This is correct
+            const question = activeQuestionSet[currentQuestionIndex];
             const correctAnswers = Array.isArray(question.answer) ? question.answer : [question.answer];
             const isCorrect = correctAnswers.some(ans => normalizeAnswer(userAnswer) === normalizeAnswer(ans));
 
@@ -3034,7 +3611,7 @@
                 }
 
                 // New Panther Buck Streak Logic
-                const buckStreakThreshold = gameMode === 'HARD' ? 7 : (isSkibidi ? 5 : 10);
+                const buckStreakThreshold = gameMode === 'HARD' ? 7 : (isSkibidi ? 5 : (gameMode === 'FILL_BLANK' ? 4 : 10));
                 if (playerState.streak > 0 && playerState.streak % buckStreakThreshold === 0 && !playerState.pantherBucksAwardedForStreaks.includes(playerState.streak)) {
                     playerState.pantherBucksEarned++;
                     playerState.pantherBucksAwardedForStreaks.push(playerState.streak);
@@ -3191,7 +3768,11 @@
                 });
                 skibidiInputEl.value = '';
             }
+            
+            fitbAnswerArea.classList.add('hidden');
+            document.getElementById('fitbWordBank').innerHTML = '';
 
+            selectedWordEl = null; // Reset selection
             resetPlayerState();
             updateAbilitiesUI();
             storeBtn.classList.remove('store-ready');
@@ -3216,6 +3797,14 @@
                 const hint = activeQuestionSet[currentQuestionIndex].hint;
                 hintTextEl.textContent = hint;
                 hintModal.classList.remove('hidden');
+
+                // Highlight the first empty drop zone in FITB mode
+                if (gameMode === 'FILL_BLANK') {
+                    const firstEmptyZone = document.querySelector('.drop-zone.empty');
+                    if (firstEmptyZone) {
+                        firstEmptyZone.classList.add('hint-highlight');
+                    }
+                }
             }
         }
 
@@ -3386,6 +3975,23 @@
             skibidiRulesModal.classList.remove('hidden');
         });
 
+        fitbModeBtn.addEventListener('click', () => {
+            playClickSound();
+            gameMode = 'FILL_BLANK';
+            difficultyModal.classList.add('hidden');
+            fitbRulesModal.classList.remove('hidden');
+        });
+        acceptFitbBtn.addEventListener('click', () => {
+            playClickSound();
+            fitbRulesModal.classList.add('hidden');
+            gradeModal.classList.remove('hidden');
+        });
+        declineFitbBtn.addEventListener('click', () => {
+            playClickSound();
+            fitbRulesModal.classList.add('hidden');
+            difficultyModal.classList.remove('hidden');
+        });
+
         sigmaModeBtn.addEventListener('click', () => {
             playClickSound();
             gameMode = 'SIGMA';
@@ -3510,6 +4116,7 @@
         factBtn.addEventListener('click', handleMythAnswerClick);
         mythBtn.addEventListener('click', handleMythAnswerClick);
         skibidiFormEl.addEventListener('submit', handleSkibidiSubmit);
+        fitbSubmitBtn.addEventListener('click', handleFitbSubmit);
 
         // Listener for the new Skibidi incorrect modal
         closeSkibidiIncorrectBtn.addEventListener('click', () => {
@@ -3550,9 +4157,13 @@
         // Initial setup
         updateNotification("Welcome! Choose your difficulty to begin.");
 
+        let resizeTimeout;
         window.addEventListener('resize', () => {
             if (currentQuestionIndex > -1) {
-                adjustFontSize(questionTextEl);
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    adjustFontSize(questionTextEl);
+                }, 150);
             }
         });
 
