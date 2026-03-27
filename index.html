@@ -120,16 +120,16 @@
         #questionText.fitb-text {
             display: block;
             padding: 0.5rem;
-            padding-bottom: 1rem; /* Adds buffer so descenders aren't clipped by overflow:hidden */
+            padding-bottom: 1.5rem; /* Adds buffer so descenders aren't clipped by overflow:hidden */
             width: 100%;
-            line-height: 1.8; /* Reduced line-height prevents premature scaling overflow triggers */
+            line-height: 1.6; /* Reduced line-height prevents premature scaling overflow triggers */
         }
         .drop-zone {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             /* Tie width to font-size so it shrinks in the adjustFontSize loop */
-            min-width: 5em; 
+            min-width: 5em;
             height: 1.5em;
             border: 0.1em dashed #ca8a04;
             white-space: nowrap;
@@ -191,7 +191,7 @@
             animation: pulse-glow 1.5s infinite;
             border-color: #f59e0b;
         }
-        
+
         @keyframes success-bounce {
             0% { transform: scale(1); }
             50% { transform: scale(1.15); background-color: #22c55e; border-color: #14532d; color: white; }
@@ -201,7 +201,7 @@
             animation: success-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             pointer-events: none; /* Prevent clicking during animation */
         }
-        
+
         @keyframes error-shake {
             0% { transform: translateX(0); }
             25% { transform: translateX(-5px); background-color: #ef4444; border-color: #991b1b; color: white; }
@@ -213,7 +213,7 @@
             animation: error-shake 0.5s cubic-bezier(.36,.07,.19,.97) forwards;
             pointer-events: none;
         }
-        
+
         @keyframes popIn {
             0% { opacity: 0; transform: scale(0.5); }
             100% { opacity: 1; transform: scale(1); }
@@ -2458,7 +2458,7 @@
         const storeScoreDisplay = document.getElementById('storeScoreDisplay');
         const skibidiCorrectAnswerTextEl = document.getElementById('skibidiCorrectAnswerText');
         const firstLetterTextEl = document.getElementById('firstLetterText');
-        
+
         const firstLastLetterStoreItem = document.getElementById('firstLastLetterStoreItem');
         const fitbWordBank = document.getElementById('fitbWordBank');
 
@@ -2487,7 +2487,7 @@
         const mythAnswerButtons = document.getElementById('mythAnswerButtons');
         const factBtn = document.getElementById('factBtn');
         const mythBtn = document.getElementById('mythBtn');
-        
+
         // FITB elements placeholder
         const fitbAnswerArea = document.getElementById('fitbAnswerArea');
         const fitbSubmitBtn = document.getElementById('fitbSubmitBtn');
@@ -2566,21 +2566,24 @@
         function adjustFontSize(element) {
             const isFitb = gameMode === 'FILL_BLANK';
             // Start at 80 for FITB to maximize the new wrapped flex layout real estate
-            let fontSize = isFitb ? 80 : 150; 
+            let fontSize = isFitb ? 80 : 150;
             const minFontSize = isFitb ? 14 : 10; // Higher minimum font size for FITB to keep readable
-            
+
             // Capture the absolute dimensions BEFORE the massive font size stretches the flex container.
             const targetHeight = element.clientHeight;
             const targetWidth = element.clientWidth;
 
             if (targetHeight === 0 || targetWidth === 0) return;
 
+            const heightBuffer = isFitb ? 15 : 5;
+            const widthBuffer = 5;
+
             element.style.fontSize = `${fontSize}px`;
 
             // Loop to reduce font size until the text fits within the fixed boundaries.
-            // Since .drop-zone now uses 'em' units, shrinking the font size here 
+            // Since .drop-zone now uses 'em' units, shrinking the font size here
             // proportionately shrinks the drop-zones too, keeping scrollHeight math accurate.
-            while ((element.scrollHeight > targetHeight + 5 || element.scrollWidth > targetWidth) && fontSize > minFontSize) {
+            while ((element.scrollHeight > (targetHeight - heightBuffer) || element.scrollWidth > (targetWidth - widthBuffer)) && fontSize > minFontSize) {
                 fontSize--;
                 element.style.fontSize = `${fontSize}px`;
             }
@@ -2669,7 +2672,7 @@
                     const isHunchEnabled = gameMode === 'EASY' || gameMode === 'HARD' || (gameMode === 'SIGMA' && sigmaStage < 3);
 
                     const storeItem = btn.closest('.store-item');
-                    
+
                     if (!isSkibidi && !isHunchEnabled) {
                         storeItem.classList.add('hidden');
                     } else {
@@ -2684,7 +2687,7 @@
                             storeItem.dataset.description = "Permanent: Hunch removes 2 wrong answers.";
                             itemName = 'hunchUpgrade';
                         }
-                        
+
                         btn.textContent = `Buy (${storeItems[itemName].cost} Pts)`; // Explicitly update text here
                         btn.dataset.item = itemName; // Update the button's current data attribute
                     }
@@ -2976,7 +2979,7 @@
             fitbAnswerArea.classList.add('hidden');
             hunchAbilityEl.classList.toggle('hidden', isSkibidi);
             firstLetterBtn.classList.toggle('hidden', !isSkibidi);
-            
+
             const hunchUpgradeBtn = hunchUpgradeStoreItem.parentElement.querySelector('.buy-btn');
             if (isSkibidi) {
                 firstLetterBtn.classList.remove('first-letter-btn-glow');
@@ -3139,7 +3142,7 @@
                 } else if (isFitbTypeQuestion) {
                     // --- FILL IN THE BLANK LOGIC ---
                     fitbAnswerArea.classList.remove('hidden');
-                    hintBtn.classList.remove('hidden'); 
+                    hintBtn.classList.remove('hidden');
                 } else {
                     // --- MULTIPLE CHOICE LOGIC (EASY/HARD/SIGMA-MC) ---
                     answerGridEl.classList.remove('hidden');
@@ -3240,7 +3243,7 @@
                 wordEl.dataset.word = word;
                 fitbWordBank.appendChild(wordEl);
             });
-            
+
             fitbSubmitBtn.classList.remove('hidden');
             fitbSubmitBtn.disabled = false;
             setupDragAndDrop();
@@ -3295,7 +3298,7 @@
                     selectedWordEl = null;
                 }
                 const touch = e.touches[0];
-                
+
                 // Create a floating clone to follow the finger
                 touchClone = draggable.cloneNode(true);
                 touchClone.style.position = 'fixed';
@@ -3305,7 +3308,7 @@
                 touchClone.style.pointerEvents = 'none'; // Essential so document.elementFromPoint works
                 touchClone.style.zIndex = '1000';
                 document.body.appendChild(touchClone);
-                
+
                 draggable.classList.add('opacity-50');
             }, { passive: false });
 
@@ -3341,7 +3344,7 @@
                 }
                 draggedWordEl = null;
             });
-            
+
             draggable.addEventListener('touchcancel', () => {
                 if (touchClone) {
                     touchClone.remove();
@@ -3405,8 +3408,8 @@
             zone.dataset.filledWord = word;
             zone.classList.remove('empty');
             zone.classList.remove('hint-highlight');
-            zone.classList.add('filled'); 
-            
+            zone.classList.add('filled');
+
             draggable.remove(); // Remove from word bank
             playDropSound();
 
@@ -3419,7 +3422,7 @@
             zone.dataset.filledWord = '';
             zone.classList.add('empty');
             zone.classList.remove('filled');
-            
+
             // Return to word bank
             const wordEl = document.createElement('div');
             wordEl.className = 'draggable-word';
@@ -3428,7 +3431,7 @@
             wordEl.dataset.word = word;
             fitbWordBank.appendChild(wordEl);
             attachDraggableListeners(wordEl);
-            
+
             playUndoSound();
 
             adjustFontSize(questionTextEl);
@@ -3803,7 +3806,7 @@
                 });
                 skibidiInputEl.value = '';
             }
-            
+
             fitbAnswerArea.classList.add('hidden');
             document.getElementById('fitbWordBank').innerHTML = '';
 
@@ -3934,7 +3937,7 @@
             const question = permanentWrongAnswers[reviewIndex];
 
             document.getElementById('reviewCounter').textContent = `${reviewIndex + 1} / ${permanentWrongAnswers.length}`;
-            
+
             if (question.text) {
                 reviewQuestionEl.innerHTML = question.text.replace(/\[\[\d+\]\]/g, '_______');
             } else {
