@@ -2358,6 +2358,8 @@
         const correctAnswersEl = document.getElementById('correctAnswers');
         const gameAreaEl = document.getElementById('gameArea');
         const questionTextEl = document.getElementById('questionText');
+        const questionBox = document.getElementById('questionBox');
+        const questionControls = document.getElementById('question-controls');
         const answerChoices = document.querySelectorAll('.answer-choice');
         const headerGridEl = document.getElementById('headerGrid');
 
@@ -3104,6 +3106,13 @@
                 const isMythTypeQuestion = gameMode === 'MYTH';
                 const isSkibidiTypeQuestion = gameMode === 'SKIBIDI' || (gameMode === 'SIGMA' && sigmaStage === 3);
                 const isFitbTypeQuestion = gameMode === 'FILL_BLANK';
+
+                // Move question controls based on FITB mode
+                if (isFitbTypeQuestion) {
+                    fitbAnswerArea.insertBefore(questionControls, fitbSubmitBtn);
+                } else {
+                    questionBox.insertBefore(questionControls, questionTextEl.nextSibling);
+                }
 
                 selectedWordEl = null; // Reset selection
                 document.body.classList.remove('word-selected');
