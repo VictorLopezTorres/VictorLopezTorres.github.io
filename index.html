@@ -439,7 +439,7 @@
         .question-container.shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
         .question-box {
             background-color: #fde047; border-color: #ca8a04; box-shadow: 8px 8px 0px #ca8a04;
-            padding: 1.5rem; flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem;
+            padding: 1.5rem; flex: 1 1 0; display: flex; flex-direction: column; align-items: stretch; justify-content: space-between; gap: 1rem;
             min-height: 0; /* Prevents flex items from stretching outside parent bounds */
             width: 100%;
         }
@@ -452,7 +452,7 @@
             -webkit-user-select: none;
             -ms-user-select: none;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             line-height: 1.1;
             padding: 0;
@@ -1323,7 +1323,9 @@
                 <!-- Drag-and-Drop Area (FITB Mode) -->
                 <div id="fitbAnswerArea" class="hidden w-full flex flex-col gap-4 items-center justify-center p-4">
                     <div id="fitbWordBank" class="flex flex-wrap justify-center gap-2"></div>
-                    <button id="fitbSubmitBtn" class="modal-button bg-green-500 text-white hidden" style="box-shadow: 4px 4px 0px #111827;">Submit Answer</button>
+                    <div id="fitbActionRow" class="flex flex-row justify-center items-center gap-4 w-full mt-4">
+                        <button id="fitbSubmitBtn" class="modal-button bg-green-500 text-white hidden" style="box-shadow: 4px 4px 0px #111827;">Submit Answer</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -3107,9 +3109,10 @@
                 const isSkibidiTypeQuestion = gameMode === 'SKIBIDI' || (gameMode === 'SIGMA' && sigmaStage === 3);
                 const isFitbTypeQuestion = gameMode === 'FILL_BLANK';
 
-                // Move question controls based on FITB mode
+                                // Move question controls based on FITB mode
                 if (isFitbTypeQuestion) {
-                    fitbAnswerArea.insertBefore(questionControls, fitbSubmitBtn);
+                    const fitbActionRow = document.getElementById('fitbActionRow');
+                    fitbActionRow.appendChild(questionControls);
                 } else {
                     questionBox.insertBefore(questionControls, questionTextEl.nextSibling);
                 }
@@ -3220,7 +3223,7 @@
                     skibidiInputEl.classList.remove('correct', 'incorrect');
                 }
 
-                adjustFontSize(questionTextEl);
+                setTimeout(() => { requestAnimationFrame(() => { adjustFontSize(questionTextEl); }); }, 50);
 
                 gameAreaEl.classList.remove('switching');
 
@@ -3419,7 +3422,7 @@
             draggable.remove(); // Remove from word bank
             playDropSound();
 
-            adjustFontSize(questionTextEl);
+            setTimeout(() => { requestAnimationFrame(() => { adjustFontSize(questionTextEl); }); }, 50);
         }
 
         function undoDrop(zone) {
@@ -3440,7 +3443,7 @@
             
             playUndoSound();
 
-            adjustFontSize(questionTextEl);
+            setTimeout(() => { requestAnimationFrame(() => { adjustFontSize(questionTextEl); }); }, 50);
         }
 
         function handleFitbSubmit() {
@@ -4217,7 +4220,7 @@
             if (currentQuestionIndex > -1) {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {
-                    adjustFontSize(questionTextEl);
+                    setTimeout(() => { requestAnimationFrame(() => { adjustFontSize(questionTextEl); }); }, 50);
                 }, 150);
             }
         });
