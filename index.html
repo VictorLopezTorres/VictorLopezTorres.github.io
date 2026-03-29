@@ -119,9 +119,9 @@
         /* FITB Styles */
         #questionText.fitb-text {
             display: block;
-            padding: 0.5rem;
-            padding-bottom: 1.5rem; /* Adds buffer so descenders aren't clipped by overflow:hidden */
+            padding: 0.5rem 1rem 2rem;
             width: 100%;
+            box-sizing: border-box;
             line-height: 1.8; /* Reduced line-height prevents premature scaling overflow triggers */
         }
         .drop-zone {
@@ -2571,18 +2571,17 @@
 function adjustFontSize(element) {
     const isFitb = gameMode === 'FILL_BLANK';
     let fontSize = isFitb ? 80 : 150;
-    const minFontSize = isFitb ? 14 : 10;
+    const minFontSize = isFitb ? 24 : 16; // Increased minimums for readability
 
-    // Capture the stable flexbox container dimensions BEFORE injecting massive font sizes
-    const targetHeight = element.clientHeight;
-    const targetWidth = element.clientWidth;
+    // Read the parent container's physical size to avoid flex-stretch measurement errors
+    const parent = element.parentElement;
+    const targetHeight = parent.clientHeight;
+    const targetWidth = parent.clientWidth;
 
     element.style.fontSize = `${fontSize}px`;
 
-    // SAFETY BUFFER: Subtract 15px from targetHeight and 10px from targetWidth.
-    // This forces the loop to shrink the font until it is safely INSIDE the container,
-    // ensuring bottom descenders and drop-zones never touch the bottom edge.
-    while ((element.scrollHeight > targetHeight - 15 || element.scrollWidth > targetWidth - 10) && fontSize > minFontSize) {
+    // Standard overflow check without the broken offset math
+    while ((element.scrollHeight > targetHeight || element.scrollWidth > targetWidth) && fontSize > minFontSize) {
         fontSize--;
         element.style.fontSize = `${fontSize}px`;
     }
