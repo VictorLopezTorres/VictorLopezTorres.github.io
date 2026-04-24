@@ -120,9 +120,9 @@
         #questionText.fitb-text {
             display: block;
             padding: 0.5rem;
-            padding-bottom: 1rem; /* Adds buffer so descenders aren't clipped by overflow:hidden */
+            padding-bottom: 1rem; 
             width: 100%;
-            line-height: 1.8; /* Reduced line-height prevents premature scaling overflow triggers */
+            line-height: 1.5; /* Slightly tighter line-height for long passages */
         }
         .drop-zone {
             display: inline-flex;
@@ -276,18 +276,102 @@
             color: white;
         }
         .mode-card.simple h3 {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             border-bottom: none;
             padding-bottom: 0;
             margin-bottom: 0;
             text-align: center;
         }
         .mode-card h3 span.text-5xl { /* Target the emoji specifically */
-            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-size: clamp(1.5rem, 4vw, 2.75rem);
         }
         .mode-card.simple {
-            padding: clamp(1.5rem, 4vw, 2.5rem);
+            padding: clamp(0.75rem, 2vw, 1.25rem);
         }
+
+        .selection-button {
+            background-color: white;
+            border: 4px solid #111827;
+            border-radius: 0.75rem;
+            padding: 0.75rem 0.5rem;
+            font-weight: 700;
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px #111827;
+            text-align: center;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3.5rem;
+        }
+        .selection-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px #111827;
+        }
+        .selection-button:active {
+            transform: translateY(2px);
+            box-shadow: 2px 2px 0px #111827;
+        }
+        .selection-button.selected {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #1d4ed8;
+            box-shadow: 4px 4px 0px #1d4ed8, 0 0 15px rgba(59, 130, 246, 0.6);
+            animation: button-glow 2s infinite;
+        }
+
+        @keyframes button-glow {
+            0% { box-shadow: 4px 4px 0px #1d4ed8, 0 0 5px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 4px 4px 0px #1d4ed8, 0 0 20px rgba(59, 130, 246, 0.8); }
+            100% { box-shadow: 4px 4px 0px #1d4ed8, 0 0 5px rgba(59, 130, 246, 0.4); }
+        }
+
+        #unitButtonContainer .selection-button {
+            min-height: 2.5rem;
+            padding: 0.4rem 0.3rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+            border-width: 3px;
+            box-shadow: 3px 3px 0px #111827;
+        }
+        #unitButtonContainer .selection-button:hover {
+            box-shadow: 4px 4px 0px #111827;
+        }
+        #unitButtonContainer .selection-button.selected {
+            box-shadow: 3px 3px 0px #1d4ed8, 0 0 12px rgba(59, 130, 246, 0.6);
+            animation: unit-button-glow 2s infinite;
+        }
+
+        @keyframes unit-button-glow {
+            0% { box-shadow: 3px 3px 0px #1d4ed8, 0 0 4px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 3px 3px 0px #1d4ed8, 0 0 15px rgba(59, 130, 246, 0.8); }
+            100% { box-shadow: 3px 3px 0px #1d4ed8, 0 0 4px rgba(59, 130, 246, 0.4); }
+        }
+
+        .all-units-btn {
+            grid-column: 1 / -1;
+            min-height: 3.5rem !important;
+            font-size: clamp(1rem, 2.5vw, 1.3rem) !important;
+            background-color: #fef3c7 !important; /* Light amber to make it stand out */
+            color: #92400e !important;
+            border-color: #92400e !important;
+            box-shadow: 4px 4px 0px #92400e !important;
+        }
+        .all-units-btn.selected {
+            background-color: #3b82f6 !important;
+            color: white !important;
+            border-color: #1d4ed8 !important;
+            box-shadow: 4px 4px 0px #1d4ed8 !important, 0 0 20px rgba(59, 130, 246, 0.7) !important;
+            animation: all-units-glow 2s infinite !important;
+        }
+
+        @keyframes all-units-glow {
+            0% { box-shadow: 4px 4px 0px #1d4ed8, 0 0 8px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 4px 4px 0px #1d4ed8, 0 0 25px rgba(59, 130, 246, 0.9); }
+            100% { box-shadow: 4px 4px 0px #1d4ed8, 0 0 8px rgba(59, 130, 246, 0.5); }
+        }
+
         .mode-details {
             font-size: clamp(0.6rem, 1.8vw, 0.85rem);
             line-height: 1.4;
@@ -326,8 +410,8 @@
             display: grid;
             grid-template-columns: 3fr 1fr;
             grid-template-rows: auto 1fr;
-            gap: clamp(0.5rem, 2vh, 1.5rem);
-            padding: clamp(0.5rem, 2vh, 1.5rem);
+            gap: clamp(0.4rem, 1.5vh, 1rem);
+            padding: clamp(0.4rem, 1.5vh, 1rem);
             height: 100%;
             min-height: 0;
         }
@@ -335,7 +419,9 @@
             grid-column: 1 / -1;
             display: grid;
             grid-template-columns: 1.5fr 2.5fr 1.5fr 1.5fr 2fr;
-            gap: clamp(0.5rem, 2vw, 1.5rem);
+            gap: clamp(0.4rem, 1.5vw, 1rem);
+            max-height: 18vh;
+            min-height: 0;
         }
         .right-panel {
             display: flex;
@@ -367,10 +453,10 @@
 
         /* Card Styles */
         .card {
-            border: 6px solid #111827;
-            border-radius: 1.5rem;
-            padding: clamp(0.5rem, 1vw, 1rem);
-            box-shadow: 8px 8px 0px #111827;
+            border: clamp(3px, 0.4vw, 6px) solid #111827;
+            border-radius: 1rem;
+            padding: clamp(0.25rem, 0.8vw, 0.75rem);
+            box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #111827;
             text-align: center;
             font-weight: 700;
             display: flex;
@@ -384,8 +470,8 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             text-transform: uppercase;
-            font-size: clamp(0.7rem, 1.5vw, 1.1rem);
-            margin-bottom: 0.25rem;
+            font-size: clamp(0.6rem, 1.2vw, 1rem);
+            margin-bottom: 0.15rem;
             color: rgba(0,0,0,0.6);
         }
         .card.time-card h2, .card.score-card h2, .card.streak-card h2, .card.correct-card h2 {
@@ -393,19 +479,19 @@
         }
         .card .content {
             font-family: 'Architects Daughter', cursive;
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            line-height: 1.1;
+            font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+            line-height: 1;
         }
-        .time-card { background-color: #ef4444; color: white; border-color: #991b1b; box-shadow: 8px 8px 0px #991b1b;}
+        .time-card { background-color: #ef4444; color: white; border-color: #991b1b; box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #991b1b;}
         .time-card.flash-green { animation: timer-flash-green 0.5s ease-in-out 2; }
-        .score-card { background-color: #22c55e; color: white; border-color: #14532d; box-shadow: 8px 8px 0px #14532d; animation: pulse-green 2s infinite ease-in-out;}
+        .score-card { background-color: #22c55e; color: white; border-color: #14532d; box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #14532d; animation: pulse-green 2s infinite ease-in-out;}
         .score-card .content {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(1.5rem, 3.5vw, 3rem);
             font-weight: 900;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
         }
-        .streak-card { background-color: #a855f7; color: white; border-color: #5b21b6; box-shadow: 8px 8px 0px #5b21b6;}
-        .correct-card { background-color: #2dd4bf; color: white; border-color: #0d9488; box-shadow: 8px 8px 0px #0d9488;}
+        .streak-card { background-color: #a855f7; color: white; border-color: #5b21b6; box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #5b21b6;}
+        .correct-card { background-color: #2dd4bf; color: white; border-color: #0d9488; box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #0d9488;}
 
         /* Header Buttons */
         .button-cluster {
@@ -430,16 +516,16 @@
 
         /* Question Area */
         .question-container {
-            background-color: #334155; border-color: #111827; box-shadow: 8px 8px 0px #111827;
-            display: flex; flex-direction: column; gap: clamp(0.5rem, 2vh, 1.5rem);
+            background-color: #334155; border-color: #111827; box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #111827;
+            display: flex; flex-direction: column; gap: clamp(0.4rem, 1.5vh, 1rem);
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
             min-height: 0;
         }
         .question-container.switching { opacity: 0; transform: scale(0.95); }
         .question-container.shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
         .question-box {
-            background-color: #fde047; border-color: #ca8a04; box-shadow: 8px 8px 0px #ca8a04;
-            padding: 1.5rem; flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem;
+            background-color: #fde047; border-color: #ca8a04; box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #ca8a04;
+            padding: clamp(0.75rem, 2vh, 1.25rem); flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 0.75rem;
             min-height: 0; /* Prevents flex items from stretching outside parent bounds */
             width: 100%;
         }
@@ -454,11 +540,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1.1;
-            padding: 0;
+            line-height: 1.3; /* Increased from 1.1 to prevent clipping of ascenders/descenders */
+            padding: 0.5rem 1rem; /* Added vertical and horizontal padding */
             margin: 0;
             min-height: 0; /* Ensures clientHeight is tightly bound */
             overflow: hidden; /* Ensures scrollHeight calculates correctly */
+            box-sizing: border-box; /* Crucial for accurate max-height calculations */
         }
         #hintBtn {
             background-color: #fb923c; border: 4px solid #c2410c; box-shadow: 4px 4px 0px #c2410c;
@@ -467,15 +554,17 @@
         }
         #hintBtn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #c2410c; }
         .answer-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.5rem, 2vh, 1.5rem);
-            flex: 2 1 0; min-height: 0;
+            display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.4rem, 1.5vh, 1rem);
+            flex: 1; min-height: 0; height: 100%; grid-auto-rows: 1fr;
         }
         .answer-choice {
-            background-color: #f59e0b; border-color: #92400e; box-shadow: 8px 8px 0px #92400e;
+            background-color: #f59e0b; border-color: #92400e; box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #92400e;
             cursor: pointer; transition: all 0.2s; display: flex; align-items: center;
-            justify-content: center; padding: clamp(0.5rem, 2vh, 1rem);
-            font-size: clamp(0.8rem, 2.5vh, 1.5rem);
+            justify-content: center; padding: clamp(0.6rem, 2vh, 1rem);
+            font-size: clamp(0.85rem, 2.5vh, 1.5rem);
             font-weight: 900;
+            text-align: center;
+            min-height: 4rem;
         }
         .answer-choice:hover { transform: translate(4px, 4px); box-shadow: 4px 4px 0px #92400e; }
         .answer-choice.removed {
@@ -487,8 +576,8 @@
 
         /* Abilities Section */
         .abilities-container {
-            background-color: #fde047; border-color: #ca8a04; box-shadow: 8px 8px 0px #ca8a04;
-            padding: clamp(0.5rem, 1.5vw, 1rem);
+            background-color: #fde047; border-color: #ca8a04; box-shadow: clamp(4px, 0.5vw, 8px) clamp(4px, 0.5vw, 8px) 0px #ca8a04;
+            padding: clamp(0.4rem, 1vh, 0.8rem);
             flex: 1 1 0;
             min-height: 0;
             display: flex;
@@ -497,9 +586,9 @@
         .abilities-title {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
-            font-size: clamp(1rem, 3.5vw, 1.75rem);
-            padding-bottom: clamp(0.1rem, 1vh, 0.25rem);
-            margin-bottom: clamp(0.25rem, 1vh, 0.5rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+            padding-bottom: clamp(0.1rem, 0.5vh, 0.2rem);
+            margin-bottom: clamp(0.2rem, 0.8vh, 0.4rem);
             color: #ca8a04;
             width: 100%;
             text-align: center;
@@ -521,13 +610,13 @@
             gap: clamp(0.25rem, 1vh, 0.5rem);
         }
         .ability-btn {
-            background-color: #fefce8; border: 4px solid #eab308; box-shadow: 4px 4px 0px #eab308;
-            padding: clamp(0.1rem, 1vh, 0.5rem);
-            transition: all 0.2s; border-radius: 1rem; font-weight: 900; line-height: 1.2;
+            background-color: #fefce8; border: clamp(2px, 0.3vw, 4px) solid #eab308; box-shadow: clamp(2px, 0.3vw, 4px) clamp(2px, 0.3vw, 4px) 0px #eab308;
+            padding: clamp(0.1rem, 0.6vh, 0.4rem);
+            transition: all 0.2s; border-radius: 0.75rem; font-weight: 900; line-height: 1.1;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             position: relative;
             width: 100%;
-            font-size: clamp(0.6rem, 2vh, 0.9rem);
+            font-size: clamp(0.55rem, 1.8vh, 0.85rem);
             /* Allow buttons to grow to fill space */
             flex-grow: 1;
             flex-shrink: 1;
@@ -611,10 +700,10 @@
             box-shadow: 0 0 10px rgba(147, 197, 253, 0.8);
             animation: scan-line-anim 3s linear infinite;
         }
-        #notificationPanel { height: clamp(80px, 12vh, 120px); }
+        #notificationPanel { height: clamp(60px, 10vh, 100px); }
         #notificationText {
             font-family: 'VT323', monospace;
-            font-size: clamp(1.1rem, 3vh, 1.5rem);
+            font-size: clamp(1rem, 2.5vh, 1.3rem);
             color: #93c5fd;
             text-shadow: 0 0 3px #2563eb, 0 0 5px #2563eb;
             width: 100%;
@@ -855,6 +944,23 @@
             border: 2px solid rgba(0,0,0,0.2);
             user-select: none;
         }
+        .unit-tag {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 2px solid #1d4ed8;
+            box-shadow: 2px 2px 0px #1d4ed8;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: fit-content;
+        }
+        .unit-tag.hidden { display: none; }
         #storeTooltip {
             position: fixed;
             background-color: #fffbeb;
@@ -876,40 +982,40 @@
 <body>
 
      <div id="difficultyModal" class="modal-overlay">
-        <div class="modal-content" style="text-align: center; background-color: #f9fafb; max-width: min(95vw, 1200px);">
-            <h2 class="font-bold mb-8" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 6vw, 4rem);">Choose Your Challenge</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div class="modal-content" style="text-align: center; background-color: #f9fafb; max-width: min(95vw, 600px);">
+            <h2 class="font-bold mb-4" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.25rem, 3vw, 2rem);">Choose Your Challenge</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                 <!-- Easy Mode -->
-                <div id="easyModeBtn" class="mode-card simple" style="--main-color: #3b82f6; --shadow-color: #1d4ed8;">
+                <div id="easyModeBtn" class="mode-card simple" style="--main-color: #3b82f6; --shadow-color: #1d4ed8;" data-description="Questions needed for a Panther Buck: 10 (Streak)">
                     <h3 class="flex flex-col items-center gap-2">
                         <span class="text-5xl">😊</span>
                         <span>Easy</span>
                     </h3>
                 </div>
                 <!-- Myth Debunker Mode -->
-                <div id="mythModeBtn" class="mode-card simple" style="--main-color: #eab308; --shadow-color: #713f12;">
+                <div id="mythModeBtn" class="mode-card simple" style="--main-color: #eab308; --shadow-color: #713f12;" data-description="Questions needed for a Panther Buck: 10 (Streak)">
                     <h3 class="flex flex-col items-center gap-2">
                         <span class="text-5xl">🤔</span>
                         <span>Myth Debunker</span>
                     </h3>
                 </div>
                 <!-- Hard Mode -->
-                <div id="hardModeBtn" class="mode-card simple" style="--main-color: #f97316; --shadow-color: #9a3412;">
+                <div id="hardModeBtn" class="mode-card simple" style="--main-color: #f97316; --shadow-color: #9a3412;" data-description="Questions needed for a Panther Buck: 7 (Streak)">
                     <h3 class="flex flex-col items-center gap-2">
                         <span class="text-5xl">🔥</span>
                         <span>Hard</span>
                     </h3>
                 </div>
                 <!-- Skibidi Mode -->
-                <div id="skibidiModeBtn" class="mode-card simple" style="--main-color: #a855f7; --shadow-color: #5b21b6;">
+                <div id="skibidiModeBtn" class="mode-card simple" style="--main-color: #a855f7; --shadow-color: #5b21b6;" data-description="Questions needed for a Panther Buck: 5 (Streak)">
                     <h3 class="flex flex-col items-center gap-2">
                         <span class="text-5xl">⌨️</span>
                         <span>Skibidi</span>
                     </h3>
                 </div>
                 <!-- Fill in the Blank Mode -->
-                <div id="fitbModeBtn" class="mode-card simple relative" style="--main-color: #ec4899; --shadow-color: #be185d;">
-                    <div class="absolute -top-4 -right-4 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-black text-xl border-4 border-yellow-700 z-10" style="box-shadow: 4px 4px 0px #a16207; transform: rotate(12deg);">NEW!</div>
+                <div id="fitbModeBtn" class="mode-card simple relative" style="--main-color: #ec4899; --shadow-color: #be185d;" data-description="Questions needed for a Panther Buck: 4 (Streak)">
+                    <div class="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full font-black text-sm border-2 border-yellow-700 z-10" style="box-shadow: 2px 2px 0px #a16207; transform: rotate(12deg);">NEW!</div>
                     <h3 class="flex flex-col items-center gap-2">
                         <span class="text-5xl">🧩</span>
                         <span>Fill Blank</span>
@@ -1062,13 +1168,17 @@
     <div id="gradeModal" class="modal-overlay hidden">
         <div class="modal-content" style="text-align: center;">
             <h2 class="text-4xl font-bold mb-4">Select Grade Level</h2>
-            <div class="mb-4">
-                <select id="gradeLevelSelect" class="w-full p-3 text-xl border-4 border-gray-800 rounded-xl">
-                    <option value="grade6">6th Grade</option>
-                    <option value="grade7">7th Grade</option>
-                    <option value="grade8">8th Grade</option>
-                </select>
+            <div id="gradeButtonContainer" class="grid grid-cols-3 gap-3 mb-6">
+                <button class="selection-button" data-value="grade6">6th Grade</button>
+                <button class="selection-button" data-value="grade7">7th Grade</button>
+                <button class="selection-button" data-value="grade8">8th Grade</button>
             </div>
+            
+            <h2 class="text-4xl font-bold mb-4">Select Unit</h2>
+            <div id="unitButtonContainer" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 mb-6 max-h-[40vh] overflow-y-auto p-2">
+                <!-- Unit buttons will be injected here -->
+            </div>
+            
             <div class="flex justify-center gap-4 mt-6">
                 <button id="backToDifficultyBtn" class="modal-button bg-gray-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Back</button>
                 <button id="startGameBtn" class="modal-button bg-green-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Start Game!</button>
@@ -1168,7 +1278,10 @@
         <div class="modal-content" style="max-width: 800px;">
             <h2 class="text-4xl font-bold mb-4">Review Mistakes (<span id="reviewCounter"></span>)</h2>
             <div id="reviewContent" class="space-y-4 mb-6">
-                <p id="reviewQuestion" class="text-xl font-bold bg-slate-200 p-4 rounded-lg"></p>
+                <div class="flex flex-col gap-2">
+                    <div id="reviewUnitLabel" class="unit-tag hidden self-start"></div>
+                    <p id="reviewQuestion" class="text-xl font-bold bg-slate-200 p-4 rounded-lg"></p>
+                </div>
                 <div id="reviewChoices" class="space-y-2"></div>
                 <div id="reviewUserAnswer" class="hidden"><p class="text-lg">Your answer: <span id="reviewUserAnswerText" class="font-bold text-red-500"></span></p></div>
             </div>
@@ -1220,8 +1333,8 @@
             <h2 class="text-4xl font-bold mb-6">Settings</h2>
             <div class="flex items-center justify-center gap-4 bg-slate-100 p-4 rounded-lg">
                 <label for="soundToggle" class="text-xl font-bold">Game Sounds</label>
-                <button id="soundToggle" class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors bg-gray-300">
-                    <span id="soundToggleKnob" class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform translate-x-1"></span>
+                <button id="soundToggle" class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors bg-green-500">
+                    <span id="soundToggleKnob" class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform translate-x-6"></span>
                 </button>
             </div>
             <button id="closeSettingsBtn" class="modal-button bg-gray-500 text-white mt-8" style="box-shadow: 4px 4px 0px #111827;">Close</button>
@@ -1296,34 +1409,38 @@
         </header>
 
         <section id="gameArea" class="card question-container">
-            <div id="questionBox" class="card question-box">
+            <div id="questionBox" class="card question-box relative">
                 <p id="questionText"></p>
                 <div class="flex justify-center items-center gap-4 mt-2" id="question-controls">
                     <div id="dokLabel" class="hidden"></div>
                     <button id="hintBtn">?</button>
+                    <div id="unitLabel" class="unit-tag hidden"></div>
                     <button id="firstLetterBtn" class="hidden bg-blue-500 text-white border-blue-800 shadow-blue-800 hover:shadow-blue-800/50 rounded-full w-12 h-12 text-lg font-black transition-all duration-200 hover:translate-y-1" style="border-width: 4px; box-shadow: 4px 4px 0px #1e40af; flex-shrink: 0; width: clamp(40px, 5vw, 60px); height: clamp(40px, 5vw, 60px);">A_</button>
                 </div>
             </div>
-            <div id="answerArea">
+            <div id="answerArea" class="flex flex-col flex-1 min-height-0">
                 <div class="answer-grid">
                     <div class="card answer-choice" data-choice="0"><p></p></div>
                     <div class="card answer-choice" data-choice="1"><p></p></div>
                     <div class="card answer-choice" data-choice="2"><p></p></div>
                     <div class="card answer-choice" data-choice="3"><p></p></div>
                 </div>
-                <form id="skibidi-form" class="hidden w-full flex flex-col sm:flex-row gap-4 items-center justify-center p-4">
-                    <input type="text" id="skibidi-input" class="w-full text-2xl p-3 border-4 border-gray-800 rounded-xl" placeholder="Type your answer...">
-                    <button type="submit" id="skibidi-submit" class="modal-button bg-green-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Submit</button>
+                <form id="skibidi-form" class="hidden w-full h-full flex flex-col sm:flex-row gap-4 items-center justify-center p-4">
+                    <input type="text" id="skibidi-input" class="w-full text-2xl p-4 border-4 border-gray-800 rounded-xl" placeholder="Type your answer...">
+                    <button type="submit" id="skibidi-submit" class="modal-button bg-green-500 text-white !m-0" style="box-shadow: 4px 4px 0px #111827;">Submit</button>
                 </form>
                 <!-- NEW: Fact or Myth buttons -->
-                <div id="mythAnswerButtons" class="hidden flex justify-center gap-4 mt-4">
-                    <button id="factBtn" class="modal-button bg-blue-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Fact</button>
-                    <button id="mythBtn" class="modal-button bg-red-500 text-white" style="box-shadow: 4px 4px 0px #111827;">Myth</button>
+                <div id="mythAnswerButtons" class="hidden h-full flex justify-center items-center gap-6 p-4">
+                    <button id="factBtn" class="answer-choice flex-1 max-w-sm">Fact</button>
+                    <button id="mythBtn" class="answer-choice flex-1 max-w-sm">Myth</button>
                 </div>
                 <!-- Drag-and-Drop Area (FITB Mode) -->
-                <div id="fitbAnswerArea" class="hidden w-full flex flex-col gap-4 items-center justify-center p-4">
+                <div id="fitbAnswerArea" class="hidden w-full h-full flex flex-col gap-4 items-center justify-center p-4">
                     <div id="fitbWordBank" class="flex flex-wrap justify-center gap-2"></div>
-                    <button id="fitbSubmitBtn" class="modal-button bg-green-500 text-white hidden" style="box-shadow: 4px 4px 0px #111827;">Submit Answer</button>
+                    <!-- New wrapper for submit button -->
+                    <div id="fitbSubmitContainer" class="flex flex-row items-center justify-center gap-4 w-full">
+                        <button id="fitbSubmitBtn" class="modal-button bg-green-500 text-white hidden" style="box-shadow: 4px 4px 0px #111827;">Submit Answer</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2388,6 +2505,8 @@
         const explanationModal = document.getElementById('explanationModal');
         const explanationTextEl = document.getElementById('explanationText');
         const sigmaStageUpModal = document.getElementById('sigmaStageUpModal');
+        const unitLabelEl = document.getElementById('unitLabel');
+        const reviewUnitLabelEl = document.getElementById('reviewUnitLabel');
         const dokLabel = document.getElementById('dokLabel');
         const closeSigmaStageUpBtn = document.getElementById('closeSigmaStageUpBtn');
         // Sigma Mode UI
@@ -2417,7 +2536,10 @@
         const acceptSigmaBtn = document.getElementById('acceptSigmaBtn');
         const declineSigmaBtn = document.getElementById('declineSigmaBtn');
         const backToDifficultyBtn = document.getElementById('backToDifficultyBtn');
-        const gradeLevelSelect = document.getElementById('gradeLevelSelect');
+        const gradeButtonContainer = document.getElementById('gradeButtonContainer');
+        const unitButtonContainer = document.getElementById('unitButtonContainer');
+        let selectedGrade = 'grade6'; 
+        let selectedUnit = 'all';
         const startGameBtn = document.getElementById('startGameBtn');
         const newGameBtn = document.getElementById('newGameBtn');
         const storeBtn = document.getElementById('storeBtn');
@@ -2564,25 +2686,70 @@
         }
 
         function adjustFontSize(element) {
+            if (!element) return;
+            const parent = document.getElementById('questionBox');
+            if (!parent) return;
+
             const isFitb = gameMode === 'FILL_BLANK';
-            // Start at 80 for FITB to maximize the new wrapped flex layout real estate
-            let fontSize = isFitb ? 80 : 150; 
-            const minFontSize = isFitb ? 14 : 10; // Higher minimum font size for FITB to keep readable
             
-            // Capture the absolute dimensions BEFORE the massive font size stretches the flex container.
-            const targetHeight = element.clientHeight;
-            const targetWidth = element.clientWidth;
+            // 1. Calculate available space
+            const controls = document.getElementById('question-controls');
+            
+            // Only subtract controls height if they are actually in the question box
+            let controlsHeight = 0;
+            if (controls && parent.contains(controls)) {
+                controlsHeight = controls.offsetHeight > 0 ? controls.offsetHeight : 70;
+            }
+            
+            // Get parent padding
+            const style = window.getComputedStyle(parent);
+            const paddingTop = parseFloat(style.paddingTop) || 0;
+            const paddingBottom = parseFloat(style.paddingBottom) || 0;
+            const paddingLeft = parseFloat(style.paddingLeft) || 0;
+            const paddingRight = parseFloat(style.paddingRight) || 0;
+            const gap = parseFloat(style.gap) || 0;
 
-            if (targetHeight === 0 || targetWidth === 0) return;
+            // Calculate the maximum height the text element can occupy
+            // We use a 20px safety buffer
+            const maxH = Math.max(parent.clientHeight - paddingTop - paddingBottom - controlsHeight - (controlsHeight > 0 ? gap : 0) - 20, 40);
+            const maxW = Math.max(parent.clientWidth - paddingLeft - paddingRight - 20, 100);
 
-            element.style.fontSize = `${fontSize}px`;
+            if (maxH <= 0 || maxW <= 0) return;
 
-            // Loop to reduce font size until the text fits within the fixed boundaries.
-            // Since .drop-zone now uses 'em' units, shrinking the font size here 
-            // proportionately shrinks the drop-zones too, keeping scrollHeight math accurate.
-            while ((element.scrollHeight > targetHeight + 5 || element.scrollWidth > targetWidth) && fontSize > minFontSize) {
-                fontSize--;
-                element.style.fontSize = `${fontSize}px`;
+            // Apply constraints to the element
+            element.style.maxHeight = maxH + 'px';
+            element.style.maxWidth = maxW + 'px';
+
+            // 2. Set starting font size
+            let fontSize = isFitb ? 70 : 120; // Lowered initial for MC
+            const minFontSize = isFitb ? 18 : 32; // Lowered min for MC too
+            
+            element.style.fontSize = fontSize + 'px';
+            
+            // 3. Shrink loop
+            let iterations = 0;
+            while (fontSize > minFontSize && iterations < 150) {
+                iterations++;
+                // Force reflow
+                void element.offsetHeight;
+                
+                // Use scrollHeight vs maxH directly to be safe
+                const overflowsY = element.scrollHeight > maxH + 1;
+                const overflowsX = element.scrollWidth > maxW + 1;
+                
+                // Also check if the parent box is overflowing (ultimate safety)
+                const parentOverflows = parent.scrollHeight > parent.clientHeight + 1;
+
+                if (!overflowsY && !overflowsX && !parentOverflows) {
+                    break;
+                }
+                
+                fontSize -= 2; // Faster shrink
+                element.style.fontSize = fontSize + 'px';
+            }
+            
+            if (fontSize <= minFontSize) {
+                element.style.fontSize = minFontSize + 'px';
             }
         }
 
@@ -2906,7 +3073,7 @@
             permanentWrongAnswers = [];
         }
 
-        function getQuestions(mode, grade) {
+        function getQuestions(mode, grade, unit = 'all') {
             if (!gameQuestions[mode]) {
                 console.warn(`Mode ${mode} not found.`);
                 return [];
@@ -2918,14 +3085,85 @@
 
             const gradeData = gameQuestions[mode][grade];
             let questions = [];
-            // Iterate over units (unit1, unit2, etc.)
-            Object.values(gradeData).forEach(unitQuestions => {
-                if (Array.isArray(unitQuestions)) {
-                    questions = questions.concat(unitQuestions);
-                }
-            });
+            
+            if (unit === 'all') {
+                // Iterate over units (unit1, unit2, etc.)
+                Object.entries(gradeData).forEach(([unitKey, unitQuestions]) => {
+                    if (Array.isArray(unitQuestions)) {
+                        const taggedQuestions = unitQuestions.map(q => ({
+                            ...q,
+                            unitName: unitKey.replace('unit', 'Unit ')
+                        }));
+                        questions = questions.concat(taggedQuestions);
+                    }
+                });
+            } else if (gradeData[unit]) {
+                questions = gradeData[unit].map(q => ({
+                    ...q,
+                    unitName: unit.replace('unit', 'Unit ')
+                }));
+            } else {
+                console.warn(`Unit ${unit} not found in grade ${grade} for mode ${mode}.`);
+            }
+            
             return questions;
         }
+
+        function updateUnitOptions() {
+            const currentMode = gameMode === 'SIGMA' ? 'EASY' : gameMode;
+            
+            // Clear current buttons
+            unitButtonContainer.innerHTML = '';
+            
+            // Add "All Units" button
+            const allUnitsBtn = document.createElement('button');
+            allUnitsBtn.className = 'selection-button all-units-btn';
+            if (selectedUnit === 'all') allUnitsBtn.classList.add('selected');
+            allUnitsBtn.textContent = 'All Units';
+            allUnitsBtn.onclick = () => {
+                playClickSound();
+                selectedUnit = 'all';
+                updateUnitOptions(); // Refresh to show selection
+            };
+            unitButtonContainer.appendChild(allUnitsBtn);
+            
+            if (gameQuestions[currentMode] && gameQuestions[currentMode][selectedGrade]) {
+                const units = Object.keys(gameQuestions[currentMode][selectedGrade]);
+                units.forEach(unit => {
+                    const btn = document.createElement('button');
+                    btn.className = 'selection-button';
+                    if (selectedUnit === unit) btn.classList.add('selected');
+                    // Format unit name (e.g., "unit1" -> "Unit 1")
+                    btn.textContent = unit.charAt(0).toUpperCase() + unit.slice(1).replace(/(\d+)/, ' $1');
+                    btn.onclick = () => {
+                        playClickSound();
+                        selectedUnit = unit;
+                        updateUnitOptions(); // Refresh to show selection
+                    };
+                    unitButtonContainer.appendChild(btn);
+                });
+            }
+        }
+
+        // Initialize Grade Buttons
+        gradeButtonContainer.querySelectorAll('.selection-button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                playClickSound();
+                selectedGrade = btn.dataset.value;
+                selectedUnit = 'all'; // Reset unit when grade changes
+                
+                // Update visual selection
+                gradeButtonContainer.querySelectorAll('.selection-button').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                
+                updateUnitOptions();
+            });
+            
+            // Set initial selection
+            if (btn.dataset.value === selectedGrade) {
+                btn.classList.add('selected');
+            }
+        });
 
         async function startGame() {
             try {
@@ -2945,9 +3183,8 @@
             sigmaProgressContainer.classList.add('hidden'); // Hide by default
             gradeModal.classList.add('hidden');
 
-            const selectedGrade = gradeLevelSelect.value;
             let questionBank;
-            let activeQuestionSetKey = selectedGrade; // Use the value from the select dropdown
+            let activeQuestionSetKey = selectedGrade; // Use the value from the selected grade button
             let initialNotification = "The challenge has begun. Good luck!";
 
             if (gameMode === 'SIGMA') {
@@ -2955,15 +3192,15 @@
                 sigmaCorrectInStage = 0;
                 sigmaProgressContainer.classList.remove('hidden');
                 // Start with easy questions for stage 1
-                activeQuestionSet = getQuestions('EASY', activeQuestionSetKey);
+                activeQuestionSet = getQuestions('EASY', activeQuestionSetKey, selectedUnit);
                 questionsCopy = [...activeQuestionSet];
                 initialNotification = "SIGMA MODE: Stage 1 - Easy Questions. Good luck!";
             } else if (gameMode === 'FILL_BLANK') { // Handle FITB mode data loading
-                activeQuestionSet = getQuestions('FILL_BLANK', activeQuestionSetKey);
+                activeQuestionSet = getQuestions('FILL_BLANK', activeQuestionSetKey, selectedUnit);
                 questionsCopy = [...activeQuestionSet];
                 initialNotification = "Drag the correct words to complete the historical passage!";
             } else {
-                activeQuestionSet = getQuestions(gameMode, activeQuestionSetKey);
+                activeQuestionSet = getQuestions(gameMode, activeQuestionSetKey, selectedUnit);
                 questionsCopy = [...activeQuestionSet];
             }
 
@@ -3053,6 +3290,9 @@
         function isItemPurchased(item) { return false; }
 
         function displayNextQuestion() {
+            const questionControls = document.getElementById('question-controls');
+            const fitbAnswerArea = document.getElementById('fitbAnswerArea');
+            const questionBox = document.getElementById('questionBox');
             gameAreaEl.classList.add('switching');
             setTimeout(() => {
                 const totalQuestionsInStage = activeQuestionSet.length;
@@ -3061,15 +3301,14 @@
                 // SIGMA Mode Stage Progression
                 if (gameMode === 'SIGMA' && sigmaCorrectInStage >= requiredForNextStage) {
                     sigmaStage++;
-                    const selectedGrade = gradeLevelSelect.value;
                     let nextQuestionSet = null;
                     let stageName = '';
 
                     if (sigmaStage === 2) {
-                        nextQuestionSet = getQuestions('HARD', selectedGrade);
+                        nextQuestionSet = getQuestions('HARD', selectedGrade, selectedUnit);
                         stageName = 'Hard';
                     } else if (sigmaStage === 3) {
-                        nextQuestionSet = getQuestions('SKIBIDI', selectedGrade);
+                        nextQuestionSet = getQuestions('SKIBIDI', selectedGrade, selectedUnit);
                         stageName = 'Skibidi';
                     }
 
@@ -3125,29 +3364,56 @@
                     dokLabel.classList.add('hidden');
                 }
 
+                // Unit Label Logic
+                if (question.unitName) {
+                    unitLabelEl.textContent = question.unitName;
+                    unitLabelEl.classList.remove('hidden');
+                } else {
+                    unitLabelEl.classList.add('hidden');
+                }
+
 
                 if (isMythTypeQuestion) {
                     // --- MYTH DEBUNKER LOGIC ---
                     mythAnswerButtons.classList.remove('hidden');
                     factBtn.disabled = false;
                     mythBtn.disabled = false;
+                    questionBox.appendChild(questionControls);
+                    questionBox.style.flex = "3 1 0";
+                    answerAreaEl.style.flex = "1 1 0";
                 } else if (isSkibidiTypeQuestion) {
                     // --- TYPED ANSWER LOGIC (SKIBIDI/SIGMA-SKIBIDI) ---
                     skibidiFormEl.classList.remove('hidden');
                     hintBtn.classList.remove('hidden'); // Show the standard hint button
                     firstLetterBtn.classList.remove('hidden'); // Show letter hint button for skibidi
+                    questionBox.appendChild(questionControls);
+                    questionBox.style.flex = "3 1 0";
+                    answerAreaEl.style.flex = "1 1 0";
                 } else if (isFitbTypeQuestion) {
                     // --- FILL IN THE BLANK LOGIC ---
                     fitbAnswerArea.classList.remove('hidden');
                     hintBtn.classList.remove('hidden'); 
+                    // Move controls to the new submit container in FITB mode
+                    document.getElementById('fitbSubmitContainer').appendChild(questionControls);
+                    // Adjust flex ratios for FITB: Question needs more space, Answer area needs less
+                    questionBox.style.flex = "4 1 0";
+                    answerAreaEl.style.flex = "1 1 0";
                 } else {
                     // --- MULTIPLE CHOICE LOGIC (EASY/HARD/SIGMA-MC) ---
                     answerGridEl.classList.remove('hidden');
                     hintBtn.classList.remove('hidden'); // Show the standard hint button
+                    questionBox.appendChild(questionControls);
+                    // Reset flex ratios for standard modes
+                    questionBox.style.flex = "3 1 0";
+                    answerAreaEl.style.flex = "1 1 0";
                 }
 
                 if(!isSkibidiTypeQuestion && !isMythTypeQuestion && !isFitbTypeQuestion) {
                     // --- MULTIPLE CHOICE LOGIC (EASY/HARD/SIGMA-MC) ---
+                    if (!question || !question.choices) {
+                        displayNextQuestion();
+                        return;
+                    }
 
                     // --- Answer Randomization ---
                     // 1. Create a mappable array of choices with their original index
@@ -3181,7 +3447,13 @@
 
                     // 4. Populate the UI with the shuffled choices
                     answerChoices.forEach((choiceEl, index) => {
-                        choiceEl.querySelector('p').textContent = choicesWithOriginalIndex[index].text;
+                        const choice = choicesWithOriginalIndex[index];
+                        if (choice) {
+                            choiceEl.classList.remove('hidden');
+                            choiceEl.querySelector('p').textContent = choice.text;
+                        } else {
+                            choiceEl.classList.add('hidden');
+                        }
                         // Temporarily store the new correct index on the game area for handleAnswerClick
                         gameAreaEl.dataset.correct = newCorrectAnswerIndex;
                     });
@@ -3211,14 +3483,28 @@
                     skibidiInputEl.classList.remove('correct', 'incorrect');
                 }
 
-                adjustFontSize(questionTextEl);
-
                 gameAreaEl.classList.remove('switching');
 
+                // Call adjustment to ensure layout is settled after transition
+                adjustFontSize(questionTextEl);
+                setTimeout(() => adjustFontSize(questionTextEl), 100);
+                
                 // Update progress AFTER the question has been shifted from the array.
                 updateSigmaProgress();
                 isTransitioning = false;
             }, 300);
+        }
+
+        // --- Resize Observer for Question Box ---
+        const questionResizeObserver = new ResizeObserver(() => {
+            const questionTextEl = document.getElementById('questionText');
+            if (questionTextEl && !isTransitioning) {
+                adjustFontSize(questionTextEl);
+            }
+        });
+        const questionBox = document.getElementById('questionBox');
+        if (questionBox) {
+            questionResizeObserver.observe(questionBox);
         }
 
         // --- FITB ENGINE ---
@@ -3935,6 +4221,13 @@
 
             document.getElementById('reviewCounter').textContent = `${reviewIndex + 1} / ${permanentWrongAnswers.length}`;
             
+            if (question.unitName) {
+                reviewUnitLabelEl.textContent = question.unitName;
+                reviewUnitLabelEl.classList.remove('hidden');
+            } else {
+                reviewUnitLabelEl.classList.add('hidden');
+            }
+
             if (question.text) {
                 reviewQuestionEl.innerHTML = question.text.replace(/\[\[\d+\]\]/g, '_______');
             } else {
@@ -3997,6 +4290,7 @@
         acceptEasyBtn.addEventListener('click', () => {
             playClickSound();
             easyRulesModal.classList.add('hidden');
+            updateUnitOptions();
             gradeModal.classList.remove('hidden');
         });
         declineEasyBtn.addEventListener('click', () => {
@@ -4007,6 +4301,7 @@
         acceptHardBtn.addEventListener('click', () => {
             playClickSound();
             hardRulesModal.classList.add('hidden');
+            updateUnitOptions();
             gradeModal.classList.remove('hidden');
         });
         declineHardBtn.addEventListener('click', () => {
@@ -4030,6 +4325,7 @@
         acceptFitbBtn.addEventListener('click', () => {
             playClickSound();
             fitbRulesModal.classList.add('hidden');
+            updateUnitOptions();
             gradeModal.classList.remove('hidden');
         });
         declineFitbBtn.addEventListener('click', () => {
@@ -4047,6 +4343,7 @@
         acceptSigmaBtn.addEventListener('click', () => {
             playClickSound();
             sigmaRulesModal.classList.add('hidden');
+            updateUnitOptions();
             gradeModal.classList.remove('hidden');
         });
         declineSigmaBtn.addEventListener('click', () => {
@@ -4058,6 +4355,7 @@
         acceptSkibidiBtn.addEventListener('click', () => {
             playClickSound();
             skibidiRulesModal.classList.add('hidden');
+            updateUnitOptions();
             gradeModal.classList.remove('hidden');
         });
         declineSkibidiBtn.addEventListener('click', () => {
@@ -4075,6 +4373,7 @@
         acceptMythBtn.addEventListener('click', () => {
             playClickSound();
             mythRulesModal.classList.add('hidden');
+            updateUnitOptions();
             gradeModal.classList.remove('hidden');
         });
         declineMythBtn.addEventListener('click', () => {
@@ -4119,6 +4418,11 @@
         settingsBtn.addEventListener('click', () => {
             playClickSound();
             isGamePaused = true;
+            // Sync sound toggle UI
+            soundToggle.classList.toggle('bg-green-500', !isMuted);
+            soundToggle.classList.toggle('bg-gray-300', isMuted);
+            document.getElementById('soundToggleKnob').classList.toggle('translate-x-6', !isMuted);
+            document.getElementById('soundToggleKnob').classList.toggle('translate-x-1', isMuted);
             settingsModal.classList.remove('hidden');
         });
         closeSettingsBtn.addEventListener('click', () => {
@@ -4213,11 +4517,11 @@
             }
         });
 
-        // Store Tooltip Logic
+        // Tooltip Logic (Store and Game Modes)
         const storeTooltip = document.getElementById('storeTooltip');
-        const storeItemsEls = document.querySelectorAll('.store-item');
+        const tooltipElements = document.querySelectorAll('[data-description]');
 
-        storeItemsEls.forEach(item => {
+        tooltipElements.forEach(item => {
             item.addEventListener('mouseenter', (e) => {
                 const desc = item.dataset.description;
                 if (desc) {
